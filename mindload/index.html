@@ -1,0 +1,685 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>MindLoad - AI Mental Load Reducer</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Fraunces:wght@600&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg: #f8fbff;
+      --surface: #ffffff;
+      --ink: #132233;
+      --muted: #5a6b7c;
+      --primary: #4a8fe7;
+      --primary-soft: #e3efff;
+      --accent: #9ed6e6;
+      --accent-2: #d9eef7;
+      --success: #4fb286;
+      --shadow: 0 18px 40px rgba(19, 34, 51, 0.1);
+    }
+
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: "DM Sans", system-ui, sans-serif;
+      background: radial-gradient(120% 80% at 20% 0%, #ffffff 0%, var(--bg) 55%, #edf4ff 100%);
+      color: var(--ink);
+      min-height: 100vh;
+      display: flex;
+      align-items: flex-start;
+      justify-content: center;
+      padding: 24px 12px 40px;
+    }
+
+    .page {
+      width: 100%;
+      max-width: 980px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 26px;
+    }
+
+    .phone {
+      width: 100%;
+      max-width: 400px;
+      background: var(--surface);
+      border-radius: 28px;
+      box-shadow: var(--shadow);
+      overflow: hidden;
+      border: 1px solid #e9f1fb;
+      position: relative;
+    }
+
+    .status {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 14px 18px 6px;
+      font-size: 13px;
+      color: var(--muted);
+    }
+
+    .app-header {
+      padding: 8px 18px 14px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .logo-mark {
+      width: 36px;
+      height: 36px;
+      border-radius: 12px;
+      background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
+      display: grid;
+      place-items: center;
+      color: white;
+      font-weight: 700;
+      font-size: 16px;
+    }
+
+    .logo-text {
+      font-family: "Fraunces", serif;
+      font-size: 20px;
+    }
+
+    .plan-chip {
+      background: var(--primary-soft);
+      color: var(--primary);
+      padding: 6px 10px;
+      border-radius: 999px;
+      font-size: 12px;
+      font-weight: 600;
+    }
+
+    .screen {
+      padding: 0 18px 90px;
+      display: none;
+      animation: fadeIn 0.35s ease;
+    }
+
+    .screen.active { display: block; }
+
+    .hero {
+      background: linear-gradient(180deg, #ffffff 0%, #f4f8ff 100%);
+      border-radius: 20px;
+      padding: 16px;
+      border: 1px solid #eaf2ff;
+      margin-bottom: 16px;
+    }
+
+    .hero h2 {
+      margin: 0 0 6px;
+      font-size: 20px;
+    }
+
+    .hero p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .ai-card {
+      background: #f2f7ff;
+      border-radius: 18px;
+      padding: 14px;
+      border: 1px solid #dcecff;
+      display: flex;
+      gap: 12px;
+      align-items: flex-start;
+      margin-top: 14px;
+    }
+
+    .ai-avatar {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      background: linear-gradient(140deg, #6aa9ff, #9ed6e6);
+      display: grid;
+      place-items: center;
+      color: #fff;
+      font-weight: 700;
+      font-size: 14px;
+    }
+
+    .ai-card p {
+      margin: 0;
+      color: #334960;
+      font-size: 13px;
+      line-height: 1.4;
+    }
+
+    .section-title {
+      font-weight: 700;
+      margin: 14px 0 10px;
+    }
+
+    .card {
+      background: var(--surface);
+      border-radius: 18px;
+      padding: 14px;
+      border: 1px solid #eaf0f7;
+      box-shadow: 0 8px 20px rgba(19, 34, 51, 0.05);
+      margin-bottom: 12px;
+    }
+
+    .task-list { list-style: none; padding: 0; margin: 0; }
+    .task-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      padding: 10px 0;
+      border-bottom: 1px solid #edf2f8;
+    }
+    .task-item:last-child { border-bottom: none; }
+    .pill {
+      font-size: 11px;
+      padding: 4px 8px;
+      border-radius: 999px;
+      background: #e9f2ff;
+      color: #2f5f95;
+      font-weight: 600;
+    }
+
+    .pill.green { background: #e6f7f0; color: #2f7f5b; }
+    .pill.orange { background: #fff3e0; color: #ba6c21; }
+
+    textarea {
+      width: 100%;
+      border-radius: 16px;
+      border: 1px solid #dde6f2;
+      padding: 12px;
+      min-height: 120px;
+      font-family: inherit;
+      resize: none;
+      background: #ffffff;
+      color: var(--ink);
+    }
+
+    .primary-btn {
+      width: 100%;
+      border: none;
+      background: var(--primary);
+      color: #fff;
+      padding: 12px;
+      border-radius: 14px;
+      font-weight: 600;
+      margin-top: 10px;
+      cursor: pointer;
+      box-shadow: 0 10px 18px rgba(74, 143, 231, 0.28);
+    }
+
+    .mini-grid {
+      display: grid;
+      gap: 10px;
+    }
+
+    .mini-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+    }
+
+    .meal-day {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 10px 0;
+      border-bottom: 1px dashed #e1ebf6;
+    }
+
+    .meal-day:last-child { border-bottom: none; }
+
+    .family-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 10px;
+      border-radius: 14px;
+      background: #f6faff;
+      margin-bottom: 10px;
+    }
+
+    .avatar {
+      width: 34px;
+      height: 34px;
+      border-radius: 50%;
+      background: #dbeaff;
+      display: grid;
+      place-items: center;
+      color: #3d70ad;
+      font-weight: 700;
+    }
+
+    .bottom-nav {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: #ffffff;
+      border-top: 1px solid #eaf0f7;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      padding: 10px 8px 16px;
+      gap: 6px;
+    }
+
+    .nav-item {
+      display: grid;
+      place-items: center;
+      gap: 4px;
+      font-size: 11px;
+      color: var(--muted);
+      padding: 6px 4px;
+      border-radius: 12px;
+      cursor: pointer;
+    }
+
+    .nav-item.active {
+      background: var(--primary-soft);
+      color: var(--primary);
+      font-weight: 700;
+    }
+
+    .nav-icon {
+      width: 26px;
+      height: 26px;
+      border-radius: 8px;
+      display: grid;
+      place-items: center;
+      background: #eef5ff;
+      font-size: 12px;
+    }
+
+    .nav-item.active .nav-icon { background: #d4e6ff; }
+
+    .progress {
+      height: 8px;
+      background: #eaf0f7;
+      border-radius: 999px;
+      overflow: hidden;
+    }
+
+    .progress span {
+      display: block;
+      height: 100%;
+      background: linear-gradient(90deg, var(--primary), var(--accent));
+      width: 72%;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .feature-breakdown {
+      width: 100%;
+      background: linear-gradient(145deg, #0b1424 0%, #141d2d 55%, #1a2334 100%);
+      color: #e6eef7;
+      border-radius: 26px;
+      padding: 30px 22px 32px;
+      box-shadow: 0 26px 50px rgba(10, 20, 35, 0.35);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .feature-breakdown::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(120% 60% at 0% 0%, rgba(99, 179, 237, 0.18), transparent 55%);
+      pointer-events: none;
+    }
+
+    .feature-breakdown h2 {
+      margin: 0 0 10px;
+      font-family: "Fraunces", serif;
+      font-size: 26px;
+      letter-spacing: 0.2px;
+    }
+
+    .feature-breakdown p {
+      margin: 0 0 22px;
+      color: rgba(230, 238, 247, 0.76);
+      max-width: 680px;
+      line-height: 1.55;
+    }
+
+    .feature-grid {
+      display: grid;
+      gap: 16px;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      position: relative;
+      z-index: 1;
+    }
+
+    .feature-card {
+      background: rgba(255, 255, 255, 0.06);
+      border-radius: 18px;
+      padding: 16px 16px 14px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(6px);
+    }
+
+    .feature-card h3 {
+      margin: 0 0 10px;
+      font-size: 16px;
+      font-weight: 700;
+      color: #f5f9ff;
+    }
+
+    .feature-card ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: grid;
+      gap: 8px;
+      font-size: 13px;
+      color: rgba(230, 238, 247, 0.82);
+      line-height: 1.45;
+    }
+
+    .feature-card strong {
+      color: #ffffff;
+      font-weight: 600;
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <div class="phone" role="application" aria-label="MindLoad mobile app mockup">
+      <div class="status">
+        <span>9:41</span>
+        <span>MindLoad - Calm Mode</span>
+        <span>84%</span>
+      </div>
+
+      <div class="app-header">
+        <div class="logo">
+          <div class="logo-mark">ML</div>
+          <div>
+            <div class="logo-text">MindLoad</div>
+            <div style="font-size:12px;color:var(--muted);">AI Mental Load Reducer</div>
+          </div>
+        </div>
+        <div class="plan-chip">$9 / month</div>
+      </div>
+
+      <section class="screen active" id="screen-brain">
+        <div class="hero">
+          <h2>Brain Dump</h2>
+          <p>Unload everything. I will translate it into simple, doable tasks.</p>
+          <div class="ai-card">
+            <div class="ai-avatar">AI</div>
+            <p>Hi Maya! I can feel it is a lot. Type freely - I will organize it into priorities, reminders, and gentle nudges.</p>
+          </div>
+        </div>
+
+        <label class="section-title" for="dump">What is on your mind?</label>
+        <textarea id="dump">Need to book dentist for Ava, pack soccer gear, order groceries, laundry mountain, remind Sam about trash day, call daycare about Tuesday pickup, plan dinners, clean lunch boxes.</textarea>
+        <button class="primary-btn" id="parseBtn">Let AI sort this out</button>
+
+        <div class="section-title">AI organized tasks</div>
+        <div class="card" id="parsedTasks">
+          <ul class="task-list">
+            <li class="task-item"><span class="pill">Urgent</span> Call daycare about Tuesday pickup</li>
+            <li class="task-item"><span class="pill orange">Today</span> Pack soccer gear for Ava</li>
+            <li class="task-item"><span class="pill">Soon</span> Book dentist appointment for Ava</li>
+            <li class="task-item"><span class="pill green">Delegate</span> Remind Sam about trash day</li>
+            <li class="task-item"><span class="pill">This week</span> Order groceries + dinner plan</li>
+            <li class="task-item"><span class="pill">Gentle</span> Laundry + lunch boxes</li>
+          </ul>
+        </div>
+      </section>
+
+      <section class="screen" id="screen-today">
+        <div class="hero">
+          <h2>Today</h2>
+          <p>Calm, focused plan built around your energy and the family rhythm.</p>
+          <div class="ai-card">
+            <div class="ai-avatar">AI</div>
+            <p>Prioritized 3 must-dos, 2 easy wins, and reminders. I blocked time so you can breathe.</p>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="mini-row">
+            <strong>Daily load</strong>
+            <span class="pill green">Balanced</span>
+          </div>
+          <div class="progress" style="margin-top:10px;"><span></span></div>
+          <div style="font-size:12px;color:var(--muted);margin-top:6px;">You are on track. Two tasks auto-delegated.</div>
+        </div>
+
+        <div class="section-title">Priority focus</div>
+        <div class="card">
+          <ul class="task-list">
+            <li class="task-item"><span class="pill">9:30 AM</span> Call daycare about Tuesday pickup</li>
+            <li class="task-item"><span class="pill orange">11:00 AM</span> Grocery order + meal plan review</li>
+            <li class="task-item"><span class="pill">3:00 PM</span> Pack soccer gear</li>
+          </ul>
+        </div>
+
+        <div class="section-title">Meals + reminders</div>
+        <div class="card mini-grid">
+          <div class="mini-row">
+            <span>Lunch: Turkey wraps</span>
+            <span class="pill">Ready</span>
+          </div>
+          <div class="mini-row">
+            <span>Dinner: Sheet-pan salmon</span>
+            <span class="pill green">Prepped</span>
+          </div>
+          <div class="mini-row">
+            <span>Reminder: Trash day</span>
+            <span class="pill orange">Sam</span>
+          </div>
+        </div>
+      </section>
+
+      <section class="screen" id="screen-meal">
+        <div class="hero">
+          <h2>Meal Plan</h2>
+          <p>AI-generated dinners that respect time, budget, and picky eaters.</p>
+          <div class="ai-card">
+            <div class="ai-avatar">AI</div>
+            <p>I kept it simple: 3 quick dinners, 2 leftovers, and a grocery list that repeats staples.</p>
+          </div>
+        </div>
+
+        <div class="section-title">This week</div>
+        <div class="card">
+          <div class="meal-day"><strong>Mon</strong><span>Chicken tacos + salad</span></div>
+          <div class="meal-day"><strong>Tue</strong><span>Veggie stir-fry</span></div>
+          <div class="meal-day"><strong>Wed</strong><span>Leftover bowls</span></div>
+          <div class="meal-day"><strong>Thu</strong><span>Sheet-pan salmon</span></div>
+          <div class="meal-day"><strong>Fri</strong><span>Pizza night + fruit</span></div>
+          <div class="meal-day"><strong>Sat</strong><span>Slow cooker chili</span></div>
+          <div class="meal-day"><strong>Sun</strong><span>Leftovers + prep</span></div>
+        </div>
+
+        <div class="section-title">Smart shopping list</div>
+        <div class="card">
+          <ul class="task-list">
+            <li class="task-item"><span class="pill">Proteins</span> Chicken thighs, salmon, ground turkey</li>
+            <li class="task-item"><span class="pill">Produce</span> Bell peppers, salad mix, onions, avocado</li>
+            <li class="task-item"><span class="pill">Pantry</span> Tortillas, rice, chili beans, pizza dough</li>
+            <li class="task-item"><span class="pill green">Saved</span> Staples auto-added (milk, eggs, fruit)</li>
+          </ul>
+        </div>
+      </section>
+
+      <section class="screen" id="screen-family">
+        <div class="hero">
+          <h2>Family</h2>
+          <p>Share the load with gentle delegation and clear ownership.</p>
+          <div class="ai-card">
+            <div class="ai-avatar">AI</div>
+            <p>I suggested tasks based on past habits. You can reassign in one tap.</p>
+          </div>
+        </div>
+
+        <div class="section-title">Todays assignments</div>
+        <div class="card">
+          <div class="family-row">
+            <div style="display:flex;align-items:center;gap:10px;">
+              <div class="avatar">S</div>
+              <div>
+                <strong>Sam</strong>
+                <div style="font-size:12px;color:var(--muted);">Trash day reminder, pickup</div>
+              </div>
+            </div>
+            <span class="pill green">2 tasks</span>
+          </div>
+          <div class="family-row">
+            <div style="display:flex;align-items:center;gap:10px;">
+              <div class="avatar">A</div>
+              <div>
+                <strong>Ava</strong>
+                <div style="font-size:12px;color:var(--muted);">Pack soccer gear</div>
+              </div>
+            </div>
+            <span class="pill">1 task</span>
+          </div>
+          <div class="family-row">
+            <div style="display:flex;align-items:center;gap:10px;">
+              <div class="avatar">M</div>
+              <div>
+                <strong>Maya (you)</strong>
+                <div style="font-size:12px;color:var(--muted);">Daycare call, grocery order</div>
+              </div>
+            </div>
+            <span class="pill orange">3 tasks</span>
+          </div>
+        </div>
+
+        <div class="section-title">Delegation suggestions</div>
+        <div class="card mini-grid">
+          <div class="mini-row">
+            <span>Ask Sam to start laundry</span>
+            <span class="pill green">Suggested</span>
+          </div>
+          <div class="mini-row">
+            <span>Ava can rinse lunch boxes</span>
+            <span class="pill">Suggested</span>
+          </div>
+        </div>
+      </section>
+
+      <nav class="bottom-nav" aria-label="Bottom navigation">
+        <div class="nav-item active" data-target="brain">
+          <div class="nav-icon">B</div>
+          <div>Brain</div>
+        </div>
+        <div class="nav-item" data-target="today">
+          <div class="nav-icon">T</div>
+          <div>Today</div>
+        </div>
+        <div class="nav-item" data-target="meal">
+          <div class="nav-icon">M</div>
+          <div>Meal</div>
+        </div>
+        <div class="nav-item" data-target="family">
+          <div class="nav-icon">F</div>
+          <div>Family</div>
+        </div>
+      </nav>
+    </div>
+
+    <section class="feature-breakdown" aria-labelledby="feature-breakdown-title">
+      <h2 id="feature-breakdown-title">Feature Breakdown</h2>
+      <p>For evaluators: each core screen earns its place by compressing mental load into a single, decisive action loop. This section explains what each screen does, why it exists, and the value it returns to the user.</p>
+      <div class="feature-grid">
+        <article class="feature-card">
+          <h3>Brain Dump</h3>
+          <ul>
+            <li><strong>What it does:</strong> Captures unstructured thoughts and turns them into prioritized, labeled tasks.</li>
+            <li><strong>Why it exists:</strong> People lose tasks when everything lives in their head; this gives a single inlet for chaos.</li>
+            <li><strong>Value:</strong> Instant relief plus a cleaned-up task list without the user doing the organizing.</li>
+            <li><strong>Screen value:</strong> It is the highest-frequency entry point, so it deserves a full-screen, zero-friction canvas.</li>
+          </ul>
+        </article>
+        <article class="feature-card">
+          <h3>Today</h3>
+          <ul>
+            <li><strong>What it does:</strong> Translates all tasks into a realistic daily plan with timing, load balance, and reminders.</li>
+            <li><strong>Why it exists:</strong> Traditional lists ignore capacity; this prevents overload and decision fatigue.</li>
+            <li><strong>Value:</strong> Gives a calm, doable plan that protects focus and energy.</li>
+            <li><strong>Screen value:</strong> It is the daily command center, so it earns a dedicated view for clarity.</li>
+          </ul>
+        </article>
+        <article class="feature-card">
+          <h3>Meal Plan</h3>
+          <ul>
+            <li><strong>What it does:</strong> Builds a week of dinners and a smart grocery list that reuses staples.</li>
+            <li><strong>Why it exists:</strong> Meals are a constant stressor; solving them removes a recurring cognitive burden.</li>
+            <li><strong>Value:</strong> Saves time, money, and last-minute scrambling with AI-backed planning.</li>
+            <li><strong>Screen value:</strong> It is a high-impact domain task, warranting its own space for clarity and trust.</li>
+          </ul>
+        </article>
+        <article class="feature-card">
+          <h3>Family</h3>
+          <ul>
+            <li><strong>What it does:</strong> Distributes tasks across household members with clear ownership and suggestions.</li>
+            <li><strong>Why it exists:</strong> Shared load without clarity causes resentment; this makes delegation visible and fair.</li>
+            <li><strong>Value:</strong> Reduces bottlenecks and keeps everyone aligned on who owns what.</li>
+            <li><strong>Screen value:</strong> Collaboration requires a dedicated view to prevent hidden, silent work.</li>
+          </ul>
+        </article>
+      </div>
+    </section>
+  </div>
+
+  <script>
+    const screens = {
+      brain: document.getElementById("screen-brain"),
+      today: document.getElementById("screen-today"),
+      meal: document.getElementById("screen-meal"),
+      family: document.getElementById("screen-family")
+    };
+
+    document.querySelectorAll(".nav-item").forEach((item) => {
+      item.addEventListener("click", () => {
+        const target = item.dataset.target;
+        document.querySelectorAll(".nav-item").forEach((nav) => nav.classList.remove("active"));
+        item.classList.add("active");
+        Object.values(screens).forEach((screen) => screen.classList.remove("active"));
+        screens[target].classList.add("active");
+      });
+    });
+
+    const parseBtn = document.getElementById("parseBtn");
+    const parsedTasks = document.getElementById("parsedTasks");
+
+    parseBtn.addEventListener("click", () => {
+      const dump = document.getElementById("dump").value.trim();
+      if (!dump) return;
+
+      parsedTasks.innerHTML = `
+        <ul class="task-list">
+          <li class="task-item"><span class="pill">Urgent</span> Daycare call (auto-scheduled 9:30 AM)</li>
+          <li class="task-item"><span class="pill orange">Today</span> Pack soccer gear (reminder at 2:45 PM)</li>
+          <li class="task-item"><span class="pill green">Delegate</span> Ask Sam to take out trash</li>
+          <li class="task-item"><span class="pill">This week</span> Dental appointment request sent</li>
+          <li class="task-item"><span class="pill">Auto</span> Grocery order drafted + meal plan ready</li>
+          <li class="task-item"><span class="pill">Gentle</span> Laundry block set for Friday</li>
+        </ul>
+      `;
+      parseBtn.textContent = "Sorted! See Today view";
+      parseBtn.style.background = "#3f7fd8";
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,670 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>PCOS Circle — Mobile App Mockup</title>
+  <style>
+    :root {
+      --teal: #1aa6a1;
+      --teal-dark: #0f7f7a;
+      --purple: #6b4cff;
+      --purple-soft: #a69bff;
+      --white: #ffffff;
+      --ink: #17171b;
+      --muted: #5f6470;
+      --bg: #fdfdff;
+      --card: #ffffff;
+      --gold: #f5c26b;
+    }
+
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: "Avenir Next", "Trebuchet MS", "Segoe UI", Arial, sans-serif;
+      color: var(--ink);
+      background: radial-gradient(1200px 800px at 10% -10%, #e6fbf8 10%, transparent 60%),
+                  radial-gradient(1000px 700px at 90% -20%, #f4efff 12%, transparent 70%),
+                  var(--bg);
+    }
+
+    .page {
+      padding: 28px 18px 60px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 26px;
+    }
+
+    .title-block {
+      text-align: center;
+      max-width: 740px;
+    }
+    .title-block h1 {
+      margin: 0 0 10px;
+      font-size: 26px;
+      color: var(--teal-dark);
+      letter-spacing: 0.4px;
+    }
+    .title-block p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 15px;
+      line-height: 1.5;
+    }
+
+    .phone {
+      width: 100%;
+      max-width: 400px;
+      background: var(--white);
+      border-radius: 34px;
+      box-shadow: 0 18px 40px rgba(17, 25, 40, 0.12);
+      border: 1px solid rgba(107, 76, 255, 0.14);
+      overflow: hidden;
+      position: relative;
+    }
+
+    .phone::before {
+      content: "";
+      position: absolute;
+      top: 10px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 140px;
+      height: 20px;
+      background: #1a1a1f;
+      border-radius: 0 0 14px 14px;
+      opacity: 0.85;
+    }
+
+    .status {
+      padding: 18px 18px 8px;
+      display: flex;
+      justify-content: space-between;
+      font-size: 12px;
+      color: var(--muted);
+    }
+
+    .app {
+      padding: 12px 18px 84px;
+      min-height: 720px;
+      background: linear-gradient(180deg, rgba(26, 166, 161, 0.06), rgba(255, 255, 255, 1) 22%);
+    }
+
+    .header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 18px;
+    }
+    .brand {
+      display: flex;
+      gap: 10px;
+      align-items: center;
+    }
+    .brand .logo {
+      width: 38px;
+      height: 38px;
+      border-radius: 14px;
+      background: linear-gradient(135deg, var(--teal), var(--purple));
+      display: grid;
+      place-items: center;
+      color: #fff;
+      font-weight: 700;
+      font-size: 16px;
+    }
+    .brand .name {
+      font-weight: 700;
+      font-size: 16px;
+    }
+    .price {
+      background: #f2efff;
+      color: var(--purple);
+      padding: 6px 10px;
+      border-radius: 999px;
+      font-size: 11px;
+      font-weight: 600;
+    }
+
+    .pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 4px 10px;
+      border-radius: 999px;
+      background: rgba(26, 166, 161, 0.14);
+      color: var(--teal-dark);
+      font-size: 12px;
+      font-weight: 600;
+    }
+
+    .card {
+      background: var(--card);
+      border-radius: 18px;
+      padding: 14px;
+      box-shadow: 0 8px 22px rgba(17, 25, 40, 0.08);
+      border: 1px solid rgba(15, 127, 122, 0.1);
+    }
+
+    .section-title {
+      font-size: 13px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: var(--muted);
+      margin: 16px 0 10px;
+    }
+
+    .grid {
+      display: grid;
+      gap: 12px;
+    }
+    .grid.two {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    .tag {
+      padding: 6px 10px;
+      border-radius: 12px;
+      background: rgba(107, 76, 255, 0.14);
+      color: var(--purple);
+      font-size: 12px;
+      font-weight: 600;
+      display: inline-flex;
+      gap: 6px;
+      align-items: center;
+    }
+
+    .symptom {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 13px;
+      padding: 8px 10px;
+      border-radius: 12px;
+      background: #f3f6ff;
+      color: #2f3340;
+    }
+
+    .slider {
+      height: 6px;
+      background: #e1e6f2;
+      border-radius: 999px;
+      overflow: hidden;
+      margin-top: 6px;
+    }
+    .slider span {
+      display: block;
+      height: 100%;
+      background: linear-gradient(90deg, var(--teal), var(--purple));
+    }
+
+    .screen { display: none; }
+    .screen.active { display: block; }
+
+    .nav {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: var(--white);
+      border-top: 1px solid #e6e8f2;
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      padding: 8px 6px 12px;
+    }
+
+    .nav button {
+      border: none;
+      background: transparent;
+      color: var(--muted);
+      font-size: 10px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 4px;
+      cursor: pointer;
+    }
+
+    .nav button.active {
+      color: var(--purple);
+      font-weight: 700;
+    }
+
+    .nav .dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: currentColor;
+    }
+
+    .toggle-row {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .toggle {
+      background: #f2f6ff;
+      border: 1px solid transparent;
+      color: #2f3340;
+      border-radius: 12px;
+      padding: 6px 10px;
+      font-size: 12px;
+      cursor: pointer;
+    }
+    .toggle.active {
+      background: rgba(26, 166, 161, 0.15);
+      border-color: rgba(26, 166, 161, 0.4);
+      color: var(--teal-dark);
+      font-weight: 600;
+    }
+
+    .chart {
+      height: 90px;
+      background: linear-gradient(180deg, rgba(107, 76, 255, 0.12), transparent);
+      border-radius: 14px;
+      position: relative;
+      overflow: hidden;
+    }
+    .chart svg {
+      position: absolute;
+      inset: 0;
+    }
+
+    .bubble {
+      background: #fff7e8;
+      border-radius: 16px;
+      padding: 10px 12px;
+      font-size: 12px;
+      color: #7a4b00;
+      border: 1px solid rgba(245, 194, 107, 0.6);
+    }
+
+    .cta {
+      background: linear-gradient(135deg, var(--teal), var(--purple));
+      color: white;
+      padding: 10px 12px;
+      border-radius: 14px;
+      text-align: center;
+      font-weight: 700;
+      font-size: 13px;
+    }
+
+    .resource {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .resource .icon {
+      width: 36px;
+      height: 36px;
+      border-radius: 12px;
+      background: rgba(26, 166, 161, 0.12);
+      display: grid;
+      place-items: center;
+      color: var(--teal-dark);
+      font-weight: 700;
+    }
+
+    .community-card {
+      background: linear-gradient(135deg, rgba(26, 166, 161, 0.14), rgba(107, 76, 255, 0.14));
+      border-radius: 16px;
+      padding: 12px;
+      font-size: 12px;
+    }
+
+    .feature-breakdown {
+      max-width: 920px;
+      background: radial-gradient(900px 600px at 10% -10%, rgba(26, 166, 161, 0.35), transparent 60%),
+                  radial-gradient(900px 600px at 90% -20%, rgba(107, 76, 255, 0.35), transparent 60%),
+                  #14141b;
+      border-radius: 24px;
+      padding: 24px;
+      border: 1px solid rgba(107, 76, 255, 0.35);
+      box-shadow: 0 20px 50px rgba(12, 14, 20, 0.28);
+      color: #eef1f8;
+    }
+
+    .feature-breakdown h2 {
+      margin-top: 0;
+      color: #d6fbf8;
+    }
+
+    .feature-grid {
+      display: grid;
+      gap: 16px;
+    }
+    @media (min-width: 880px) {
+      .feature-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    .feature-item {
+      background: rgba(255, 255, 255, 0.08);
+      border-radius: 16px;
+      padding: 14px;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+    }
+    .feature-item h3 {
+      margin: 0 0 6px;
+      font-size: 15px;
+      color: #d2c7ff;
+    }
+    .feature-item p {
+      margin: 0;
+      font-size: 13px;
+      color: #d6d9e6;
+      line-height: 1.4;
+    }
+
+    .footnote {
+      font-size: 12px;
+      color: rgba(226, 230, 244, 0.8);
+      margin-top: 10px;
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <div class="title-block">
+      <h1>PCOS Circle — All‑in‑one PCOS Management Hub</h1>
+      <p>Empowering, modern, community‑first care for women with PCOS. Irregular cycles (35–90+ days) are normal here.</p>
+    </div>
+
+    <div class="phone" aria-label="PCOS Circle mobile mockup">
+      <div class="status">
+        <span>9:41 AM</span>
+        <span>LTE ▪︎ 92%</span>
+      </div>
+      <div class="app">
+        <div class="header">
+          <div class="brand">
+            <div class="logo">PC</div>
+            <div>
+              <div class="name">PCOS Circle</div>
+              <div class="pill">Supportive • Private • $15/mo</div>
+            </div>
+          </div>
+          <div class="price">Trial Day 5</div>
+        </div>
+
+        <div class="screen active" id="screen-dashboard">
+          <div class="card">
+            <div style="display:flex; justify-content: space-between; align-items:center;">
+              <div>
+                <div style="font-size:14px; font-weight:700;">Today’s overview</div>
+                <div style="font-size:12px; color: var(--muted);">Saturday • Cycle day <span id="cycle-day">46</span> (irregular)</div>
+              </div>
+              <span class="tag">Cycle range 35–90+</span>
+            </div>
+            <div class="section-title">Symptom snapshot</div>
+            <div class="grid two">
+              <div class="symptom">Mood <strong id="mood">Balanced</strong></div>
+              <div class="symptom">Cravings <strong id="cravings">High</strong></div>
+              <div class="symptom">Energy <strong id="energy">Low</strong></div>
+              <div class="symptom">Bloat <strong id="bloat">Mild</strong></div>
+            </div>
+            <div class="section-title">Consistency score</div>
+            <div style="font-size:12px; color: var(--muted);">You logged 4 days this week</div>
+            <div class="slider"><span style="width: 62%"></span></div>
+          </div>
+
+          <div class="section-title">Gentle nudges</div>
+          <div class="grid">
+            <div class="card">
+              <div style="font-weight:600; font-size:13px;">Hydration + protein today</div>
+              <div style="font-size:12px; color: var(--muted);">Helps cravings stabilize during longer cycles.</div>
+            </div>
+            <div class="bubble">“Irregular doesn’t mean wrong. Your body has its own rhythm.”</div>
+          </div>
+        </div>
+
+        <div class="screen" id="screen-track">
+          <div class="card">
+            <div style="display:flex; justify-content: space-between; align-items:center;">
+              <div>
+                <div style="font-size:14px; font-weight:700;">Log symptoms</div>
+                <div style="font-size:12px; color: var(--muted);">Tap to update today</div>
+              </div>
+              <span class="tag">Auto‑save</span>
+            </div>
+            <div class="section-title">Today</div>
+            <div class="toggle-row" id="symptom-toggles">
+              <button class="toggle active">Acne</button>
+              <button class="toggle">Hair growth</button>
+              <button class="toggle active">Weight</button>
+              <button class="toggle">Mood</button>
+              <button class="toggle active">Cravings</button>
+              <button class="toggle">Fatigue</button>
+            </div>
+            <div class="section-title">Intensity</div>
+            <div class="grid two">
+              <div class="symptom">Acne level <strong>6/10</strong></div>
+              <div class="symptom">Fatigue <strong>7/10</strong></div>
+              <div class="symptom">Mood <strong>4/10</strong></div>
+              <div class="symptom">Cravings <strong>8/10</strong></div>
+            </div>
+          </div>
+          <div class="section-title">Quick notes</div>
+          <div class="card" style="font-size:12px; color: var(--muted);">“Noticed energy dip after late night. Focus on breakfast protein.”</div>
+        </div>
+
+        <div class="screen" id="screen-insights">
+          <div class="card">
+            <div style="display:flex; justify-content: space-between; align-items:center;">
+              <div>
+                <div style="font-size:14px; font-weight:700;">AI Insights</div>
+                <div style="font-size:12px; color: var(--muted);">Pattern detection for irregular cycles</div>
+              </div>
+              <span class="tag">Updated today</span>
+            </div>
+            <div class="section-title">Cycle variability</div>
+            <div class="chart">
+              <svg viewBox="0 0 300 90" preserveAspectRatio="none">
+                <polyline fill="none" stroke="#6b4cff" stroke-width="3" points="0,70 40,55 80,65 120,35 160,50 200,20 240,40 280,18 300,25" />
+              </svg>
+            </div>
+            <div style="font-size:12px; color: var(--muted); margin-top:6px;">Average cycle length trending from 58 → 52 days.</div>
+          </div>
+
+          <div class="section-title">Correlations</div>
+          <div class="grid">
+            <div class="card">
+              <div style="font-weight:600; font-size:13px;">Cravings spike</div>
+              <div style="font-size:12px; color: var(--muted);">Often follows poor sleep by 1–2 days.</div>
+            </div>
+            <div class="card">
+              <div style="font-weight:600; font-size:13px;">Mood dip</div>
+              <div style="font-size:12px; color: var(--muted);">Linked with higher hair growth reports.</div>
+            </div>
+          </div>
+          <div class="cta">Try today’s insight plan</div>
+        </div>
+
+        <div class="screen" id="screen-community">
+          <div class="card">
+            <div style="display:flex; justify-content: space-between; align-items:center;">
+              <div>
+                <div style="font-size:14px; font-weight:700;">Community</div>
+                <div style="font-size:12px; color: var(--muted);">Moderated support & lived experience</div>
+              </div>
+              <span class="tag">Verified peers</span>
+            </div>
+            <div class="section-title">Live threads</div>
+            <div class="grid">
+              <div class="community-card">
+                <strong>Q&A: “What helps with cravings?”</strong><br />
+                48 replies • Dietitian joined
+              </div>
+              <div class="community-card">
+                <strong>Success story: 90→45 day cycles</strong><br />
+                “Small steps, huge shift.”
+              </div>
+              <div class="community-card">
+                <strong>Acne care routine swap</strong><br />
+                12 tips • dermatologist notes
+              </div>
+            </div>
+          </div>
+          <div class="section-title">Ask the community</div>
+          <div class="card" style="font-size:12px; color: var(--muted);">“How do you prep for doctor visits?” • 2 min ago</div>
+        </div>
+
+        <div class="screen" id="screen-resources">
+          <div class="card">
+            <div style="display:flex; justify-content: space-between; align-items:center;">
+              <div>
+                <div style="font-size:14px; font-weight:700;">Resources</div>
+                <div style="font-size:12px; color: var(--muted);">Education designed for real life</div>
+              </div>
+              <span class="tag">Doctor‑reviewed</span>
+            </div>
+            <div class="section-title">Top picks</div>
+            <div class="grid">
+              <div class="resource">
+                <div class="icon">E</div>
+                <div>
+                  <div style="font-weight:600; font-size:13px;">PCOS 101</div>
+                  <div style="font-size:12px; color: var(--muted);">Symptoms, causes, myths</div>
+                </div>
+              </div>
+              <div class="resource">
+                <div class="icon">D</div>
+                <div>
+                  <div style="font-weight:600; font-size:13px;">Diet tips</div>
+                  <div style="font-size:12px; color: var(--muted);">Balanced plates + cravings</div>
+                </div>
+              </div>
+              <div class="resource">
+                <div class="icon">P</div>
+                <div>
+                  <div style="font-weight:600; font-size:13px;">Doctor prep</div>
+                  <div style="font-size:12px; color: var(--muted);">Questions, labs, goals</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="section-title">Personalized plan</div>
+          <div class="card" style="font-size:12px; color: var(--muted);">Build a 3‑week focus plan from your symptoms and schedule.</div>
+        </div>
+      </div>
+
+      <div class="nav">
+        <button class="active" data-target="screen-dashboard">
+          <span class="dot"></span>
+          Dashboard
+        </button>
+        <button data-target="screen-track">
+          <span class="dot"></span>
+          Track
+        </button>
+        <button data-target="screen-insights">
+          <span class="dot"></span>
+          Insights
+        </button>
+        <button data-target="screen-community">
+          <span class="dot"></span>
+          Community
+        </button>
+        <button data-target="screen-resources">
+          <span class="dot"></span>
+          Resources
+        </button>
+      </div>
+    </div>
+
+    <section class="feature-breakdown">
+      <h2>Feature Breakdown</h2>
+      <div class="feature-grid">
+        <div class="feature-item">
+          <h3>Top bar + brand card</h3>
+          <p><strong>UI element:</strong> Logo, name, supportive pill, trial badge. <strong>Why:</strong> builds trust and signals community‑first tone. <strong>Value:</strong> makes the app feel welcoming vs clinical. <strong>Real estate:</strong> first touchpoint for identity and pricing clarity.</p>
+        </div>
+        <div class="feature-item">
+          <h3>Dashboard overview</h3>
+          <p><strong>UI element:</strong> Today’s overview card with cycle day and irregular range. <strong>Why:</strong> validates irregular cycles (35–90+). <strong>Value:</strong> immediate context without judgement. <strong>Real estate:</strong> most‑used info should be above the fold.</p>
+        </div>
+        <div class="feature-item">
+          <h3>Symptom snapshot grid</h3>
+          <p><strong>UI element:</strong> Four quick tiles for mood, cravings, energy, bloat. <strong>Why:</strong> fast reflection without heavy logging. <strong>Value:</strong> supports emotional check‑ins. <strong>Real estate:</strong> replaces sterile charts with human signals.</p>
+        </div>
+        <div class="feature-item">
+          <h3>Consistency score</h3>
+          <p><strong>UI element:</strong> Progress bar with weekly logging. <strong>Why:</strong> encourages gentle habit‑building. <strong>Value:</strong> highlights progress even if cycles are long. <strong>Real estate:</strong> creates a simple, motivating win.</p>
+        </div>
+        <div class="feature-item">
+          <h3>Track screen toggles</h3>
+          <p><strong>UI element:</strong> Symptom chips for acne, hair growth, weight, mood, cravings, fatigue. <strong>Why:</strong> one‑tap logging. <strong>Value:</strong> reduces burden and keeps data consistent. <strong>Real estate:</strong> core behavior of the product.</p>
+        </div>
+        <div class="feature-item">
+          <h3>Intensity scores</h3>
+          <p><strong>UI element:</strong> Numeric intensity cards. <strong>Why:</strong> makes subjective symptoms trackable. <strong>Value:</strong> fuels AI insights and doctor prep. <strong>Real estate:</strong> bridges feelings to actionable data.</p>
+        </div>
+        <div class="feature-item">
+          <h3>Insights chart</h3>
+          <p><strong>UI element:</strong> Cycle variability line with trend note. <strong>Why:</strong> irregular cycles need pattern tracking. <strong>Value:</strong> helps users feel less “random.” <strong>Real estate:</strong> visual proof of progress.</p>
+        </div>
+        <div class="feature-item">
+          <h3>Correlation cards</h3>
+          <p><strong>UI element:</strong> AI‑detected links (sleep → cravings, hair growth → mood). <strong>Why:</strong> transforms logs into insights. <strong>Value:</strong> personalizes small changes. <strong>Real estate:</strong> highlights why the app matters.</p>
+        </div>
+        <div class="feature-item">
+          <h3>Community feed</h3>
+          <p><strong>UI element:</strong> Thread list with Q&A and success stories. <strong>Why:</strong> PCOS can be isolating. <strong>Value:</strong> peer proof and emotional support. <strong>Real estate:</strong> emphasizes belonging over diagnosis.</p>
+        </div>
+        <div class="feature-item">
+          <h3>Moderated safety signals</h3>
+          <p><strong>UI element:</strong> “Verified peers” label and professional notes. <strong>Why:</strong> avoids misinformation. <strong>Value:</strong> builds trust for health‑related content. <strong>Real estate:</strong> key to retention and safety.</p>
+        </div>
+        <div class="feature-item">
+          <h3>Resources hub</h3>
+          <p><strong>UI element:</strong> PCOS 101, diet tips, doctor prep cards. <strong>Why:</strong> education is foundational. <strong>Value:</strong> gives practical steps for users and clinicians. <strong>Real estate:</strong> rounds out the all‑in‑one promise.</p>
+        </div>
+        <div class="feature-item">
+          <h3>Bottom navigation</h3>
+          <p><strong>UI element:</strong> Five‑tab bar with active state. <strong>Why:</strong> matches mobile mental model. <strong>Value:</strong> makes the hub feel complete. <strong>Real estate:</strong> always‑available key sections.</p>
+        </div>
+      </div>
+      <div class="footnote">This is a concept mockup, not a full product build. Content and insights are illustrative only.</div>
+    </section>
+  </div>
+
+  <script>
+    const navButtons = document.querySelectorAll(".nav button");
+    const screens = document.querySelectorAll(".screen");
+    const toggles = document.querySelectorAll("#symptom-toggles .toggle");
+    const moods = ["Balanced", "Hopeful", "Tender", "Grounded"];
+    const cravings = ["High", "Medium", "Low", "High"];
+    const energy = ["Low", "Medium", "Rested", "Low"];
+    const bloat = ["Mild", "Moderate", "Light", "Mild"];
+    let rotation = 0;
+
+    navButtons.forEach((button) => {
+      button.addEventListener("click", () => {
+        const target = button.getAttribute("data-target");
+        navButtons.forEach((btn) => btn.classList.remove("active"));
+        button.classList.add("active");
+        screens.forEach((screen) => {
+          screen.classList.toggle("active", screen.id === target);
+        });
+      });
+    });
+
+    toggles.forEach((toggle) => {
+      toggle.addEventListener("click", () => {
+        toggle.classList.toggle("active");
+      });
+    });
+
+    setInterval(() => {
+      rotation = (rotation + 1) % moods.length;
+      document.getElementById("mood").textContent = moods[rotation];
+      document.getElementById("cravings").textContent = cravings[rotation];
+      document.getElementById("energy").textContent = energy[rotation];
+      document.getElementById("bloat").textContent = bloat[rotation];
+      document.getElementById("cycle-day").textContent = 42 + rotation * 2;
+    }, 4500);
+  </script>
+</body>
+</html>

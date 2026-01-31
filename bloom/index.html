@@ -1,0 +1,735 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Bloom — Perimenopause Companion</title>
+    <style>
+      :root {
+        --cream: #fffaf5;
+        --coral: #f28b7a;
+        --sage: #7fa48f;
+        --sage-dark: #5a7a6b;
+        --ink: #2b2622;
+        --muted: #6f645f;
+        --rose: #f6c5b6;
+        --mint: #e1efe6;
+        --shadow: 0 18px 35px rgba(52, 42, 35, 0.08);
+      }
+
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      body {
+        font-family: "Avenir Next", "Segoe UI", sans-serif;
+        background: radial-gradient(circle at top, #ffffff 0%, #fff7ef 45%, #f9efe6 100%);
+        color: var(--ink);
+        min-height: 100vh;
+        padding: 28px 16px 60px;
+      }
+
+      .page {
+        width: min(1100px, 100%);
+        margin: 0 auto;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 36px;
+      }
+
+      .phone {
+        width: 100%;
+        max-width: 400px;
+        background: #ffffff;
+        border-radius: 32px;
+        box-shadow: var(--shadow);
+        overflow: hidden;
+        border: 1px solid rgba(90, 90, 90, 0.08);
+        position: relative;
+      }
+
+      .status {
+        padding: 18px 22px 8px;
+        display: flex;
+        justify-content: space-between;
+        font-size: 12px;
+        color: var(--muted);
+        letter-spacing: 0.3px;
+      }
+
+      .header {
+        padding: 4px 22px 18px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 12px;
+      }
+
+      .brand h1 {
+        font-size: 22px;
+        letter-spacing: 0.6px;
+      }
+
+      .brand p {
+        font-size: 13px;
+        color: var(--muted);
+        margin-top: 4px;
+      }
+
+      .chip {
+        background: var(--mint);
+        color: var(--sage-dark);
+        padding: 6px 12px;
+        border-radius: 999px;
+        font-size: 12px;
+        font-weight: 600;
+      }
+
+      .content {
+        padding: 0 22px 92px;
+      }
+
+      .screen {
+        display: none;
+        animation: fadeIn 0.3s ease;
+      }
+
+      .screen.active {
+        display: block;
+      }
+
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+          transform: translateY(6px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      .card {
+        background: #fff;
+        border-radius: 22px;
+        padding: 18px;
+        box-shadow: 0 10px 20px rgba(72, 58, 46, 0.06);
+        margin-bottom: 16px;
+        border: 1px solid rgba(93, 75, 66, 0.05);
+      }
+
+      .card h3 {
+        font-size: 16px;
+        margin-bottom: 10px;
+      }
+
+      .card p {
+        font-size: 13px;
+        color: var(--muted);
+        line-height: 1.5;
+      }
+
+      .row {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 12px;
+      }
+
+      .pill {
+        background: var(--rose);
+        color: #7d4b42;
+        padding: 6px 12px;
+        border-radius: 999px;
+        font-size: 12px;
+        font-weight: 600;
+      }
+
+      .mood {
+        display: flex;
+        gap: 12px;
+        flex-wrap: wrap;
+      }
+
+      .mood button,
+      .symptom button,
+      .toggle button {
+        border: none;
+        background: #fff;
+        border: 1px solid rgba(120, 102, 92, 0.12);
+        border-radius: 16px;
+        padding: 10px 12px;
+        box-shadow: 0 6px 12px rgba(74, 57, 43, 0.06);
+        cursor: pointer;
+        font-size: 13px;
+        transition: all 0.2s ease;
+      }
+
+      .mood button.active,
+      .symptom button.active,
+      .toggle button.active {
+        background: var(--sage);
+        color: #fff;
+      }
+
+      .symptom {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 10px;
+      }
+
+      .slider {
+        display: flex;
+        gap: 12px;
+        align-items: center;
+      }
+
+      .slider input {
+        width: 100%;
+      }
+
+      .cta {
+        width: 100%;
+        border: none;
+        background: var(--coral);
+        color: #fff;
+        padding: 14px 16px;
+        border-radius: 18px;
+        font-weight: 600;
+        cursor: pointer;
+        box-shadow: 0 10px 20px rgba(242, 139, 122, 0.3);
+        margin-top: 6px;
+      }
+
+      .nav {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        background: #fff;
+        border-top: 1px solid rgba(80, 64, 55, 0.06);
+        display: flex;
+        justify-content: space-around;
+        padding: 10px 8px 16px;
+      }
+
+      .nav button {
+        background: none;
+        border: none;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 4px;
+        font-size: 11px;
+        color: var(--muted);
+        cursor: pointer;
+      }
+
+      .nav button.active {
+        color: var(--sage-dark);
+        font-weight: 600;
+      }
+
+      .nav span {
+        font-size: 18px;
+      }
+
+      .insight {
+        background: linear-gradient(135deg, #fff 0%, #fff3e7 100%);
+        border-left: 4px solid var(--coral);
+      }
+
+      .doctor-grid {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 12px;
+      }
+
+      .stat {
+        background: var(--mint);
+        padding: 12px;
+        border-radius: 16px;
+        text-align: left;
+      }
+
+      .stat strong {
+        display: block;
+        font-size: 18px;
+      }
+
+      .stat span {
+        font-size: 12px;
+        color: var(--muted);
+      }
+
+      .badge {
+        background: rgba(127, 164, 143, 0.16);
+        color: var(--sage-dark);
+        padding: 4px 10px;
+        border-radius: 999px;
+        font-size: 11px;
+        font-weight: 600;
+        display: inline-block;
+        margin-right: 6px;
+      }
+
+      .footer-note {
+        font-size: 11px;
+        color: var(--muted);
+        text-align: center;
+        margin-top: 12px;
+      }
+
+      .split {
+        display: flex;
+        gap: 12px;
+        flex-wrap: wrap;
+      }
+
+      .split .card {
+        flex: 1;
+        min-width: 150px;
+      }
+
+      .feature-breakdown {
+        width: 100%;
+        background: #1f1a17;
+        color: #f9f2ea;
+        padding: 36px 28px;
+        border-radius: 28px;
+        box-shadow: 0 20px 45px rgba(28, 22, 18, 0.28);
+      }
+
+      .feature-breakdown h2 {
+        font-size: 22px;
+        letter-spacing: 0.4px;
+        margin-bottom: 10px;
+      }
+
+      .feature-breakdown > p {
+        color: rgba(249, 242, 234, 0.72);
+        font-size: 14px;
+        max-width: 620px;
+        margin-bottom: 22px;
+      }
+
+      .feature-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+        gap: 16px;
+      }
+
+      .feature-card {
+        background: rgba(255, 255, 255, 0.08);
+        border: 1px solid rgba(255, 255, 255, 0.12);
+        border-radius: 20px;
+        padding: 18px;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        min-height: 230px;
+      }
+
+      .feature-card h3 {
+        font-size: 16px;
+        margin-bottom: 2px;
+      }
+
+      .feature-card p {
+        font-size: 13px;
+        line-height: 1.5;
+        color: rgba(249, 242, 234, 0.78);
+      }
+
+      .feature-label {
+        font-size: 11px;
+        text-transform: uppercase;
+        letter-spacing: 0.12em;
+        color: rgba(249, 242, 234, 0.6);
+      }
+    </style>
+  </head>
+  <body>
+    <div class="page">
+      <div class="phone">
+        <div class="status">
+          <div>9:41</div>
+          <div>Bloom Premium · $10/mo</div>
+        </div>
+        <div class="header">
+          <div class="brand">
+            <h1>Bloom</h1>
+            <p>Gentle guidance for your perimenopause journey</p>
+          </div>
+          <div class="chip">Today</div>
+        </div>
+
+        <main class="content">
+          <section class="screen active" id="screen-dashboard">
+            <div class="card">
+              <div class="row">
+                <h3>Today's check-in</h3>
+                <span class="pill" id="checkin-status">Not logged</span>
+              </div>
+              <p>How are you feeling? Quick check-in builds your personalized map.</p>
+              <div class="mood" id="mood-options">
+                <button data-mood="Calm">Calm</button>
+                <button data-mood="Steady">Steady</button>
+                <button data-mood="Tender">Tender</button>
+                <button data-mood="Frayed">Frayed</button>
+              </div>
+            </div>
+
+            <div class="card">
+              <h3>Current symptoms</h3>
+              <p>Tap a symptom to update intensity.</p>
+              <div class="symptom" id="dashboard-symptoms"></div>
+            </div>
+
+            <div class="split">
+              <div class="card">
+                <h3>Sleep quality</h3>
+                <div class="slider">
+                  <input type="range" min="1" max="10" id="sleep-range" />
+                  <strong id="sleep-value">6</strong>
+                </div>
+                <p>Gentle reminder: a 10-min wind-down boosts recovery.</p>
+              </div>
+              <div class="card">
+                <h3>Energy</h3>
+                <div class="slider">
+                  <input type="range" min="1" max="10" id="energy-range" />
+                  <strong id="energy-value">5</strong>
+                </div>
+                <p>Try a short walk after lunch to lift afternoon energy.</p>
+              </div>
+            </div>
+          </section>
+
+          <section class="screen" id="screen-log">
+            <div class="card">
+              <h3>Log symptoms</h3>
+              <p>Pick what you're noticing right now.</p>
+              <div class="symptom" id="log-symptoms"></div>
+              <button class="cta" id="save-symptoms">Save today's log</button>
+            </div>
+            <div class="card">
+              <h3>Notes</h3>
+              <p>Add a quick note for context.</p>
+              <textarea
+                id="notes"
+                rows="4"
+                style="width: 100%; border-radius: 14px; border: 1px solid #eadfd6; padding: 10px; font-family: inherit;"
+                placeholder="e.g., Glass of wine last night, woke up at 3am"
+              ></textarea>
+            </div>
+          </section>
+
+          <section class="screen" id="screen-insights">
+            <div class="card insight">
+              <h3>AI insight</h3>
+              <p id="insight-1">Hot flashes are 40% higher after alcohol.</p>
+            </div>
+            <div class="card">
+              <h3>Pattern highlights</h3>
+              <p><span class="badge">Sleep</span>Lower sleep scores when late caffeine shows up.</p>
+              <p><span class="badge">Mood</span>Tender mood correlates with high brain fog days.</p>
+              <p><span class="badge">Energy</span>Light movement lifts energy within 2 hours.</p>
+            </div>
+            <div class="card">
+              <h3>Your rhythm</h3>
+              <p>
+                You log most consistently on Mondays and Thursdays. Small daily check-ins will
+                make patterns clearer within 2 weeks.
+              </p>
+            </div>
+          </section>
+
+          <section class="screen" id="screen-doctor">
+            <div class="card">
+              <h3>Doctor prep summary</h3>
+              <p>Generate a concise, shareable report before appointments.</p>
+              <div class="doctor-grid">
+                <div class="stat">
+                  <strong id="stat-hot">12</strong>
+                  <span>Hot flashes / week</span>
+                </div>
+                <div class="stat">
+                  <strong id="stat-sleep">5.8</strong>
+                  <span>Avg sleep score</span>
+                </div>
+                <div class="stat">
+                  <strong id="stat-mood">Steady</strong>
+                  <span>Most common mood</span>
+                </div>
+                <div class="stat">
+                  <strong id="stat-energy">4.9</strong>
+                  <span>Avg energy score</span>
+                </div>
+              </div>
+            </div>
+            <div class="card">
+              <h3>Generate PDF</h3>
+              <p>Includes symptom timeline, top triggers, and notes.</p>
+              <button class="cta" id="generate-report">Generate summary</button>
+              <p class="footer-note" id="report-status">Last generated: never</p>
+            </div>
+          </section>
+        </main>
+
+        <nav class="nav">
+          <button data-screen="dashboard" class="active">
+            <span>🏡</span>
+            Dashboard
+          </button>
+          <button data-screen="log">
+            <span>📝</span>
+            Log
+          </button>
+          <button data-screen="insights">
+            <span>✨</span>
+            Insights
+          </button>
+          <button data-screen="doctor">
+            <span>🩺</span>
+            Doctor
+          </button>
+        </nav>
+      </div>
+
+      <section class="feature-breakdown" aria-labelledby="feature-breakdown-title">
+        <h2 id="feature-breakdown-title">Feature Breakdown</h2>
+        <p>
+          A clear map of how each screen earns its place. This is meant for stakeholders who
+          want to understand the behavior change strategy, not just the interface.
+        </p>
+        <div class="feature-grid">
+          <article class="feature-card">
+            <span class="feature-label">Dashboard</span>
+            <h3>Daily clarity and momentum</h3>
+            <p>
+              The dashboard pulls today's check-in, symptoms, and micro-metrics into one glance.
+              It turns a complex, fluctuating experience into a simple "what's my day like?"
+              moment.
+            </p>
+            <p>
+              It exists to reduce cognitive load and encourage daily logging. It earns the top
+              real estate because it creates habit momentum and surfaces fast, actionable nudges.
+            </p>
+          </article>
+          <article class="feature-card">
+            <span class="feature-label">Log Symptoms</span>
+            <h3>High-fidelity symptom capture</h3>
+            <p>
+              The log screen is where users record what's happening right now, including context
+              notes. It transforms vague discomfort into structured data.
+            </p>
+            <p>
+              It solves the "I can't remember patterns" problem and builds the dataset that makes
+              insights and doctor prep credible. It deserves its screen because it's the primary
+              input that powers everything else.
+            </p>
+          </article>
+          <article class="feature-card">
+            <span class="feature-label">Insights</span>
+            <h3>Actionable pattern recognition</h3>
+            <p>
+              Insights translate raw logs into specific correlations: triggers, recovery boosts,
+              and time-of-day rhythms. It answers "why is this happening?"
+            </p>
+            <p>
+              This screen exists to build confidence and reduce guesswork. It earns space because
+              insight-driven behavior change is the product's core value.
+            </p>
+          </article>
+          <article class="feature-card">
+            <span class="feature-label">Doctor Prep</span>
+            <h3>Shared decision support</h3>
+            <p>
+              Doctor Prep compiles a clean, shareable summary for appointments, turning months of
+              daily logs into a concise narrative.
+            </p>
+            <p>
+              It solves the "I freeze in the exam room" problem and elevates the user's voice in
+              care decisions. It deserves its screen because it is the trust-building bridge to
+              real-world outcomes.
+            </p>
+          </article>
+        </div>
+      </section>
+    </div>
+
+    <script>
+      const storageKey = "bloomMockupState";
+      const defaultState = {
+        mood: "Steady",
+        symptoms: {
+          "Hot flashes": 2,
+          "Sleep issues": 3,
+          "Mood swings": 1,
+          Energy: 2,
+          "Brain fog": 2,
+        },
+        sleep: 6,
+        energy: 5,
+        notes: "",
+        lastReport: null,
+      };
+
+      const symptomLabels = Object.keys(defaultState.symptoms);
+
+      const loadState = () => {
+        try {
+          const saved = JSON.parse(localStorage.getItem(storageKey));
+          return saved ? { ...defaultState, ...saved } : { ...defaultState };
+        } catch (error) {
+          return { ...defaultState };
+        }
+      };
+
+      const saveState = (state) => {
+        localStorage.setItem(storageKey, JSON.stringify(state));
+      };
+
+      let state = loadState();
+
+      const setMoodActive = () => {
+        document.querySelectorAll("#mood-options button").forEach((button) => {
+          button.classList.toggle("active", button.dataset.mood === state.mood);
+        });
+        document.getElementById("checkin-status").textContent = `Mood: ${state.mood}`;
+      };
+
+      const renderSymptoms = () => {
+        const dashboard = document.getElementById("dashboard-symptoms");
+        const log = document.getElementById("log-symptoms");
+        dashboard.innerHTML = "";
+        log.innerHTML = "";
+        symptomLabels.forEach((label) => {
+          const dashboardBtn = document.createElement("button");
+          dashboardBtn.textContent = `${label} · ${state.symptoms[label]}/5`;
+          dashboardBtn.className = "active";
+          dashboardBtn.addEventListener("click", () => {
+            state.symptoms[label] = state.symptoms[label] % 5 + 1;
+            renderSymptoms();
+            saveState(state);
+          });
+          dashboard.appendChild(dashboardBtn);
+
+          const logBtn = document.createElement("button");
+          logBtn.textContent = `${label} · ${state.symptoms[label]}/5`;
+          logBtn.className = state.symptoms[label] > 1 ? "active" : "";
+          logBtn.addEventListener("click", () => {
+            state.symptoms[label] = state.symptoms[label] % 5 + 1;
+            renderSymptoms();
+            saveState(state);
+          });
+          log.appendChild(logBtn);
+        });
+      };
+
+      const updateRanges = () => {
+        const sleepRange = document.getElementById("sleep-range");
+        const energyRange = document.getElementById("energy-range");
+        sleepRange.value = state.sleep;
+        energyRange.value = state.energy;
+        document.getElementById("sleep-value").textContent = state.sleep;
+        document.getElementById("energy-value").textContent = state.energy;
+      };
+
+      const updateDoctorStats = () => {
+        const hotFlashes = state.symptoms["Hot flashes"];
+        document.getElementById("stat-hot").textContent = 8 + hotFlashes * 2;
+        document.getElementById("stat-sleep").textContent = (state.sleep - 0.2).toFixed(1);
+        document.getElementById("stat-mood").textContent = state.mood;
+        document.getElementById("stat-energy").textContent = (state.energy - 0.1).toFixed(1);
+      };
+
+      const updateNotes = () => {
+        const notes = document.getElementById("notes");
+        notes.value = state.notes || "";
+        notes.addEventListener("input", (event) => {
+          state.notes = event.target.value;
+          saveState(state);
+        });
+      };
+
+      const updateInsights = () => {
+        const insight = document.getElementById("insight-1");
+        const moodInsight =
+          state.mood === "Frayed"
+            ? "On frayed days, hot flashes spike by 25%."
+            : "Hot flashes are 40% higher after alcohol.";
+        insight.textContent = moodInsight;
+      };
+
+      const updateReportStatus = () => {
+        const status = document.getElementById("report-status");
+        status.textContent = state.lastReport
+          ? `Last generated: ${new Date(state.lastReport).toLocaleDateString()}`
+          : "Last generated: never";
+      };
+
+      document.getElementById("mood-options").addEventListener("click", (event) => {
+        if (event.target.tagName !== "BUTTON") return;
+        state.mood = event.target.dataset.mood;
+        setMoodActive();
+        updateDoctorStats();
+        updateInsights();
+        saveState(state);
+      });
+
+      document.getElementById("sleep-range").addEventListener("input", (event) => {
+        state.sleep = Number(event.target.value);
+        updateRanges();
+        updateDoctorStats();
+        saveState(state);
+      });
+
+      document.getElementById("energy-range").addEventListener("input", (event) => {
+        state.energy = Number(event.target.value);
+        updateRanges();
+        updateDoctorStats();
+        saveState(state);
+      });
+
+      document.getElementById("save-symptoms").addEventListener("click", () => {
+        state.lastReport = new Date().toISOString();
+        updateReportStatus();
+        saveState(state);
+      });
+
+      document.getElementById("generate-report").addEventListener("click", () => {
+        state.lastReport = new Date().toISOString();
+        updateReportStatus();
+        saveState(state);
+      });
+
+      document.querySelectorAll(".nav button").forEach((button) => {
+        button.addEventListener("click", () => {
+          document.querySelectorAll(".nav button").forEach((btn) => btn.classList.remove("active"));
+          button.classList.add("active");
+          const target = button.dataset.screen;
+          document.querySelectorAll(".screen").forEach((screen) => {
+            screen.classList.toggle("active", screen.id === `screen-${target}`);
+          });
+        });
+      });
+
+      const initialize = () => {
+        setMoodActive();
+        renderSymptoms();
+        updateRanges();
+        updateDoctorStats();
+        updateNotes();
+        updateInsights();
+        updateReportStatus();
+      };
+
+      initialize();
+    </script>
+  </body>
+</html>

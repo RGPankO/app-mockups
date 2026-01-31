@@ -1,0 +1,665 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Cycle Skin — Hormonal Skin Tracker (Mockup)</title>
+  <style>
+    :root {
+      --pink: #ffd2e7;
+      --pink-2: #fff0f7;
+      --lav: #dccbff;
+      --lav-2: #f4efff;
+      --peach: #ffeada;
+      --mint: #eafff7;
+      --ink: #1f172b;
+      --muted: #5e546f;
+      --white: #ffffff;
+      --shadow: 0 18px 40px rgba(70, 45, 95, 0.12);
+      --radius: 22px;
+    }
+
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: "Poppins", "Quicksand", "Trebuchet MS", sans-serif;
+      color: var(--ink);
+      background:
+        radial-gradient(1200px 520px at 10% -10%, #fff4f8 10%, #ffffff 55%),
+        radial-gradient(1000px 520px at 95% -5%, #f3eeff 0%, rgba(243, 238, 255, 0) 70%),
+        linear-gradient(180deg, #ffffff 0%, #fff8fd 45%, #f8f3ff 100%);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+      gap: 32px;
+      padding: 24px 16px 56px;
+    }
+
+    .phone {
+      width: 100%;
+      max-width: 400px;
+      background: linear-gradient(180deg, #ffffff 0%, #fff8fd 100%);
+      border-radius: 34px;
+      box-shadow: var(--shadow);
+      border: 1px solid rgba(221, 213, 234, 0.6);
+      overflow: hidden;
+      position: relative;
+    }
+
+    .topbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 18px 22px 8px;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-weight: 700;
+      letter-spacing: 0.4px;
+    }
+
+    .logo .dot {
+      width: 14px;
+      height: 14px;
+      border-radius: 50%;
+      background: linear-gradient(120deg, #ff9acb, #c8adff);
+      box-shadow: 0 0 0 8px rgba(255, 154, 203, 0.16);
+    }
+
+    .chip {
+      background: #f4edff;
+      color: #624a8c;
+      border-radius: 999px;
+      padding: 6px 14px;
+      font-size: 12px;
+      font-weight: 600;
+    }
+
+    .tabs {
+      display: flex;
+      gap: 10px;
+      padding: 6px 18px 0;
+    }
+    .tab {
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--muted);
+      padding: 8px 14px;
+      border-radius: 999px;
+      background: #fbf8ff;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      border: 1px solid transparent;
+    }
+    .tab.active {
+      color: var(--ink);
+      background: #ffeaf4;
+      border-color: rgba(255, 169, 204, 0.45);
+      box-shadow: 0 10px 22px rgba(255, 164, 201, 0.2);
+    }
+
+    .content {
+      padding: 18px 20px 86px;
+    }
+
+    .screen {
+      display: none;
+      animation: fadeIn 0.4s ease;
+    }
+    .screen.active { display: block; }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(6px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .card {
+      background: linear-gradient(180deg, #ffffff 0%, #fbf8ff 100%);
+      border-radius: var(--radius);
+      padding: 16px;
+      border: 1px solid #f0e8ff;
+      box-shadow: 0 14px 26px rgba(205, 186, 255, 0.2);
+      margin-bottom: 16px;
+    }
+
+    .card.soft {
+      background: linear-gradient(135deg, #fff7fb 0%, #f6f1ff 85%);
+      border: 1px solid rgba(255, 211, 232, 0.6);
+    }
+
+    .section-title {
+      font-size: 14px;
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+
+    .hero {
+      display: flex;
+      gap: 14px;
+      align-items: center;
+    }
+    .hero img {
+      width: 72px;
+      height: 72px;
+      border-radius: 18px;
+      background: radial-gradient(circle at 30% 30%, #ffffff, #ffeef6 60%, #efe2ff 100%);
+      border: 1px solid rgba(220, 190, 255, 0.5);
+    }
+
+    .stat-row {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+      margin-top: 12px;
+    }
+    .stat {
+      background: #fff;
+      border-radius: 16px;
+      padding: 10px;
+      text-align: center;
+      border: 1px solid #f2ecff;
+      font-size: 12px;
+    }
+    .stat strong {
+      display: block;
+      font-size: 16px;
+      margin-bottom: 2px;
+    }
+
+    .slider {
+      display: flex;
+      gap: 10px;
+      margin-top: 10px;
+    }
+    .pill {
+      padding: 8px 12px;
+      border-radius: 999px;
+      border: 1px solid #f3edff;
+      background: #fff;
+      font-size: 12px;
+      cursor: pointer;
+      transition: 0.2s ease;
+    }
+    .pill.active {
+      background: var(--mint);
+      border-color: #bfeee0;
+      color: #23806d;
+    }
+
+    .log-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+      margin-top: 10px;
+    }
+    .log-box {
+      background: #fff;
+      border-radius: 14px;
+      padding: 10px;
+      border: 1px dashed #f3d8ea;
+      font-size: 12px;
+      text-align: center;
+      color: var(--muted);
+    }
+    .log-box strong { color: var(--ink); display: block; }
+
+    .calendar {
+      display: grid;
+      grid-template-columns: repeat(7, 1fr);
+      gap: 6px;
+      margin-top: 12px;
+    }
+    .day {
+      height: 32px;
+      border-radius: 10px;
+      font-size: 11px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #f8f5ff;
+      color: var(--muted);
+      position: relative;
+    }
+    .day.cycle { background: #ffe0ee; color: #a44f78; }
+    .day.ovulation { background: #dff7ff; color: #28718c; }
+    .day.breakout::after {
+      content: "";
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: #ff7aa6;
+      position: absolute;
+      bottom: 4px;
+      right: 6px;
+    }
+
+    .insight {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      padding: 12px;
+      background: #fff;
+      border-radius: 16px;
+      border: 1px solid #f1e7ff;
+      margin-bottom: 10px;
+    }
+    .insight span {
+      width: 36px;
+      height: 36px;
+      border-radius: 12px;
+      background: var(--lav);
+      display: grid;
+      place-items: center;
+      font-size: 18px;
+    }
+
+    .product {
+      display: grid;
+      grid-template-columns: 56px 1fr;
+      gap: 12px;
+      align-items: center;
+      padding: 10px;
+      border-radius: 16px;
+      background: #fff;
+      border: 1px solid #f3e9ff;
+      margin-bottom: 10px;
+    }
+    .product .thumb {
+      width: 56px;
+      height: 56px;
+      border-radius: 14px;
+      background: linear-gradient(135deg, #ffe3ef, #e4dcff);
+      border: 1px solid rgba(217, 191, 255, 0.6);
+    }
+    .tag {
+      display: inline-block;
+      font-size: 10px;
+      padding: 4px 8px;
+      border-radius: 999px;
+      background: #fff1f8;
+      color: #9e3f6a;
+      margin-right: 6px;
+    }
+
+    .cta {
+      padding: 10px 14px;
+      border-radius: 14px;
+      background: linear-gradient(120deg, #ff95c8, #cdb2ff);
+      color: white;
+      font-weight: 700;
+      font-size: 13px;
+      text-align: center;
+      border: none;
+      cursor: pointer;
+      width: 100%;
+      box-shadow: 0 12px 24px rgba(255, 140, 196, 0.28);
+    }
+
+    .bottom-nav {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      padding: 12px 12px 16px;
+      background: linear-gradient(180deg, rgba(255,255,255,0.7), #fff 60%);
+      border-top: 1px solid #f2eaff;
+    }
+
+    .nav-btn {
+      background: transparent;
+      border: none;
+      color: var(--muted);
+      font-size: 11px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 6px;
+      cursor: pointer;
+      transition: 0.2s ease;
+    }
+    .nav-btn.active {
+      color: #c15190;
+    }
+    .nav-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: transparent;
+      margin-top: -4px;
+    }
+    .nav-btn.active .nav-dot { background: #c15190; }
+
+    .footer-note {
+      text-align: center;
+      font-size: 10px;
+      color: #8b7f9a;
+      margin-top: 8px;
+    }
+
+    .feature-breakdown {
+      width: min(980px, 100%);
+      background: linear-gradient(160deg, #1a1523 0%, #221b30 60%, #2a1f3a 100%);
+      color: #f5eefb;
+      border-radius: 28px;
+      padding: 28px;
+      box-shadow: 0 20px 50px rgba(20, 10, 40, 0.35);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .feature-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 16px;
+      margin-bottom: 18px;
+    }
+    .feature-header h2 {
+      margin: 0;
+      font-size: 22px;
+      letter-spacing: 0.4px;
+    }
+    .feature-header p {
+      margin: 6px 0 0;
+      font-size: 13px;
+      color: #c9b9db;
+      max-width: 540px;
+    }
+
+    .feature-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 16px;
+    }
+
+    .feature-card {
+      background: rgba(255, 255, 255, 0.06);
+      border-radius: 18px;
+      padding: 16px;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.02);
+    }
+    .feature-card h3 {
+      margin: 0 0 8px;
+      font-size: 14px;
+      color: #ffe7f3;
+    }
+    .feature-card ul {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+      font-size: 12px;
+      color: #d6c8e6;
+      display: grid;
+      gap: 8px;
+      line-height: 1.4;
+    }
+    .feature-card li strong {
+      color: #ffffff;
+      font-weight: 600;
+    }
+
+    @media (max-width: 680px) {
+      .feature-breakdown { padding: 22px; }
+      .feature-header { flex-direction: column; }
+    }
+
+    @media (max-width: 420px) {
+      body { padding: 12px; }
+      .content { padding: 14px 16px 86px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="phone" role="img" aria-label="Cycle Skin mobile mockup">
+    <div class="topbar">
+      <div class="logo">
+        <div class="dot"></div>
+        Cycle Skin
+      </div>
+      <div class="chip">Phase: Luteal</div>
+    </div>
+
+    <div class="tabs">
+      <div class="tab active" data-tab="today">Today</div>
+      <div class="tab" data-tab="calendar">Calendar</div>
+      <div class="tab" data-tab="insights">Insights</div>
+      <div class="tab" data-tab="products">Products</div>
+    </div>
+
+    <div class="content">
+      <section class="screen active" id="today">
+        <div class="card soft">
+          <div class="hero">
+            <img alt="soft gradient" />
+            <div>
+              <div class="section-title">Hello, Mia ✨</div>
+              <div style="font-size:12px;color:var(--muted);">Cycle Day 24 · Period in 3 days</div>
+              <div style="margin-top:8px;font-weight:600;">Skin mood: Sensitive + Dry</div>
+            </div>
+          </div>
+          <div class="stat-row">
+            <div class="stat"><strong>2</strong> Active blemishes</div>
+            <div class="stat"><strong>7/10</strong> Oiliness</div>
+            <div class="stat"><strong>88%</strong> Sleep</div>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="section-title">Log your skin today</div>
+          <div style="font-size:12px;color:var(--muted);">Tap to adjust your current skin status.</div>
+          <div class="slider" id="conditionSlider">
+            <div class="pill active" data-value="Clear">Clear</div>
+            <div class="pill" data-value="Textured">Textured</div>
+            <div class="pill" data-value="Breakout">Breakout</div>
+            <div class="pill" data-value="Inflamed">Inflamed</div>
+          </div>
+          <div class="log-grid">
+            <div class="log-box"><strong>Breakouts</strong>Jawline + Chin</div>
+            <div class="log-box"><strong>Symptoms</strong>Cramping</div>
+            <div class="log-box"><strong>Notes</strong>Stressful week</div>
+          </div>
+        </div>
+
+        <button class="cta">Save daily check-in</button>
+      </section>
+
+      <section class="screen" id="calendar">
+        <div class="card">
+          <div class="section-title">Cycle + Skin Calendar</div>
+          <div style="font-size:12px;color:var(--muted);">Luteal days show higher breakout risk.</div>
+          <div class="calendar" aria-label="Cycle calendar">
+            <div class="day">1</div><div class="day">2</div><div class="day">3</div><div class="day">4</div><div class="day">5</div><div class="day">6</div><div class="day">7</div>
+            <div class="day">8</div><div class="day">9</div><div class="day">10</div><div class="day ovulation">11</div><div class="day ovulation">12</div><div class="day">13</div><div class="day">14</div>
+            <div class="day">15</div><div class="day">16</div><div class="day">17</div><div class="day">18</div><div class="day">19</div><div class="day cycle">20</div><div class="day cycle">21</div>
+            <div class="day cycle">22</div><div class="day cycle breakout">23</div><div class="day cycle breakout">24</div><div class="day cycle breakout">25</div><div class="day cycle breakout">26</div><div class="day cycle">27</div><div class="day cycle">28</div>
+          </div>
+          <div style="margin-top:12px;font-size:12px;color:var(--muted);">Pink = luteal, Blue = ovulation, Dot = breakout.</div>
+        </div>
+
+        <div class="card soft">
+          <div class="section-title">Skin overlay</div>
+          <div style="font-size:12px;color:var(--muted);">Your last 3 cycles show a 62% spike in jawline acne between days 22–25.</div>
+          <div class="stat-row">
+            <div class="stat"><strong>+62%</strong> Breakout risk</div>
+            <div class="stat"><strong>4</strong> Avg. pimples</div>
+            <div class="stat"><strong>3</strong> Days pre-period</div>
+          </div>
+        </div>
+      </section>
+
+      <section class="screen" id="insights">
+        <div class="card">
+          <div class="section-title">Pattern highlights</div>
+          <div class="insight">
+            <span>💗</span>
+            <div>
+              <div style="font-weight:700;">Breakouts typically start 3 days before period</div>
+              <div style="font-size:12px;color:var(--muted);">Most common on cycle days 23–25.</div>
+            </div>
+          </div>
+          <div class="insight">
+            <span>✨</span>
+            <div>
+              <div style="font-weight:700;">Skin glows during ovulation</div>
+              <div style="font-size:12px;color:var(--muted);">Oiliness down 22% around days 11–13.</div>
+            </div>
+          </div>
+          <div class="insight">
+            <span>🌙</span>
+            <div>
+              <div style="font-weight:700;">Sleep impacts inflammation</div>
+              <div style="font-size:12px;color:var(--muted);">Less than 7 hours = +18% redness.</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="card soft">
+          <div class="section-title">Personalized insight</div>
+          <div style="font-size:12px;color:var(--muted);">Try a gentle retinoid every other night starting day 20 to minimize pre-period flare-ups.</div>
+        </div>
+      </section>
+
+      <section class="screen" id="products">
+        <div class="card">
+          <div class="section-title">Recommended for Luteal Phase</div>
+          <div style="font-size:12px;color:var(--muted);">Calm inflammation + protect the barrier. Affiliate ready.</div>
+          <div class="product">
+            <div class="thumb"></div>
+            <div>
+              <div style="font-weight:700;">Barrier Repair Serum</div>
+              <div style="font-size:12px;color:var(--muted);">Niacinamide + ceramides</div>
+              <span class="tag">Top pick</span>
+              <span class="tag">$24</span>
+            </div>
+          </div>
+          <div class="product">
+            <div class="thumb"></div>
+            <div>
+              <div style="font-weight:700;">Calming Cleanser</div>
+              <div style="font-size:12px;color:var(--muted);">Aloe + oat extract</div>
+              <span class="tag">Sensitive skin</span>
+              <span class="tag">$18</span>
+            </div>
+          </div>
+          <div class="product">
+            <div class="thumb"></div>
+            <div>
+              <div style="font-weight:700;">Spot Treatment Gel</div>
+              <div style="font-size:12px;color:var(--muted);">2% salicylic acid</div>
+              <span class="tag">Overnight</span>
+              <span class="tag">$14</span>
+            </div>
+          </div>
+          <button class="cta">View affiliate bundles</button>
+        </div>
+
+        <div class="card soft">
+          <div class="section-title">Why these picks?</div>
+          <div style="font-size:12px;color:var(--muted);">Based on your last two cycles, inflammation peaks in luteal days 22–26. These products focus on barrier support and gentle exfoliation.</div>
+        </div>
+      </section>
+
+      <div class="footer-note">Mockup · Data shown for demonstration</div>
+    </div>
+
+    <nav class="bottom-nav" aria-label="Bottom navigation">
+      <button class="nav-btn active" data-target="today">Today <span class="nav-dot"></span></button>
+      <button class="nav-btn" data-target="calendar">Calendar <span class="nav-dot"></span></button>
+      <button class="nav-btn" data-target="insights">Insights <span class="nav-dot"></span></button>
+      <button class="nav-btn" data-target="products">Products <span class="nav-dot"></span></button>
+    </nav>
+  </div>
+
+  <section class="feature-breakdown" aria-labelledby="feature-breakdown-title">
+    <div class="feature-header">
+      <div>
+        <h2 id="feature-breakdown-title">Feature Breakdown</h2>
+        <p>A clear rationale for every major screen, focused on user outcomes, retention, and revenue alignment.</p>
+      </div>
+      <div class="chip" style="background:#3a2a4f;color:#e8dbff;border:1px solid rgba(255,255,255,0.12);">Concept fit</div>
+    </div>
+
+    <div class="feature-grid">
+      <article class="feature-card">
+        <h3>Today</h3>
+        <ul>
+          <li><strong>What it is:</strong> The daily check-in hub: mood, skin status, and quick stats.</li>
+          <li><strong>What it does:</strong> Reduces friction to log, nudges consistency, and captures context.</li>
+          <li><strong>Problem solved:</strong> Users forget or feel overwhelmed by tracking; this makes it one tap.</li>
+          <li><strong>User value:</strong> Fast clarity on “how am I doing today?” plus a reason to return daily.</li>
+          <li><strong>Real estate:</strong> Most-used task goes first; short interaction, high retention payoff.</li>
+        </ul>
+      </article>
+
+      <article class="feature-card">
+        <h3>Calendar</h3>
+        <ul>
+          <li><strong>What it is:</strong> A cycle + skin timeline that ties events to days and phases.</li>
+          <li><strong>What it does:</strong> Visualizes patterns and predicts flare-up windows.</li>
+          <li><strong>Problem solved:</strong> Users can’t connect symptoms to cycle timing without a map.</li>
+          <li><strong>User value:</strong> Planning power—pre-empt routines, appointments, and product use.</li>
+          <li><strong>Real estate:</strong> The calendar is the mental model of cycles; it earns a full view.</li>
+        </ul>
+      </article>
+
+      <article class="feature-card">
+        <h3>Insights</h3>
+        <ul>
+          <li><strong>What it is:</strong> Pattern interpretation and personalized recommendations.</li>
+          <li><strong>What it does:</strong> Converts raw logs into actionable, confidence-building guidance.</li>
+          <li><strong>Problem solved:</strong> Data without insight feels useless; this makes tracking meaningful.</li>
+          <li><strong>User value:</strong> “Why is this happening?” answered with simple takeaways.</li>
+          <li><strong>Real estate:</strong> Insight is the product’s payoff; it needs space to feel credible.</li>
+        </ul>
+      </article>
+
+      <article class="feature-card">
+        <h3>Products</h3>
+        <ul>
+          <li><strong>What it is:</strong> Phase-aware product picks tied to current skin needs.</li>
+          <li><strong>What it does:</strong> Bridges diagnosis to action with curated routines.</li>
+          <li><strong>Problem solved:</strong> Users are unsure what to buy or when to use it.</li>
+          <li><strong>User value:</strong> Faster results and fewer wrong purchases; trust via relevance.</li>
+          <li><strong>Real estate:</strong> Revenue aligned with outcomes; recommendations close the loop.</li>
+          <li><strong>Affiliate angle:</strong> Each recommendation can link to a partner SKU, creating a commission path without ads.</li>
+        </ul>
+      </article>
+    </div>
+  </section>
+
+  <script>
+    const tabs = document.querySelectorAll('.tab');
+    const screens = document.querySelectorAll('.screen');
+    const navButtons = document.querySelectorAll('.nav-btn');
+    const pills = document.querySelectorAll('.pill');
+    const conditionSlider = document.getElementById('conditionSlider');
+
+    function activateScreen(id) {
+      screens.forEach(screen => screen.classList.toggle('active', screen.id === id));
+      tabs.forEach(tab => tab.classList.toggle('active', tab.dataset.tab === id));
+      navButtons.forEach(btn => btn.classList.toggle('active', btn.dataset.target === id));
+    }
+
+    tabs.forEach(tab => {
+      tab.addEventListener('click', () => activateScreen(tab.dataset.tab));
+    });
+
+    navButtons.forEach(btn => {
+      btn.addEventListener('click', () => activateScreen(btn.dataset.target));
+    });
+
+    conditionSlider.addEventListener('click', event => {
+      const pill = event.target.closest('.pill');
+      if (!pill) return;
+      pills.forEach(p => p.classList.toggle('active', p === pill));
+    });
+  </script>
+</body>
+</html>

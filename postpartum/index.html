@@ -1,0 +1,805 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>PostPartum — Fourth Trimester Recovery</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@400;600&family=Work+Sans:wght@400;600&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --rose: #d9a2a8;
+      --rose-dark: #b8767f;
+      --rose-soft: #f7e7ea;
+      --neutral: #fff9f6;
+      --neutral-deep: #f3e7dd;
+      --gold: #d6b36c;
+      --ink: #2f2623;
+      --muted: #6f6059;
+      --white: #ffffff;
+      --shadow: 0 20px 36px rgba(59, 47, 42, 0.12);
+      --feature-ink: #f9f3ee;
+      --feature-muted: rgba(249, 243, 238, 0.7);
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      font-family: "Fraunces", "Georgia", serif;
+      color: var(--ink);
+      background:
+        radial-gradient(circle at top, rgba(255, 255, 255, 0.9) 0%, rgba(247, 235, 228, 0.9) 45%, rgba(241, 228, 219, 0.95) 100%),
+        linear-gradient(180deg, #fffdfb 0%, #f8eee7 60%, #f6e8e0 100%);
+      min-height: 100vh;
+    }
+
+    .page {
+      max-width: 980px;
+      margin: 0 auto;
+      padding: 32px 16px 64px;
+    }
+
+    .hero {
+      text-align: center;
+      margin-bottom: 28px;
+    }
+
+    .hero h1 {
+      font-size: 30px;
+      margin: 0 0 6px;
+      letter-spacing: 0.4px;
+    }
+
+    .hero p {
+      margin: 0;
+      font-family: "Work Sans", "Helvetica", sans-serif;
+      color: var(--muted);
+    }
+
+    .phone-shell {
+      width: min(400px, 92vw);
+      margin: 26px auto 40px;
+      background: linear-gradient(180deg, #ffffff 0%, #fffdfb 45%, #fff6f2 100%);
+      border-radius: 34px;
+      padding: 18px;
+      box-shadow: var(--shadow);
+      border: 1px solid rgba(200, 137, 145, 0.25);
+      position: relative;
+    }
+
+    .phone-shell::before {
+      content: "";
+      position: absolute;
+      top: 12px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 120px;
+      height: 6px;
+      background: #f5e3e4;
+      border-radius: 999px;
+    }
+
+    .app {
+      background: #fffdfb;
+      border-radius: 26px;
+      overflow: hidden;
+      min-height: 740px;
+      display: flex;
+      flex-direction: column;
+      border: 1px solid rgba(214, 179, 108, 0.2);
+    }
+
+    .app-header {
+      padding: 22px 22px 10px;
+      background: linear-gradient(120deg, #faecef 0%, #fff6ec 55%, #f6ece4 100%);
+    }
+
+    .app-header .top-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-family: "Work Sans", "Helvetica", sans-serif;
+      font-size: 12px;
+      color: var(--muted);
+    }
+
+    .pill {
+      padding: 6px 12px;
+      background: var(--white);
+      border-radius: 999px;
+      border: 1px solid rgba(214, 179, 108, 0.4);
+      font-size: 12px;
+      color: var(--ink);
+    }
+
+    .headline {
+      margin: 12px 0 4px;
+      font-size: 24px;
+    }
+
+    .subhead {
+      font-family: "Work Sans", "Helvetica", sans-serif;
+      color: var(--muted);
+      font-size: 14px;
+      margin-bottom: 14px;
+    }
+
+    .tab-row {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .tab {
+      padding: 6px 12px;
+      background: #ffffff;
+      border-radius: 999px;
+      border: 1px solid rgba(200, 137, 145, 0.25);
+      font-family: "Work Sans", "Helvetica", sans-serif;
+      font-size: 12px;
+      cursor: pointer;
+    }
+
+    .tab.active {
+      background: var(--rose);
+      color: #fff;
+      border-color: var(--rose-dark);
+    }
+
+    .screen {
+      display: none;
+      padding: 18px 20px 96px;
+      flex: 1;
+      overflow-y: auto;
+    }
+
+    .screen.active { display: block; }
+
+    .card {
+      background: var(--white);
+      border-radius: 18px;
+      padding: 16px;
+      margin-bottom: 14px;
+      box-shadow: 0 10px 20px rgba(59, 47, 42, 0.06);
+      border: 1px solid rgba(216, 161, 166, 0.18);
+    }
+
+    .card h3 {
+      margin: 0 0 10px;
+      font-size: 17px;
+    }
+
+    .label {
+      font-family: "Work Sans", "Helvetica", sans-serif;
+      font-size: 12px;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+
+    .stat-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 10px;
+    }
+
+    .stat {
+      background: #fff1f3;
+      border-radius: 14px;
+      padding: 12px;
+    }
+
+    .stat .value {
+      font-size: 20px;
+      font-weight: 600;
+    }
+
+    .meter {
+      display: flex;
+      gap: 6px;
+      margin-top: 8px;
+    }
+
+    .meter span {
+      flex: 1;
+      height: 8px;
+      background: #f3dee0;
+      border-radius: 999px;
+    }
+
+    .meter span.filled { background: var(--rose-dark); }
+
+    .pill-grid {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .pill-toggle {
+      border: 1px solid rgba(200, 137, 145, 0.4);
+      padding: 6px 12px;
+      border-radius: 999px;
+      font-family: "Work Sans", "Helvetica", sans-serif;
+      font-size: 12px;
+      cursor: pointer;
+      background: #fff;
+    }
+
+    .pill-toggle.active {
+      background: var(--rose-dark);
+      color: #fff;
+      border-color: var(--rose-dark);
+    }
+
+    .timeline {
+      display: grid;
+      gap: 12px;
+    }
+
+    .timeline-item {
+      display: flex;
+      gap: 10px;
+      align-items: flex-start;
+    }
+
+    .dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: var(--gold);
+      margin-top: 6px;
+    }
+
+    .timeline-item strong {
+      display: block;
+      font-size: 14px;
+    }
+
+    .timeline-item span {
+      font-family: "Work Sans", "Helvetica", sans-serif;
+      font-size: 12px;
+      color: var(--muted);
+    }
+
+    .progress-bar {
+      width: 100%;
+      height: 10px;
+      border-radius: 999px;
+      background: #f3dee0;
+      overflow: hidden;
+      margin-top: 8px;
+    }
+
+    .progress-bar .fill {
+      height: 100%;
+      width: 65%;
+      background: linear-gradient(90deg, #d6b36c 0%, #c88991 100%);
+    }
+
+    .chart {
+      display: grid;
+      grid-template-columns: repeat(7, 1fr);
+      gap: 6px;
+      align-items: end;
+      height: 100px;
+      margin-top: 6px;
+    }
+
+    .bar {
+      width: 100%;
+      border-radius: 10px 10px 4px 4px;
+      background: #eadbcf;
+      position: relative;
+    }
+
+    .bar span {
+      position: absolute;
+      bottom: 6px;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 10px;
+      font-family: "Work Sans", "Helvetica", sans-serif;
+      color: #fff;
+    }
+
+    .bar.good { background: #c7c08a; }
+    .bar.ok { background: #d8a1a6; }
+    .bar.low { background: #b98c7d; }
+
+    .nav {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 6px;
+      padding: 12px 12px 18px;
+      background: #fff;
+      border-top: 1px solid rgba(200, 137, 145, 0.25);
+      position: sticky;
+      bottom: 0;
+    }
+
+    .nav button {
+      border: none;
+      background: transparent;
+      font-family: "Work Sans", "Helvetica", sans-serif;
+      font-size: 11px;
+      color: var(--muted);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 4px;
+      cursor: pointer;
+    }
+
+    .nav button.active {
+      color: var(--rose-dark);
+      font-weight: 600;
+    }
+
+    .nav .icon {
+      width: 26px;
+      height: 26px;
+      border-radius: 12px;
+      background: #f6e3e6;
+      display: grid;
+      place-items: center;
+      font-size: 13px;
+    }
+
+    .price-tag {
+      margin-top: 12px;
+      font-family: "Work Sans", "Helvetica", sans-serif;
+      font-size: 13px;
+      color: var(--muted);
+    }
+
+    .feature-section {
+      margin-top: 34px;
+      background: linear-gradient(160deg, #3a2a28 0%, #312320 55%, #2a1f1c 100%);
+      border-radius: 24px;
+      padding: 28px;
+      border: 1px solid rgba(214, 179, 108, 0.25);
+      box-shadow: 0 18px 28px rgba(35, 24, 21, 0.25);
+      color: var(--feature-ink);
+    }
+
+    .feature-section h2 {
+      margin-top: 0;
+      font-size: 24px;
+      color: var(--feature-ink);
+    }
+
+    .feature-grid {
+      display: grid;
+      gap: 16px;
+    }
+
+    .feature-card {
+      background: rgba(255, 247, 242, 0.08);
+      border-radius: 16px;
+      padding: 16px;
+      border: 1px solid rgba(214, 179, 108, 0.25);
+      color: var(--feature-ink);
+    }
+
+    .feature-card h4 {
+      margin: 0 0 8px;
+      font-size: 16px;
+      color: var(--feature-ink);
+    }
+
+    .feature-card ul {
+      padding-left: 18px;
+      margin: 0;
+      font-family: "Work Sans", "Helvetica", sans-serif;
+      color: var(--feature-muted);
+      font-size: 13px;
+      line-height: 1.5;
+    }
+
+    @media (min-width: 840px) {
+      .feature-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <section class="hero">
+      <h1>PostPartum — Fourth Trimester Recovery</h1>
+      <p>Gentle, mom-first support for the first year postpartum • $13/month</p>
+    </section>
+
+    <div class="phone-shell">
+      <div class="app">
+        <div class="app-header">
+          <div class="top-row">
+            <span>Saturday • 10:12 AM</span>
+            <span class="pill">Week 6 postpartum</span>
+          </div>
+          <div class="headline">You deserve care too, Maya.</div>
+          <div class="subhead">Daily care for your body, mind, and identity.</div>
+          <div class="tab-row" id="screenTabs">
+            <button class="tab active" data-screen="today">Today</button>
+            <button class="tab" data-screen="recovery">Recovery</button>
+            <button class="tab" data-screen="mental">Mental Health</button>
+            <button class="tab" data-screen="milestones">Milestones</button>
+          </div>
+        </div>
+
+        <div class="screen active" id="today">
+          <div class="card">
+            <div class="label">Daily Check-In</div>
+            <h3>How are you feeling today?</h3>
+            <div class="pill-grid" id="moodPills">
+              <button class="pill-toggle active">Calm</button>
+              <button class="pill-toggle">Tender</button>
+              <button class="pill-toggle">Overwhelmed</button>
+              <button class="pill-toggle">Proud</button>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="label">Body & Energy</div>
+            <div class="stat-grid">
+              <div class="stat">
+                <div class="label">Energy</div>
+                <div class="value">6/10</div>
+                <div class="meter" aria-label="Energy level">
+                  <span class="filled"></span>
+                  <span class="filled"></span>
+                  <span class="filled"></span>
+                  <span class="filled"></span>
+                  <span class="filled"></span>
+                  <span></span>
+                  <span></span>
+                  <span></span>
+                  <span></span>
+                  <span></span>
+                </div>
+              </div>
+              <div class="stat">
+                <div class="label">Pain</div>
+                <div class="value">3/10</div>
+                <div class="meter" aria-label="Pain level">
+                  <span class="filled"></span>
+                  <span class="filled"></span>
+                  <span class="filled"></span>
+                  <span></span>
+                  <span></span>
+                  <span></span>
+                  <span></span>
+                  <span></span>
+                  <span></span>
+                  <span></span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="label">Sleep Snapshot</div>
+            <h3>Last night</h3>
+            <div class="stat-grid">
+              <div class="stat">
+                <div class="label">Total Sleep</div>
+                <div class="value">5h 40m</div>
+              </div>
+              <div class="stat">
+                <div class="label">Longest Stretch</div>
+                <div class="value">2h 10m</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="label">Today’s Gentle Nudge</div>
+            <h3>One small thing for you</h3>
+            <p class="subhead">Step outside for 6 minutes and let your shoulders soften.</p>
+            <div class="progress-bar" aria-label="Self-care streak">
+              <div class="fill"></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="screen" id="recovery">
+          <div class="card">
+            <div class="label">Healing Tracker</div>
+            <h3>Physical recovery check</h3>
+            <div class="stat-grid">
+              <div class="stat">
+                <div class="label">Bleeding</div>
+                <div class="value" id="bleedingLevel">Light</div>
+                <div class="pill-grid" id="bleedingButtons">
+                  <button class="pill-toggle active">Light</button>
+                  <button class="pill-toggle">Moderate</button>
+                  <button class="pill-toggle">Heavy</button>
+                </div>
+              </div>
+              <div class="stat">
+                <div class="label">Incision / Tears</div>
+                <div class="value">Healing well</div>
+                <div class="meter">
+                  <span class="filled"></span>
+                  <span class="filled"></span>
+                  <span class="filled"></span>
+                  <span class="filled"></span>
+                  <span class="filled"></span>
+                  <span class="filled"></span>
+                  <span></span>
+                  <span></span>
+                  <span></span>
+                  <span></span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="label">Pelvic Floor</div>
+            <h3>Today’s exercise</h3>
+            <p class="subhead">5 gentle breaths + 8 slow Kegels</p>
+            <button class="pill-toggle" id="exerciseToggle">Mark as done</button>
+          </div>
+
+          <div class="card">
+            <div class="label">Body Notes</div>
+            <h3>What feels different?</h3>
+            <div class="pill-grid">
+              <button class="pill-toggle">Tender ribs</button>
+              <button class="pill-toggle active">Lower back sore</button>
+              <button class="pill-toggle">Core feels stronger</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="screen" id="mental">
+          <div class="card">
+            <div class="label">Mood Pattern</div>
+            <h3>Last 7 days</h3>
+            <div class="chart">
+              <div class="bar good" style="height: 90%"><span>7</span></div>
+              <div class="bar ok" style="height: 70%"><span>5</span></div>
+              <div class="bar low" style="height: 50%"><span>3</span></div>
+              <div class="bar ok" style="height: 65%"><span>4</span></div>
+              <div class="bar good" style="height: 85%"><span>6</span></div>
+              <div class="bar ok" style="height: 60%"><span>4</span></div>
+              <div class="bar good" style="height: 80%"><span>6</span></div>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="label">PPD Screening</div>
+            <h3>Quick check-in</h3>
+            <p class="subhead">"I’ve felt like myself this week."</p>
+            <div class="pill-grid" id="ppdButtons">
+              <button class="pill-toggle">Strongly disagree</button>
+              <button class="pill-toggle active">Somewhat</button>
+              <button class="pill-toggle">Strongly agree</button>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="label">Self-care Reminders</div>
+            <h3>Small supports that count</h3>
+            <div class="timeline">
+              <div class="timeline-item">
+                <div class="dot"></div>
+                <div>
+                  <strong>Reach out to your support circle</strong>
+                  <span>Text someone who knows your full story.</span>
+                </div>
+              </div>
+              <div class="timeline-item">
+                <div class="dot"></div>
+                <div>
+                  <strong>Eat something warm</strong>
+                  <span>Comfort helps your nervous system.</span>
+                </div>
+              </div>
+              <div class="timeline-item">
+                <div class="dot"></div>
+                <div>
+                  <strong>Five deep breaths</strong>
+                  <span>Let your shoulders drop on each exhale.</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="screen" id="milestones">
+          <div class="card">
+            <div class="label">Recovery Milestones</div>
+            <h3>Celebrate your wins</h3>
+            <div class="timeline">
+              <div class="timeline-item">
+                <div class="dot"></div>
+                <div>
+                  <strong>Walked outside alone</strong>
+                  <span>Week 5 · Felt steady and breathed fresh air.</span>
+                </div>
+              </div>
+              <div class="timeline-item">
+                <div class="dot"></div>
+                <div>
+                  <strong>First nap without guilt</strong>
+                  <span>Week 4 · Trusted your body’s need for rest.</span>
+                </div>
+              </div>
+              <div class="timeline-item">
+                <div class="dot"></div>
+                <div>
+                  <strong>Cleared for gentle movement</strong>
+                  <span>Week 6 · Provider shared green light.</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="label">Confidence Tracker</div>
+            <h3>Feeling like yourself</h3>
+            <p class="subhead">Up 18% this month</p>
+            <div class="progress-bar">
+              <div class="fill" style="width: 72%"></div>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="label">Next Gentle Goal</div>
+            <h3>Ask for a 20-minute break</h3>
+            <p class="subhead">Plan: text your partner or friend by noon.</p>
+            <button class="pill-toggle" id="goalToggle">Mark planned</button>
+          </div>
+        </div>
+
+        <nav class="nav" id="bottomNav">
+          <button class="active" data-screen="today">
+            <div class="icon">☀️</div>
+            Today
+          </button>
+          <button data-screen="recovery">
+            <div class="icon">🫶</div>
+            Recovery
+          </button>
+          <button data-screen="mental">
+            <div class="icon">💛</div>
+            Mind
+          </button>
+          <button data-screen="milestones">
+            <div class="icon">🏆</div>
+            Wins
+          </button>
+        </nav>
+      </div>
+    </div>
+
+    <section class="feature-section">
+      <h2>Feature Breakdown</h2>
+      <div class="feature-grid">
+        <div class="feature-card">
+          <h4>Today Screen</h4>
+          <ul>
+            <li>Daily check-in pills: quick emotional labeling reduces cognitive load and validates mom’s feelings.</li>
+            <li>Energy + pain meters: immediate body awareness supports gentle pacing and highlights trends.</li>
+            <li>Sleep snapshot: reframes short sleep into data, removing guilt and guiding recovery priorities.</li>
+            <li>Today’s nudge: one achievable action builds confidence and a sense of personal care.</li>
+            <li>Header greeting + week status: anchors her identity and time since birth without focusing on baby.</li>
+          </ul>
+        </div>
+        <div class="feature-card">
+          <h4>Recovery Screen</h4>
+          <ul>
+            <li>Bleeding selector: quick classification flags changes and gives moms language for providers.</li>
+            <li>Incision/tear meter: visualizes healing progress to reduce anxiety and build reassurance.</li>
+            <li>Pelvic floor exercise card: gentle movement prompt keeps recovery active but non-intimidating.</li>
+            <li>Body notes tags: invites mom to name sensations and celebrate small strength gains.</li>
+          </ul>
+        </div>
+        <div class="feature-card">
+          <h4>Mental Health Screen</h4>
+          <ul>
+            <li>Mood chart: pattern recognition helps moms notice shifts before they become overwhelming.</li>
+            <li>PPD screening prompt: normalizes mental health check-ins without clinical tone.</li>
+            <li>Self-care timeline: tiny reminders reinforce that mom’s nervous system matters daily.</li>
+          </ul>
+        </div>
+        <div class="feature-card">
+          <h4>Milestones Screen</h4>
+          <ul>
+            <li>Mom-only wins: centers recovery achievements and builds positive identity outside baby care.</li>
+            <li>Confidence tracker: shows emotional recovery trajectory, not just physical healing.</li>
+            <li>Next gentle goal: keeps forward momentum while staying realistic and supportive.</li>
+          </ul>
+        </div>
+        <div class="feature-card">
+          <h4>Bottom Navigation</h4>
+          <ul>
+            <li>Four primary tabs: keeps all essential domains one tap away with no hidden menus.</li>
+            <li>Soft iconography: adds warmth and emotional safety without looking clinical.</li>
+            <li>Sticky placement: always reachable for a one-handed, tired parent experience.</li>
+          </ul>
+        </div>
+        <div class="feature-card">
+          <h4>Brand & Tone</h4>
+          <ul>
+            <li>Dusty rose + warm neutrals: conveys tenderness and calm instead of medical sterility.</li>
+            <li>Soft gold accents: subtle celebration of mom’s progress and resilience.</li>
+            <li>Typography pairing: serif warmth for compassion, clean sans-serif for clarity.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <script>
+    const tabs = document.querySelectorAll('.tab');
+    const navButtons = document.querySelectorAll('.nav button');
+    const screens = document.querySelectorAll('.screen');
+
+    const activateScreen = (screenId) => {
+      screens.forEach((screen) => {
+        screen.classList.toggle('active', screen.id === screenId);
+      });
+      tabs.forEach((tab) => {
+        tab.classList.toggle('active', tab.dataset.screen === screenId);
+      });
+      navButtons.forEach((btn) => {
+        btn.classList.toggle('active', btn.dataset.screen === screenId);
+      });
+    };
+
+    tabs.forEach((tab) => {
+      tab.addEventListener('click', () => activateScreen(tab.dataset.screen));
+    });
+
+    navButtons.forEach((btn) => {
+      btn.addEventListener('click', () => activateScreen(btn.dataset.screen));
+    });
+
+    const toggleGroup = (containerId) => {
+      const container = document.getElementById(containerId);
+      if (!container) return;
+      container.addEventListener('click', (event) => {
+        if (event.target.classList.contains('pill-toggle')) {
+          container.querySelectorAll('.pill-toggle').forEach((pill) => {
+            pill.classList.remove('active');
+          });
+          event.target.classList.add('active');
+        }
+      });
+    };
+
+    toggleGroup('moodPills');
+    toggleGroup('bleedingButtons');
+    toggleGroup('ppdButtons');
+
+    const bleedingLevel = document.getElementById('bleedingLevel');
+    const bleedingButtons = document.getElementById('bleedingButtons');
+    bleedingButtons.addEventListener('click', (event) => {
+      if (event.target.classList.contains('pill-toggle')) {
+        bleedingLevel.textContent = event.target.textContent.trim();
+      }
+    });
+
+    const exerciseToggle = document.getElementById('exerciseToggle');
+    exerciseToggle.addEventListener('click', () => {
+      exerciseToggle.classList.toggle('active');
+      exerciseToggle.textContent = exerciseToggle.classList.contains('active')
+        ? 'Completed today'
+        : 'Mark as done';
+    });
+
+    const goalToggle = document.getElementById('goalToggle');
+    goalToggle.addEventListener('click', () => {
+      goalToggle.classList.toggle('active');
+      goalToggle.textContent = goalToggle.classList.contains('active')
+        ? 'Planned ✓'
+        : 'Mark planned';
+    });
+  </script>
+</body>
+</html>
