@@ -323,77 +323,173 @@
       to { opacity: 1; transform: translateY(0); }
     }
 
-    .feature-breakdown {
+    .report {
       width: 100%;
-      background: linear-gradient(145deg, #0b1424 0%, #141d2d 55%, #1a2334 100%);
-      color: #e6eef7;
+      background: linear-gradient(160deg, #ffffff 0%, #f2f7ff 70%, #eaf2ff 100%);
       border-radius: 26px;
-      padding: 30px 22px 32px;
-      box-shadow: 0 26px 50px rgba(10, 20, 35, 0.35);
-      border: 1px solid rgba(255, 255, 255, 0.08);
+      padding: 30px 22px 36px;
+      box-shadow: 0 22px 44px rgba(19, 34, 51, 0.12);
+      border: 1px solid #e1ecfb;
       position: relative;
       overflow: hidden;
     }
 
-    .feature-breakdown::before {
+    .report::before {
       content: "";
       position: absolute;
       inset: 0;
-      background: radial-gradient(120% 60% at 0% 0%, rgba(99, 179, 237, 0.18), transparent 55%);
+      background: radial-gradient(120% 70% at 0% 0%, rgba(74, 143, 231, 0.12), transparent 55%);
       pointer-events: none;
     }
 
-    .feature-breakdown h2 {
-      margin: 0 0 10px;
+    .report-header {
+      position: relative;
+      z-index: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      margin-bottom: 20px;
+    }
+
+    .report-header h2 {
+      margin: 0;
       font-family: "Fraunces", serif;
-      font-size: 26px;
+      font-size: 28px;
       letter-spacing: 0.2px;
     }
 
-    .feature-breakdown p {
-      margin: 0 0 22px;
-      color: rgba(230, 238, 247, 0.76);
-      max-width: 680px;
+    .report-header p {
+      margin: 0;
+      color: var(--muted);
+      max-width: 720px;
+      line-height: 1.6;
+    }
+
+    .report-badges {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .badge {
+      background: #e7f1ff;
+      color: #2f5f95;
+      padding: 6px 12px;
+      border-radius: 999px;
+      font-size: 12px;
+      font-weight: 600;
+      border: 1px solid #d3e6ff;
+    }
+
+    .report-grid {
+      position: relative;
+      z-index: 1;
+      display: grid;
+      gap: 16px;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    }
+
+    .report-card {
+      background: var(--surface);
+      border-radius: 18px;
+      padding: 16px 16px 18px;
+      border: 1px solid #e5edf7;
+      box-shadow: 0 10px 22px rgba(19, 34, 51, 0.06);
+    }
+
+    .report-card h3 {
+      margin: 0 0 12px;
+      font-size: 16px;
+      font-weight: 700;
+      color: #1c2f44;
+    }
+
+    .report-card p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 13px;
       line-height: 1.55;
     }
 
-    .feature-grid {
-      display: grid;
-      gap: 16px;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      position: relative;
-      z-index: 1;
-    }
-
-    .feature-card {
-      background: rgba(255, 255, 255, 0.06);
-      border-radius: 18px;
-      padding: 16px 16px 14px;
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      backdrop-filter: blur(6px);
-    }
-
-    .feature-card h3 {
-      margin: 0 0 10px;
-      font-size: 16px;
-      font-weight: 700;
-      color: #f5f9ff;
-    }
-
-    .feature-card ul {
+    .report-card ul {
       list-style: none;
       padding: 0;
       margin: 0;
       display: grid;
       gap: 8px;
       font-size: 13px;
-      color: rgba(230, 238, 247, 0.82);
-      line-height: 1.45;
+      color: var(--muted);
+      line-height: 1.5;
     }
 
-    .feature-card strong {
-      color: #ffffff;
+    .report-card strong {
+      color: #1b2c40;
       font-weight: 600;
+    }
+
+    .callout {
+      background: linear-gradient(150deg, #eaf3ff 0%, #f7fbff 100%);
+      border: 1px solid #d7e7ff;
+      border-radius: 18px;
+      padding: 14px 16px;
+      display: grid;
+      gap: 6px;
+    }
+
+    .callout span {
+      font-size: 12px;
+      letter-spacing: 0.3px;
+      text-transform: uppercase;
+      color: #4a7bb6;
+      font-weight: 600;
+    }
+
+    .metrics {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+      gap: 12px;
+    }
+
+    .metric {
+      background: #f7fbff;
+      border: 1px solid #e3eefc;
+      border-radius: 16px;
+      padding: 12px;
+      text-align: left;
+    }
+
+    .metric h4 {
+      margin: 0 0 6px;
+      font-size: 18px;
+      color: #1c3550;
+    }
+
+    .metric p {
+      margin: 0;
+      font-size: 12px;
+      color: var(--muted);
+    }
+
+    .table {
+      display: grid;
+      gap: 10px;
+    }
+
+    .table-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      padding: 10px 12px;
+      border-radius: 14px;
+      background: #f6faff;
+      border: 1px solid #e3edf9;
+      font-size: 13px;
+      color: #1e3450;
+    }
+
+    .table-row span {
+      color: var(--muted);
     }
   </style>
 </head>
@@ -598,44 +694,89 @@
       </nav>
     </div>
 
-    <section class="feature-breakdown" aria-labelledby="feature-breakdown-title">
-      <h2 id="feature-breakdown-title">Feature Breakdown</h2>
-      <p>For evaluators: each core screen earns its place by compressing mental load into a single, decisive action loop. This section explains what each screen does, why it exists, and the value it returns to the user.</p>
-      <div class="feature-grid">
-        <article class="feature-card">
-          <h3>Brain Dump</h3>
+    <section class="report" aria-labelledby="report-title">
+      <div class="report-header">
+        <h2 id="report-title">MindLoad Business Report</h2>
+        <p>Professional, calm, and human-centered: MindLoad helps working moms turn invisible mental load into shared, doable action. Below is the investor-style summary that pairs the mockup with a clear plan for growth.</p>
+        <div class="report-badges">
+          <div class="badge">Target: Working moms</div>
+          <div class="badge">$9 / month core plan</div>
+          <div class="badge">AI reduces mental load</div>
+        </div>
+      </div>
+
+      <div class="report-grid">
+        <article class="report-card">
+          <h3>Executive Summary</h3>
+          <p>MindLoad is a calm AI companion for working moms. For $9/month, it converts brain dumps into shared plans, removing the mental burden of constant remembering and re-planning. The product blends AI with real family context to make daily life feel lighter.</p>
+        </article>
+
+        <article class="report-card">
+          <h3>The Problem</h3>
           <ul>
-            <li><strong>What it does:</strong> Captures unstructured thoughts and turns them into prioritized, labeled tasks.</li>
-            <li><strong>Why it exists:</strong> People lose tasks when everything lives in their head; this gives a single inlet for chaos.</li>
-            <li><strong>Value:</strong> Instant relief plus a cleaned-up task list without the user doing the organizing.</li>
-            <li><strong>Screen value:</strong> It is the highest-frequency entry point, so it deserves a full-screen, zero-friction canvas.</li>
+            <li><strong>Invisible labor:</strong> Planning, scheduling, and remembering are unpaid and unseen.</li>
+            <li><strong>Household management burden:</strong> The cognitive load sits with one person, often the mom.</li>
+            <li><strong>Emotional exhaustion:</strong> Constant coordination drains energy and creates friction.</li>
           </ul>
         </article>
-        <article class="feature-card">
-          <h3>Today</h3>
+
+        <article class="report-card">
+          <h3>Core Features</h3>
           <ul>
-            <li><strong>What it does:</strong> Translates all tasks into a realistic daily plan with timing, load balance, and reminders.</li>
-            <li><strong>Why it exists:</strong> Traditional lists ignore capacity; this prevents overload and decision fatigue.</li>
-            <li><strong>Value:</strong> Gives a calm, doable plan that protects focus and energy.</li>
-            <li><strong>Screen value:</strong> It is the daily command center, so it earns a dedicated view for clarity.</li>
+            <li><strong>Brain dump → AI parsing:</strong> Convert messy thoughts into labeled tasks.</li>
+            <li><strong>Smart daily prioritization:</strong> Balanced plans that protect energy.</li>
+            <li><strong>AI meal planning:</strong> Dinners + instant shopping lists.</li>
+            <li><strong>Family task delegation:</strong> Clear ownership for each person.</li>
+            <li><strong>Calendar integration:</strong> Auto-sync with family schedules.</li>
           </ul>
         </article>
-        <article class="feature-card">
-          <h3>Meal Plan</h3>
+
+        <article class="report-card">
+          <h3>Business Model</h3>
+          <div class="table">
+            <div class="table-row"><strong>Free tier</strong><span>5 AI interactions/month + basic lists</span></div>
+            <div class="table-row"><strong>Premium $9/mo</strong><span>Unlimited AI, meal planning, family sync</span></div>
+            <div class="table-row"><strong>Family Pro $14/mo</strong><span>Extended family + advanced features</span></div>
+          </div>
+        </article>
+
+        <article class="report-card">
+          <h3>Market & Competition</h3>
           <ul>
-            <li><strong>What it does:</strong> Builds a week of dinners and a smart grocery list that reuses staples.</li>
-            <li><strong>Why it exists:</strong> Meals are a constant stressor; solving them removes a recurring cognitive burden.</li>
-            <li><strong>Value:</strong> Saves time, money, and last-minute scrambling with AI-backed planning.</li>
-            <li><strong>Screen value:</strong> It is a high-impact domain task, warranting its own space for clarity and trust.</li>
+            <li><strong>Cozi, FamilyWall:</strong> Strong organizers, no AI.</li>
+            <li><strong>Generic AI assistants:</strong> Smart, but no family context.</li>
+            <li><strong>Our gap:</strong> AI + family management combined into one daily ritual.</li>
           </ul>
         </article>
-        <article class="feature-card">
-          <h3>Family</h3>
-          <ul>
-            <li><strong>What it does:</strong> Distributes tasks across household members with clear ownership and suggestions.</li>
-            <li><strong>Why it exists:</strong> Shared load without clarity causes resentment; this makes delegation visible and fair.</li>
-            <li><strong>Value:</strong> Reduces bottlenecks and keeps everyone aligned on who owns what.</li>
-            <li><strong>Screen value:</strong> Collaboration requires a dedicated view to prevent hidden, silent work.</li>
+
+        <article class="report-card">
+          <h3>Operational Costs (per 1,000 users)</h3>
+          <div class="metrics">
+            <div class="metric">
+              <h4>$100–$500/mo</h4>
+              <p>AI costs (GPT-4o-mini is cheap)</p>
+            </div>
+            <div class="metric">
+              <h4>$50/mo</h4>
+              <p>Hosting + storage</p>
+            </div>
+            <div class="metric">
+              <h4>~2,000 users</h4>
+              <p>Estimated break-even</p>
+            </div>
+          </div>
+        </article>
+
+        <article class="report-card">
+          <h3>Why This Will Work</h3>
+          <div class="callout">
+            <span>Momentum</span>
+            <strong>“Mental load” is a viral, culturally resonant topic.</strong>
+          </div>
+          <ul style="margin-top:10px;">
+            <li><strong>AI is now cheap enough</strong> to provide daily value.</li>
+            <li><strong>No competitors</strong> offer AI-first family management.</li>
+            <li><strong>High emotional resonance</strong> makes retention and sharing natural.</li>
           </ul>
         </article>
       </div>

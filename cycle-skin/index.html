@@ -343,71 +343,169 @@
       margin-top: 8px;
     }
 
-    .feature-breakdown {
-      width: min(980px, 100%);
-      background: linear-gradient(160deg, #1a1523 0%, #221b30 60%, #2a1f3a 100%);
-      color: #f5eefb;
-      border-radius: 28px;
-      padding: 28px;
-      box-shadow: 0 20px 50px rgba(20, 10, 40, 0.35);
-      border: 1px solid rgba(255, 255, 255, 0.08);
+    .report {
+      width: min(1080px, 100%);
+      position: relative;
+      padding: 34px;
+      border-radius: 30px;
+      background:
+        radial-gradient(320px 220px at 15% 0%, rgba(255, 206, 230, 0.9), rgba(255, 206, 230, 0) 70%),
+        radial-gradient(320px 240px at 85% 5%, rgba(210, 190, 255, 0.8), rgba(210, 190, 255, 0) 70%),
+        linear-gradient(140deg, #ffffff 0%, #fff4fb 40%, #f6f1ff 100%);
+      border: 1px solid rgba(217, 189, 255, 0.5);
+      box-shadow: 0 24px 60px rgba(114, 84, 155, 0.2);
+      overflow: hidden;
     }
 
-    .feature-header {
+    .report::before,
+    .report::after {
+      content: "";
+      position: absolute;
+      width: 220px;
+      height: 220px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(255, 159, 205, 0.25), rgba(255, 159, 205, 0));
+      top: -80px;
+      right: -60px;
+      z-index: 0;
+    }
+    .report::after {
+      width: 280px;
+      height: 280px;
+      top: auto;
+      bottom: -120px;
+      left: -80px;
+      background: radial-gradient(circle, rgba(201, 174, 255, 0.25), rgba(201, 174, 255, 0));
+    }
+
+    .report-header {
+      position: relative;
+      z-index: 1;
       display: flex;
-      justify-content: space-between;
+      flex-wrap: wrap;
       align-items: flex-start;
+      justify-content: space-between;
+      gap: 16px;
+      margin-bottom: 20px;
+    }
+    .report-title {
+      margin: 0;
+      font-size: 26px;
+      letter-spacing: 0.3px;
+    }
+    .report-subtitle {
+      margin: 6px 0 0;
+      font-size: 13px;
+      color: var(--muted);
+      max-width: 560px;
+    }
+
+    .report-badge {
+      background: linear-gradient(120deg, #ff9ed1, #cdb2ff);
+      color: white;
+      padding: 10px 16px;
+      border-radius: 999px;
+      font-weight: 700;
+      font-size: 12px;
+      box-shadow: 0 10px 20px rgba(214, 147, 221, 0.35);
+      white-space: nowrap;
+    }
+
+    .report-grid {
+      position: relative;
+      z-index: 1;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
       gap: 16px;
       margin-bottom: 18px;
     }
-    .feature-header h2 {
-      margin: 0;
-      font-size: 22px;
-      letter-spacing: 0.4px;
-    }
-    .feature-header p {
-      margin: 6px 0 0;
-      font-size: 13px;
-      color: #c9b9db;
-      max-width: 540px;
-    }
 
-    .feature-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 16px;
+    .report-card {
+      background: rgba(255, 255, 255, 0.8);
+      border-radius: 20px;
+      padding: 16px 18px;
+      border: 1px solid rgba(221, 203, 255, 0.6);
+      box-shadow: 0 16px 30px rgba(152, 112, 192, 0.14);
+      backdrop-filter: blur(6px);
     }
-
-    .feature-card {
-      background: rgba(255, 255, 255, 0.06);
-      border-radius: 18px;
-      padding: 16px;
-      border: 1px solid rgba(255, 255, 255, 0.08);
-      box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.02);
-    }
-    .feature-card h3 {
+    .report-card h3 {
       margin: 0 0 8px;
       font-size: 14px;
-      color: #ffe7f3;
+      letter-spacing: 0.2px;
+      color: #4a2c6a;
     }
-    .feature-card ul {
+    .report-card p {
+      margin: 0;
+      font-size: 12px;
+      color: var(--muted);
+      line-height: 1.5;
+    }
+    .report-card ul {
       margin: 0;
       padding: 0;
       list-style: none;
       font-size: 12px;
-      color: #d6c8e6;
+      color: var(--muted);
       display: grid;
       gap: 8px;
-      line-height: 1.4;
+      line-height: 1.45;
     }
-    .feature-card li strong {
-      color: #ffffff;
+    .report-card li strong {
+      color: var(--ink);
       font-weight: 600;
     }
 
+    .report-highlight {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 12px;
+      margin-bottom: 18px;
+    }
+    .highlight-tile {
+      background: linear-gradient(140deg, #fff1f8, #f4edff);
+      border-radius: 18px;
+      padding: 14px;
+      border: 1px solid rgba(255, 194, 225, 0.6);
+      box-shadow: 0 14px 24px rgba(203, 161, 226, 0.18);
+      font-size: 12px;
+    }
+    .highlight-tile strong {
+      display: block;
+      font-size: 16px;
+      margin-bottom: 4px;
+      color: #8c2f63;
+    }
+
+    .report-footer {
+      position: relative;
+      z-index: 1;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      align-items: center;
+      justify-content: space-between;
+      padding-top: 8px;
+      font-size: 11px;
+      color: #6d607f;
+    }
+    .report-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+    .report-tag {
+      padding: 6px 10px;
+      border-radius: 999px;
+      background: #fff7fb;
+      border: 1px solid rgba(255, 196, 223, 0.7);
+      font-weight: 600;
+      color: #9b3d6a;
+      font-size: 11px;
+    }
+
     @media (max-width: 680px) {
-      .feature-breakdown { padding: 22px; }
-      .feature-header { flex-direction: column; }
+      .report { padding: 24px; }
+      .report-header { flex-direction: column; }
     }
 
     @media (max-width: 420px) {
@@ -577,60 +675,91 @@
     </nav>
   </div>
 
-  <section class="feature-breakdown" aria-labelledby="feature-breakdown-title">
-    <div class="feature-header">
+  <section class="report" aria-labelledby="report-title">
+    <div class="report-header">
       <div>
-        <h2 id="feature-breakdown-title">Feature Breakdown</h2>
-        <p>A clear rationale for every major screen, focused on user outcomes, retention, and revenue alignment.</p>
+        <h2 class="report-title" id="report-title">Cycle Skin — Business Report</h2>
+        <p class="report-subtitle">A comprehensive snapshot of the strategy, market gap, and revenue model for a skin + cycle intelligence app built for modern habits.</p>
       </div>
-      <div class="chip" style="background:#3a2a4f;color:#e8dbff;border:1px solid rgba(255,255,255,0.12);">Concept fit</div>
+      <div class="report-badge">Fresh · Instagram-Worthy</div>
     </div>
 
-    <div class="feature-grid">
-      <article class="feature-card">
-        <h3>Today</h3>
+    <div class="report-highlight">
+      <div class="highlight-tile"><strong>Target</strong>Women 18-40, beauty-first, cycle-aware</div>
+      <div class="highlight-tile"><strong>Model</strong>Freemium + affiliate revenue streams</div>
+      <div class="highlight-tile"><strong>ARPU</strong>~$3-5 per year blended</div>
+      <div class="highlight-tile"><strong>Costs</strong>Free users $0 (local only)</div>
+    </div>
+
+    <div class="report-grid">
+      <article class="report-card">
+        <h3>1. Executive Summary</h3>
+        <p>Cycle Skin delivers a hormonal skin intelligence companion for women 18-40. The product is built on a freemium model that uses lightweight local tracking to scale, with premium insights and affiliate partnerships driving revenue.</p>
+      </article>
+
+      <article class="report-card">
+        <h3>2. The Problem</h3>
+        <p>Hormonal acne and flare-ups are persistent, but no mainstream app connects skin outcomes to the menstrual cycle. Users are left guessing, leading to inconsistent routines and wasted product spend.</p>
+      </article>
+
+      <article class="report-card">
+        <h3>3. Core Features</h3>
         <ul>
-          <li><strong>What it is:</strong> The daily check-in hub: mood, skin status, and quick stats.</li>
-          <li><strong>What it does:</strong> Reduces friction to log, nudges consistency, and captures context.</li>
-          <li><strong>Problem solved:</strong> Users forget or feel overwhelmed by tracking; this makes it one tap.</li>
-          <li><strong>User value:</strong> Fast clarity on “how am I doing today?” plus a reason to return daily.</li>
-          <li><strong>Real estate:</strong> Most-used task goes first; short interaction, high retention payoff.</li>
+          <li><strong>Daily logging:</strong> Track texture, breakouts, and sensitivity in seconds.</li>
+          <li><strong>Cycle integration:</strong> Syncs phases for accurate skin context.</li>
+          <li><strong>Pattern detection:</strong> “Breakouts start 3 days before period.”</li>
+          <li><strong>Product picks:</strong> Recommendations by phase and skin needs.</li>
+          <li><strong>Routine guidance:</strong> Morning/night routines that adapt.</li>
         </ul>
       </article>
 
-      <article class="feature-card">
-        <h3>Calendar</h3>
+      <article class="report-card">
+        <h3>4. Business Model</h3>
         <ul>
-          <li><strong>What it is:</strong> A cycle + skin timeline that ties events to days and phases.</li>
-          <li><strong>What it does:</strong> Visualizes patterns and predicts flare-up windows.</li>
-          <li><strong>Problem solved:</strong> Users can’t connect symptoms to cycle timing without a map.</li>
-          <li><strong>User value:</strong> Planning power—pre-empt routines, appointments, and product use.</li>
-          <li><strong>Real estate:</strong> The calendar is the mental model of cycles; it earns a full view.</li>
+          <li><strong>Free:</strong> Core tracking in local storage (no server cost).</li>
+          <li><strong>Premium:</strong> $4.99/mo for cloud sync + advanced insights.</li>
+          <li><strong>Affiliates:</strong> 5-10% from Sephora, Paula's Choice, and more.</li>
+          <li><strong>ARPU:</strong> ~$3-5/year blended across free + paid.</li>
         </ul>
       </article>
 
-      <article class="feature-card">
-        <h3>Insights</h3>
+      <article class="report-card">
+        <h3>5. Market & Competition</h3>
         <ul>
-          <li><strong>What it is:</strong> Pattern interpretation and personalized recommendations.</li>
-          <li><strong>What it does:</strong> Converts raw logs into actionable, confidence-building guidance.</li>
-          <li><strong>Problem solved:</strong> Data without insight feels useless; this makes tracking meaningful.</li>
-          <li><strong>User value:</strong> “Why is this happening?” answered with simple takeaways.</li>
-          <li><strong>Real estate:</strong> Insight is the product’s payoff; it needs space to feel credible.</li>
+          <li><strong>Skin apps:</strong> Ignore hormones and cycle context.</li>
+          <li><strong>Cycle apps:</strong> Treat skin as an afterthought.</li>
+          <li><strong>Our gap:</strong> First to connect skin + cycle properly.</li>
         </ul>
       </article>
 
-      <article class="feature-card">
-        <h3>Products</h3>
+      <article class="report-card">
+        <h3>6. Operational Costs</h3>
         <ul>
-          <li><strong>What it is:</strong> Phase-aware product picks tied to current skin needs.</li>
-          <li><strong>What it does:</strong> Bridges diagnosis to action with curated routines.</li>
-          <li><strong>Problem solved:</strong> Users are unsure what to buy or when to use it.</li>
-          <li><strong>User value:</strong> Faster results and fewer wrong purchases; trust via relevance.</li>
-          <li><strong>Real estate:</strong> Revenue aligned with outcomes; recommendations close the loop.</li>
-          <li><strong>Affiliate angle:</strong> Each recommendation can link to a partner SKU, creating a commission path without ads.</li>
+          <li><strong>Free users:</strong> $0 (local storage only).</li>
+          <li><strong>Paid users:</strong> ~$0.50/user/month infrastructure.</li>
+          <li><strong>Offsets:</strong> Affiliate revenue covers ops.</li>
         </ul>
       </article>
+
+      <article class="report-card">
+        <h3>7. Why This Will Work</h3>
+        <ul>
+          <li><strong>Clear unmet need:</strong> Hormonal skin is underserved.</li>
+          <li><strong>Low competition:</strong> No direct category leader.</li>
+          <li><strong>Affiliate leverage:</strong> Scales with trust + usage.</li>
+          <li><strong>Social sharing:</strong> Young demo fuels growth.</li>
+        </ul>
+      </article>
+    </div>
+
+    <div class="report-footer">
+      <div class="report-tags">
+        <span class="report-tag">Freemium</span>
+        <span class="report-tag">Affiliate-ready</span>
+        <span class="report-tag">Cycle intelligence</span>
+        <span class="report-tag">Gen Z + Millennial</span>
+      </div>
+      <div>Report draft · January 31, 2026</div>
     </div>
   </section>
 

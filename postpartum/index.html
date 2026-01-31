@@ -354,52 +354,112 @@
       color: var(--muted);
     }
 
-    .feature-section {
+    .report-section {
       margin-top: 34px;
-      background: linear-gradient(160deg, #3a2a28 0%, #312320 55%, #2a1f1c 100%);
-      border-radius: 24px;
-      padding: 28px;
-      border: 1px solid rgba(214, 179, 108, 0.25);
-      box-shadow: 0 18px 28px rgba(35, 24, 21, 0.25);
-      color: var(--feature-ink);
+      background: linear-gradient(160deg, #f7e7ea 0%, #fff7f2 55%, #f3e7dd 100%);
+      border-radius: 26px;
+      padding: 30px;
+      border: 1px solid rgba(200, 137, 145, 0.22);
+      box-shadow: 0 18px 30px rgba(78, 56, 52, 0.12);
     }
 
-    .feature-section h2 {
-      margin-top: 0;
-      font-size: 24px;
-      color: var(--feature-ink);
+    .report-header {
+      text-align: center;
+      margin-bottom: 20px;
     }
 
-    .feature-grid {
+    .report-header h2 {
+      margin: 0 0 6px;
+      font-size: 26px;
+      color: var(--ink);
+    }
+
+    .report-header p {
+      margin: 0;
+      font-family: "Work Sans", "Helvetica", sans-serif;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .report-grid {
       display: grid;
       gap: 16px;
     }
 
-    .feature-card {
-      background: rgba(255, 247, 242, 0.08);
-      border-radius: 16px;
-      padding: 16px;
-      border: 1px solid rgba(214, 179, 108, 0.25);
-      color: var(--feature-ink);
+    .report-card {
+      background: #fffdfb;
+      border-radius: 18px;
+      padding: 18px;
+      border: 1px solid rgba(200, 137, 145, 0.2);
+      box-shadow: 0 10px 20px rgba(59, 47, 42, 0.08);
     }
 
-    .feature-card h4 {
-      margin: 0 0 8px;
-      font-size: 16px;
-      color: var(--feature-ink);
+    .report-card h3 {
+      margin: 0 0 10px;
+      font-size: 18px;
+      color: var(--ink);
     }
 
-    .feature-card ul {
-      padding-left: 18px;
-      margin: 0;
+    .report-card p {
+      margin: 0 0 10px;
       font-family: "Work Sans", "Helvetica", sans-serif;
-      color: var(--feature-muted);
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.6;
+    }
+
+    .report-list {
+      margin: 0;
+      padding-left: 18px;
+      font-family: "Work Sans", "Helvetica", sans-serif;
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.6;
+    }
+
+    .report-list li + li {
+      margin-top: 6px;
+    }
+
+    .highlight {
+      display: inline-flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      align-items: center;
+      background: #fff1f3;
+      border-radius: 12px;
+      padding: 8px 12px;
+      border: 1px solid rgba(200, 137, 145, 0.35);
+      font-family: "Work Sans", "Helvetica", sans-serif;
       font-size: 13px;
-      line-height: 1.5;
+      color: var(--ink);
+      margin-top: 8px;
+    }
+
+    .metric-row {
+      display: grid;
+      gap: 10px;
+      margin-top: 10px;
+    }
+
+    .metric {
+      background: #f7e7ea;
+      border-radius: 12px;
+      padding: 10px 12px;
+      font-family: "Work Sans", "Helvetica", sans-serif;
+      font-size: 13px;
+      color: var(--ink);
+      border: 1px solid rgba(200, 137, 145, 0.3);
     }
 
     @media (min-width: 840px) {
-      .feature-grid {
+      .report-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      .report-card.full {
+        grid-column: 1 / -1;
+      }
+      .metric-row {
         grid-template-columns: repeat(2, 1fr);
       }
     }
@@ -677,60 +737,77 @@
       </div>
     </div>
 
-    <section class="feature-section">
-      <h2>Feature Breakdown</h2>
-      <div class="feature-grid">
-        <div class="feature-card">
-          <h4>Today Screen</h4>
-          <ul>
-            <li>Daily check-in pills: quick emotional labeling reduces cognitive load and validates mom’s feelings.</li>
-            <li>Energy + pain meters: immediate body awareness supports gentle pacing and highlights trends.</li>
-            <li>Sleep snapshot: reframes short sleep into data, removing guilt and guiding recovery priorities.</li>
-            <li>Today’s nudge: one achievable action builds confidence and a sense of personal care.</li>
-            <li>Header greeting + week status: anchors her identity and time since birth without focusing on baby.</li>
+    <section class="report-section">
+      <div class="report-header">
+        <h2>PostPartum Business Report</h2>
+        <p>Comprehensive product, market, and viability snapshot for a mom-first recovery platform.</p>
+      </div>
+
+      <div class="report-grid">
+        <article class="report-card full">
+          <h3>1. Executive Summary</h3>
+          <p>PostPartum is a nurturing digital companion for new moms, serving the 0 to 12 month postpartum window with a subscription model at $13 per month.</p>
+          <div class="highlight">
+            <span>Target: new moms 0-12 months postpartum</span>
+            <span>Price: $13/month</span>
+          </div>
+        </article>
+
+        <article class="report-card">
+          <h3>2. The Problem</h3>
+          <ul class="report-list">
+            <li>Baby apps track feeding and sleep, but ignore the mom’s physical recovery.</li>
+            <li>No consistent support for mental health check-ins or PPD indicators.</li>
+            <li>Identity rebuilding and confidence milestones are missing from current tools.</li>
           </ul>
-        </div>
-        <div class="feature-card">
-          <h4>Recovery Screen</h4>
-          <ul>
-            <li>Bleeding selector: quick classification flags changes and gives moms language for providers.</li>
-            <li>Incision/tear meter: visualizes healing progress to reduce anxiety and build reassurance.</li>
-            <li>Pelvic floor exercise card: gentle movement prompt keeps recovery active but non-intimidating.</li>
-            <li>Body notes tags: invites mom to name sensations and celebrate small strength gains.</li>
+        </article>
+
+        <article class="report-card">
+          <h3>3. Core Features</h3>
+          <ul class="report-list">
+            <li>Mom’s daily check-in for mood, energy, and pain.</li>
+            <li>Physical recovery tracking for bleeding and pelvic floor health.</li>
+            <li>Mental health screening focused on PPD indicators.</li>
+            <li>Self-care reminders with tiny, doable steps.</li>
+            <li>Mom-only milestones to celebrate recovery wins.</li>
           </ul>
-        </div>
-        <div class="feature-card">
-          <h4>Mental Health Screen</h4>
-          <ul>
-            <li>Mood chart: pattern recognition helps moms notice shifts before they become overwhelming.</li>
-            <li>PPD screening prompt: normalizes mental health check-ins without clinical tone.</li>
-            <li>Self-care timeline: tiny reminders reinforce that mom’s nervous system matters daily.</li>
+        </article>
+
+        <article class="report-card">
+          <h3>4. Business Model</h3>
+          <ul class="report-list">
+            <li>Free tier: basic check-ins stored locally.</li>
+            <li>Premium $13/month: cloud sync, AI insights, and provider-ready reports.</li>
+            <li>B2B expansion: partnerships with hospitals and OBGYN practices.</li>
           </ul>
-        </div>
-        <div class="feature-card">
-          <h4>Milestones Screen</h4>
-          <ul>
-            <li>Mom-only wins: centers recovery achievements and builds positive identity outside baby care.</li>
-            <li>Confidence tracker: shows emotional recovery trajectory, not just physical healing.</li>
-            <li>Next gentle goal: keeps forward momentum while staying realistic and supportive.</li>
+        </article>
+
+        <article class="report-card">
+          <h3>5. Market & Competition</h3>
+          <ul class="report-list">
+            <li>Huckleberry and Glow are baby-first and overlook mom recovery needs.</li>
+            <li>Every Mother focuses on exercise only.</li>
+            <li>Our gap: full-spectrum mom recovery across physical and mental health.</li>
           </ul>
-        </div>
-        <div class="feature-card">
-          <h4>Bottom Navigation</h4>
-          <ul>
-            <li>Four primary tabs: keeps all essential domains one tap away with no hidden menus.</li>
-            <li>Soft iconography: adds warmth and emotional safety without looking clinical.</li>
-            <li>Sticky placement: always reachable for a one-handed, tired parent experience.</li>
+        </article>
+
+        <article class="report-card">
+          <h3>6. Operational Costs</h3>
+          <div class="metric-row">
+            <div class="metric">Hosting: $50/month</div>
+            <div class="metric">AI: $50/month (light usage)</div>
+            <div class="metric">Break-even: 220-550 users</div>
+          </div>
+        </article>
+
+        <article class="report-card full">
+          <h3>7. Challenge: Short Lifecycle</h3>
+          <ul class="report-list">
+            <li>Typical usage is 3 to 6 months post-birth.</li>
+            <li>High-value support justifies a shorter LTV.</li>
+            <li>B2B partnerships extend retention and revenue runway.</li>
           </ul>
-        </div>
-        <div class="feature-card">
-          <h4>Brand & Tone</h4>
-          <ul>
-            <li>Dusty rose + warm neutrals: conveys tenderness and calm instead of medical sterility.</li>
-            <li>Soft gold accents: subtle celebration of mom’s progress and resilience.</li>
-            <li>Typography pairing: serif warmth for compassion, clean sans-serif for clarity.</li>
-          </ul>
-        </div>
+        </article>
       </div>
     </section>
   </div>

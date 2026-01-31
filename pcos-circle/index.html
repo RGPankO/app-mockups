@@ -313,55 +313,118 @@
       font-size: 12px;
     }
 
-    .feature-breakdown {
-      max-width: 920px;
-      background: radial-gradient(900px 600px at 10% -10%, rgba(26, 166, 161, 0.35), transparent 60%),
-                  radial-gradient(900px 600px at 90% -20%, rgba(107, 76, 255, 0.35), transparent 60%),
-                  #14141b;
-      border-radius: 24px;
-      padding: 24px;
-      border: 1px solid rgba(107, 76, 255, 0.35);
-      box-shadow: 0 20px 50px rgba(12, 14, 20, 0.28);
-      color: #eef1f8;
+
+    .report {
+      width: min(1040px, 100%);
+      background: linear-gradient(145deg, rgba(26, 166, 161, 0.08), rgba(107, 76, 255, 0.12));
+      border-radius: 26px;
+      padding: 26px 22px 30px;
+      border: 1px solid rgba(107, 76, 255, 0.25);
+      box-shadow: 0 18px 50px rgba(24, 20, 50, 0.16);
     }
 
-    .feature-breakdown h2 {
-      margin-top: 0;
-      color: #d6fbf8;
+    .report-header {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      margin-bottom: 18px;
     }
 
-    .feature-grid {
+    .report-title {
+      font-size: 26px;
+      margin: 0;
+      color: var(--teal-dark);
+      letter-spacing: 0.2px;
+    }
+
+    .report-subtitle {
+      margin: 0;
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.5;
+    }
+
+    .report-grid {
       display: grid;
       gap: 16px;
     }
-    @media (min-width: 880px) {
-      .feature-grid {
+
+    @media (min-width: 900px) {
+      .report-grid {
         grid-template-columns: repeat(2, 1fr);
       }
     }
 
-    .feature-item {
-      background: rgba(255, 255, 255, 0.08);
-      border-radius: 16px;
-      padding: 14px;
-      border: 1px solid rgba(255, 255, 255, 0.08);
-    }
-    .feature-item h3 {
-      margin: 0 0 6px;
-      font-size: 15px;
-      color: #d2c7ff;
-    }
-    .feature-item p {
-      margin: 0;
-      font-size: 13px;
-      color: #d6d9e6;
-      line-height: 1.4;
+    .report-card {
+      background: rgba(255, 255, 255, 0.96);
+      border-radius: 18px;
+      padding: 16px;
+      border: 1px solid rgba(15, 127, 122, 0.12);
+      box-shadow: 0 10px 24px rgba(17, 25, 40, 0.08);
     }
 
-    .footnote {
+    .report-card h3 {
+      margin: 0 0 10px;
+      font-size: 15px;
+      color: var(--teal-dark);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .report-card p,
+    .report-card li {
+      font-size: 13px;
+      line-height: 1.5;
+      color: #2c303b;
+    }
+
+    .report-card ul {
+      margin: 0;
+      padding-left: 18px;
+    }
+
+    .stat-row {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 10px;
+      margin-top: 12px;
+    }
+
+    .stat {
+      background: linear-gradient(135deg, rgba(26, 166, 161, 0.18), rgba(107, 76, 255, 0.18));
+      border-radius: 14px;
+      padding: 10px 12px;
+      border: 1px solid rgba(107, 76, 255, 0.2);
+    }
+
+    .stat strong {
+      display: block;
+      font-size: 16px;
+      color: var(--purple);
+      margin-bottom: 4px;
+    }
+
+    .stat span {
       font-size: 12px;
-      color: rgba(226, 230, 244, 0.8);
-      margin-top: 10px;
+      color: #3a3f4a;
+    }
+
+    .highlight {
+      display: inline-flex;
+      gap: 8px;
+      align-items: center;
+      background: rgba(26, 166, 161, 0.15);
+      color: var(--teal-dark);
+      padding: 6px 10px;
+      border-radius: 999px;
+      font-size: 12px;
+      font-weight: 600;
+    }
+
+    .report-footer {
+      margin-top: 18px;
+      font-size: 12px;
+      color: var(--muted);
     }
   </style>
 </head>
@@ -574,59 +637,99 @@
       </div>
     </div>
 
-    <section class="feature-breakdown">
-      <h2>Feature Breakdown</h2>
-      <div class="feature-grid">
-        <div class="feature-item">
-          <h3>Top bar + brand card</h3>
-          <p><strong>UI element:</strong> Logo, name, supportive pill, trial badge. <strong>Why:</strong> builds trust and signals community‑first tone. <strong>Value:</strong> makes the app feel welcoming vs clinical. <strong>Real estate:</strong> first touchpoint for identity and pricing clarity.</p>
+    <section class="report" aria-label="Business report">
+      <div class="report-header">
+        <p class="highlight">Empowering, modern, PCOS‑specific care</p>
+        <h2 class="report-title">PCOS Circle Business Report</h2>
+        <p class="report-subtitle">Premium PCOS management for women navigating irregular cycles, multi‑symptom tracking, and a lack of specialized support. Target: women with PCOS, $15/mo premium.</p>
+      </div>
+
+      <div class="report-grid">
+        <div class="report-card">
+          <h3>Executive Summary</h3>
+          <p>PCOS Circle is a premium wellness platform tailored to women with PCOS who experience irregular 35–90+ day cycles and complex symptoms. We focus on compassionate tracking, AI‑supported insights, and community advocacy. The product is positioned at $15/month to reflect the specialized value and support unavailable in generic period apps.</p>
+          <div class="stat-row">
+            <div class="stat">
+              <strong>$15/mo</strong>
+              <span>Premium pricing target</span>
+            </div>
+            <div class="stat">
+              <strong>Women w/ PCOS</strong>
+              <span>Primary audience focus</span>
+            </div>
+          </div>
         </div>
-        <div class="feature-item">
-          <h3>Dashboard overview</h3>
-          <p><strong>UI element:</strong> Today’s overview card with cycle day and irregular range. <strong>Why:</strong> validates irregular cycles (35–90+). <strong>Value:</strong> immediate context without judgement. <strong>Real estate:</strong> most‑used info should be above the fold.</p>
+
+        <div class="report-card">
+          <h3>The Problem</h3>
+          <p>105M+ women globally live with PCOS, yet most period apps are optimized for 28‑day cycles and break down for irregular 35–90+ day ranges. Users feel unseen, underserved, and mislabeled. There is no high‑quality, PCOS‑specific solution that validates and supports these realities.</p>
+          <div class="stat-row">
+            <div class="stat">
+              <strong>35–90+ days</strong>
+              <span>Typical PCOS cycle range</span>
+            </div>
+            <div class="stat">
+              <strong>No fit</strong>
+              <span>Generic apps fail to adapt</span>
+            </div>
+          </div>
         </div>
-        <div class="feature-item">
-          <h3>Symptom snapshot grid</h3>
-          <p><strong>UI element:</strong> Four quick tiles for mood, cravings, energy, bloat. <strong>Why:</strong> fast reflection without heavy logging. <strong>Value:</strong> supports emotional check‑ins. <strong>Real estate:</strong> replaces sterile charts with human signals.</p>
+
+        <div class="report-card">
+          <h3>Core Features</h3>
+          <ul>
+            <li>Irregular cycle tracking built for 35–90+ day cycles.</li>
+            <li>Multi‑symptom logging: acne, hair, weight, mood, cravings, fatigue.</li>
+            <li>AI pattern detection for irregular cycles and symptom correlations.</li>
+            <li>Moderated community support to reduce isolation and misinformation.</li>
+            <li>Doctor advocacy tools for visits, labs, and care plans.</li>
+          </ul>
         </div>
-        <div class="feature-item">
-          <h3>Consistency score</h3>
-          <p><strong>UI element:</strong> Progress bar with weekly logging. <strong>Why:</strong> encourages gentle habit‑building. <strong>Value:</strong> highlights progress even if cycles are long. <strong>Real estate:</strong> creates a simple, motivating win.</p>
+
+        <div class="report-card">
+          <h3>Business Model</h3>
+          <ul>
+            <li><strong>Free:</strong> basic tracking stored locally.</li>
+            <li><strong>Premium $15/mo:</strong> cloud sync, AI insights, community, telehealth links.</li>
+            <li>Higher price justified by specialized value and lack of alternatives.</li>
+          </ul>
         </div>
-        <div class="feature-item">
-          <h3>Track screen toggles</h3>
-          <p><strong>UI element:</strong> Symptom chips for acne, hair growth, weight, mood, cravings, fatigue. <strong>Why:</strong> one‑tap logging. <strong>Value:</strong> reduces burden and keeps data consistent. <strong>Real estate:</strong> core behavior of the product.</p>
+
+        <div class="report-card">
+          <h3>Market & Competition</h3>
+          <p>Flo and Clue are widely used but generic; they fail with irregular cycles and lack PCOS‑specific workflows. There is no quality PCOS‑specific app with modern UX and credible support.</p>
+          <div class="stat-row">
+            <div class="stat">
+              <strong>Flo, Clue</strong>
+              <span>Generic competitors</span>
+            </div>
+            <div class="stat">
+              <strong>Our Gap</strong>
+              <span>Purpose‑built for PCOS</span>
+            </div>
+          </div>
         </div>
-        <div class="feature-item">
-          <h3>Intensity scores</h3>
-          <p><strong>UI element:</strong> Numeric intensity cards. <strong>Why:</strong> makes subjective symptoms trackable. <strong>Value:</strong> fuels AI insights and doctor prep. <strong>Real estate:</strong> bridges feelings to actionable data.</p>
+
+        <div class="report-card">
+          <h3>Operational Costs</h3>
+          <ul>
+            <li>Community moderation drives higher ongoing costs.</li>
+            <li>AI operations: $100–$200/month per 1,000 users.</li>
+            <li>Break‑even target: 2,000–3,000 premium users.</li>
+          </ul>
         </div>
-        <div class="feature-item">
-          <h3>Insights chart</h3>
-          <p><strong>UI element:</strong> Cycle variability line with trend note. <strong>Why:</strong> irregular cycles need pattern tracking. <strong>Value:</strong> helps users feel less “random.” <strong>Real estate:</strong> visual proof of progress.</p>
-        </div>
-        <div class="feature-item">
-          <h3>Correlation cards</h3>
-          <p><strong>UI element:</strong> AI‑detected links (sleep → cravings, hair growth → mood). <strong>Why:</strong> transforms logs into insights. <strong>Value:</strong> personalizes small changes. <strong>Real estate:</strong> highlights why the app matters.</p>
-        </div>
-        <div class="feature-item">
-          <h3>Community feed</h3>
-          <p><strong>UI element:</strong> Thread list with Q&A and success stories. <strong>Why:</strong> PCOS can be isolating. <strong>Value:</strong> peer proof and emotional support. <strong>Real estate:</strong> emphasizes belonging over diagnosis.</p>
-        </div>
-        <div class="feature-item">
-          <h3>Moderated safety signals</h3>
-          <p><strong>UI element:</strong> “Verified peers” label and professional notes. <strong>Why:</strong> avoids misinformation. <strong>Value:</strong> builds trust for health‑related content. <strong>Real estate:</strong> key to retention and safety.</p>
-        </div>
-        <div class="feature-item">
-          <h3>Resources hub</h3>
-          <p><strong>UI element:</strong> PCOS 101, diet tips, doctor prep cards. <strong>Why:</strong> education is foundational. <strong>Value:</strong> gives practical steps for users and clinicians. <strong>Real estate:</strong> rounds out the all‑in‑one promise.</p>
-        </div>
-        <div class="feature-item">
-          <h3>Bottom navigation</h3>
-          <p><strong>UI element:</strong> Five‑tab bar with active state. <strong>Why:</strong> matches mobile mental model. <strong>Value:</strong> makes the hub feel complete. <strong>Real estate:</strong> always‑available key sections.</p>
+
+        <div class="report-card">
+          <h3>Why Premium Pricing Works</h3>
+          <ul>
+            <li>Underserved, highly motivated audience seeking real support.</li>
+            <li>No meaningful alternatives at any price.</li>
+            <li>Complex condition = high willingness to pay for guidance.</li>
+          </ul>
         </div>
       </div>
-      <div class="footnote">This is a concept mockup, not a full product build. Content and insights are illustrative only.</div>
+
+      <div class="report-footer">This mockup and report are illustrative, designed to express positioning and product direction rather than clinical guidance.</div>
     </section>
   </div>
 
