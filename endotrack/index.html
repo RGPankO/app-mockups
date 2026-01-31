@@ -1,0 +1,1304 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>EndoTrack — Endometriosis Management App</title>
+    <style>
+      :root {
+        --lavender: #f8f5ff;
+        --purple: #9b7ed9;
+        --purple-dark: #7a5cb8;
+        --ink: #2d2640;
+        --muted: #6b617a;
+        --lilac: #e8dff5;
+        --rose: #f5e0e8;
+        --mint: #e5f0e8;
+        --warning: #f5a962;
+        --shadow: 0 18px 35px rgba(45, 38, 64, 0.1);
+      }
+
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      body {
+        font-family: "Avenir Next", "Segoe UI", sans-serif;
+        background: radial-gradient(circle at top, #ffffff 0%, #f8f3ff 45%, #f0e8fa 100%);
+        color: var(--ink);
+        min-height: 100vh;
+        padding: 28px 16px 60px;
+      }
+
+      .page {
+        width: min(1100px, 100%);
+        margin: 0 auto;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 36px;
+      }
+
+      .phone {
+        width: 100%;
+        max-width: 400px;
+        background: #ffffff;
+        border-radius: 32px;
+        box-shadow: var(--shadow);
+        overflow: hidden;
+        border: 1px solid rgba(155, 126, 217, 0.12);
+        position: relative;
+      }
+
+      .status {
+        padding: 18px 22px 8px;
+        display: flex;
+        justify-content: space-between;
+        font-size: 12px;
+        color: var(--muted);
+        letter-spacing: 0.3px;
+      }
+
+      .header {
+        padding: 4px 22px 18px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 12px;
+      }
+
+      .brand h1 {
+        font-size: 22px;
+        letter-spacing: 0.6px;
+        background: linear-gradient(135deg, var(--purple) 0%, var(--purple-dark) 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+      }
+
+      .brand p {
+        font-size: 13px;
+        color: var(--muted);
+        margin-top: 4px;
+      }
+
+      .chip {
+        background: var(--lilac);
+        color: var(--purple-dark);
+        padding: 6px 12px;
+        border-radius: 999px;
+        font-size: 12px;
+        font-weight: 600;
+      }
+
+      .content {
+        padding: 0 22px 92px;
+      }
+
+      .screen {
+        display: none;
+        animation: fadeIn 0.3s ease;
+      }
+
+      .screen.active {
+        display: block;
+      }
+
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+          transform: translateY(6px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      .card {
+        background: #fff;
+        border-radius: 22px;
+        padding: 18px;
+        box-shadow: 0 10px 20px rgba(45, 38, 64, 0.06);
+        margin-bottom: 16px;
+        border: 1px solid rgba(155, 126, 217, 0.08);
+      }
+
+      .card h3 {
+        font-size: 16px;
+        margin-bottom: 10px;
+        color: var(--ink);
+      }
+
+      .card p {
+        font-size: 13px;
+        color: var(--muted);
+        line-height: 1.5;
+      }
+
+      .row {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 12px;
+      }
+
+      .pill {
+        background: var(--rose);
+        color: #7d4b5a;
+        padding: 6px 12px;
+        border-radius: 999px;
+        font-size: 12px;
+        font-weight: 600;
+      }
+
+      .pill.logged {
+        background: var(--mint);
+        color: #4a6b52;
+      }
+
+      /* Pain Scale */
+      .pain-scale {
+        display: flex;
+        gap: 8px;
+        margin: 12px 0;
+        justify-content: space-between;
+      }
+
+      .pain-scale button {
+        flex: 1;
+        border: none;
+        background: var(--lavender);
+        border-radius: 12px;
+        padding: 12px 6px;
+        cursor: pointer;
+        font-size: 18px;
+        transition: all 0.2s ease;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 4px;
+      }
+
+      .pain-scale button span {
+        font-size: 10px;
+        color: var(--muted);
+      }
+
+      .pain-scale button.active {
+        background: var(--purple);
+        transform: scale(1.05);
+      }
+
+      .pain-scale button.active span {
+        color: #fff;
+      }
+
+      /* Symptom buttons */
+      .symptom {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 10px;
+      }
+
+      .symptom button {
+        border: none;
+        background: #fff;
+        border: 1px solid rgba(155, 126, 217, 0.15);
+        border-radius: 16px;
+        padding: 10px 12px;
+        box-shadow: 0 6px 12px rgba(45, 38, 64, 0.06);
+        cursor: pointer;
+        font-size: 13px;
+        transition: all 0.2s ease;
+        text-align: left;
+      }
+
+      .symptom button.active {
+        background: var(--purple);
+        color: #fff;
+        border-color: var(--purple);
+      }
+
+      /* Body Map */
+      .body-map {
+        display: flex;
+        justify-content: center;
+        margin: 16px 0;
+        position: relative;
+      }
+
+      .body-outline {
+        width: 140px;
+        height: 200px;
+        background: var(--lavender);
+        border-radius: 50% 50% 45% 45% / 30% 30% 70% 70%;
+        position: relative;
+        border: 2px solid rgba(155, 126, 217, 0.2);
+      }
+
+      .pain-point {
+        position: absolute;
+        width: 28px;
+        height: 28px;
+        border-radius: 50%;
+        background: rgba(155, 126, 217, 0.3);
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 10px;
+        font-weight: 600;
+        color: var(--purple-dark);
+        transition: all 0.2s ease;
+        border: 2px solid transparent;
+      }
+
+      .pain-point:hover {
+        transform: scale(1.1);
+      }
+
+      .pain-point.active {
+        background: var(--purple);
+        color: #fff;
+        border-color: var(--purple-dark);
+        animation: pulse 1.5s infinite;
+      }
+
+      .pain-point.moderate {
+        background: var(--warning);
+        color: #fff;
+      }
+
+      .pain-point.severe {
+        background: #e85a5a;
+        color: #fff;
+      }
+
+      @keyframes pulse {
+        0%, 100% { box-shadow: 0 0 0 0 rgba(155, 126, 217, 0.4); }
+        50% { box-shadow: 0 0 0 8px rgba(155, 126, 217, 0); }
+      }
+
+      /* Medications */
+      .med-list {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+        margin-top: 12px;
+      }
+
+      .med-item {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        background: var(--lavender);
+        padding: 10px 14px;
+        border-radius: 12px;
+        font-size: 13px;
+      }
+
+      .med-item .dose {
+        color: var(--muted);
+        font-size: 12px;
+      }
+
+      .med-check {
+        width: 22px;
+        height: 22px;
+        border-radius: 6px;
+        border: 2px solid var(--purple);
+        background: #fff;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: all 0.2s ease;
+      }
+
+      .med-check.taken {
+        background: var(--purple);
+        color: #fff;
+      }
+
+      .cta {
+        width: 100%;
+        border: none;
+        background: linear-gradient(135deg, var(--purple) 0%, var(--purple-dark) 100%);
+        color: #fff;
+        padding: 14px 16px;
+        border-radius: 18px;
+        font-weight: 600;
+        cursor: pointer;
+        box-shadow: 0 10px 20px rgba(155, 126, 217, 0.35);
+        margin-top: 6px;
+        transition: transform 0.2s ease;
+      }
+
+      .cta:hover {
+        transform: translateY(-2px);
+      }
+
+      .cta:active {
+        transform: translateY(0);
+      }
+
+      .nav {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        background: #fff;
+        border-top: 1px solid rgba(155, 126, 217, 0.1);
+        display: flex;
+        justify-content: space-around;
+        padding: 10px 8px 16px;
+      }
+
+      .nav button {
+        background: none;
+        border: none;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 4px;
+        font-size: 11px;
+        color: var(--muted);
+        cursor: pointer;
+        transition: color 0.2s ease;
+      }
+
+      .nav button.active {
+        color: var(--purple-dark);
+        font-weight: 600;
+      }
+
+      .nav span {
+        font-size: 18px;
+      }
+
+      .insight {
+        background: linear-gradient(135deg, #fff 0%, #f8f0ff 100%);
+        border-left: 4px solid var(--purple);
+      }
+
+      .doctor-grid {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 12px;
+      }
+
+      .stat {
+        background: var(--lilac);
+        padding: 14px;
+        border-radius: 16px;
+        text-align: left;
+      }
+
+      .stat strong {
+        display: block;
+        font-size: 20px;
+        color: var(--purple-dark);
+      }
+
+      .stat span {
+        font-size: 12px;
+        color: var(--muted);
+      }
+
+      .badge {
+        background: rgba(155, 126, 217, 0.16);
+        color: var(--purple-dark);
+        padding: 4px 10px;
+        border-radius: 999px;
+        font-size: 11px;
+        font-weight: 600;
+        display: inline-block;
+        margin-right: 6px;
+      }
+
+      .footer-note {
+        font-size: 11px;
+        color: var(--muted);
+        text-align: center;
+        margin-top: 12px;
+      }
+
+      .split {
+        display: flex;
+        gap: 12px;
+        flex-wrap: wrap;
+      }
+
+      .split .card {
+        flex: 1;
+        min-width: 150px;
+      }
+
+      .slider {
+        display: flex;
+        gap: 12px;
+        align-items: center;
+      }
+
+      .slider input {
+        width: 100%;
+        accent-color: var(--purple);
+      }
+
+      /* Cycle tracker mini */
+      .cycle-mini {
+        display: flex;
+        gap: 4px;
+        margin: 12px 0;
+      }
+
+      .cycle-day {
+        flex: 1;
+        height: 8px;
+        border-radius: 4px;
+        background: var(--lavender);
+      }
+
+      .cycle-day.period {
+        background: var(--rose);
+      }
+
+      .cycle-day.today {
+        background: var(--purple);
+      }
+
+      /* Pattern chart placeholder */
+      .pattern-chart {
+        height: 100px;
+        background: linear-gradient(180deg, var(--lavender) 0%, #fff 100%);
+        border-radius: 12px;
+        margin: 12px 0;
+        display: flex;
+        align-items: flex-end;
+        padding: 8px;
+        gap: 6px;
+      }
+
+      .chart-bar {
+        flex: 1;
+        background: var(--purple);
+        border-radius: 4px 4px 0 0;
+        opacity: 0.7;
+        transition: all 0.3s ease;
+      }
+
+      .chart-bar:hover {
+        opacity: 1;
+      }
+
+      /* Report Section */
+      .report {
+        width: 100%;
+        background: #ffffff;
+        border-radius: 28px;
+        padding: 34px 30px 40px;
+        box-shadow: var(--shadow);
+        border: 1px solid rgba(155, 126, 217, 0.1);
+        display: flex;
+        flex-direction: column;
+        gap: 24px;
+      }
+
+      .report-header {
+        background: linear-gradient(135deg, #f8f3ff 0%, #f0e5fa 100%);
+        border-radius: 22px;
+        padding: 22px 24px;
+        border: 1px solid rgba(155, 126, 217, 0.2);
+      }
+
+      .report-header h2 {
+        font-size: 24px;
+        letter-spacing: 0.4px;
+        margin-bottom: 8px;
+        color: var(--purple-dark);
+      }
+
+      .report-header p {
+        font-size: 14px;
+        color: var(--muted);
+        max-width: 680px;
+      }
+
+      .report-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 16px;
+      }
+
+      .report-card {
+        background: #fffdfb;
+        border-radius: 20px;
+        padding: 18px 18px 20px;
+        border: 1px solid rgba(155, 126, 217, 0.1);
+        box-shadow: 0 12px 28px rgba(45, 38, 64, 0.08);
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+      }
+
+      .report-card h3 {
+        font-size: 16px;
+        color: var(--ink);
+      }
+
+      .report-card p {
+        font-size: 13px;
+        color: var(--muted);
+        line-height: 1.5;
+      }
+
+      .pill-row {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+      }
+
+      .pill-tag {
+        background: var(--lilac);
+        color: var(--purple-dark);
+        padding: 6px 10px;
+        border-radius: 999px;
+        font-size: 11px;
+        font-weight: 600;
+      }
+
+      .icon-list {
+        display: grid;
+        gap: 10px;
+        font-size: 13px;
+        color: var(--muted);
+      }
+
+      .icon-list span {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+
+      .pricing-grid {
+        display: grid;
+        gap: 12px;
+      }
+
+      .pricing-item {
+        background: rgba(155, 126, 217, 0.1);
+        border-radius: 16px;
+        padding: 12px 14px;
+        border: 1px solid rgba(155, 126, 217, 0.2);
+        font-size: 13px;
+        color: var(--purple-dark);
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      .pricing-item strong {
+        font-size: 14px;
+      }
+
+      .competitor {
+        display: grid;
+        gap: 10px;
+        font-size: 13px;
+        color: var(--muted);
+      }
+
+      .competitor div {
+        background: #f8f2f5;
+        border-radius: 14px;
+        padding: 10px 12px;
+        border: 1px solid rgba(155, 126, 217, 0.1);
+      }
+
+      .competitor div.weak {
+        border-left: 3px solid var(--warning);
+      }
+
+      .highlight {
+        background: var(--purple);
+        color: #fff;
+        border-radius: 16px;
+        padding: 12px 14px;
+        font-size: 13px;
+        font-weight: 600;
+      }
+
+      .costs {
+        display: grid;
+        gap: 8px;
+        font-size: 13px;
+        color: var(--muted);
+      }
+
+      .costs div {
+        display: flex;
+        justify-content: space-between;
+      }
+
+      .costs div.total {
+        border-top: 1px solid var(--lilac);
+        padding-top: 8px;
+        margin-top: 4px;
+        font-weight: 600;
+        color: var(--ink);
+      }
+
+      .unit-economics {
+        background: linear-gradient(135deg, var(--mint) 0%, #f0f8f2 100%);
+        border-radius: 16px;
+        padding: 14px;
+        border: 1px solid rgba(74, 107, 82, 0.2);
+      }
+
+      .unit-economics h4 {
+        font-size: 14px;
+        color: #4a6b52;
+        margin-bottom: 8px;
+      }
+
+      .unit-economics .metric {
+        display: flex;
+        justify-content: space-between;
+        font-size: 13px;
+        color: #5a7a6b;
+        margin-bottom: 4px;
+      }
+
+      .unit-economics .metric strong {
+        color: #4a6b52;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="page">
+      <div class="phone">
+        <div class="status">
+          <div>9:41</div>
+          <div>EndoTrack Premium · $7.99/mo</div>
+        </div>
+        <div class="header">
+          <div class="brand">
+            <h1>EndoTrack</h1>
+            <p>Your complete endometriosis companion</p>
+          </div>
+          <div class="chip">Day 14</div>
+        </div>
+
+        <main class="content">
+          <!-- Dashboard Screen -->
+          <section class="screen active" id="screen-dashboard">
+            <div class="card">
+              <div class="row">
+                <h3>Daily check-in</h3>
+                <span class="pill" id="checkin-status">Not logged</span>
+              </div>
+              <p>How's your pain today?</p>
+              <div class="pain-scale" id="pain-scale">
+                <button data-pain="0">😊<span>None</span></button>
+                <button data-pain="1">😐<span>Mild</span></button>
+                <button data-pain="2">😣<span>Moderate</span></button>
+                <button data-pain="3">😖<span>Severe</span></button>
+                <button data-pain="4">😭<span>Extreme</span></button>
+              </div>
+            </div>
+
+            <div class="card">
+              <h3>Cycle overview</h3>
+              <p>Your 28-day cycle visualization</p>
+              <div class="cycle-mini" id="cycle-visual"></div>
+              <p style="font-size: 12px; margin-top: 8px;">
+                <strong style="color: var(--purple-dark);">Today:</strong> Ovulation phase · 
+                <span style="color: var(--muted);">Period expected in 14 days</span>
+              </p>
+            </div>
+
+            <div class="split">
+              <div class="card">
+                <h3>Quick symptoms</h3>
+                <div class="symptom" id="dashboard-symptoms">
+                  <button class="active">Cramps</button>
+                  <button>Bloating</button>
+                  <button>Fatigue</button>
+                  <button class="active">Back pain</button>
+                </div>
+              </div>
+              <div class="card">
+                <h3>Meds today</h3>
+                <div class="med-list" id="quick-meds">
+                  <div class="med-item">
+                    <div>
+                      <div>Ibuprofen</div>
+                      <div class="dose">400mg</div>
+                    </div>
+                    <div class="med-check taken">✓</div>
+                  </div>
+                  <div class="med-item">
+                    <div>
+                      <div>Birth control</div>
+                      <div class="dose">Daily</div>
+                    </div>
+                    <div class="med-check"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <!-- Log Screen -->
+          <section class="screen" id="screen-log">
+            <div class="card">
+              <h3>Pain body map</h3>
+              <p>Tap areas to log pain location and intensity</p>
+              <div class="body-map">
+                <div class="body-outline">
+                  <div class="pain-point active" style="top: 55%; left: 30%;" data-area="left-ovary" title="Left ovary">L</div>
+                  <div class="pain-point moderate" style="top: 55%; left: 70%;" data-area="right-ovary" title="Right ovary">R</div>
+                  <div class="pain-point" style="top: 45%; left: 50%;" data-area="abdomen" title="Lower abdomen">A</div>
+                  <div class="pain-point severe" style="top: 65%; left: 50%;" data-area="pelvis" title="Pelvic floor">P</div>
+                  <div class="pain-point" style="top: 35%; left: 50%;" data-area="back" title="Lower back">B</div>
+                </div>
+              </div>
+              <p class="footer-note">Tap a point to cycle through: none → mild → moderate → severe</p>
+            </div>
+
+            <div class="card">
+              <h3>Log symptoms</h3>
+              <p>Select all that apply right now</p>
+              <div class="symptom" id="log-symptoms">
+                <button class="active">Cramps</button>
+                <button class="active">Bloating</button>
+                <button>Nausea</button>
+                <button class="active">Fatigue</button>
+                <button>Headache</button>
+                <button>Heavy flow</button>
+                <button>Painful sex</button>
+                <button>Brain fog</button>
+                <button>Mood swings</button>
+                <button>Insomnia</button>
+              </div>
+            </div>
+
+            <div class="card">
+              <h3>Medications taken</h3>
+              <p>Track what you've taken today</p>
+              <div class="med-list" id="med-list">
+                <div class="med-item">
+                  <div>
+                    <div>Ibuprofen</div>
+                    <div class="dose">400mg · 8:30 AM</div>
+                  </div>
+                  <div class="med-check taken">✓</div>
+                </div>
+                <div class="med-item">
+                  <div>
+                    <div>Naproxen</div>
+                    <div class="dose">500mg</div>
+                  </div>
+                  <div class="med-check"></div>
+                </div>
+                <div class="med-item">
+                  <div>
+                    <div>Hormonal therapy</div>
+                    <div class="dose">Daily pill</div>
+                  </div>
+                  <div class="med-check taken">✓</div>
+                </div>
+              </div>
+              <button class="cta" id="save-log" style="margin-top: 16px;">Save today's log</button>
+            </div>
+          </section>
+
+          <!-- Insights Screen -->
+          <section class="screen" id="screen-insights">
+            <div class="card insight">
+              <h3>🤖 AI insight</h3>
+              <p id="ai-insight">Your pain levels tend to spike 2-3 days before your period starts. Consider taking pain medication preventatively during this window.</p>
+            </div>
+
+            <div class="card">
+              <h3>Pain patterns (last 30 days)</h3>
+              <div class="pattern-chart" id="pain-chart">
+                <!-- Bars generated by JS -->
+              </div>
+              <p style="font-size: 12px; text-align: center; color: var(--muted);">
+                Avg pain level: <strong style="color: var(--purple-dark);">2.4/4</strong> · 
+                Pain-free days: <strong style="color: var(--purple-dark);">8</strong>
+              </p>
+            </div>
+
+            <div class="card">
+              <h3>Pattern highlights</h3>
+              <p><span class="badge">Trigger</span>Pain 40% higher after dairy consumption</p>
+              <p style="margin-top: 8px;"><span class="badge">Sleep</span>Poor sleep correlates with next-day flares</p>
+              <p style="margin-top: 8px;"><span class="badge">Exercise</span>Light yoga reduces cramp intensity by 25%</p>
+              <p style="margin-top: 8px;"><span class="badge">Cycle</span>Days 24-28 are your highest pain window</p>
+            </div>
+
+            <div class="card">
+              <h3>Your trends</h3>
+              <div class="doctor-grid">
+                <div class="stat">
+                  <strong>↓ 18%</strong>
+                  <span>Pain vs last month</span>
+                </div>
+                <div class="stat">
+                  <strong>12 days</strong>
+                  <span>Streak logged</span>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <!-- Doctor Report Screen -->
+          <section class="screen" id="screen-doctor">
+            <div class="card">
+              <h3>📋 Doctor report summary</h3>
+              <p>Generate a comprehensive PDF for your healthcare provider</p>
+              <div class="doctor-grid" style="margin-top: 14px;">
+                <div class="stat">
+                  <strong id="stat-pain">2.4</strong>
+                  <span>Avg pain level</span>
+                </div>
+                <div class="stat">
+                  <strong id="stat-days">18</strong>
+                  <span>Pain days / month</span>
+                </div>
+                <div class="stat">
+                  <strong id="stat-symptom">Cramps</strong>
+                  <span>Top symptom</span>
+                </div>
+                <div class="stat">
+                  <strong id="stat-meds">Ibuprofen</strong>
+                  <span>Most used med</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="card">
+              <h3>Report includes</h3>
+              <div class="icon-list">
+                <span>📊 30-day symptom timeline with pain levels</span>
+                <span>🗺️ Pain location heat map</span>
+                <span>💊 Medication usage & effectiveness</span>
+                <span>📅 Cycle correlation analysis</span>
+                <span>🤖 AI-generated summary for doctor</span>
+                <span>📝 Your notes & observations</span>
+              </div>
+            </div>
+
+            <div class="card">
+              <h3>Generate report</h3>
+              <p>Choose date range for your appointment</p>
+              <div style="display: flex; gap: 10px; margin: 12px 0;">
+                <button class="cta" style="flex: 1; background: var(--lilac); color: var(--purple-dark); box-shadow: none;">Last 30 days</button>
+                <button class="cta" style="flex: 1; background: var(--lavender); color: var(--purple-dark); box-shadow: none;">Last 90 days</button>
+              </div>
+              <button class="cta" id="generate-report">📄 Generate PDF Report</button>
+              <p class="footer-note" id="report-status">Last generated: never</p>
+            </div>
+          </section>
+        </main>
+
+        <nav class="nav">
+          <button data-screen="dashboard" class="active">
+            <span>🏠</span>
+            Dashboard
+          </button>
+          <button data-screen="log">
+            <span>📝</span>
+            Log
+          </button>
+          <button data-screen="insights">
+            <span>✨</span>
+            Insights
+          </button>
+          <button data-screen="doctor">
+            <span>🩺</span>
+            Doctor
+          </button>
+        </nav>
+      </div>
+
+      <!-- Business Report Section -->
+      <section class="report" aria-labelledby="report-title">
+        <header class="report-header">
+          <h2 id="report-title">EndoTrack — Business Report</h2>
+          <p>
+            A comprehensive analysis of market opportunity, competitive positioning, and unit economics for the 
+            all-in-one endometriosis management app. Addressing the unmet need of 190M women worldwide who currently 
+            juggle 3-5 apps to manage their condition.
+          </p>
+        </header>
+
+        <div class="report-grid">
+          <article class="report-card">
+            <h3>Executive Summary</h3>
+            <p>
+              EndoTrack consolidates symptom tracking, pain mapping, medication logging, and doctor report 
+              generation into one app. The killer feature—PDF export for doctor visits—solves the #1 complaint 
+              of endo patients: being dismissed by doctors due to lack of documentation.
+            </p>
+            <div class="pill-row">
+              <span class="pill-tag">Target: 190M women</span>
+              <span class="pill-tag">Price: $7.99/mo</span>
+              <span class="pill-tag">Gap: All-in-one app</span>
+            </div>
+          </article>
+
+          <article class="report-card">
+            <h3>The Problem</h3>
+            <p>
+              Women with endometriosis currently use 3-5 separate apps to track symptoms, periods, medications, 
+              and pain levels. No single app addresses their complete needs, leading to fragmented data and 
+              poor documentation for doctor visits.
+            </p>
+            <div class="icon-list">
+              <span>📱 Fragmented tracking across multiple apps</span>
+              <span>🗣️ Doctors dismiss complaints without data</span>
+              <span>🧩 No body map for pain location tracking</span>
+              <span>📄 Can't generate reports for appointments</span>
+            </div>
+          </article>
+
+          <article class="report-card">
+            <h3>Core Features</h3>
+            <div class="icon-list">
+              <span>🎯 Interactive pain body map</span>
+              <span>📊 Comprehensive symptom logging (15+)</span>
+              <span>💊 Medication tracking & reminders</span>
+              <span>🤖 AI pattern analysis & insights</span>
+              <span>📄 <strong>PDF Doctor Report Generator</strong></span>
+              <span>📅 Cycle correlation tracking</span>
+            </div>
+          </article>
+
+          <article class="report-card">
+            <h3>Market Opportunity</h3>
+            <p>
+              The femtech market for endometriosis management is significantly underserved despite the 
+              massive patient population.
+            </p>
+            <div class="pricing-grid" style="margin-top: 12px;">
+              <div class="pricing-item">
+                <strong>190M</strong>
+                <span>Women with endometriosis globally</span>
+              </div>
+              <div class="pricing-item">
+                <strong>$4.95B</strong>
+                <span>Global endo management market</span>
+              </div>
+              <div class="pricing-item">
+                <strong>7-10 years</strong>
+                <span>Avg time to diagnosis</span>
+              </div>
+            </div>
+          </article>
+
+          <article class="report-card">
+            <h3>Competitive Analysis</h3>
+            <div class="competitor">
+              <div class="weak">
+                <strong>Phendo</strong> — Research-focused, poor UX, no doctor reports
+              </div>
+              <div>
+                <strong>Flo/Clue</strong> — Period tracking only, not endo-specific
+              </div>
+              <div>
+                <strong>Pain trackers</strong> — Generic, no cycle correlation
+              </div>
+            </div>
+            <p class="highlight" style="margin-top: 12px;">Our gap: Purpose-built for endo with doctor report generation</p>
+          </article>
+
+          <article class="report-card">
+            <h3>Business Model</h3>
+            <div class="pricing-grid">
+              <div class="pricing-item">
+                <strong>Free tier</strong>
+                <span>Basic tracking, 7-day history</span>
+              </div>
+              <div class="pricing-item">
+                <strong>Premium $7.99/mo</strong>
+                <span>Full features + PDF reports</span>
+              </div>
+              <div class="pricing-item">
+                <strong>Annual $59.99/yr</strong>
+                <span>37% discount, better retention</span>
+              </div>
+            </div>
+          </article>
+
+          <article class="report-card">
+            <h3>Unit Economics</h3>
+            <div class="unit-economics">
+              <h4>Per User / Month</h4>
+              <div class="metric"><span>Revenue (Premium)</span><strong>$7.99</strong></div>
+              <div class="metric"><span>Hosting/infra</span><strong>-$0.15</strong></div>
+              <div class="metric"><span>AI API (insights)</span><strong>-$0.80</strong></div>
+              <div class="metric"><span>PDF generation</span><strong>-$0.08</strong></div>
+              <div class="metric"><span>Payment processing</span><strong>-$0.05</strong></div>
+              <div class="metric" style="border-top: 1px solid #8fb898; padding-top: 8px; margin-top: 8px;">
+                <span>Gross margin</span><strong>86.5%</strong>
+              </div>
+            </div>
+          </article>
+
+          <article class="report-card">
+            <h3>Operational Costs</h3>
+            <div class="costs">
+              <div><span>Hosting (Vercel/AWS)</span><strong>$50/mo</strong></div>
+              <div><span>Database (Supabase)</span><strong>$25/mo</strong></div>
+              <div><span>AI API budget</span><strong>$0.80/user</strong></div>
+              <div><span>PDF service</span><strong>$0.08/report</strong></div>
+              <div class="total"><span>Break-even</span><strong>~8 users</strong></div>
+            </div>
+          </article>
+
+          <article class="report-card">
+            <h3>Why This Will Work</h3>
+            <div class="icon-list">
+              <span>🎯 Highly motivated user base (chronic pain)</span>
+              <span>📄 Doctor report = must-have, not nice-to-have</span>
+              <span>📱 No real competition in endo-specific space</span>
+              <span>💜 Strong community & word-of-mouth potential</span>
+              <span>📈 High LTV (chronic condition = years of use)</span>
+              <span>🤖 AI differentiation in pattern detection</span>
+            </div>
+          </article>
+        </div>
+      </section>
+    </div>
+
+    <script>
+      const storageKey = "endoTrackState";
+      const defaultState = {
+        painLevel: null,
+        symptoms: ["Cramps", "Back pain"],
+        medications: {
+          "Ibuprofen": true,
+          "Naproxen": false,
+          "Hormonal therapy": true
+        },
+        painPoints: {
+          "left-ovary": 1,
+          "right-ovary": 2,
+          "abdomen": 0,
+          "pelvis": 3,
+          "back": 0
+        },
+        lastReport: null,
+        cycleDay: 14
+      };
+
+      const allSymptoms = [
+        "Cramps", "Bloating", "Nausea", "Fatigue", "Headache", 
+        "Heavy flow", "Painful sex", "Brain fog", "Mood swings", "Insomnia"
+      ];
+
+      const loadState = () => {
+        try {
+          const saved = JSON.parse(localStorage.getItem(storageKey));
+          return saved ? { ...defaultState, ...saved } : { ...defaultState };
+        } catch (error) {
+          return { ...defaultState };
+        }
+      };
+
+      const saveState = (state) => {
+        localStorage.setItem(storageKey, JSON.stringify(state));
+      };
+
+      let state = loadState();
+
+      // Pain scale
+      const updatePainScale = () => {
+        document.querySelectorAll("#pain-scale button").forEach(btn => {
+          btn.classList.toggle("active", parseInt(btn.dataset.pain) === state.painLevel);
+        });
+        const statusEl = document.getElementById("checkin-status");
+        if (state.painLevel !== null) {
+          const levels = ["None", "Mild", "Moderate", "Severe", "Extreme"];
+          statusEl.textContent = levels[state.painLevel];
+          statusEl.classList.add("logged");
+        } else {
+          statusEl.textContent = "Not logged";
+          statusEl.classList.remove("logged");
+        }
+      };
+
+      document.getElementById("pain-scale").addEventListener("click", (e) => {
+        if (e.target.tagName !== "BUTTON" && e.target.parentElement.tagName !== "BUTTON") return;
+        const btn = e.target.tagName === "BUTTON" ? e.target : e.target.parentElement;
+        state.painLevel = parseInt(btn.dataset.pain);
+        updatePainScale();
+        saveState(state);
+      });
+
+      // Cycle visualization
+      const renderCycle = () => {
+        const container = document.getElementById("cycle-visual");
+        container.innerHTML = "";
+        for (let i = 1; i <= 28; i++) {
+          const day = document.createElement("div");
+          day.className = "cycle-day";
+          if (i <= 5) day.classList.add("period");
+          if (i === state.cycleDay) day.classList.add("today");
+          container.appendChild(day);
+        }
+      };
+
+      // Pain body map
+      const updatePainPoints = () => {
+        document.querySelectorAll(".pain-point").forEach(point => {
+          const area = point.dataset.area;
+          const level = state.painPoints[area] || 0;
+          point.classList.remove("active", "moderate", "severe");
+          if (level === 1) point.classList.add("active");
+          else if (level === 2) point.classList.add("moderate");
+          else if (level === 3) point.classList.add("severe");
+        });
+      };
+
+      document.querySelectorAll(".pain-point").forEach(point => {
+        point.addEventListener("click", () => {
+          const area = point.dataset.area;
+          state.painPoints[area] = (state.painPoints[area] + 1) % 4;
+          updatePainPoints();
+          saveState(state);
+        });
+      });
+
+      // Symptoms
+      const updateSymptoms = () => {
+        document.querySelectorAll("#log-symptoms button, #dashboard-symptoms button").forEach(btn => {
+          btn.classList.toggle("active", state.symptoms.includes(btn.textContent));
+        });
+      };
+
+      document.querySelectorAll("#log-symptoms button, #dashboard-symptoms button").forEach(btn => {
+        btn.addEventListener("click", () => {
+          const symptom = btn.textContent;
+          if (state.symptoms.includes(symptom)) {
+            state.symptoms = state.symptoms.filter(s => s !== symptom);
+          } else {
+            state.symptoms.push(symptom);
+          }
+          updateSymptoms();
+          saveState(state);
+        });
+      });
+
+      // Medications
+      const updateMeds = () => {
+        document.querySelectorAll(".med-check").forEach(check => {
+          const medItem = check.closest(".med-item");
+          const medName = medItem.querySelector("div > div:first-child").textContent;
+          if (state.medications[medName]) {
+            check.classList.add("taken");
+            check.textContent = "✓";
+          } else {
+            check.classList.remove("taken");
+            check.textContent = "";
+          }
+        });
+      };
+
+      document.querySelectorAll(".med-check").forEach(check => {
+        check.addEventListener("click", () => {
+          const medItem = check.closest(".med-item");
+          const medName = medItem.querySelector("div > div:first-child").textContent;
+          state.medications[medName] = !state.medications[medName];
+          updateMeds();
+          saveState(state);
+        });
+      });
+
+      // Pain chart
+      const renderPainChart = () => {
+        const chart = document.getElementById("pain-chart");
+        chart.innerHTML = "";
+        const painData = [2, 3, 2, 1, 0, 1, 2, 3, 4, 3, 2, 2, 1, 0, 0, 1, 2, 2, 3, 2, 1, 1, 2, 3, 4, 3, 2, 2, 1, 2];
+        painData.forEach((level, i) => {
+          const bar = document.createElement("div");
+          bar.className = "chart-bar";
+          bar.style.height = `${(level + 1) * 18}%`;
+          bar.title = `Day ${i + 1}: Pain level ${level}`;
+          chart.appendChild(bar);
+        });
+      };
+
+      // Report generation
+      document.getElementById("generate-report").addEventListener("click", () => {
+        state.lastReport = new Date().toISOString();
+        document.getElementById("report-status").textContent = 
+          `Last generated: ${new Date(state.lastReport).toLocaleDateString()}`;
+        saveState(state);
+        
+        // Visual feedback
+        const btn = document.getElementById("generate-report");
+        btn.textContent = "✓ Report Generated!";
+        btn.style.background = "var(--mint)";
+        btn.style.color = "#4a6b52";
+        setTimeout(() => {
+          btn.textContent = "📄 Generate PDF Report";
+          btn.style.background = "";
+          btn.style.color = "";
+        }, 2000);
+      });
+
+      // Save log button
+      document.getElementById("save-log").addEventListener("click", () => {
+        const btn = document.getElementById("save-log");
+        btn.textContent = "✓ Saved!";
+        btn.style.background = "var(--mint)";
+        btn.style.color = "#4a6b52";
+        setTimeout(() => {
+          btn.textContent = "Save today's log";
+          btn.style.background = "";
+          btn.style.color = "";
+        }, 2000);
+      });
+
+      // Navigation
+      document.querySelectorAll(".nav button").forEach(btn => {
+        btn.addEventListener("click", () => {
+          document.querySelectorAll(".nav button").forEach(b => b.classList.remove("active"));
+          btn.classList.add("active");
+          const target = btn.dataset.screen;
+          document.querySelectorAll(".screen").forEach(screen => {
+            screen.classList.toggle("active", screen.id === `screen-${target}`);
+          });
+        });
+      });
+
+      // Update report status on load
+      const updateReportStatus = () => {
+        const status = document.getElementById("report-status");
+        status.textContent = state.lastReport
+          ? `Last generated: ${new Date(state.lastReport).toLocaleDateString()}`
+          : "Last generated: never";
+      };
+
+      // Initialize
+      const init = () => {
+        updatePainScale();
+        renderCycle();
+        updatePainPoints();
+        updateSymptoms();
+        updateMeds();
+        renderPainChart();
+        updateReportStatus();
+      };
+
+      init();
+    </script>
+  </body>
+</html>

@@ -1,0 +1,1293 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>CrownCare — Female Hair Loss Companion</title>
+    <style>
+      :root {
+        --cream: #fdf8f5;
+        --rose-gold: #d4a574;
+        --rose-gold-light: #e8c9a8;
+        --rose-gold-dark: #b8956a;
+        --warm-brown: #8b6f5c;
+        --warm-brown-dark: #5d4a3d;
+        --ink: #3d2e24;
+        --muted: #7a6b60;
+        --blush: #f5e1d4;
+        --mint: #e8f0ec;
+        --success: #7fa48f;
+        --warning: #e8a87c;
+        --shadow: 0 18px 35px rgba(93, 74, 61, 0.1);
+      }
+
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      body {
+        font-family: "Avenir Next", "Segoe UI", sans-serif;
+        background: radial-gradient(circle at top, #ffffff 0%, #fdf5ef 45%, #f9ede4 100%);
+        color: var(--ink);
+        min-height: 100vh;
+        padding: 28px 16px 60px;
+      }
+
+      .page {
+        width: min(1100px, 100%);
+        margin: 0 auto;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 36px;
+      }
+
+      .phone {
+        width: 100%;
+        max-width: 400px;
+        background: #ffffff;
+        border-radius: 32px;
+        box-shadow: var(--shadow);
+        overflow: hidden;
+        border: 1px solid rgba(180, 140, 110, 0.1);
+        position: relative;
+      }
+
+      .status {
+        padding: 18px 22px 8px;
+        display: flex;
+        justify-content: space-between;
+        font-size: 12px;
+        color: var(--muted);
+        letter-spacing: 0.3px;
+      }
+
+      .header {
+        padding: 4px 22px 18px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 12px;
+      }
+
+      .brand h1 {
+        font-size: 22px;
+        letter-spacing: 0.6px;
+        background: linear-gradient(135deg, var(--rose-gold) 0%, var(--warm-brown) 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+      }
+
+      .brand p {
+        font-size: 13px;
+        color: var(--muted);
+        margin-top: 4px;
+      }
+
+      .chip {
+        background: var(--blush);
+        color: var(--warm-brown-dark);
+        padding: 6px 12px;
+        border-radius: 999px;
+        font-size: 12px;
+        font-weight: 600;
+      }
+
+      .content {
+        padding: 0 22px 92px;
+      }
+
+      .screen {
+        display: none;
+        animation: fadeIn 0.3s ease;
+      }
+
+      .screen.active {
+        display: block;
+      }
+
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+          transform: translateY(6px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      .card {
+        background: #fff;
+        border-radius: 22px;
+        padding: 18px;
+        box-shadow: 0 10px 20px rgba(93, 74, 61, 0.06);
+        margin-bottom: 16px;
+        border: 1px solid rgba(180, 140, 110, 0.08);
+      }
+
+      .card h3 {
+        font-size: 16px;
+        margin-bottom: 10px;
+        color: var(--ink);
+      }
+
+      .card p {
+        font-size: 13px;
+        color: var(--muted);
+        line-height: 1.5;
+      }
+
+      .row {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 12px;
+      }
+
+      .pill {
+        background: linear-gradient(135deg, var(--rose-gold-light) 0%, var(--rose-gold) 100%);
+        color: var(--warm-brown-dark);
+        padding: 6px 12px;
+        border-radius: 999px;
+        font-size: 12px;
+        font-weight: 600;
+      }
+
+      .pill-success {
+        background: var(--mint);
+        color: var(--success);
+      }
+
+      .treatment-list {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        margin-top: 12px;
+      }
+
+      .treatment-item {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 12px 14px;
+        background: var(--cream);
+        border-radius: 14px;
+        border: 1px solid rgba(180, 140, 110, 0.1);
+        cursor: pointer;
+        transition: all 0.2s ease;
+      }
+
+      .treatment-item:hover {
+        background: var(--blush);
+      }
+
+      .treatment-item.done {
+        background: var(--mint);
+        border-color: rgba(127, 164, 143, 0.2);
+      }
+
+      .treatment-item .info {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+
+      .treatment-item .icon {
+        width: 32px;
+        height: 32px;
+        border-radius: 10px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 16px;
+        background: var(--blush);
+      }
+
+      .treatment-item.done .icon {
+        background: rgba(127, 164, 143, 0.3);
+      }
+
+      .treatment-item .name {
+        font-size: 14px;
+        font-weight: 500;
+      }
+
+      .treatment-item .time {
+        font-size: 12px;
+        color: var(--muted);
+      }
+
+      .check {
+        width: 22px;
+        height: 22px;
+        border-radius: 50%;
+        border: 2px solid var(--rose-gold);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: transparent;
+        font-size: 12px;
+        transition: all 0.2s ease;
+      }
+
+      .treatment-item.done .check {
+        background: var(--success);
+        border-color: var(--success);
+        color: white;
+      }
+
+      .photo-reminder {
+        background: linear-gradient(135deg, var(--blush) 0%, #fff 100%);
+        border: 2px dashed var(--rose-gold);
+        text-align: center;
+        padding: 24px 18px;
+      }
+
+      .photo-reminder .days {
+        font-size: 42px;
+        font-weight: 700;
+        color: var(--rose-gold-dark);
+        line-height: 1;
+      }
+
+      .photo-reminder .label {
+        font-size: 14px;
+        color: var(--muted);
+        margin-top: 4px;
+      }
+
+      .photo-reminder .cta-small {
+        margin-top: 12px;
+        padding: 10px 20px;
+        background: var(--rose-gold);
+        color: white;
+        border: none;
+        border-radius: 14px;
+        font-weight: 600;
+        cursor: pointer;
+        font-size: 13px;
+      }
+
+      .adherence-ring {
+        width: 120px;
+        height: 120px;
+        margin: 0 auto 16px;
+        position: relative;
+      }
+
+      .adherence-ring svg {
+        transform: rotate(-90deg);
+      }
+
+      .adherence-ring .track {
+        fill: none;
+        stroke: var(--blush);
+        stroke-width: 12;
+      }
+
+      .adherence-ring .progress {
+        fill: none;
+        stroke: var(--rose-gold);
+        stroke-width: 12;
+        stroke-linecap: round;
+        transition: stroke-dashoffset 0.5s ease;
+      }
+
+      .adherence-ring .value {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        font-size: 28px;
+        font-weight: 700;
+        color: var(--rose-gold-dark);
+      }
+
+      .streak {
+        display: flex;
+        justify-content: center;
+        gap: 6px;
+        margin-bottom: 16px;
+      }
+
+      .streak-day {
+        width: 28px;
+        height: 28px;
+        border-radius: 50%;
+        background: var(--cream);
+        border: 1px solid var(--blush);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 10px;
+        color: var(--muted);
+      }
+
+      .streak-day.active {
+        background: var(--rose-gold);
+        border-color: var(--rose-gold);
+        color: white;
+      }
+
+      .streak-day.today {
+        border: 2px solid var(--rose-gold-dark);
+      }
+
+      .photo-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 8px;
+        margin: 12px 0;
+      }
+
+      .photo-item {
+        aspect-ratio: 1;
+        border-radius: 12px;
+        background: linear-gradient(135deg, var(--blush) 0%, var(--cream) 100%);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        font-size: 20px;
+        cursor: pointer;
+        border: 1px solid rgba(180, 140, 110, 0.15);
+        transition: all 0.2s ease;
+      }
+
+      .photo-item:hover {
+        transform: scale(1.02);
+        box-shadow: 0 4px 12px rgba(93, 74, 61, 0.15);
+      }
+
+      .photo-item.selected {
+        border: 3px solid var(--rose-gold);
+      }
+
+      .photo-item .date {
+        font-size: 9px;
+        color: var(--muted);
+        margin-top: 4px;
+      }
+
+      .compare-view {
+        display: none;
+        gap: 12px;
+        margin-top: 16px;
+      }
+
+      .compare-view.active {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .compare-photo {
+        aspect-ratio: 3/4;
+        border-radius: 16px;
+        background: linear-gradient(135deg, var(--blush) 0%, var(--cream) 100%);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        font-size: 32px;
+        border: 1px solid rgba(180, 140, 110, 0.15);
+      }
+
+      .compare-photo .label {
+        font-size: 11px;
+        color: var(--muted);
+        margin-top: 8px;
+      }
+
+      .cta {
+        width: 100%;
+        border: none;
+        background: linear-gradient(135deg, var(--rose-gold) 0%, var(--rose-gold-dark) 100%);
+        color: #fff;
+        padding: 14px 16px;
+        border-radius: 18px;
+        font-weight: 600;
+        cursor: pointer;
+        box-shadow: 0 10px 20px rgba(212, 165, 116, 0.3);
+        margin-top: 6px;
+        transition: all 0.2s ease;
+      }
+
+      .cta:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 14px 28px rgba(212, 165, 116, 0.4);
+      }
+
+      .cta-outline {
+        background: transparent;
+        border: 2px solid var(--rose-gold);
+        color: var(--rose-gold-dark);
+        box-shadow: none;
+      }
+
+      .nav {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        background: #fff;
+        border-top: 1px solid rgba(180, 140, 110, 0.1);
+        display: flex;
+        justify-content: space-around;
+        padding: 10px 8px 16px;
+      }
+
+      .nav button {
+        background: none;
+        border: none;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 4px;
+        font-size: 11px;
+        color: var(--muted);
+        cursor: pointer;
+        transition: all 0.2s ease;
+      }
+
+      .nav button.active {
+        color: var(--rose-gold-dark);
+        font-weight: 600;
+      }
+
+      .nav span {
+        font-size: 18px;
+      }
+
+      .insight-card {
+        background: linear-gradient(135deg, #fff 0%, var(--blush) 100%);
+        border-left: 4px solid var(--rose-gold);
+      }
+
+      .density-chart {
+        display: flex;
+        align-items: flex-end;
+        justify-content: space-between;
+        height: 100px;
+        padding: 12px 0;
+        gap: 8px;
+      }
+
+      .density-bar {
+        flex: 1;
+        background: linear-gradient(to top, var(--rose-gold) 0%, var(--rose-gold-light) 100%);
+        border-radius: 6px 6px 0 0;
+        transition: height 0.3s ease;
+      }
+
+      .density-labels {
+        display: flex;
+        justify-content: space-between;
+        font-size: 10px;
+        color: var(--muted);
+        margin-top: 4px;
+      }
+
+      .metric-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 10px;
+        margin-top: 12px;
+      }
+
+      .metric {
+        background: var(--cream);
+        padding: 14px;
+        border-radius: 14px;
+        text-align: center;
+        border: 1px solid rgba(180, 140, 110, 0.1);
+      }
+
+      .metric .value {
+        font-size: 24px;
+        font-weight: 700;
+        color: var(--rose-gold-dark);
+      }
+
+      .metric .label {
+        font-size: 11px;
+        color: var(--muted);
+        margin-top: 2px;
+      }
+
+      .metric.positive .value {
+        color: var(--success);
+      }
+
+      .badge {
+        background: rgba(212, 165, 116, 0.2);
+        color: var(--rose-gold-dark);
+        padding: 4px 10px;
+        border-radius: 999px;
+        font-size: 11px;
+        font-weight: 600;
+        display: inline-block;
+        margin-right: 6px;
+      }
+
+      .tip-list {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+        margin-top: 10px;
+      }
+
+      .tip {
+        display: flex;
+        gap: 10px;
+        align-items: flex-start;
+        font-size: 13px;
+        color: var(--muted);
+      }
+
+      .tip-icon {
+        flex-shrink: 0;
+      }
+
+      /* Business Report Styles */
+      .report {
+        width: 100%;
+        background: #ffffff;
+        border-radius: 28px;
+        padding: 34px 30px 40px;
+        box-shadow: var(--shadow);
+        border: 1px solid rgba(180, 140, 110, 0.1);
+        display: flex;
+        flex-direction: column;
+        gap: 24px;
+      }
+
+      .report-header {
+        background: linear-gradient(135deg, var(--blush) 0%, #fff 100%);
+        border-radius: 22px;
+        padding: 22px 24px;
+        border: 1px solid rgba(212, 165, 116, 0.2);
+      }
+
+      .report-header h2 {
+        font-size: 24px;
+        letter-spacing: 0.4px;
+        margin-bottom: 8px;
+        background: linear-gradient(135deg, var(--rose-gold) 0%, var(--warm-brown) 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+      }
+
+      .report-header p {
+        font-size: 14px;
+        color: var(--muted);
+        max-width: 680px;
+      }
+
+      .report-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 16px;
+      }
+
+      .report-card {
+        background: #fffdfb;
+        border-radius: 20px;
+        padding: 18px 18px 20px;
+        border: 1px solid rgba(180, 140, 110, 0.1);
+        box-shadow: 0 12px 28px rgba(93, 74, 61, 0.06);
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+      }
+
+      .report-card h3 {
+        font-size: 16px;
+        color: var(--warm-brown-dark);
+      }
+
+      .report-card p {
+        font-size: 13px;
+        color: var(--muted);
+        line-height: 1.5;
+      }
+
+      .pill-row {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+      }
+
+      .pill-tag {
+        background: var(--blush);
+        color: var(--warm-brown-dark);
+        padding: 6px 10px;
+        border-radius: 999px;
+        font-size: 11px;
+        font-weight: 600;
+      }
+
+      .icon-list {
+        display: grid;
+        gap: 10px;
+        font-size: 13px;
+        color: var(--muted);
+      }
+
+      .icon-list span {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+
+      .market-stat {
+        background: linear-gradient(135deg, var(--rose-gold-light) 0%, var(--rose-gold) 100%);
+        border-radius: 16px;
+        padding: 16px;
+        text-align: center;
+        color: white;
+      }
+
+      .market-stat .value {
+        font-size: 32px;
+        font-weight: 700;
+      }
+
+      .market-stat .label {
+        font-size: 12px;
+        opacity: 0.9;
+      }
+
+      .competitor {
+        display: grid;
+        gap: 10px;
+        font-size: 13px;
+        color: var(--muted);
+      }
+
+      .competitor div {
+        background: var(--cream);
+        border-radius: 14px;
+        padding: 10px 12px;
+        border: 1px solid rgba(180, 140, 110, 0.1);
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+
+      .competitor .status {
+        padding: 0;
+        font-size: 16px;
+      }
+
+      .highlight {
+        background: var(--rose-gold);
+        color: #fff;
+        border-radius: 16px;
+        padding: 12px 14px;
+        font-size: 13px;
+        font-weight: 600;
+      }
+
+      .costs {
+        display: grid;
+        gap: 8px;
+        font-size: 13px;
+        color: var(--muted);
+      }
+
+      .costs div {
+        display: flex;
+        justify-content: space-between;
+      }
+
+      .community-stat {
+        background: var(--mint);
+        border-radius: 14px;
+        padding: 12px;
+        text-align: center;
+      }
+
+      .community-stat .value {
+        font-size: 22px;
+        font-weight: 700;
+        color: var(--success);
+      }
+
+      .community-stat .label {
+        font-size: 11px;
+        color: var(--muted);
+      }
+    </style>
+  </head>
+  <body>
+    <div class="page">
+      <div class="phone">
+        <div class="status">
+          <div>9:41</div>
+          <div>CrownCare Premium · $7.99/mo</div>
+        </div>
+        <div class="header">
+          <div class="brand">
+            <h1>👑 CrownCare</h1>
+            <p>Your hair regrowth journey companion</p>
+          </div>
+          <div class="chip">Day 47</div>
+        </div>
+
+        <main class="content">
+          <!-- Dashboard Screen -->
+          <section class="screen active" id="screen-dashboard">
+            <div class="card photo-reminder">
+              <div class="days" id="photo-countdown">3</div>
+              <div class="label">days until next photo</div>
+              <button class="cta-small" id="take-photo-btn">📸 Take Photo Now</button>
+            </div>
+
+            <div class="card">
+              <div class="row">
+                <h3>Today's Treatments</h3>
+                <span class="pill" id="treatment-status">2 of 4</span>
+              </div>
+              <div class="treatment-list" id="treatment-list">
+                <!-- Populated by JS -->
+              </div>
+            </div>
+
+            <div class="card">
+              <h3>Quick Stats</h3>
+              <div class="metric-grid">
+                <div class="metric">
+                  <div class="value" id="streak-days">12</div>
+                  <div class="label">Day streak 🔥</div>
+                </div>
+                <div class="metric positive">
+                  <div class="value">+8%</div>
+                  <div class="label">Density trend</div>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <!-- Progress Photos Screen -->
+          <section class="screen" id="screen-photos">
+            <div class="card">
+              <div class="row">
+                <h3>Progress Timeline</h3>
+                <span class="pill pill-success">6 photos</span>
+              </div>
+              <p>Tap two photos to compare side-by-side</p>
+              <div class="photo-grid" id="photo-grid">
+                <!-- Populated by JS -->
+              </div>
+              <button class="cta cta-outline" id="compare-btn">Compare Selected</button>
+            </div>
+
+            <div class="compare-view" id="compare-view">
+              <div class="compare-photo" id="compare-left">
+                <span>📷</span>
+                <span class="label">Week 1</span>
+              </div>
+              <div class="compare-photo" id="compare-right">
+                <span>📷</span>
+                <span class="label">Week 6</span>
+              </div>
+            </div>
+
+            <div class="card">
+              <h3>Photo Tips</h3>
+              <div class="tip-list">
+                <div class="tip">
+                  <span class="tip-icon">💡</span>
+                  <span>Use natural lighting near a window</span>
+                </div>
+                <div class="tip">
+                  <span class="tip-icon">📐</span>
+                  <span>Same angle every time (use guide overlay)</span>
+                </div>
+                <div class="tip">
+                  <span class="tip-icon">📅</span>
+                  <span>Weekly photos show best progress</span>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <!-- Treatment Log Screen -->
+          <section class="screen" id="screen-log">
+            <div class="card" style="text-align: center;">
+              <h3>Weekly Adherence</h3>
+              <div class="adherence-ring">
+                <svg width="120" height="120" viewBox="0 0 120 120">
+                  <circle class="track" cx="60" cy="60" r="50"></circle>
+                  <circle class="progress" cx="60" cy="60" r="50" 
+                    stroke-dasharray="314" 
+                    stroke-dashoffset="47" 
+                    id="adherence-progress"></circle>
+                </svg>
+                <div class="value" id="adherence-value">85%</div>
+              </div>
+              <p>Great job! You're on track for visible results.</p>
+            </div>
+
+            <div class="card">
+              <h3>This Week</h3>
+              <div class="streak" id="week-streak">
+                <!-- Populated by JS -->
+              </div>
+            </div>
+
+            <div class="card">
+              <h3>Treatment Schedule</h3>
+              <div class="treatment-list" id="all-treatments">
+                <!-- Populated by JS -->
+              </div>
+              <button class="cta" id="log-treatment">+ Log Treatment</button>
+            </div>
+
+            <div class="card insight-card">
+              <h3>💡 Insight</h3>
+              <p>Your adherence is highest on weekday mornings. Consider setting a weekend reminder!</p>
+            </div>
+          </section>
+
+          <!-- AI Insights Screen -->
+          <section class="screen" id="screen-insights">
+            <div class="card">
+              <h3>AI Density Analysis</h3>
+              <p>Based on your progress photos</p>
+              <div class="density-chart" id="density-chart">
+                <!-- Populated by JS -->
+              </div>
+              <div class="density-labels">
+                <span>Week 1</span>
+                <span>Week 2</span>
+                <span>Week 3</span>
+                <span>Week 4</span>
+                <span>Week 5</span>
+                <span>Week 6</span>
+              </div>
+            </div>
+
+            <div class="card">
+              <h3>Key Metrics</h3>
+              <div class="metric-grid">
+                <div class="metric positive">
+                  <div class="value">+12%</div>
+                  <div class="label">Hair density</div>
+                </div>
+                <div class="metric">
+                  <div class="value">-23%</div>
+                  <div class="label">Visible scalp</div>
+                </div>
+                <div class="metric">
+                  <div class="value">85%</div>
+                  <div class="label">Adherence</div>
+                </div>
+                <div class="metric positive">
+                  <div class="value">+18</div>
+                  <div class="label">New hairs/cm²</div>
+                </div>
+              </div>
+            </div>
+
+            <div class="card insight-card">
+              <h3>✨ AI Analysis</h3>
+              <p><span class="badge">Crown</span>Showing most improvement in crown area (+15%)</p>
+              <p style="margin-top: 8px;"><span class="badge">Timeline</span>On track to see significant results by week 12</p>
+              <p style="margin-top: 8px;"><span class="badge">Pattern</span>Your Ludwig pattern responding well to treatment</p>
+            </div>
+
+            <div class="card">
+              <h3>Personalized Tips</h3>
+              <div class="tip-list">
+                <div class="tip">
+                  <span class="tip-icon">🥗</span>
+                  <span>Add iron-rich foods — your pattern suggests possible deficiency</span>
+                </div>
+                <div class="tip">
+                  <span class="tip-icon">💆‍♀️</span>
+                  <span>Scalp massage 2x daily can boost minoxidil absorption by 40%</span>
+                </div>
+                <div class="tip">
+                  <span class="tip-icon">😴</span>
+                  <span>Sleep affects hair growth — aim for 7+ hours</span>
+                </div>
+              </div>
+            </div>
+          </section>
+        </main>
+
+        <nav class="nav">
+          <button data-screen="dashboard" class="active">
+            <span>🏠</span>
+            Dashboard
+          </button>
+          <button data-screen="photos">
+            <span>📸</span>
+            Photos
+          </button>
+          <button data-screen="log">
+            <span>📋</span>
+            Log
+          </button>
+          <button data-screen="insights">
+            <span>✨</span>
+            Insights
+          </button>
+        </nav>
+      </div>
+
+      <!-- Business/Investor Report -->
+      <section class="report" aria-labelledby="report-title">
+        <header class="report-header">
+          <h2 id="report-title">CrownCare Investor Report</h2>
+          <p>
+            The first female-focused hair loss tracking app. Women represent 71% of the $2B hair loss market
+            yet ZERO apps address female-specific patterns (Ludwig, Christmas tree). This is the blue ocean.
+          </p>
+        </header>
+
+        <div class="report-grid">
+          <article class="report-card">
+            <h3>Market Opportunity</h3>
+            <div class="market-stat">
+              <div class="value">$2B</div>
+              <div class="label">Hair loss market (women = 71%)</div>
+            </div>
+            <div style="margin-top: 12px;">
+              <div class="community-stat">
+                <div class="value">174K</div>
+                <div class="label">r/FemaleHairLoss members</div>
+              </div>
+            </div>
+            <p style="margin-top: 10px;">40% of women experience hair loss by age 50. Growing market driven by awareness + earlier treatment seeking.</p>
+          </article>
+
+          <article class="report-card">
+            <h3>The Problem</h3>
+            <div class="icon-list">
+              <span>❌ All hair loss apps target male patterns (Norwood)</span>
+              <span>❌ Female patterns (Ludwig, diffuse) ignored</span>
+              <span>❌ No tracking for women's specific treatments</span>
+              <span>❌ Photos hard to compare without tools</span>
+              <span>❌ Treatment adherence drops without accountability</span>
+            </div>
+          </article>
+
+          <article class="report-card">
+            <h3>Zero Competition</h3>
+            <div class="competitor">
+              <div><span class="status">🚹</span> Hims/Keeps — Male only, telehealth</div>
+              <div><span class="status">🚹</span> Nutrafol app — Supplement sales, basic</div>
+              <div><span class="status">🚹</span> Hair loss apps — All Norwood-focused</div>
+            </div>
+            <p class="highlight" style="margin-top: 12px;">🎯 ZERO female-specific hair loss apps exist</p>
+          </article>
+
+          <article class="report-card">
+            <h3>Core Features</h3>
+            <div class="icon-list">
+              <span>📸 Progress photos with AI density analysis</span>
+              <span>📊 Side-by-side comparison timeline</span>
+              <span>💊 Treatment reminders & adherence tracking</span>
+              <span>🧠 Ludwig/Christmas tree pattern recognition</span>
+              <span>📈 Personalized insights & predictions</span>
+              <span>👩‍⚕️ Doctor-ready progress reports</span>
+            </div>
+          </article>
+
+          <article class="report-card">
+            <h3>Business Model</h3>
+            <div class="costs">
+              <div><span>💰 Price</span><strong>$7.99/mo</strong></div>
+              <div><span>📊 Gross Margin</span><strong>63-80%</strong></div>
+              <div><span>🎯 Target LTV</span><strong>$150+</strong></div>
+              <div><span>💵 CAC Target</span><strong>&lt;$30</strong></div>
+            </div>
+            <div class="pill-row" style="margin-top: 12px;">
+              <span class="pill-tag">Free: Basic tracking</span>
+              <span class="pill-tag">Premium: AI + Compare</span>
+            </div>
+          </article>
+
+          <article class="report-card">
+            <h3>Operational Costs (per 1K users/mo)</h3>
+            <div class="costs">
+              <div><span>☁️ Hosting/Storage</span><strong>$80</strong></div>
+              <div><span>🤖 AI Analysis API</span><strong>$150</strong></div>
+              <div><span>📱 Push Notifications</span><strong>$20</strong></div>
+              <div><span>💾 Photo Storage</span><strong>$50</strong></div>
+              <div style="border-top: 1px solid var(--blush); padding-top: 8px; margin-top: 8px;">
+                <span>Total/1K users</span><strong>~$300/mo</strong>
+              </div>
+            </div>
+          </article>
+
+          <article class="report-card">
+            <h3>Why Now</h3>
+            <div class="icon-list">
+              <span>📱 AI vision tech finally good enough for hair analysis</span>
+              <span>🗣️ Destigmatization of women's hair loss (influencers sharing)</span>
+              <span>💊 New treatments (low-dose minoxidil, spironolactone) need tracking</span>
+              <span>👩 Women seeking solutions 5-10 years earlier than before</span>
+            </div>
+          </article>
+
+          <article class="report-card">
+            <h3>Go-to-Market</h3>
+            <div class="icon-list">
+              <span>🎯 Reddit: r/FemaleHairLoss (174K), r/HairLoss</span>
+              <span>📸 Instagram/TikTok hair loss journeys</span>
+              <span>👩‍⚕️ Dermatologist partnerships</span>
+              <span>🏥 Women's health clinic referrals</span>
+              <span>🔍 SEO: "female hair loss tracker"</span>
+            </div>
+          </article>
+        </div>
+      </section>
+    </div>
+
+    <script>
+      const storageKey = "crowncareMockupState";
+      
+      const treatments = [
+        { id: 1, name: "Minoxidil 2%", time: "Morning", icon: "💧" },
+        { id: 2, name: "Biotin Supplement", time: "With breakfast", icon: "💊" },
+        { id: 3, name: "Scalp Massage", time: "Evening", icon: "💆‍♀️" },
+        { id: 4, name: "Minoxidil 2%", time: "Before bed", icon: "💧" },
+      ];
+
+      const defaultState = {
+        completedTreatments: [1, 2],
+        photoCountdown: 3,
+        streakDays: 12,
+        selectedPhotos: [],
+        weekDays: [true, true, true, true, true, false, false], // M-F done, S-S pending
+        adherence: 85,
+        photos: [
+          { week: 1, date: "Jan 1" },
+          { week: 2, date: "Jan 8" },
+          { week: 3, date: "Jan 15" },
+          { week: 4, date: "Jan 22" },
+          { week: 5, date: "Jan 29" },
+          { week: 6, date: "Feb 5" },
+        ],
+        densityData: [45, 48, 52, 55, 58, 62], // Percentage values
+      };
+
+      const loadState = () => {
+        try {
+          const saved = JSON.parse(localStorage.getItem(storageKey));
+          return saved ? { ...defaultState, ...saved } : { ...defaultState };
+        } catch {
+          return { ...defaultState };
+        }
+      };
+
+      const saveState = (state) => {
+        localStorage.setItem(storageKey, JSON.stringify(state));
+      };
+
+      let state = loadState();
+
+      // Render treatments
+      const renderTreatments = (containerId, clickable = true) => {
+        const container = document.getElementById(containerId);
+        container.innerHTML = "";
+        
+        treatments.forEach((t) => {
+          const done = state.completedTreatments.includes(t.id);
+          const item = document.createElement("div");
+          item.className = `treatment-item ${done ? "done" : ""}`;
+          item.innerHTML = `
+            <div class="info">
+              <div class="icon">${t.icon}</div>
+              <div>
+                <div class="name">${t.name}</div>
+                <div class="time">${t.time}</div>
+              </div>
+            </div>
+            <div class="check">${done ? "✓" : ""}</div>
+          `;
+          
+          if (clickable) {
+            item.addEventListener("click", () => {
+              if (done) {
+                state.completedTreatments = state.completedTreatments.filter(id => id !== t.id);
+              } else {
+                state.completedTreatments.push(t.id);
+              }
+              renderTreatments("treatment-list");
+              renderTreatments("all-treatments");
+              updateStatus();
+              updateAdherence();
+              saveState(state);
+            });
+          }
+          
+          container.appendChild(item);
+        });
+      };
+
+      // Update treatment status
+      const updateStatus = () => {
+        const done = state.completedTreatments.length;
+        const total = treatments.length;
+        document.getElementById("treatment-status").textContent = `${done} of ${total}`;
+      };
+
+      // Render photo grid
+      const renderPhotos = () => {
+        const grid = document.getElementById("photo-grid");
+        grid.innerHTML = "";
+        
+        state.photos.forEach((photo, index) => {
+          const item = document.createElement("div");
+          item.className = `photo-item ${state.selectedPhotos.includes(index) ? "selected" : ""}`;
+          item.innerHTML = `
+            <span>📷</span>
+            <span class="date">Week ${photo.week}</span>
+          `;
+          
+          item.addEventListener("click", () => {
+            if (state.selectedPhotos.includes(index)) {
+              state.selectedPhotos = state.selectedPhotos.filter(i => i !== index);
+            } else if (state.selectedPhotos.length < 2) {
+              state.selectedPhotos.push(index);
+            } else {
+              state.selectedPhotos = [index];
+            }
+            renderPhotos();
+            saveState(state);
+          });
+          
+          grid.appendChild(item);
+        });
+      };
+
+      // Compare photos
+      document.getElementById("compare-btn").addEventListener("click", () => {
+        const compareView = document.getElementById("compare-view");
+        if (state.selectedPhotos.length === 2) {
+          compareView.classList.add("active");
+          const [left, right] = state.selectedPhotos.sort((a, b) => a - b);
+          document.getElementById("compare-left").querySelector(".label").textContent = 
+            `Week ${state.photos[left].week}`;
+          document.getElementById("compare-right").querySelector(".label").textContent = 
+            `Week ${state.photos[right].week}`;
+        } else {
+          alert("Please select 2 photos to compare");
+        }
+      });
+
+      // Render week streak
+      const renderWeekStreak = () => {
+        const container = document.getElementById("week-streak");
+        container.innerHTML = "";
+        const days = ["M", "T", "W", "T", "F", "S", "S"];
+        const today = new Date().getDay();
+        const todayIndex = today === 0 ? 6 : today - 1; // Convert to M=0 index
+        
+        days.forEach((day, index) => {
+          const el = document.createElement("div");
+          el.className = `streak-day ${state.weekDays[index] ? "active" : ""} ${index === todayIndex ? "today" : ""}`;
+          el.textContent = day;
+          el.addEventListener("click", () => {
+            state.weekDays[index] = !state.weekDays[index];
+            renderWeekStreak();
+            updateAdherence();
+            saveState(state);
+          });
+          container.appendChild(el);
+        });
+      };
+
+      // Update adherence ring
+      const updateAdherence = () => {
+        const completedDays = state.weekDays.filter(d => d).length;
+        const adherence = Math.round((completedDays / 7) * 100);
+        state.adherence = adherence;
+        
+        const circle = document.getElementById("adherence-progress");
+        const circumference = 314; // 2 * PI * 50
+        const offset = circumference - (adherence / 100) * circumference;
+        circle.style.strokeDashoffset = offset;
+        
+        document.getElementById("adherence-value").textContent = `${adherence}%`;
+      };
+
+      // Render density chart
+      const renderDensityChart = () => {
+        const chart = document.getElementById("density-chart");
+        chart.innerHTML = "";
+        
+        const max = Math.max(...state.densityData);
+        state.densityData.forEach((value) => {
+          const bar = document.createElement("div");
+          bar.className = "density-bar";
+          bar.style.height = `${(value / max) * 100}%`;
+          chart.appendChild(bar);
+        });
+      };
+
+      // Photo countdown
+      document.getElementById("take-photo-btn").addEventListener("click", () => {
+        state.photoCountdown = 7;
+        document.getElementById("photo-countdown").textContent = state.photoCountdown;
+        state.photos.push({
+          week: state.photos.length + 1,
+          date: new Date().toLocaleDateString("en-US", { month: "short", day: "numeric" })
+        });
+        renderPhotos();
+        saveState(state);
+        alert("📸 Photo saved! Great job tracking your progress.");
+      });
+
+      // Log treatment button
+      document.getElementById("log-treatment").addEventListener("click", () => {
+        const remaining = treatments.filter(t => !state.completedTreatments.includes(t.id));
+        if (remaining.length > 0) {
+          state.completedTreatments.push(remaining[0].id);
+          renderTreatments("treatment-list");
+          renderTreatments("all-treatments");
+          updateStatus();
+          saveState(state);
+        } else {
+          alert("🎉 All treatments logged for today!");
+        }
+      });
+
+      // Navigation
+      document.querySelectorAll(".nav button").forEach((button) => {
+        button.addEventListener("click", () => {
+          document.querySelectorAll(".nav button").forEach((btn) => btn.classList.remove("active"));
+          button.classList.add("active");
+          const target = button.dataset.screen;
+          document.querySelectorAll(".screen").forEach((screen) => {
+            screen.classList.toggle("active", screen.id === `screen-${target}`);
+          });
+        });
+      });
+
+      // Initialize
+      const initialize = () => {
+        renderTreatments("treatment-list");
+        renderTreatments("all-treatments");
+        updateStatus();
+        renderPhotos();
+        renderWeekStreak();
+        updateAdherence();
+        renderDensityChart();
+        document.getElementById("photo-countdown").textContent = state.photoCountdown;
+        document.getElementById("streak-days").textContent = state.streakDays;
+      };
+
+      initialize();
+    </script>
+  </body>
+</html>

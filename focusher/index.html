@@ -1,0 +1,1346 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>FocusHer — Women's ADHD + Cycle Companion</title>
+    <style>
+      :root {
+        --cream: #f8f5ff;
+        --purple: #8b5cf6;
+        --purple-dark: #6d28d9;
+        --purple-light: #ede9fe;
+        --teal: #14b8a6;
+        --teal-dark: #0d9488;
+        --teal-light: #ccfbf1;
+        --ink: #1e1b4b;
+        --muted: #64748b;
+        --rose: #fda4af;
+        --rose-light: #ffe4e6;
+        --amber: #fbbf24;
+        --amber-light: #fef3c7;
+        --shadow: 0 18px 35px rgba(139, 92, 246, 0.12);
+      }
+
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      body {
+        font-family: "Avenir Next", "Segoe UI", sans-serif;
+        background: radial-gradient(circle at top, #ffffff 0%, #f5f3ff 45%, #ede9fe 100%);
+        color: var(--ink);
+        min-height: 100vh;
+        padding: 28px 16px 60px;
+      }
+
+      .page {
+        width: min(1100px, 100%);
+        margin: 0 auto;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 36px;
+      }
+
+      .phone {
+        width: 100%;
+        max-width: 400px;
+        background: #ffffff;
+        border-radius: 32px;
+        box-shadow: var(--shadow);
+        overflow: hidden;
+        border: 1px solid rgba(139, 92, 246, 0.1);
+        position: relative;
+      }
+
+      .status {
+        padding: 18px 22px 8px;
+        display: flex;
+        justify-content: space-between;
+        font-size: 12px;
+        color: var(--muted);
+        letter-spacing: 0.3px;
+      }
+
+      .header {
+        padding: 4px 22px 18px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 12px;
+      }
+
+      .brand h1 {
+        font-size: 22px;
+        letter-spacing: 0.6px;
+        background: linear-gradient(135deg, var(--purple) 0%, var(--teal) 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+      }
+
+      .brand p {
+        font-size: 13px;
+        color: var(--muted);
+        margin-top: 4px;
+      }
+
+      .chip {
+        background: var(--teal-light);
+        color: var(--teal-dark);
+        padding: 6px 12px;
+        border-radius: 999px;
+        font-size: 12px;
+        font-weight: 600;
+      }
+
+      .chip.warning {
+        background: var(--amber-light);
+        color: #92400e;
+      }
+
+      .chip.alert {
+        background: var(--rose-light);
+        color: #9f1239;
+      }
+
+      .content {
+        padding: 0 22px 92px;
+      }
+
+      .screen {
+        display: none;
+        animation: fadeIn 0.3s ease;
+      }
+
+      .screen.active {
+        display: block;
+      }
+
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+          transform: translateY(6px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      .card {
+        background: #fff;
+        border-radius: 22px;
+        padding: 18px;
+        box-shadow: 0 10px 20px rgba(139, 92, 246, 0.08);
+        margin-bottom: 16px;
+        border: 1px solid rgba(139, 92, 246, 0.08);
+      }
+
+      .card h3 {
+        font-size: 16px;
+        margin-bottom: 10px;
+        color: var(--ink);
+      }
+
+      .card p {
+        font-size: 13px;
+        color: var(--muted);
+        line-height: 1.5;
+      }
+
+      .row {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 12px;
+      }
+
+      .pill {
+        background: var(--purple-light);
+        color: var(--purple-dark);
+        padding: 6px 12px;
+        border-radius: 999px;
+        font-size: 12px;
+        font-weight: 600;
+      }
+
+      /* Cycle Phase Visual */
+      .cycle-ring {
+        width: 180px;
+        height: 180px;
+        border-radius: 50%;
+        background: conic-gradient(
+          var(--teal) 0deg 90deg,
+          var(--purple) 90deg 180deg,
+          var(--rose) 180deg 270deg,
+          var(--amber) 270deg 360deg
+        );
+        margin: 16px auto;
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .cycle-ring::before {
+        content: "";
+        position: absolute;
+        width: 130px;
+        height: 130px;
+        background: #fff;
+        border-radius: 50%;
+      }
+
+      .cycle-center {
+        position: relative;
+        text-align: center;
+        z-index: 1;
+      }
+
+      .cycle-center .day {
+        font-size: 28px;
+        font-weight: 700;
+        color: var(--purple-dark);
+      }
+
+      .cycle-center .phase {
+        font-size: 12px;
+        color: var(--muted);
+        margin-top: 2px;
+      }
+
+      .cycle-marker {
+        position: absolute;
+        width: 16px;
+        height: 16px;
+        background: var(--ink);
+        border: 3px solid #fff;
+        border-radius: 50%;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+        top: 8px;
+        left: 50%;
+        transform: translateX(-50%);
+        transition: all 0.3s ease;
+      }
+
+      .difficulty-bar {
+        height: 8px;
+        background: #e2e8f0;
+        border-radius: 999px;
+        overflow: hidden;
+        margin: 12px 0;
+      }
+
+      .difficulty-fill {
+        height: 100%;
+        border-radius: 999px;
+        transition: width 0.5s ease;
+      }
+
+      .difficulty-fill.low {
+        background: var(--teal);
+        width: 30%;
+      }
+
+      .difficulty-fill.medium {
+        background: var(--amber);
+        width: 60%;
+      }
+
+      .difficulty-fill.high {
+        background: var(--rose);
+        width: 85%;
+      }
+
+      .toggle {
+        display: flex;
+        gap: 8px;
+        flex-wrap: wrap;
+      }
+
+      .toggle button {
+        border: none;
+        background: #fff;
+        border: 1px solid rgba(139, 92, 246, 0.15);
+        border-radius: 16px;
+        padding: 10px 14px;
+        box-shadow: 0 4px 8px rgba(139, 92, 246, 0.08);
+        cursor: pointer;
+        font-size: 13px;
+        transition: all 0.2s ease;
+      }
+
+      .toggle button.active {
+        background: var(--purple);
+        color: #fff;
+        border-color: var(--purple);
+      }
+
+      .symptom-grid {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 10px;
+      }
+
+      .symptom-btn {
+        border: none;
+        background: #fff;
+        border: 1px solid rgba(139, 92, 246, 0.12);
+        border-radius: 14px;
+        padding: 12px;
+        box-shadow: 0 4px 8px rgba(139, 92, 246, 0.06);
+        cursor: pointer;
+        font-size: 13px;
+        transition: all 0.2s ease;
+        text-align: left;
+      }
+
+      .symptom-btn .emoji {
+        font-size: 18px;
+        display: block;
+        margin-bottom: 6px;
+      }
+
+      .symptom-btn .label {
+        font-weight: 500;
+        color: var(--ink);
+      }
+
+      .symptom-btn .score {
+        font-size: 11px;
+        color: var(--muted);
+        margin-top: 2px;
+      }
+
+      .symptom-btn.active {
+        background: var(--purple-light);
+        border-color: var(--purple);
+      }
+
+      .slider {
+        display: flex;
+        gap: 12px;
+        align-items: center;
+      }
+
+      .slider input {
+        width: 100%;
+        accent-color: var(--purple);
+      }
+
+      .cta {
+        width: 100%;
+        border: none;
+        background: linear-gradient(135deg, var(--purple) 0%, var(--teal) 100%);
+        color: #fff;
+        padding: 14px 16px;
+        border-radius: 18px;
+        font-weight: 600;
+        cursor: pointer;
+        box-shadow: 0 10px 20px rgba(139, 92, 246, 0.3);
+        margin-top: 10px;
+      }
+
+      .nav {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        background: #fff;
+        border-top: 1px solid rgba(139, 92, 246, 0.08);
+        display: flex;
+        justify-content: space-around;
+        padding: 10px 8px 16px;
+      }
+
+      .nav button {
+        background: none;
+        border: none;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 4px;
+        font-size: 11px;
+        color: var(--muted);
+        cursor: pointer;
+      }
+
+      .nav button.active {
+        color: var(--purple-dark);
+        font-weight: 600;
+      }
+
+      .nav span {
+        font-size: 18px;
+      }
+
+      .insight {
+        background: linear-gradient(135deg, #fff 0%, var(--purple-light) 100%);
+        border-left: 4px solid var(--purple);
+      }
+
+      /* Insights Chart */
+      .chart-container {
+        background: #fafafa;
+        border-radius: 16px;
+        padding: 16px;
+        margin: 12px 0;
+      }
+
+      .chart-row {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        margin-bottom: 10px;
+      }
+
+      .chart-label {
+        width: 60px;
+        font-size: 11px;
+        color: var(--muted);
+      }
+
+      .chart-bars {
+        flex: 1;
+        display: flex;
+        gap: 3px;
+        height: 24px;
+        align-items: flex-end;
+      }
+
+      .chart-bar {
+        flex: 1;
+        background: var(--purple-light);
+        border-radius: 4px 4px 0 0;
+        transition: all 0.3s ease;
+      }
+
+      .chart-bar.highlight {
+        background: var(--purple);
+      }
+
+      .chart-bar.teal {
+        background: var(--teal-light);
+      }
+
+      .chart-bar.teal.highlight {
+        background: var(--teal);
+      }
+
+      .phase-labels {
+        display: flex;
+        justify-content: space-between;
+        font-size: 10px;
+        color: var(--muted);
+        margin-top: 8px;
+        padding: 0 70px 0 70px;
+      }
+
+      /* Tips */
+      .tip-card {
+        background: linear-gradient(135deg, var(--teal-light) 0%, #fff 100%);
+        border: 1px solid rgba(20, 184, 166, 0.2);
+        border-radius: 18px;
+        padding: 16px;
+        margin-bottom: 12px;
+      }
+
+      .tip-card h4 {
+        font-size: 14px;
+        color: var(--teal-dark);
+        margin-bottom: 8px;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+
+      .tip-card p {
+        font-size: 13px;
+        color: var(--muted);
+        line-height: 1.5;
+      }
+
+      .tip-tag {
+        display: inline-block;
+        background: var(--teal);
+        color: #fff;
+        padding: 3px 8px;
+        border-radius: 999px;
+        font-size: 10px;
+        font-weight: 600;
+        margin-right: 6px;
+      }
+
+      .badge {
+        background: rgba(139, 92, 246, 0.16);
+        color: var(--purple-dark);
+        padding: 4px 10px;
+        border-radius: 999px;
+        font-size: 11px;
+        font-weight: 600;
+        display: inline-block;
+        margin-right: 6px;
+      }
+
+      .footer-note {
+        font-size: 11px;
+        color: var(--muted);
+        text-align: center;
+        margin-top: 12px;
+      }
+
+      .split {
+        display: flex;
+        gap: 12px;
+        flex-wrap: wrap;
+      }
+
+      .split .card {
+        flex: 1;
+        min-width: 150px;
+      }
+
+      /* Business Report */
+      .report {
+        width: 100%;
+        background: #ffffff;
+        border-radius: 28px;
+        padding: 34px 30px 40px;
+        box-shadow: var(--shadow);
+        border: 1px solid rgba(139, 92, 246, 0.1);
+        display: flex;
+        flex-direction: column;
+        gap: 24px;
+      }
+
+      .report-header {
+        background: linear-gradient(135deg, var(--purple-light) 0%, var(--teal-light) 100%);
+        border-radius: 22px;
+        padding: 22px 24px;
+        border: 1px solid rgba(139, 92, 246, 0.2);
+      }
+
+      .report-header h2 {
+        font-size: 24px;
+        letter-spacing: 0.4px;
+        margin-bottom: 8px;
+        background: linear-gradient(135deg, var(--purple) 0%, var(--teal) 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+      }
+
+      .report-header p {
+        font-size: 14px;
+        color: var(--muted);
+        max-width: 680px;
+      }
+
+      .report-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 16px;
+      }
+
+      .report-card {
+        background: #fffdfb;
+        border-radius: 20px;
+        padding: 18px 18px 20px;
+        border: 1px solid rgba(139, 92, 246, 0.1);
+        box-shadow: 0 12px 28px rgba(139, 92, 246, 0.08);
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+      }
+
+      .report-card h3 {
+        font-size: 16px;
+        color: var(--ink);
+      }
+
+      .report-card p {
+        font-size: 13px;
+        color: var(--muted);
+        line-height: 1.5;
+      }
+
+      .pill-row {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+      }
+
+      .pill-tag {
+        background: var(--purple-light);
+        color: var(--purple-dark);
+        padding: 6px 10px;
+        border-radius: 999px;
+        font-size: 11px;
+        font-weight: 600;
+      }
+
+      .pill-tag.teal {
+        background: var(--teal-light);
+        color: var(--teal-dark);
+      }
+
+      .icon-list {
+        display: grid;
+        gap: 10px;
+        font-size: 13px;
+        color: var(--muted);
+      }
+
+      .icon-list span {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+
+      .pricing-grid {
+        display: grid;
+        gap: 12px;
+      }
+
+      .pricing-item {
+        background: rgba(139, 92, 246, 0.08);
+        border-radius: 16px;
+        padding: 12px 14px;
+        border: 1px solid rgba(139, 92, 246, 0.15);
+        font-size: 13px;
+        color: var(--purple-dark);
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      .pricing-item strong {
+        font-size: 14px;
+      }
+
+      .competitor {
+        display: grid;
+        gap: 10px;
+        font-size: 13px;
+        color: var(--muted);
+      }
+
+      .competitor div {
+        background: #f8f5ff;
+        border-radius: 14px;
+        padding: 10px 12px;
+        border: 1px solid rgba(139, 92, 246, 0.1);
+      }
+
+      .highlight {
+        background: linear-gradient(135deg, var(--purple) 0%, var(--teal) 100%);
+        color: #fff;
+        border-radius: 16px;
+        padding: 12px 14px;
+        font-size: 13px;
+        font-weight: 600;
+      }
+
+      .costs {
+        display: grid;
+        gap: 8px;
+        font-size: 13px;
+        color: var(--muted);
+      }
+
+      .costs div {
+        display: flex;
+        justify-content: space-between;
+      }
+
+      .stat-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 10px;
+      }
+
+      .stat-box {
+        background: var(--purple-light);
+        padding: 12px;
+        border-radius: 14px;
+        text-align: center;
+      }
+
+      .stat-box strong {
+        display: block;
+        font-size: 20px;
+        color: var(--purple-dark);
+      }
+
+      .stat-box span {
+        font-size: 11px;
+        color: var(--muted);
+      }
+    </style>
+  </head>
+  <body>
+    <div class="page">
+      <div class="phone">
+        <div class="status">
+          <div>9:41</div>
+          <div>FocusHer Pro · $9.99/mo</div>
+        </div>
+        <div class="header">
+          <div class="brand">
+            <h1>FocusHer</h1>
+            <p>ADHD support that moves with your cycle</p>
+          </div>
+          <div class="chip" id="phase-chip">Day 14</div>
+        </div>
+
+        <main class="content">
+          <!-- Dashboard Screen -->
+          <section class="screen active" id="screen-dashboard">
+            <div class="card">
+              <div class="row">
+                <h3>Your Cycle Phase</h3>
+                <span class="pill" id="phase-label">Ovulation</span>
+              </div>
+              <div class="cycle-ring">
+                <div class="cycle-marker" id="cycle-marker"></div>
+                <div class="cycle-center">
+                  <div class="day" id="cycle-day">14</div>
+                  <div class="phase">of 28</div>
+                </div>
+              </div>
+              <p style="text-align: center; margin-top: 8px;">
+                <span style="color: var(--teal);">●</span> Follicular &nbsp;
+                <span style="color: var(--purple);">●</span> Ovulation &nbsp;
+                <span style="color: var(--rose);">●</span> Luteal &nbsp;
+                <span style="color: var(--amber);">●</span> Menstrual
+              </p>
+            </div>
+
+            <div class="card">
+              <div class="row">
+                <h3>Predicted ADHD Difficulty</h3>
+                <span class="chip" id="difficulty-chip">Medium</span>
+              </div>
+              <div class="difficulty-bar">
+                <div class="difficulty-fill medium" id="difficulty-fill"></div>
+              </div>
+              <p id="difficulty-text">Estrogen is peaking — your focus should be good today. Great time for complex tasks!</p>
+            </div>
+
+            <div class="split">
+              <div class="card">
+                <h3>🎯 Focus Score</h3>
+                <div style="font-size: 28px; font-weight: 700; color: var(--purple-dark);" id="focus-score">7.2</div>
+                <p>Yesterday: 6.8</p>
+              </div>
+              <div class="card">
+                <h3>⚡ Energy</h3>
+                <div style="font-size: 28px; font-weight: 700; color: var(--teal-dark);" id="energy-score">8.1</div>
+                <p>Yesterday: 7.5</p>
+              </div>
+            </div>
+          </section>
+
+          <!-- Check-in Screen -->
+          <section class="screen" id="screen-checkin">
+            <div class="card">
+              <h3>Daily Check-in</h3>
+              <p>How are you feeling right now?</p>
+              <div class="symptom-grid" style="margin-top: 12px;">
+                <button class="symptom-btn" data-symptom="focus">
+                  <span class="emoji">🎯</span>
+                  <span class="label">Focus</span>
+                  <span class="score" id="focus-level">Good</span>
+                </button>
+                <button class="symptom-btn" data-symptom="energy">
+                  <span class="emoji">⚡</span>
+                  <span class="label">Energy</span>
+                  <span class="score" id="energy-level">High</span>
+                </button>
+                <button class="symptom-btn" data-symptom="mood">
+                  <span class="emoji">💜</span>
+                  <span class="label">Mood</span>
+                  <span class="score" id="mood-level">Stable</span>
+                </button>
+                <button class="symptom-btn" data-symptom="regulation">
+                  <span class="emoji">🧘</span>
+                  <span class="label">Emotional Reg.</span>
+                  <span class="score" id="regulation-level">Moderate</span>
+                </button>
+              </div>
+            </div>
+
+            <div class="card">
+              <h3>Adjust Levels</h3>
+              <div style="margin-bottom: 14px;">
+                <label style="font-size: 13px; color: var(--muted);">Focus (1-10)</label>
+                <div class="slider">
+                  <input type="range" min="1" max="10" id="focus-range" value="7" />
+                  <strong id="focus-value">7</strong>
+                </div>
+              </div>
+              <div style="margin-bottom: 14px;">
+                <label style="font-size: 13px; color: var(--muted);">Energy (1-10)</label>
+                <div class="slider">
+                  <input type="range" min="1" max="10" id="energy-range" value="8" />
+                  <strong id="energy-value">8</strong>
+                </div>
+              </div>
+              <div style="margin-bottom: 14px;">
+                <label style="font-size: 13px; color: var(--muted);">Emotional Regulation (1-10)</label>
+                <div class="slider">
+                  <input type="range" min="1" max="10" id="regulation-range" value="6" />
+                  <strong id="regulation-value">6</strong>
+                </div>
+              </div>
+              <button class="cta" id="save-checkin">Save Check-in</button>
+            </div>
+
+            <div class="card">
+              <h3>ADHD Symptoms Today</h3>
+              <div class="toggle" id="symptom-toggles">
+                <button data-tag="racing">Racing thoughts</button>
+                <button data-tag="distracted">Distracted</button>
+                <button data-tag="foggy">Brain fog</button>
+                <button data-tag="impulsive">Impulsive</button>
+                <button data-tag="restless">Restless</button>
+                <button data-tag="overwhelmed">Overwhelmed</button>
+              </div>
+            </div>
+          </section>
+
+          <!-- Insights Screen -->
+          <section class="screen" id="screen-insights">
+            <div class="card insight">
+              <h3>🔮 AI Insight</h3>
+              <p id="ai-insight">Your focus drops 40% during days 21-28 (late luteal). Plan important tasks for days 7-14 when estrogen peaks.</p>
+            </div>
+
+            <div class="card">
+              <h3>Symptoms × Cycle</h3>
+              <p style="margin-bottom: 8px;">Your ADHD symptoms overlaid on your menstrual cycle:</p>
+              <div class="chart-container">
+                <div class="chart-row">
+                  <span class="chart-label">Focus</span>
+                  <div class="chart-bars" id="focus-chart">
+                    <!-- Generated by JS -->
+                  </div>
+                </div>
+                <div class="chart-row">
+                  <span class="chart-label">Energy</span>
+                  <div class="chart-bars" id="energy-chart">
+                    <!-- Generated by JS -->
+                  </div>
+                </div>
+                <div class="chart-row">
+                  <span class="chart-label">Regulation</span>
+                  <div class="chart-bars" id="regulation-chart">
+                    <!-- Generated by JS -->
+                  </div>
+                </div>
+                <div class="phase-labels">
+                  <span>Menstrual</span>
+                  <span>Follicular</span>
+                  <span>Ovulation</span>
+                  <span>Luteal</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="card">
+              <h3>Pattern Highlights</h3>
+              <p><span class="badge">Focus</span>Best focus on days 10-16 (mid-cycle estrogen peak)</p>
+              <p style="margin-top: 8px;"><span class="badge">Energy</span>Energy crashes 3-5 days before period starts</p>
+              <p style="margin-top: 8px;"><span class="badge">Mood</span>Emotional dysregulation spikes during PMS week</p>
+            </div>
+
+            <div class="stat-grid" style="margin-top: 16px;">
+              <div class="stat-box">
+                <strong>42%</strong>
+                <span>Focus drop in luteal</span>
+              </div>
+              <div class="stat-box">
+                <strong>Day 12</strong>
+                <span>Peak productivity</span>
+              </div>
+              <div class="stat-box">
+                <strong>6 days</strong>
+                <span>Avg. difficult stretch</span>
+              </div>
+              <div class="stat-box">
+                <strong>73%</strong>
+                <span>Cycle-symptom correlation</span>
+              </div>
+            </div>
+          </section>
+
+          <!-- Tips Screen -->
+          <section class="screen" id="screen-tips">
+            <div class="card">
+              <div class="row">
+                <h3>Phase-Adaptive Tips</h3>
+                <span class="chip" id="tips-phase-chip">Ovulation</span>
+              </div>
+              <p>Strategies optimized for your current cycle phase:</p>
+            </div>
+
+            <div id="tips-container">
+              <!-- Tips generated by JS based on phase -->
+            </div>
+
+            <div class="card">
+              <h3>Quick Actions</h3>
+              <div class="toggle" style="margin-top: 8px;">
+                <button id="pomodoro-btn">🍅 Start Pomodoro</button>
+                <button id="breathe-btn">🧘 2-min Breathe</button>
+                <button id="move-btn">🚶 Movement Break</button>
+              </div>
+              <p class="footer-note" id="action-status">Ready when you are</p>
+            </div>
+
+            <div class="card" style="background: linear-gradient(135deg, var(--purple-light) 0%, var(--teal-light) 100%);">
+              <h3>💡 Did You Know?</h3>
+              <p>Estrogen affects dopamine production — when it drops before your period, ADHD symptoms intensify. This is why the same coping strategies don't work all month!</p>
+            </div>
+          </section>
+        </main>
+
+        <nav class="nav">
+          <button data-screen="dashboard" class="active">
+            <span>📊</span>
+            Dashboard
+          </button>
+          <button data-screen="checkin">
+            <span>✏️</span>
+            Check-in
+          </button>
+          <button data-screen="insights">
+            <span>🔮</span>
+            Insights
+          </button>
+          <button data-screen="tips">
+            <span>💡</span>
+            Tips
+          </button>
+        </nav>
+      </div>
+
+      <!-- Business Report Section -->
+      <section class="report" aria-labelledby="report-title">
+        <header class="report-header">
+          <h2 id="report-title">FocusHer Business Overview</h2>
+          <p>
+            The first ADHD app that tracks symptoms alongside the menstrual cycle. Built for the 4.5M+ women in the US alone who struggle with ADHD symptoms that fluctuate monthly — and have no tool that understands why.
+          </p>
+        </header>
+
+        <div class="report-grid">
+          <article class="report-card">
+            <h3>Executive Summary</h3>
+            <p>
+              Targeting women with ADHD whose symptoms intensify during estrogen decline phases. $9.99/mo premium with 99% gross margin. Unique positioning: ADHD + cycle tracking integration that no competitor offers.
+            </p>
+            <div class="pill-row">
+              <span class="pill-tag">Target: Women with ADHD</span>
+              <span class="pill-tag">Price: $9.99/mo</span>
+              <span class="pill-tag teal">99% Gross Margin</span>
+            </div>
+          </article>
+
+          <article class="report-card">
+            <h3>The Problem</h3>
+            <p>
+              Women with ADHD experience symptom fluctuations tied to hormonal cycles — but no app tracks this connection. They're told their strategies "should work" when their brain chemistry is fundamentally different week-to-week.
+            </p>
+            <div class="icon-list">
+              <span>🧠 ADHD symptoms worsen during estrogen decline</span>
+              <span>📉 Luteal phase = dopamine drops = chaos</span>
+              <span>❓ No tools explain WHY focus varies monthly</span>
+              <span>😤 Frustration when "proven" strategies fail</span>
+            </div>
+          </article>
+
+          <article class="report-card">
+            <h3>The Science</h3>
+            <p>
+              Estrogen modulates dopamine synthesis. When estrogen drops (luteal phase, PMS), dopamine production decreases — directly intensifying ADHD symptoms.
+            </p>
+            <div class="icon-list">
+              <span>📈 Estrogen ↑ = Dopamine ↑ = Better focus</span>
+              <span>📉 Estrogen ↓ = Dopamine ↓ = ADHD spike</span>
+              <span>🔬 Peer-reviewed: Quinn & Madhoo, 2014</span>
+              <span>💊 Some women need med adjustments by phase</span>
+            </div>
+          </article>
+
+          <article class="report-card">
+            <h3>Market Opportunity</h3>
+            <p>
+              ADHD market: $15-25B globally. Women's health tech: fastest-growing segment. Intersection is massively underserved.
+            </p>
+            <div class="icon-list">
+              <span>🌎 $15-25B global ADHD market</span>
+              <span>👩 4.5M+ adult women with ADHD in US</span>
+              <span>📱 533K members on r/adhdwomen</span>
+              <span>🚀 Femtech growing 15%+ annually</span>
+            </div>
+          </article>
+
+          <article class="report-card">
+            <h3>Core Features</h3>
+            <div class="icon-list">
+              <span>📊 Dashboard with cycle phase + predicted difficulty</span>
+              <span>✏️ Daily check-in (focus, energy, emotional regulation)</span>
+              <span>🔮 AI insights: symptoms overlaid on cycle chart</span>
+              <span>💡 Phase-adaptive tips and strategies</span>
+              <span>📈 Trend analysis across multiple cycles</span>
+              <span>📄 Doctor reports with hormonal context</span>
+            </div>
+          </article>
+
+          <article class="report-card">
+            <h3>Business Model</h3>
+            <div class="pricing-grid">
+              <div class="pricing-item">
+                <strong>Free tier</strong>
+                <span>Basic tracking, 7-day history</span>
+              </div>
+              <div class="pricing-item">
+                <strong>Pro $9.99/mo</strong>
+                <span>AI insights, unlimited history, tips</span>
+              </div>
+              <div class="pricing-item">
+                <strong>Annual $79.99/yr</strong>
+                <span>33% discount, priority features</span>
+              </div>
+            </div>
+          </article>
+
+          <article class="report-card">
+            <h3>Competitive Landscape</h3>
+            <div class="competitor">
+              <div>Inflow — ADHD coaching app, no cycle integration</div>
+              <div>Clue / Flo — Period trackers, no ADHD features</div>
+              <div>Tiimo — Visual planning, not symptom-aware</div>
+            </div>
+            <p class="highlight">Our gap: ONLY app connecting ADHD + menstrual cycle</p>
+          </article>
+
+          <article class="report-card">
+            <h3>Unit Economics (per 1K users/mo)</h3>
+            <div class="costs">
+              <div><span>Revenue (1K × $9.99)</span><strong>$9,990</strong></div>
+              <div><span>Hosting + DB</span><strong>$100</strong></div>
+              <div><span>AI API (insights)</span><strong>$50</strong></div>
+              <div><span>Total COGS</span><strong>~$150</strong></div>
+              <div><span>Gross Margin</span><strong style="color: var(--teal-dark);">99%</strong></div>
+            </div>
+          </article>
+
+          <article class="report-card">
+            <h3>Go-to-Market</h3>
+            <div class="icon-list">
+              <span>📱 Reddit: r/adhdwomen (533K), r/TwoXADHD</span>
+              <span>🎙️ ADHD podcasts (huge female audience)</span>
+              <span>👩‍⚕️ Partner with ADHD-specialist psychiatrists</span>
+              <span>📝 SEO: "ADHD worse before period" searches</span>
+              <span>🤝 Influencer collabs (ADHD TikTok/IG)</span>
+            </div>
+          </article>
+
+          <article class="report-card">
+            <h3>Why This Will Work</h3>
+            <div class="icon-list">
+              <span>🎯 Clear pain point with scientific backing</span>
+              <span>🚫 Zero direct competitors (ADHD + cycle)</span>
+              <span>💬 Passionate community already discussing it</span>
+              <span>💰 High LTV (chronic condition = long retention)</span>
+              <span>📈 Viral potential ("finally someone gets it!")</span>
+            </div>
+          </article>
+        </div>
+      </section>
+    </div>
+
+    <script>
+      const storageKey = "focusherMockupState";
+      
+      const phases = [
+        { name: "Menstrual", days: [1, 5], difficulty: "medium", chip: "warning" },
+        { name: "Follicular", days: [6, 13], difficulty: "low", chip: "" },
+        { name: "Ovulation", days: [14, 16], difficulty: "low", chip: "" },
+        { name: "Luteal", days: [17, 28], difficulty: "high", chip: "alert" }
+      ];
+
+      const tips = {
+        Menstrual: [
+          { icon: "🛋️", title: "Rest Mode", text: "Your brain needs extra recovery. Postpone big decisions if possible." },
+          { icon: "📝", title: "Brain Dump", text: "Write everything down — working memory is lower. Use lists liberally." },
+          { icon: "🍫", title: "Gentle Nutrition", text: "Iron-rich foods and dark chocolate can help. Stay hydrated." }
+        ],
+        Follicular: [
+          { icon: "🚀", title: "Launch Projects", text: "Rising estrogen = rising dopamine. Perfect time to start new things!" },
+          { icon: "🧠", title: "Deep Work Window", text: "Your focus is improving daily. Schedule complex tasks now." },
+          { icon: "💪", title: "Build Habits", text: "New routines stick better when your brain is in learning mode." }
+        ],
+        Ovulation: [
+          { icon: "🎯", title: "Peak Performance", text: "Estrogen is highest — this is your cognitive sweet spot!" },
+          { icon: "👥", title: "Social Tasks", text: "Communication and collaboration feel easier. Schedule meetings." },
+          { icon: "📊", title: "Tackle Complexity", text: "Working memory is at its best. Handle multi-step projects now." }
+        ],
+        Luteal: [
+          { icon: "⚠️", title: "Expect Difficulty", text: "Estrogen is dropping — ADHD symptoms will intensify. Be kind to yourself." },
+          { icon: "✂️", title: "Simplify Everything", text: "Break tasks into tiny steps. Lower the bar significantly." },
+          { icon: "🧘", title: "Extra Support", text: "Body doubling, accountability partners, and external structure help most now." }
+        ]
+      };
+
+      const defaultState = {
+        cycleDay: 14,
+        focus: 7,
+        energy: 8,
+        regulation: 6,
+        symptoms: [],
+        lastCheckin: null
+      };
+
+      const loadState = () => {
+        try {
+          const saved = JSON.parse(localStorage.getItem(storageKey));
+          return saved ? { ...defaultState, ...saved } : { ...defaultState };
+        } catch (e) {
+          return { ...defaultState };
+        }
+      };
+
+      const saveState = (state) => {
+        localStorage.setItem(storageKey, JSON.stringify(state));
+      };
+
+      let state = loadState();
+
+      const getPhase = (day) => {
+        for (const phase of phases) {
+          if (day >= phase.days[0] && day <= phase.days[1]) {
+            return phase;
+          }
+        }
+        return phases[3]; // Default to luteal
+      };
+
+      const getDifficultyText = (difficulty) => {
+        const texts = {
+          low: "Estrogen is peaking — your focus should be good today. Great time for complex tasks!",
+          medium: "Hormones are shifting. Some brain fog is normal. Use lists and take breaks.",
+          high: "Estrogen is dropping — expect ADHD symptoms to spike. Be extra gentle with yourself today."
+        };
+        return texts[difficulty];
+      };
+
+      const updateDashboard = () => {
+        const phase = getPhase(state.cycleDay);
+        
+        // Update cycle display
+        document.getElementById("cycle-day").textContent = state.cycleDay;
+        document.getElementById("phase-label").textContent = phase.name;
+        document.getElementById("phase-chip").textContent = `Day ${state.cycleDay}`;
+        document.getElementById("phase-chip").className = `chip ${phase.chip}`;
+        
+        // Update difficulty
+        const difficultyChip = document.getElementById("difficulty-chip");
+        const difficultyFill = document.getElementById("difficulty-fill");
+        const difficultyText = document.getElementById("difficulty-text");
+        
+        difficultyChip.textContent = phase.difficulty.charAt(0).toUpperCase() + phase.difficulty.slice(1);
+        difficultyChip.className = `chip ${phase.chip}`;
+        difficultyFill.className = `difficulty-fill ${phase.difficulty}`;
+        difficultyText.textContent = getDifficultyText(phase.difficulty);
+        
+        // Update cycle marker position
+        const marker = document.getElementById("cycle-marker");
+        const angle = (state.cycleDay / 28) * 360 - 90; // Start from top
+        const radius = 82; // Half of ring size minus half marker
+        const x = Math.cos(angle * Math.PI / 180) * radius;
+        const y = Math.sin(angle * Math.PI / 180) * radius;
+        marker.style.top = `${90 + y - 8}px`;
+        marker.style.left = `${90 + x - 8}px`;
+        marker.style.transform = "none";
+        
+        // Update scores
+        document.getElementById("focus-score").textContent = state.focus.toFixed(1);
+        document.getElementById("energy-score").textContent = state.energy.toFixed(1);
+      };
+
+      const updateCheckin = () => {
+        // Update ranges
+        document.getElementById("focus-range").value = state.focus;
+        document.getElementById("focus-value").textContent = Math.round(state.focus);
+        document.getElementById("energy-range").value = state.energy;
+        document.getElementById("energy-value").textContent = Math.round(state.energy);
+        document.getElementById("regulation-range").value = state.regulation;
+        document.getElementById("regulation-value").textContent = Math.round(state.regulation);
+        
+        // Update level labels
+        const getLevel = (val) => {
+          if (val <= 3) return "Low";
+          if (val <= 5) return "Moderate";
+          if (val <= 7) return "Good";
+          return "High";
+        };
+        
+        document.getElementById("focus-level").textContent = getLevel(state.focus);
+        document.getElementById("energy-level").textContent = getLevel(state.energy);
+        document.getElementById("regulation-level").textContent = getLevel(state.regulation);
+        document.getElementById("mood-level").textContent = state.regulation > 5 ? "Stable" : "Variable";
+        
+        // Update symptom toggles
+        document.querySelectorAll("#symptom-toggles button").forEach(btn => {
+          btn.classList.toggle("active", state.symptoms.includes(btn.dataset.tag));
+        });
+      };
+
+      const generateChartBars = () => {
+        // Simulated data showing symptoms across cycle
+        const focusData = [50, 45, 55, 65, 75, 85, 90, 95, 95, 90, 95, 100, 95, 85, 75, 65, 60, 55, 50, 45, 40, 35, 40, 45, 50, 55, 55, 50];
+        const energyData = [40, 45, 55, 60, 70, 80, 85, 90, 90, 95, 90, 85, 80, 75, 65, 55, 50, 45, 40, 40, 35, 35, 40, 45, 50, 45, 40, 35];
+        const regulationData = [55, 50, 60, 70, 75, 80, 85, 90, 95, 90, 85, 90, 85, 75, 65, 55, 50, 45, 40, 35, 30, 30, 35, 45, 55, 50, 45, 50];
+        
+        const createBars = (containerId, data, teal = false) => {
+          const container = document.getElementById(containerId);
+          container.innerHTML = "";
+          data.forEach((val, i) => {
+            const bar = document.createElement("div");
+            bar.className = `chart-bar${teal ? " teal" : ""}${i === state.cycleDay - 1 ? " highlight" : ""}`;
+            bar.style.height = `${val}%`;
+            container.appendChild(bar);
+          });
+        };
+        
+        createBars("focus-chart", focusData);
+        createBars("energy-chart", energyData, true);
+        createBars("regulation-chart", regulationData);
+      };
+
+      const updateTips = () => {
+        const phase = getPhase(state.cycleDay);
+        const container = document.getElementById("tips-container");
+        const phaseTips = tips[phase.name];
+        
+        document.getElementById("tips-phase-chip").textContent = phase.name;
+        document.getElementById("tips-phase-chip").className = `chip ${phase.chip}`;
+        
+        container.innerHTML = phaseTips.map(tip => `
+          <div class="tip-card">
+            <h4>${tip.icon} ${tip.title}</h4>
+            <p>${tip.text}</p>
+          </div>
+        `).join("");
+      };
+
+      const updateInsight = () => {
+        const phase = getPhase(state.cycleDay);
+        const insights = {
+          Menstrual: "You're in the menstrual phase. Dopamine and estrogen are at their lowest. Focus challenges are NORMAL right now — not a personal failure.",
+          Follicular: "Rising estrogen is boosting your dopamine! Your focus improves each day. This is building toward your peak productivity window.",
+          Ovulation: "You're in your cognitive sweet spot! Estrogen peaks = maximum dopamine. Schedule your most challenging work NOW.",
+          Luteal: "Your focus drops 40% during days 21-28 (late luteal). Plan important tasks for days 7-14 when estrogen peaks."
+        };
+        document.getElementById("ai-insight").textContent = insights[phase.name];
+      };
+
+      // Event Listeners
+      document.querySelectorAll(".nav button").forEach(btn => {
+        btn.addEventListener("click", () => {
+          document.querySelectorAll(".nav button").forEach(b => b.classList.remove("active"));
+          btn.classList.add("active");
+          const target = btn.dataset.screen;
+          document.querySelectorAll(".screen").forEach(screen => {
+            screen.classList.toggle("active", screen.id === `screen-${target}`);
+          });
+        });
+      });
+
+      document.getElementById("focus-range").addEventListener("input", (e) => {
+        state.focus = Number(e.target.value);
+        updateCheckin();
+        updateDashboard();
+        saveState(state);
+      });
+
+      document.getElementById("energy-range").addEventListener("input", (e) => {
+        state.energy = Number(e.target.value);
+        updateCheckin();
+        updateDashboard();
+        saveState(state);
+      });
+
+      document.getElementById("regulation-range").addEventListener("input", (e) => {
+        state.regulation = Number(e.target.value);
+        updateCheckin();
+        saveState(state);
+      });
+
+      document.querySelectorAll("#symptom-toggles button").forEach(btn => {
+        btn.addEventListener("click", () => {
+          const tag = btn.dataset.tag;
+          if (state.symptoms.includes(tag)) {
+            state.symptoms = state.symptoms.filter(s => s !== tag);
+          } else {
+            state.symptoms.push(tag);
+          }
+          updateCheckin();
+          saveState(state);
+        });
+      });
+
+      document.getElementById("save-checkin").addEventListener("click", () => {
+        state.lastCheckin = new Date().toISOString();
+        saveState(state);
+        alert("Check-in saved! 💜");
+      });
+
+      // Quick action buttons
+      document.getElementById("pomodoro-btn").addEventListener("click", () => {
+        document.getElementById("action-status").textContent = "🍅 Pomodoro started: 25 min focus session";
+      });
+
+      document.getElementById("breathe-btn").addEventListener("click", () => {
+        document.getElementById("action-status").textContent = "🧘 Take 4 deep breaths... in... out...";
+      });
+
+      document.getElementById("move-btn").addEventListener("click", () => {
+        document.getElementById("action-status").textContent = "🚶 Stand up and stretch for 2 minutes!";
+      });
+
+      // Click on cycle ring to change day
+      document.querySelector(".cycle-ring").addEventListener("click", (e) => {
+        const rect = e.currentTarget.getBoundingClientRect();
+        const x = e.clientX - rect.left - rect.width / 2;
+        const y = e.clientY - rect.top - rect.height / 2;
+        let angle = Math.atan2(y, x) * 180 / Math.PI + 90;
+        if (angle < 0) angle += 360;
+        state.cycleDay = Math.max(1, Math.min(28, Math.round(angle / 360 * 28)));
+        updateDashboard();
+        updateTips();
+        updateInsight();
+        generateChartBars();
+        saveState(state);
+      });
+
+      // Initialize
+      const init = () => {
+        updateDashboard();
+        updateCheckin();
+        updateTips();
+        updateInsight();
+        generateChartBars();
+      };
+
+      init();
+    </script>
+  </body>
+</html>

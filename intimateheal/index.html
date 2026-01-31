@@ -1,0 +1,1560 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>IntimateHeal — Sexual Pain & Wellness</title>
+    <style>
+      :root {
+        --cream: #fff9f7;
+        --blush: #e8a4b8;
+        --blush-deep: #d4839a;
+        --blush-light: #fce4ec;
+        --ink: #3d2f3a;
+        --muted: #7a6875;
+        --rose: #f8d0d8;
+        --lavender: #f3e5f5;
+        --mint: #e8f5e9;
+        --warm: #fff3e0;
+        --shadow: 0 18px 35px rgba(60, 40, 50, 0.08);
+        --success: #81c784;
+        --gentle: #f5e6ea;
+      }
+
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      body {
+        font-family: "Avenir Next", "Segoe UI", sans-serif;
+        background: radial-gradient(circle at top, #ffffff 0%, #fff5f8 45%, #fceef2 100%);
+        color: var(--ink);
+        min-height: 100vh;
+        padding: 28px 16px 60px;
+      }
+
+      .page {
+        width: min(1100px, 100%);
+        margin: 0 auto;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 36px;
+      }
+
+      .phone {
+        width: 100%;
+        max-width: 400px;
+        background: #ffffff;
+        border-radius: 32px;
+        box-shadow: var(--shadow);
+        overflow: hidden;
+        border: 1px solid rgba(90, 90, 90, 0.08);
+        position: relative;
+      }
+
+      .status {
+        padding: 18px 22px 8px;
+        display: flex;
+        justify-content: space-between;
+        font-size: 12px;
+        color: var(--muted);
+        letter-spacing: 0.3px;
+      }
+
+      .header {
+        padding: 4px 22px 18px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 12px;
+      }
+
+      .brand h1 {
+        font-size: 22px;
+        letter-spacing: 0.6px;
+        color: var(--blush-deep);
+      }
+
+      .brand p {
+        font-size: 13px;
+        color: var(--muted);
+        margin-top: 4px;
+      }
+
+      .chip {
+        background: var(--blush-light);
+        color: var(--blush-deep);
+        padding: 6px 12px;
+        border-radius: 999px;
+        font-size: 12px;
+        font-weight: 600;
+      }
+
+      .content {
+        padding: 0 22px 92px;
+      }
+
+      .screen {
+        display: none;
+        animation: fadeIn 0.3s ease;
+      }
+
+      .screen.active {
+        display: block;
+      }
+
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+          transform: translateY(6px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      @keyframes pulse {
+        0%, 100% { transform: scale(1); opacity: 1; }
+        50% { transform: scale(1.15); opacity: 0.8; }
+      }
+
+      @keyframes breatheIn {
+        0% { transform: scale(0.7); background: var(--blush-light); }
+        100% { transform: scale(1); background: var(--blush); }
+      }
+
+      @keyframes breatheOut {
+        0% { transform: scale(1); background: var(--blush); }
+        100% { transform: scale(0.7); background: var(--blush-light); }
+      }
+
+      .card {
+        background: #fff;
+        border-radius: 22px;
+        padding: 18px;
+        box-shadow: 0 10px 20px rgba(72, 58, 66, 0.06);
+        margin-bottom: 16px;
+        border: 1px solid rgba(93, 75, 86, 0.05);
+      }
+
+      .card h3 {
+        font-size: 16px;
+        margin-bottom: 10px;
+        color: var(--ink);
+      }
+
+      .card p {
+        font-size: 13px;
+        color: var(--muted);
+        line-height: 1.5;
+      }
+
+      .row {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 12px;
+      }
+
+      .pill {
+        background: var(--rose);
+        color: #7d4b5a;
+        padding: 6px 12px;
+        border-radius: 999px;
+        font-size: 12px;
+        font-weight: 600;
+      }
+
+      .pill.success {
+        background: var(--mint);
+        color: #2e7d32;
+      }
+
+      .progress-ring {
+        display: flex;
+        align-items: center;
+        gap: 16px;
+        margin: 16px 0;
+      }
+
+      .ring {
+        width: 80px;
+        height: 80px;
+        border-radius: 50%;
+        background: conic-gradient(var(--blush) var(--progress, 65%), var(--gentle) 0);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+      }
+
+      .ring::before {
+        content: '';
+        width: 60px;
+        height: 60px;
+        background: white;
+        border-radius: 50%;
+        position: absolute;
+      }
+
+      .ring span {
+        position: relative;
+        font-weight: 700;
+        font-size: 18px;
+        color: var(--blush-deep);
+      }
+
+      .progress-info {
+        flex: 1;
+      }
+
+      .progress-info h4 {
+        font-size: 15px;
+        margin-bottom: 4px;
+      }
+
+      .progress-info p {
+        font-size: 12px;
+        color: var(--muted);
+      }
+
+      .today-program {
+        background: linear-gradient(135deg, var(--blush-light) 0%, #fff 100%);
+        border: 1px solid rgba(232, 164, 184, 0.3);
+      }
+
+      .program-item {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        padding: 12px;
+        background: white;
+        border-radius: 14px;
+        margin-bottom: 10px;
+        border: 1px solid rgba(232, 164, 184, 0.15);
+        cursor: pointer;
+        transition: all 0.2s ease;
+      }
+
+      .program-item:hover {
+        transform: translateX(4px);
+        border-color: var(--blush);
+      }
+
+      .program-item.completed {
+        opacity: 0.6;
+      }
+
+      .program-item.completed .item-icon {
+        background: var(--mint);
+      }
+
+      .item-icon {
+        width: 44px;
+        height: 44px;
+        border-radius: 12px;
+        background: var(--blush-light);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 20px;
+      }
+
+      .item-info {
+        flex: 1;
+      }
+
+      .item-info h4 {
+        font-size: 14px;
+        margin-bottom: 2px;
+      }
+
+      .item-info span {
+        font-size: 12px;
+        color: var(--muted);
+      }
+
+      .item-check {
+        width: 24px;
+        height: 24px;
+        border-radius: 50%;
+        border: 2px solid var(--blush);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        font-size: 14px;
+      }
+
+      .item-check.done {
+        background: var(--success);
+        border-color: var(--success);
+      }
+
+      /* Exercise Screen */
+      .breathing-circle {
+        width: 180px;
+        height: 180px;
+        border-radius: 50%;
+        background: var(--blush-light);
+        margin: 20px auto;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        transition: all 0.3s ease;
+      }
+
+      .breathing-circle.inhale {
+        animation: breatheIn 4s ease-in-out;
+      }
+
+      .breathing-circle.exhale {
+        animation: breatheOut 4s ease-in-out;
+      }
+
+      .breathing-circle span {
+        font-size: 16px;
+        font-weight: 600;
+        color: var(--blush-deep);
+      }
+
+      .breathing-circle small {
+        font-size: 12px;
+        color: var(--muted);
+        margin-top: 4px;
+      }
+
+      .breath-controls {
+        display: flex;
+        justify-content: center;
+        gap: 12px;
+        margin-top: 16px;
+      }
+
+      .breath-btn {
+        padding: 12px 24px;
+        border-radius: 999px;
+        border: none;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.2s ease;
+      }
+
+      .breath-btn.primary {
+        background: var(--blush);
+        color: white;
+      }
+
+      .breath-btn.secondary {
+        background: var(--gentle);
+        color: var(--blush-deep);
+      }
+
+      .dilator-track {
+        display: flex;
+        justify-content: space-between;
+        margin: 20px 0;
+        position: relative;
+      }
+
+      .dilator-track::before {
+        content: '';
+        position: absolute;
+        top: 50%;
+        left: 10%;
+        right: 10%;
+        height: 4px;
+        background: var(--gentle);
+        transform: translateY(-50%);
+        border-radius: 2px;
+      }
+
+      .dilator-stage {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 8px;
+        position: relative;
+        z-index: 1;
+      }
+
+      .dilator-dot {
+        width: 36px;
+        height: 36px;
+        border-radius: 50%;
+        background: var(--gentle);
+        border: 3px solid white;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 14px;
+        font-weight: 600;
+        color: var(--muted);
+        box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        transition: all 0.3s ease;
+        cursor: pointer;
+      }
+
+      .dilator-dot.completed {
+        background: var(--success);
+        color: white;
+      }
+
+      .dilator-dot.current {
+        background: var(--blush);
+        color: white;
+        animation: pulse 2s infinite;
+      }
+
+      .dilator-label {
+        font-size: 11px;
+        color: var(--muted);
+        text-align: center;
+      }
+
+      .exercise-tip {
+        background: var(--warm);
+        border-left: 4px solid #ffb74d;
+        padding: 14px;
+        border-radius: 0 14px 14px 0;
+        margin-top: 16px;
+      }
+
+      .exercise-tip p {
+        font-size: 13px;
+        color: #5d4037;
+      }
+
+      /* Progress Screen */
+      .pain-tracker {
+        margin: 16px 0;
+      }
+
+      .pain-scale {
+        display: flex;
+        justify-content: space-between;
+        gap: 6px;
+        margin: 12px 0;
+      }
+
+      .pain-level {
+        flex: 1;
+        padding: 12px 8px;
+        border-radius: 12px;
+        border: 2px solid var(--gentle);
+        text-align: center;
+        cursor: pointer;
+        transition: all 0.2s ease;
+        font-size: 13px;
+      }
+
+      .pain-level:hover {
+        border-color: var(--blush);
+      }
+
+      .pain-level.selected {
+        background: var(--blush);
+        border-color: var(--blush);
+        color: white;
+      }
+
+      .milestone-list {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+      }
+
+      .milestone {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        padding: 14px;
+        background: var(--gentle);
+        border-radius: 16px;
+        transition: all 0.2s ease;
+      }
+
+      .milestone.achieved {
+        background: linear-gradient(135deg, var(--mint) 0%, #c8e6c9 100%);
+      }
+
+      .milestone-icon {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        background: white;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 18px;
+      }
+
+      .milestone-info {
+        flex: 1;
+      }
+
+      .milestone-info h4 {
+        font-size: 14px;
+        margin-bottom: 2px;
+      }
+
+      .milestone-info span {
+        font-size: 12px;
+        color: var(--muted);
+      }
+
+      .chart-placeholder {
+        height: 120px;
+        background: linear-gradient(180deg, var(--blush-light) 0%, transparent 100%);
+        border-radius: 16px;
+        display: flex;
+        align-items: flex-end;
+        justify-content: space-around;
+        padding: 0 12px 12px;
+        margin: 16px 0;
+      }
+
+      .chart-bar {
+        width: 28px;
+        background: var(--blush);
+        border-radius: 6px 6px 0 0;
+        transition: height 0.3s ease;
+      }
+
+      /* Education Screen */
+      .edu-category {
+        display: flex;
+        gap: 10px;
+        flex-wrap: wrap;
+        margin-bottom: 16px;
+      }
+
+      .edu-pill {
+        padding: 8px 16px;
+        border-radius: 999px;
+        border: 1px solid var(--blush);
+        background: white;
+        font-size: 13px;
+        cursor: pointer;
+        transition: all 0.2s ease;
+      }
+
+      .edu-pill.active {
+        background: var(--blush);
+        color: white;
+      }
+
+      .article-card {
+        display: flex;
+        gap: 14px;
+        padding: 14px;
+        background: white;
+        border-radius: 16px;
+        margin-bottom: 12px;
+        border: 1px solid rgba(232, 164, 184, 0.15);
+        cursor: pointer;
+        transition: all 0.2s ease;
+      }
+
+      .article-card:hover {
+        border-color: var(--blush);
+        transform: translateY(-2px);
+      }
+
+      .article-thumb {
+        width: 70px;
+        height: 70px;
+        border-radius: 12px;
+        background: var(--lavender);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 28px;
+        flex-shrink: 0;
+      }
+
+      .article-info {
+        flex: 1;
+      }
+
+      .article-info h4 {
+        font-size: 14px;
+        margin-bottom: 4px;
+        line-height: 1.3;
+      }
+
+      .article-info span {
+        font-size: 12px;
+        color: var(--muted);
+      }
+
+      .article-meta {
+        display: flex;
+        gap: 10px;
+        margin-top: 6px;
+      }
+
+      .meta-tag {
+        font-size: 11px;
+        padding: 3px 8px;
+        background: var(--gentle);
+        border-radius: 6px;
+        color: var(--muted);
+      }
+
+      /* Navigation */
+      .nav {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        background: #fff;
+        border-top: 1px solid rgba(80, 64, 75, 0.06);
+        display: flex;
+        justify-content: space-around;
+        padding: 10px 8px 16px;
+      }
+
+      .nav button {
+        background: none;
+        border: none;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 4px;
+        font-size: 11px;
+        color: var(--muted);
+        cursor: pointer;
+      }
+
+      .nav button.active {
+        color: var(--blush-deep);
+        font-weight: 600;
+      }
+
+      .nav span {
+        font-size: 18px;
+      }
+
+      .cta {
+        width: 100%;
+        border: none;
+        background: var(--blush);
+        color: #fff;
+        padding: 14px 16px;
+        border-radius: 18px;
+        font-weight: 600;
+        cursor: pointer;
+        box-shadow: 0 10px 20px rgba(232, 164, 184, 0.3);
+        margin-top: 6px;
+        transition: all 0.2s ease;
+      }
+
+      .cta:hover {
+        background: var(--blush-deep);
+        transform: translateY(-2px);
+      }
+
+      .footer-note {
+        font-size: 11px;
+        color: var(--muted);
+        text-align: center;
+        margin-top: 12px;
+      }
+
+      /* Business Report Section */
+      .report {
+        width: 100%;
+        background: #ffffff;
+        border-radius: 28px;
+        padding: 34px 30px 40px;
+        box-shadow: var(--shadow);
+        border: 1px solid rgba(90, 90, 90, 0.08);
+        display: flex;
+        flex-direction: column;
+        gap: 24px;
+      }
+
+      .report-header {
+        background: linear-gradient(135deg, var(--blush-light) 0%, #fff 100%);
+        border-radius: 22px;
+        padding: 22px 24px;
+        border: 1px solid rgba(232, 164, 184, 0.3);
+      }
+
+      .report-header h2 {
+        font-size: 24px;
+        letter-spacing: 0.4px;
+        margin-bottom: 8px;
+        color: var(--blush-deep);
+      }
+
+      .report-header p {
+        font-size: 14px;
+        color: var(--muted);
+        max-width: 680px;
+      }
+
+      .urgent-banner {
+        background: linear-gradient(135deg, #ff8a80 0%, #ff5252 100%);
+        color: white;
+        border-radius: 16px;
+        padding: 18px 20px;
+        text-align: center;
+      }
+
+      .urgent-banner h3 {
+        font-size: 18px;
+        margin-bottom: 6px;
+      }
+
+      .urgent-banner p {
+        font-size: 14px;
+        opacity: 0.95;
+      }
+
+      .report-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 16px;
+      }
+
+      .report-card {
+        background: #fffdfb;
+        border-radius: 20px;
+        padding: 18px 18px 20px;
+        border: 1px solid rgba(90, 90, 90, 0.08);
+        box-shadow: 0 12px 28px rgba(70, 54, 65, 0.08);
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+      }
+
+      .report-card h3 {
+        font-size: 16px;
+        color: var(--ink);
+      }
+
+      .report-card p {
+        font-size: 13px;
+        color: var(--muted);
+        line-height: 1.5;
+      }
+
+      .pill-row {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+      }
+
+      .pill-tag {
+        background: var(--blush-light);
+        color: var(--blush-deep);
+        padding: 6px 10px;
+        border-radius: 999px;
+        font-size: 11px;
+        font-weight: 600;
+      }
+
+      .pill-tag.green {
+        background: var(--mint);
+        color: #2e7d32;
+      }
+
+      .icon-list {
+        display: grid;
+        gap: 10px;
+        font-size: 13px;
+        color: var(--muted);
+      }
+
+      .icon-list span {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+
+      .pricing-grid {
+        display: grid;
+        gap: 12px;
+      }
+
+      .pricing-item {
+        background: rgba(232, 164, 184, 0.12);
+        border-radius: 16px;
+        padding: 12px 14px;
+        border: 1px solid rgba(232, 164, 184, 0.2);
+        font-size: 13px;
+        color: #6f4a5a;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      .pricing-item strong {
+        font-size: 14px;
+      }
+
+      .competitor {
+        display: grid;
+        gap: 10px;
+        font-size: 13px;
+        color: var(--muted);
+      }
+
+      .competitor div {
+        background: #f8f2f5;
+        border-radius: 14px;
+        padding: 10px 12px;
+        border: 1px solid rgba(90, 90, 90, 0.08);
+      }
+
+      .competitor div.dead {
+        background: #ffebee;
+        border: 1px solid #ef9a9a;
+        text-decoration: line-through;
+        opacity: 0.7;
+      }
+
+      .highlight {
+        background: var(--blush);
+        color: #fff;
+        border-radius: 16px;
+        padding: 12px 14px;
+        font-size: 13px;
+        font-weight: 600;
+      }
+
+      .costs {
+        display: grid;
+        gap: 8px;
+        font-size: 13px;
+        color: var(--muted);
+      }
+
+      .costs div {
+        display: flex;
+        justify-content: space-between;
+      }
+
+      .stat-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 12px;
+      }
+
+      .stat-box {
+        background: var(--gentle);
+        padding: 16px;
+        border-radius: 16px;
+        text-align: center;
+      }
+
+      .stat-box strong {
+        display: block;
+        font-size: 24px;
+        color: var(--blush-deep);
+        margin-bottom: 4px;
+      }
+
+      .stat-box span {
+        font-size: 12px;
+        color: var(--muted);
+      }
+
+      .opportunity-alert {
+        background: linear-gradient(135deg, var(--mint) 0%, #a5d6a7 100%);
+        border-radius: 16px;
+        padding: 16px;
+        border: 1px solid #81c784;
+      }
+
+      .opportunity-alert h4 {
+        color: #1b5e20;
+        font-size: 15px;
+        margin-bottom: 8px;
+      }
+
+      .opportunity-alert p {
+        color: #2e7d32;
+        font-size: 13px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="page">
+      <div class="phone">
+        <div class="status">
+          <div>9:41</div>
+          <div>IntimateHeal Premium · $9.99/mo</div>
+        </div>
+        <div class="header">
+          <div class="brand">
+            <h1>IntimateHeal</h1>
+            <p>Your gentle path to pain-free intimacy</p>
+          </div>
+          <div class="chip">Day 14</div>
+        </div>
+
+        <main class="content">
+          <!-- Dashboard Screen -->
+          <section class="screen active" id="screen-dashboard">
+            <div class="card today-program">
+              <div class="row">
+                <h3>Today's Program</h3>
+                <span class="pill" id="program-status">2 of 3 done</span>
+              </div>
+              
+              <div class="progress-ring">
+                <div class="ring" style="--progress: 234deg;">
+                  <span id="week-progress">65%</span>
+                </div>
+                <div class="progress-info">
+                  <h4>Week 2 Progress</h4>
+                  <p>You're doing amazing! Consistency is key to healing.</p>
+                </div>
+              </div>
+
+              <div id="program-items">
+                <div class="program-item completed" data-task="breathing">
+                  <div class="item-icon">🌬️</div>
+                  <div class="item-info">
+                    <h4>Morning Breathing</h4>
+                    <span>5 min · Relaxation</span>
+                  </div>
+                  <div class="item-check done">✓</div>
+                </div>
+                
+                <div class="program-item completed" data-task="pelvic">
+                  <div class="item-icon">🧘</div>
+                  <div class="item-info">
+                    <h4>Pelvic Floor Relaxation</h4>
+                    <span>10 min · Exercise</span>
+                  </div>
+                  <div class="item-check done">✓</div>
+                </div>
+                
+                <div class="program-item" data-task="dilator">
+                  <div class="item-icon">💗</div>
+                  <div class="item-info">
+                    <h4>Dilator Practice</h4>
+                    <span>15 min · Stage 2</span>
+                  </div>
+                  <div class="item-check"></div>
+                </div>
+              </div>
+            </div>
+
+            <div class="card">
+              <h3>This Week's Insight</h3>
+              <p id="weekly-insight">Your pain levels have decreased 23% since starting. The breathing exercises before dilator practice seem to be helping most.</p>
+            </div>
+
+            <div class="card">
+              <div class="row">
+                <h3>Streak</h3>
+                <span class="pill success">🔥 7 days</span>
+              </div>
+              <p>You've practiced every day this week! Keep it up for best results.</p>
+            </div>
+          </section>
+
+          <!-- Exercise Screen -->
+          <section class="screen" id="screen-exercise">
+            <div class="card">
+              <h3>Guided Breathing</h3>
+              <p>Deep diaphragmatic breathing helps relax pelvic floor muscles.</p>
+              
+              <div class="breathing-circle" id="breathing-circle">
+                <span id="breath-text">Ready</span>
+                <small id="breath-count">Tap Start</small>
+              </div>
+              
+              <div class="breath-controls">
+                <button class="breath-btn primary" id="start-breathing">Start</button>
+                <button class="breath-btn secondary" id="stop-breathing">Reset</button>
+              </div>
+            </div>
+
+            <div class="card">
+              <h3>Dilator Progression</h3>
+              <p>Your personalized progression path. Take your time at each stage.</p>
+              
+              <div class="dilator-track">
+                <div class="dilator-stage">
+                  <div class="dilator-dot completed">1</div>
+                  <span class="dilator-label">XS<br/>✓ Done</span>
+                </div>
+                <div class="dilator-stage">
+                  <div class="dilator-dot current">2</div>
+                  <span class="dilator-label">Small<br/>Current</span>
+                </div>
+                <div class="dilator-stage">
+                  <div class="dilator-dot">3</div>
+                  <span class="dilator-label">Medium<br/>Locked</span>
+                </div>
+                <div class="dilator-stage">
+                  <div class="dilator-dot">4</div>
+                  <span class="dilator-label">Large<br/>Locked</span>
+                </div>
+                <div class="dilator-stage">
+                  <div class="dilator-dot">5</div>
+                  <span class="dilator-label">XL<br/>Locked</span>
+                </div>
+              </div>
+              
+              <button class="cta" id="start-dilator">Start Today's Session</button>
+            </div>
+
+            <div class="exercise-tip">
+              <p>💡 <strong>Tip:</strong> Always start with 3-5 minutes of breathing. A warm bath beforehand can help relax muscles further.</p>
+            </div>
+          </section>
+
+          <!-- Progress Screen -->
+          <section class="screen" id="screen-progress">
+            <div class="card">
+              <h3>Log Today's Pain Level</h3>
+              <p>Track how you're feeling to see your progress over time.</p>
+              
+              <div class="pain-scale" id="pain-scale">
+                <div class="pain-level" data-level="1">1<br/><small>None</small></div>
+                <div class="pain-level" data-level="2">2</div>
+                <div class="pain-level selected" data-level="3">3</div>
+                <div class="pain-level" data-level="4">4</div>
+                <div class="pain-level" data-level="5">5<br/><small>High</small></div>
+              </div>
+              
+              <button class="cta" id="save-pain">Save Today's Log</button>
+            </div>
+
+            <div class="card">
+              <h3>Pain Trend (Last 4 Weeks)</h3>
+              <div class="chart-placeholder">
+                <div class="chart-bar" style="height: 80%;"></div>
+                <div class="chart-bar" style="height: 70%;"></div>
+                <div class="chart-bar" style="height: 65%;"></div>
+                <div class="chart-bar" style="height: 50%;"></div>
+              </div>
+              <p style="text-align: center;">📉 Average pain decreased from 4.2 → 2.8</p>
+            </div>
+
+            <div class="card">
+              <h3>Milestones</h3>
+              <div class="milestone-list">
+                <div class="milestone achieved">
+                  <div class="milestone-icon">🌟</div>
+                  <div class="milestone-info">
+                    <h4>First Week Complete</h4>
+                    <span>Completed 7 consecutive days</span>
+                  </div>
+                </div>
+                <div class="milestone achieved">
+                  <div class="milestone-icon">🎯</div>
+                  <div class="milestone-info">
+                    <h4>Stage 1 Mastered</h4>
+                    <span>Comfortable with XS dilator</span>
+                  </div>
+                </div>
+                <div class="milestone">
+                  <div class="milestone-icon">🔒</div>
+                  <div class="milestone-info">
+                    <h4>Two Weeks Strong</h4>
+                    <span>3 more days to unlock</span>
+                  </div>
+                </div>
+                <div class="milestone">
+                  <div class="milestone-icon">🔒</div>
+                  <div class="milestone-info">
+                    <h4>Pain-Free Day</h4>
+                    <span>Log a day with 0 pain</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <!-- Education Screen -->
+          <section class="screen" id="screen-education">
+            <div class="card">
+              <h3>Learn & Understand</h3>
+              <p>Knowledge is power. Understand your body better.</p>
+              
+              <div class="edu-category" id="edu-categories">
+                <button class="edu-pill active" data-cat="all">All</button>
+                <button class="edu-pill" data-cat="basics">Basics</button>
+                <button class="edu-pill" data-cat="exercises">Exercises</button>
+                <button class="edu-pill" data-cat="intimacy">Intimacy</button>
+              </div>
+            </div>
+
+            <div id="articles">
+              <div class="article-card" data-cat="basics">
+                <div class="article-thumb">🔬</div>
+                <div class="article-info">
+                  <h4>Understanding Vaginismus: You're Not Alone</h4>
+                  <span>Learn what causes involuntary muscle tightening</span>
+                  <div class="article-meta">
+                    <span class="meta-tag">5 min read</span>
+                    <span class="meta-tag">Basics</span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="article-card" data-cat="basics">
+                <div class="article-thumb">💜</div>
+                <div class="article-info">
+                  <h4>Vulvodynia Explained</h4>
+                  <span>Chronic pain without a clear cause</span>
+                  <div class="article-meta">
+                    <span class="meta-tag">7 min read</span>
+                    <span class="meta-tag">Basics</span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="article-card" data-cat="exercises">
+                <div class="article-thumb">🧘</div>
+                <div class="article-info">
+                  <h4>Pelvic Floor: Relax, Don't Squeeze</h4>
+                  <span>Why relaxation matters more than strengthening</span>
+                  <div class="article-meta">
+                    <span class="meta-tag">6 min read</span>
+                    <span class="meta-tag">Exercises</span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="article-card" data-cat="exercises">
+                <div class="article-thumb">🌬️</div>
+                <div class="article-info">
+                  <h4>Breathing Techniques That Work</h4>
+                  <span>Science-backed methods for muscle relaxation</span>
+                  <div class="article-meta">
+                    <span class="meta-tag">4 min read</span>
+                    <span class="meta-tag">Exercises</span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="article-card" data-cat="intimacy">
+                <div class="article-thumb">💕</div>
+                <div class="article-info">
+                  <h4>Communicating With Your Partner</h4>
+                  <span>How to talk about pain and needs</span>
+                  <div class="article-meta">
+                    <span class="meta-tag">8 min read</span>
+                    <span class="meta-tag">Intimacy</span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="article-card" data-cat="intimacy">
+                <div class="article-thumb">✨</div>
+                <div class="article-info">
+                  <h4>Rebuilding Intimacy Slowly</h4>
+                  <span>A gentle approach to reconnecting</span>
+                  <div class="article-meta">
+                    <span class="meta-tag">10 min read</span>
+                    <span class="meta-tag">Intimacy</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+        </main>
+
+        <nav class="nav">
+          <button data-screen="dashboard" class="active">
+            <span>🏠</span>
+            Home
+          </button>
+          <button data-screen="exercise">
+            <span>🧘</span>
+            Exercise
+          </button>
+          <button data-screen="progress">
+            <span>📊</span>
+            Progress
+          </button>
+          <button data-screen="education">
+            <span>📚</span>
+            Learn
+          </button>
+        </nav>
+      </div>
+
+      <!-- Business Report Section -->
+      <section class="report" aria-labelledby="report-title">
+        <header class="report-header">
+          <h2 id="report-title">IntimateHeal Business Report</h2>
+          <p>
+            Market opportunity analysis for a sexual pain & wellness app targeting women with 
+            vulvodynia and vaginismus. Critical timing: main competitor Rosy shutting down November 2025.
+          </p>
+        </header>
+
+        <div class="urgent-banner">
+          <h3>🚨 CRITICAL: Rosy Shutting Down Nov 2025</h3>
+          <p>Main competitor leaving the market = massive acquisition opportunity for their 100K+ users</p>
+        </div>
+
+        <div class="report-grid">
+          <article class="report-card">
+            <h3>Executive Summary</h3>
+            <p>
+              Targeting 16-25% of women who experience sexual pain (vulvodynia, vaginismus). 
+              Estimated 20M women in the US alone. With Rosy's exit, the market will have 
+              virtually no dedicated app solutions.
+            </p>
+            <div class="pill-row">
+              <span class="pill-tag">Target: 20M women</span>
+              <span class="pill-tag">Price: $9.99/mo</span>
+              <span class="pill-tag green">79% gross margin</span>
+            </div>
+          </article>
+
+          <article class="report-card">
+            <h3>The Problem</h3>
+            <p>
+              Sexual pain conditions are undertreated and stigmatized. Women suffer in silence 
+              for an average of 7 years before seeking help. Current solutions are either 
+              expensive ($150+/session pelvic floor therapy) or non-existent.
+            </p>
+            <div class="icon-list">
+              <span>😔 16-25% of women experience sexual pain</span>
+              <span>⏰ Average 7 years to seek treatment</span>
+              <span>💸 PT costs $150-300 per session</span>
+              <span>🤫 Shame prevents seeking help</span>
+            </div>
+          </article>
+
+          <article class="report-card">
+            <h3>The Opportunity</h3>
+            <div class="opportunity-alert">
+              <h4>🎯 Rosy's Exit = Market Vacuum</h4>
+              <p>Rosy (main competitor) announced shutdown for November 2025. Their 100K+ users 
+              will need a new solution. We can position as the natural migration path.</p>
+            </div>
+            <div class="stat-grid" style="margin-top: 14px;">
+              <div class="stat-box">
+                <strong>20M</strong>
+                <span>Addressable US market</span>
+              </div>
+              <div class="stat-box">
+                <strong>0</strong>
+                <span>Major competitors after Nov '25</span>
+              </div>
+            </div>
+          </article>
+
+          <article class="report-card">
+            <h3>Core Features</h3>
+            <div class="icon-list">
+              <span>🌬️ Guided breathing & relaxation exercises</span>
+              <span>📈 Dilator progression tracking</span>
+              <span>📊 Pain level monitoring over time</span>
+              <span>🎯 Personalized treatment plans</span>
+              <span>📚 Educational content library</span>
+              <span>🏆 Milestones & motivation</span>
+            </div>
+          </article>
+
+          <article class="report-card">
+            <h3>Business Model</h3>
+            <div class="pricing-grid">
+              <div class="pricing-item">
+                <strong>Free tier</strong>
+                <span>Basic exercises, limited tracking</span>
+              </div>
+              <div class="pricing-item">
+                <strong>Premium $9.99/mo</strong>
+                <span>Full program, AI insights, all content</span>
+              </div>
+              <div class="pricing-item">
+                <strong>Annual $79.99/yr</strong>
+                <span>33% discount, higher retention</span>
+              </div>
+            </div>
+            <p class="highlight" style="margin-top: 12px;">79% gross margin at scale</p>
+          </article>
+
+          <article class="report-card">
+            <h3>Competition Landscape</h3>
+            <div class="competitor">
+              <div class="dead">Rosy — $9.99/mo — SHUTTING DOWN NOV 2025 ❌</div>
+              <div>Vaginismus.com — Basic info, no app</div>
+              <div>Pelvic PT — $150-300/session, in-person only</div>
+            </div>
+            <p class="highlight" style="margin-top: 12px;">
+              Post-Rosy: Zero dedicated mobile apps in market
+            </p>
+          </article>
+
+          <article class="report-card">
+            <h3>Operational Costs (per 1,000 users/month)</h3>
+            <div class="costs">
+              <div><span>Hosting (AWS/Vercel)</span><strong>$50</strong></div>
+              <div><span>Database (Supabase)</span><strong>$25</strong></div>
+              <div><span>AI API (insights)</span><strong>$40</strong></div>
+              <div><span>Push notifications</span><strong>$15</strong></div>
+              <div><span>Total</span><strong>~$130/mo</strong></div>
+              <div><span>Revenue @ 10% convert</span><strong>$999/mo</strong></div>
+            </div>
+            <p style="margin-top: 10px; font-size: 13px; color: var(--muted);">
+              Break-even: ~15 paying users
+            </p>
+          </article>
+
+          <article class="report-card">
+            <h3>Why This Will Work</h3>
+            <div class="icon-list">
+              <span>🎯 Rosy shutdown creates immediate demand</span>
+              <span>👥 20M+ addressable market in US alone</span>
+              <span>🚫 Zero competition after Nov 2025</span>
+              <span>💰 High willingness to pay (pain = motivation)</span>
+              <span>📱 Mobile-first for privacy & convenience</span>
+              <span>🔄 High retention (long treatment journey)</span>
+            </div>
+          </article>
+
+          <article class="report-card">
+            <h3>Go-to-Market Strategy</h3>
+            <div class="icon-list">
+              <span>1️⃣ Launch before Nov 2025 (capture Rosy users)</span>
+              <span>2️⃣ SEO: "Rosy app alternative"</span>
+              <span>3️⃣ Partner with pelvic floor PTs for referrals</span>
+              <span>4️⃣ Content marketing (TikTok, Instagram)</span>
+              <span>5️⃣ Reddit communities (r/vaginismus has 40K members)</span>
+            </div>
+          </article>
+
+          <article class="report-card">
+            <h3>Unit Economics</h3>
+            <div class="stat-grid">
+              <div class="stat-box">
+                <strong>$9.99</strong>
+                <span>Monthly price</span>
+              </div>
+              <div class="stat-box">
+                <strong>$7.89</strong>
+                <span>Net after fees (79%)</span>
+              </div>
+              <div class="stat-box">
+                <strong>~12mo</strong>
+                <span>Expected retention</span>
+              </div>
+              <div class="stat-box">
+                <strong>$95</strong>
+                <span>Est. LTV</span>
+              </div>
+            </div>
+          </article>
+        </div>
+      </section>
+    </div>
+
+    <script>
+      const storageKey = "intimateHealState";
+      const defaultState = {
+        completedTasks: ["breathing", "pelvic"],
+        currentDilatorStage: 2,
+        painLevel: 3,
+        streak: 7,
+        weekProgress: 65,
+        breathingActive: false,
+        eduCategory: "all"
+      };
+
+      const loadState = () => {
+        try {
+          const saved = JSON.parse(localStorage.getItem(storageKey));
+          return saved ? { ...defaultState, ...saved } : { ...defaultState };
+        } catch (error) {
+          return { ...defaultState };
+        }
+      };
+
+      const saveState = (state) => {
+        localStorage.setItem(storageKey, JSON.stringify(state));
+      };
+
+      let state = loadState();
+      let breathingInterval = null;
+      let breathPhase = 'ready';
+      let breathCount = 0;
+
+      // Navigation
+      document.querySelectorAll(".nav button").forEach((button) => {
+        button.addEventListener("click", () => {
+          document.querySelectorAll(".nav button").forEach((btn) => btn.classList.remove("active"));
+          button.classList.add("active");
+          const target = button.dataset.screen;
+          document.querySelectorAll(".screen").forEach((screen) => {
+            screen.classList.toggle("active", screen.id === `screen-${target}`);
+          });
+        });
+      });
+
+      // Dashboard - Program items
+      const updateProgramItems = () => {
+        document.querySelectorAll('.program-item').forEach(item => {
+          const task = item.dataset.task;
+          const isCompleted = state.completedTasks.includes(task);
+          item.classList.toggle('completed', isCompleted);
+          const check = item.querySelector('.item-check');
+          check.classList.toggle('done', isCompleted);
+          check.textContent = isCompleted ? '✓' : '';
+        });
+        
+        const completed = state.completedTasks.length;
+        document.getElementById('program-status').textContent = `${completed} of 3 done`;
+        
+        const progress = Math.round((completed / 3) * 100);
+        document.getElementById('week-progress').textContent = `${progress}%`;
+      };
+
+      document.querySelectorAll('.program-item').forEach(item => {
+        item.addEventListener('click', () => {
+          const task = item.dataset.task;
+          if (state.completedTasks.includes(task)) {
+            state.completedTasks = state.completedTasks.filter(t => t !== task);
+          } else {
+            state.completedTasks.push(task);
+          }
+          updateProgramItems();
+          saveState(state);
+        });
+      });
+
+      // Breathing exercise
+      const breathingCircle = document.getElementById('breathing-circle');
+      const breathText = document.getElementById('breath-text');
+      const breathCountEl = document.getElementById('breath-count');
+
+      const runBreathingCycle = () => {
+        if (breathPhase === 'ready' || breathPhase === 'exhale') {
+          breathPhase = 'inhale';
+          breathText.textContent = 'Breathe In';
+          breathingCircle.classList.remove('exhale');
+          breathingCircle.classList.add('inhale');
+          
+          setTimeout(() => {
+            if (breathPhase === 'inhale') {
+              breathPhase = 'hold';
+              breathText.textContent = 'Hold';
+              breathingCircle.classList.remove('inhale');
+            }
+          }, 4000);
+          
+          setTimeout(() => {
+            if (breathPhase === 'hold') {
+              breathPhase = 'exhale';
+              breathText.textContent = 'Breathe Out';
+              breathingCircle.classList.add('exhale');
+              breathCount++;
+              breathCountEl.textContent = `Breath ${breathCount} of 10`;
+              
+              if (breathCount >= 10) {
+                stopBreathing();
+                breathText.textContent = 'Complete!';
+                breathCountEl.textContent = 'Great job!';
+              }
+            }
+          }, 7000);
+        }
+      };
+
+      const startBreathing = () => {
+        breathCount = 0;
+        breathPhase = 'ready';
+        runBreathingCycle();
+        breathingInterval = setInterval(runBreathingCycle, 11000);
+      };
+
+      const stopBreathing = () => {
+        clearInterval(breathingInterval);
+        breathingInterval = null;
+        breathPhase = 'ready';
+        breathingCircle.classList.remove('inhale', 'exhale');
+      };
+
+      document.getElementById('start-breathing').addEventListener('click', () => {
+        if (!breathingInterval) {
+          startBreathing();
+        }
+      });
+
+      document.getElementById('stop-breathing').addEventListener('click', () => {
+        stopBreathing();
+        breathCount = 0;
+        breathText.textContent = 'Ready';
+        breathCountEl.textContent = 'Tap Start';
+      });
+
+      // Dilator session
+      document.getElementById('start-dilator').addEventListener('click', () => {
+        alert('Starting guided dilator session for Stage 2 (Small)...\n\n1. Find a comfortable position\n2. Use plenty of lubricant\n3. Take slow, deep breaths\n4. Insert gently at your own pace\n\nRemember: There\'s no rush. Listen to your body.');
+      });
+
+      // Pain tracking
+      document.querySelectorAll('.pain-level').forEach(level => {
+        level.addEventListener('click', () => {
+          document.querySelectorAll('.pain-level').forEach(l => l.classList.remove('selected'));
+          level.classList.add('selected');
+          state.painLevel = parseInt(level.dataset.level);
+          saveState(state);
+        });
+      });
+
+      document.getElementById('save-pain').addEventListener('click', () => {
+        alert(`Pain level ${state.painLevel} logged for today.\n\nKeep tracking daily to see your progress over time!`);
+      });
+
+      // Education categories
+      document.querySelectorAll('.edu-pill').forEach(pill => {
+        pill.addEventListener('click', () => {
+          document.querySelectorAll('.edu-pill').forEach(p => p.classList.remove('active'));
+          pill.classList.add('active');
+          const cat = pill.dataset.cat;
+          state.eduCategory = cat;
+          
+          document.querySelectorAll('.article-card').forEach(article => {
+            if (cat === 'all' || article.dataset.cat === cat) {
+              article.style.display = 'flex';
+            } else {
+              article.style.display = 'none';
+            }
+          });
+          
+          saveState(state);
+        });
+      });
+
+      // Article clicks
+      document.querySelectorAll('.article-card').forEach(article => {
+        article.addEventListener('click', () => {
+          const title = article.querySelector('h4').textContent;
+          alert(`Opening article: "${title}"\n\n(Full article content would appear here in the real app)`);
+        });
+      });
+
+      // Initialize
+      const initialize = () => {
+        updateProgramItems();
+        
+        // Set pain level
+        document.querySelectorAll('.pain-level').forEach(l => {
+          l.classList.toggle('selected', parseInt(l.dataset.level) === state.painLevel);
+        });
+      };
+
+      initialize();
+    </script>
+  </body>
+</html>

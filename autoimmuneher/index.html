@@ -1,0 +1,1315 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>AutoImmuneHer — Autoimmune Tracker for Women</title>
+    <style>
+      :root {
+        --cream: #fffbf5;
+        --amber: #d4940c;
+        --amber-light: #f5c842;
+        --amber-dark: #b37d00;
+        --gold: #e8b923;
+        --honey: #fff3d4;
+        --warm-white: #fffef9;
+        --ink: #3d3425;
+        --muted: #7a6f5f;
+        --rose: #f8d4c4;
+        --sage: #a8c4a0;
+        --sage-dark: #6b8f62;
+        --alert-red: #e85c4a;
+        --alert-bg: #fff0ed;
+        --shadow: 0 18px 35px rgba(60, 48, 30, 0.1);
+      }
+
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      body {
+        font-family: "Avenir Next", "Segoe UI", sans-serif;
+        background: radial-gradient(circle at top, #ffffff 0%, #fff9eb 45%, #f9f0e0 100%);
+        color: var(--ink);
+        min-height: 100vh;
+        padding: 28px 16px 60px;
+      }
+
+      .page {
+        width: min(1100px, 100%);
+        margin: 0 auto;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 36px;
+      }
+
+      .phone {
+        width: 100%;
+        max-width: 400px;
+        background: #ffffff;
+        border-radius: 32px;
+        box-shadow: var(--shadow);
+        overflow: hidden;
+        border: 1px solid rgba(180, 160, 120, 0.15);
+        position: relative;
+      }
+
+      .status {
+        padding: 18px 22px 8px;
+        display: flex;
+        justify-content: space-between;
+        font-size: 12px;
+        color: var(--muted);
+        letter-spacing: 0.3px;
+      }
+
+      .header {
+        padding: 4px 22px 18px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 12px;
+      }
+
+      .brand h1 {
+        font-size: 20px;
+        letter-spacing: 0.4px;
+        background: linear-gradient(135deg, var(--amber) 0%, var(--gold) 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+      }
+
+      .brand p {
+        font-size: 12px;
+        color: var(--muted);
+        margin-top: 4px;
+      }
+
+      .chip {
+        background: var(--honey);
+        color: var(--amber-dark);
+        padding: 6px 12px;
+        border-radius: 999px;
+        font-size: 12px;
+        font-weight: 600;
+      }
+
+      .flare-chip {
+        background: var(--sage);
+        color: #fff;
+      }
+
+      .flare-chip.warning {
+        background: var(--amber);
+      }
+
+      .flare-chip.alert {
+        background: var(--alert-red);
+      }
+
+      .content {
+        padding: 0 22px 92px;
+      }
+
+      .screen {
+        display: none;
+        animation: fadeIn 0.3s ease;
+      }
+
+      .screen.active {
+        display: block;
+      }
+
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+          transform: translateY(6px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      .card {
+        background: #fff;
+        border-radius: 22px;
+        padding: 18px;
+        box-shadow: 0 10px 20px rgba(72, 58, 36, 0.06);
+        margin-bottom: 16px;
+        border: 1px solid rgba(200, 180, 140, 0.12);
+      }
+
+      .card h3 {
+        font-size: 16px;
+        margin-bottom: 10px;
+      }
+
+      .card p {
+        font-size: 13px;
+        color: var(--muted);
+        line-height: 1.5;
+      }
+
+      .row {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 12px;
+      }
+
+      .pill {
+        background: var(--honey);
+        color: var(--amber-dark);
+        padding: 6px 12px;
+        border-radius: 999px;
+        font-size: 12px;
+        font-weight: 600;
+      }
+
+      .pill.flare-low {
+        background: var(--sage);
+        color: #fff;
+      }
+
+      .pill.flare-mod {
+        background: var(--amber);
+        color: #fff;
+      }
+
+      .pill.flare-high {
+        background: var(--alert-red);
+        color: #fff;
+      }
+
+      .feeling-row {
+        display: flex;
+        gap: 10px;
+        flex-wrap: wrap;
+        margin-top: 12px;
+      }
+
+      .feeling-btn,
+      .symptom button,
+      .toggle button,
+      .log-toggle button {
+        border: none;
+        background: #fff;
+        border: 1px solid rgba(180, 150, 100, 0.18);
+        border-radius: 16px;
+        padding: 10px 14px;
+        box-shadow: 0 6px 12px rgba(90, 70, 40, 0.06);
+        cursor: pointer;
+        font-size: 13px;
+        transition: all 0.2s ease;
+      }
+
+      .feeling-btn.active,
+      .symptom button.active,
+      .toggle button.active,
+      .log-toggle button.active {
+        background: linear-gradient(135deg, var(--amber) 0%, var(--gold) 100%);
+        color: #fff;
+        border-color: transparent;
+      }
+
+      .symptom {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 10px;
+      }
+
+      .slider {
+        display: flex;
+        gap: 12px;
+        align-items: center;
+      }
+
+      .slider input {
+        width: 100%;
+        accent-color: var(--amber);
+      }
+
+      .cta {
+        width: 100%;
+        border: none;
+        background: linear-gradient(135deg, var(--amber) 0%, var(--gold) 100%);
+        color: #fff;
+        padding: 14px 16px;
+        border-radius: 18px;
+        font-weight: 600;
+        cursor: pointer;
+        box-shadow: 0 10px 20px rgba(212, 148, 12, 0.3);
+        margin-top: 6px;
+      }
+
+      .cta:hover {
+        transform: translateY(-1px);
+        box-shadow: 0 12px 24px rgba(212, 148, 12, 0.35);
+      }
+
+      .nav {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        background: #fff;
+        border-top: 1px solid rgba(180, 160, 120, 0.1);
+        display: flex;
+        justify-content: space-around;
+        padding: 10px 8px 16px;
+      }
+
+      .nav button {
+        background: none;
+        border: none;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 4px;
+        font-size: 11px;
+        color: var(--muted);
+        cursor: pointer;
+      }
+
+      .nav button.active {
+        color: var(--amber-dark);
+        font-weight: 600;
+      }
+
+      .nav span {
+        font-size: 18px;
+      }
+
+      .insight {
+        background: linear-gradient(135deg, #fff 0%, var(--honey) 100%);
+        border-left: 4px solid var(--amber);
+      }
+
+      .trigger-card {
+        background: var(--alert-bg);
+        border-left: 4px solid var(--alert-red);
+      }
+
+      .doctor-grid {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 12px;
+      }
+
+      .stat {
+        background: var(--honey);
+        padding: 12px;
+        border-radius: 16px;
+        text-align: left;
+      }
+
+      .stat strong {
+        display: block;
+        font-size: 18px;
+        color: var(--amber-dark);
+      }
+
+      .stat span {
+        font-size: 12px;
+        color: var(--muted);
+      }
+
+      .badge {
+        background: rgba(212, 148, 12, 0.16);
+        color: var(--amber-dark);
+        padding: 4px 10px;
+        border-radius: 999px;
+        font-size: 11px;
+        font-weight: 600;
+        display: inline-block;
+        margin-right: 6px;
+      }
+
+      .badge.trigger {
+        background: rgba(232, 92, 74, 0.15);
+        color: #c94636;
+      }
+
+      .badge.safe {
+        background: rgba(107, 143, 98, 0.15);
+        color: var(--sage-dark);
+      }
+
+      .footer-note {
+        font-size: 11px;
+        color: var(--muted);
+        text-align: center;
+        margin-top: 12px;
+      }
+
+      .split {
+        display: flex;
+        gap: 12px;
+        flex-wrap: wrap;
+      }
+
+      .split .card {
+        flex: 1;
+        min-width: 150px;
+      }
+
+      .log-section {
+        margin-bottom: 14px;
+      }
+
+      .log-section h4 {
+        font-size: 14px;
+        color: var(--ink);
+        margin-bottom: 10px;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+
+      .log-toggle {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+      }
+
+      .condition-pills {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        margin-top: 10px;
+      }
+
+      .condition-pill {
+        background: var(--honey);
+        color: var(--amber-dark);
+        padding: 6px 12px;
+        border-radius: 999px;
+        font-size: 11px;
+        font-weight: 600;
+        cursor: pointer;
+        border: 2px solid transparent;
+        transition: all 0.2s;
+      }
+
+      .condition-pill.active {
+        border-color: var(--amber);
+        background: #fff;
+      }
+
+      .correlation {
+        background: #f9f6f0;
+        border-radius: 14px;
+        padding: 12px;
+        margin-bottom: 10px;
+      }
+
+      .correlation-bar {
+        height: 8px;
+        background: #e8e2d8;
+        border-radius: 4px;
+        overflow: hidden;
+        margin-top: 8px;
+      }
+
+      .correlation-fill {
+        height: 100%;
+        border-radius: 4px;
+        transition: width 0.3s ease;
+      }
+
+      .correlation-fill.high {
+        background: var(--alert-red);
+      }
+
+      .correlation-fill.medium {
+        background: var(--amber);
+      }
+
+      .correlation-fill.low {
+        background: var(--sage);
+      }
+
+      /* Report Section */
+      .report {
+        width: 100%;
+        background: #ffffff;
+        border-radius: 28px;
+        padding: 34px 30px 40px;
+        box-shadow: var(--shadow);
+        border: 1px solid rgba(180, 160, 120, 0.12);
+        display: flex;
+        flex-direction: column;
+        gap: 24px;
+      }
+
+      .report-header {
+        background: linear-gradient(135deg, var(--honey) 0%, #fff8e8 100%);
+        border-radius: 22px;
+        padding: 22px 24px;
+        border: 1px solid rgba(212, 148, 12, 0.2);
+      }
+
+      .report-header h2 {
+        font-size: 24px;
+        letter-spacing: 0.4px;
+        margin-bottom: 8px;
+        background: linear-gradient(135deg, var(--amber) 0%, var(--gold) 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+      }
+
+      .report-header p {
+        font-size: 14px;
+        color: var(--muted);
+        max-width: 680px;
+      }
+
+      .report-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 16px;
+      }
+
+      .report-card {
+        background: #fffdfb;
+        border-radius: 20px;
+        padding: 18px 18px 20px;
+        border: 1px solid rgba(180, 160, 120, 0.12);
+        box-shadow: 0 12px 28px rgba(70, 54, 35, 0.08);
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+      }
+
+      .report-card h3 {
+        font-size: 16px;
+      }
+
+      .report-card p {
+        font-size: 13px;
+        color: var(--muted);
+        line-height: 1.5;
+      }
+
+      .pill-row {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+      }
+
+      .pill-tag {
+        background: var(--honey);
+        color: var(--amber-dark);
+        padding: 6px 10px;
+        border-radius: 999px;
+        font-size: 11px;
+        font-weight: 600;
+      }
+
+      .icon-list {
+        display: grid;
+        gap: 10px;
+        font-size: 13px;
+        color: var(--muted);
+      }
+
+      .icon-list span {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+
+      .pricing-grid {
+        display: grid;
+        gap: 12px;
+      }
+
+      .pricing-item {
+        background: rgba(212, 148, 12, 0.12);
+        border-radius: 16px;
+        padding: 12px 14px;
+        border: 1px solid rgba(212, 148, 12, 0.2);
+        font-size: 13px;
+        color: var(--amber-dark);
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      .pricing-item strong {
+        font-size: 14px;
+      }
+
+      .competitor {
+        display: grid;
+        gap: 10px;
+        font-size: 13px;
+        color: var(--muted);
+      }
+
+      .competitor div {
+        background: #f8f4ed;
+        border-radius: 14px;
+        padding: 10px 12px;
+        border: 1px solid rgba(180, 160, 120, 0.12);
+      }
+
+      .highlight {
+        background: linear-gradient(135deg, var(--amber) 0%, var(--gold) 100%);
+        color: #fff;
+        border-radius: 16px;
+        padding: 12px 14px;
+        font-size: 13px;
+        font-weight: 600;
+      }
+
+      .costs {
+        display: grid;
+        gap: 8px;
+        font-size: 13px;
+        color: var(--muted);
+      }
+
+      .costs div {
+        display: flex;
+        justify-content: space-between;
+      }
+
+      .metric-highlight {
+        background: linear-gradient(135deg, var(--sage) 0%, #8fb085 100%);
+        color: #fff;
+        border-radius: 16px;
+        padding: 14px;
+        text-align: center;
+      }
+
+      .metric-highlight strong {
+        display: block;
+        font-size: 28px;
+        margin-bottom: 4px;
+      }
+
+      .metric-highlight span {
+        font-size: 12px;
+        opacity: 0.9;
+      }
+
+      .timeline {
+        display: flex;
+        gap: 8px;
+        margin-top: 10px;
+      }
+
+      .timeline-item {
+        flex: 1;
+        text-align: center;
+        padding: 10px 6px;
+        background: #f8f4ed;
+        border-radius: 12px;
+        font-size: 11px;
+      }
+
+      .timeline-item strong {
+        display: block;
+        font-size: 13px;
+        color: var(--amber-dark);
+      }
+    </style>
+  </head>
+  <body>
+    <div class="page">
+      <div class="phone">
+        <div class="status">
+          <div>9:41</div>
+          <div>AutoImmuneHer · $8.99/mo</div>
+        </div>
+        <div class="header">
+          <div class="brand">
+            <h1>AutoImmuneHer</h1>
+            <p>Your autoimmune companion, built for women</p>
+          </div>
+          <div class="chip flare-chip" id="flare-status">Low Flare</div>
+        </div>
+
+        <main class="content">
+          <!-- Dashboard Screen -->
+          <section class="screen active" id="screen-dashboard">
+            <div class="card">
+              <div class="row">
+                <h3>Today's Check-in</h3>
+                <span class="pill" id="checkin-status">Not logged</span>
+              </div>
+              <p>How are you feeling today? Track consistently to spot patterns.</p>
+              <div class="feeling-row" id="feeling-options">
+                <button class="feeling-btn" data-feeling="Great">😊 Great</button>
+                <button class="feeling-btn" data-feeling="Okay">🙂 Okay</button>
+                <button class="feeling-btn" data-feeling="Low">😔 Low</button>
+                <button class="feeling-btn" data-feeling="Flaring">🔥 Flaring</button>
+              </div>
+            </div>
+
+            <div class="card">
+              <div class="row">
+                <h3>Flare Risk</h3>
+                <span class="pill" id="flare-risk-pill">Low</span>
+              </div>
+              <p>Based on your recent logs and known triggers.</p>
+              <div class="correlation-bar" style="margin-top: 12px;">
+                <div class="correlation-fill low" id="flare-risk-bar" style="width: 25%;"></div>
+              </div>
+              <p style="margin-top: 10px; font-size: 12px;" id="flare-advice">
+                ✨ Keep it up! Your inflammation markers look stable.
+              </p>
+            </div>
+
+            <div class="card">
+              <h3>My Conditions</h3>
+              <div class="condition-pills" id="condition-pills">
+                <span class="condition-pill active" data-condition="hashimoto">Hashimoto's</span>
+                <span class="condition-pill" data-condition="lupus">Lupus</span>
+                <span class="condition-pill" data-condition="ra">Rheumatoid Arthritis</span>
+                <span class="condition-pill" data-condition="ms">Multiple Sclerosis</span>
+                <span class="condition-pill" data-condition="crohn">Crohn's</span>
+              </div>
+            </div>
+
+            <div class="split">
+              <div class="card">
+                <h3>Pain Level</h3>
+                <div class="slider">
+                  <input type="range" min="0" max="10" id="pain-range" />
+                  <strong id="pain-value">3</strong>
+                </div>
+              </div>
+              <div class="card">
+                <h3>Fatigue</h3>
+                <div class="slider">
+                  <input type="range" min="0" max="10" id="fatigue-range" />
+                  <strong id="fatigue-value">4</strong>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <!-- Log Screen -->
+          <section class="screen" id="screen-log">
+            <div class="card">
+              <h3>Daily Log</h3>
+              <p>Track everything that affects your condition.</p>
+
+              <div class="log-section">
+                <h4>💊 Medications</h4>
+                <div class="log-toggle" id="med-options">
+                  <button data-med="levothyroxine">Levothyroxine</button>
+                  <button data-med="ldn">LDN</button>
+                  <button data-med="prednisone">Prednisone</button>
+                  <button data-med="methotrexate">Methotrexate</button>
+                  <button data-med="supplements">Supplements</button>
+                </div>
+              </div>
+
+              <div class="log-section">
+                <h4>🔥 Symptoms</h4>
+                <div class="symptom" id="symptom-options">
+                  <button data-symptom="joint-pain">Joint Pain</button>
+                  <button data-symptom="fatigue">Fatigue</button>
+                  <button data-symptom="brain-fog">Brain Fog</button>
+                  <button data-symptom="swelling">Swelling</button>
+                  <button data-symptom="rash">Skin Rash</button>
+                  <button data-symptom="digestive">Digestive Issues</button>
+                </div>
+              </div>
+
+              <div class="log-section">
+                <h4>🍽️ Food & Triggers</h4>
+                <div class="log-toggle" id="food-options">
+                  <button data-food="gluten">Gluten</button>
+                  <button data-food="dairy">Dairy</button>
+                  <button data-food="sugar">Sugar</button>
+                  <button data-food="alcohol">Alcohol</button>
+                  <button data-food="nightshades">Nightshades</button>
+                  <button data-food="aip">AIP Compliant</button>
+                </div>
+              </div>
+
+              <div class="log-section">
+                <h4>🌙 Cycle Phase</h4>
+                <div class="log-toggle" id="cycle-options">
+                  <button data-cycle="menstrual">Menstrual</button>
+                  <button data-cycle="follicular">Follicular</button>
+                  <button data-cycle="ovulation">Ovulation</button>
+                  <button data-cycle="luteal">Luteal</button>
+                </div>
+              </div>
+
+              <button class="cta" id="save-log">Save Today's Log</button>
+            </div>
+
+            <div class="card">
+              <h3>Notes</h3>
+              <textarea
+                id="notes"
+                rows="3"
+                style="width: 100%; border-radius: 14px; border: 1px solid #e8dcc8; padding: 10px; font-family: inherit;"
+                placeholder="e.g., Stressful day at work, ate out for dinner..."
+              ></textarea>
+            </div>
+          </section>
+
+          <!-- Patterns Screen -->
+          <section class="screen" id="screen-patterns">
+            <div class="card insight">
+              <h3>🤖 AI Insight</h3>
+              <p id="ai-insight">Your flares are 3x more likely during your luteal phase. Consider extra rest and anti-inflammatory foods during this time.</p>
+            </div>
+
+            <div class="card trigger-card">
+              <h3>⚠️ Your Top Triggers</h3>
+              <div class="correlation">
+                <div class="row">
+                  <span><span class="badge trigger">High</span> Gluten</span>
+                  <strong>78%</strong>
+                </div>
+                <div class="correlation-bar">
+                  <div class="correlation-fill high" style="width: 78%;"></div>
+                </div>
+              </div>
+              <div class="correlation">
+                <div class="row">
+                  <span><span class="badge trigger">High</span> Poor Sleep</span>
+                  <strong>72%</strong>
+                </div>
+                <div class="correlation-bar">
+                  <div class="correlation-fill high" style="width: 72%;"></div>
+                </div>
+              </div>
+              <div class="correlation">
+                <div class="row">
+                  <span><span class="badge">Med</span> Stress</span>
+                  <strong>58%</strong>
+                </div>
+                <div class="correlation-bar">
+                  <div class="correlation-fill medium" style="width: 58%;"></div>
+                </div>
+              </div>
+            </div>
+
+            <div class="card">
+              <h3>✅ What Helps You</h3>
+              <div class="correlation">
+                <div class="row">
+                  <span><span class="badge safe">Good</span> AIP Diet</span>
+                  <strong>-65%</strong>
+                </div>
+                <div class="correlation-bar">
+                  <div class="correlation-fill low" style="width: 65%;"></div>
+                </div>
+              </div>
+              <div class="correlation">
+                <div class="row">
+                  <span><span class="badge safe">Good</span> 8+ Hours Sleep</span>
+                  <strong>-52%</strong>
+                </div>
+                <div class="correlation-bar">
+                  <div class="correlation-fill low" style="width: 52%;"></div>
+                </div>
+              </div>
+            </div>
+
+            <div class="card">
+              <h3>📊 Cycle-Symptom Correlation</h3>
+              <p>Your symptoms by menstrual phase:</p>
+              <div class="timeline">
+                <div class="timeline-item">
+                  <strong>Low</strong>
+                  Follicular
+                </div>
+                <div class="timeline-item">
+                  <strong>Low</strong>
+                  Ovulation
+                </div>
+                <div class="timeline-item" style="background: rgba(232, 92, 74, 0.15);">
+                  <strong>High</strong>
+                  Luteal
+                </div>
+                <div class="timeline-item" style="background: rgba(212, 148, 12, 0.2);">
+                  <strong>Med</strong>
+                  Menstrual
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <!-- Doctor Report Screen -->
+          <section class="screen" id="screen-doctor">
+            <div class="card">
+              <h3>Doctor Visit Summary</h3>
+              <p>Share a comprehensive report with your healthcare provider.</p>
+              <div class="doctor-grid">
+                <div class="stat">
+                  <strong id="stat-flares">4</strong>
+                  <span>Flares this month</span>
+                </div>
+                <div class="stat">
+                  <strong id="stat-pain">3.2</strong>
+                  <span>Avg pain level</span>
+                </div>
+                <div class="stat">
+                  <strong id="stat-fatigue">4.8</strong>
+                  <span>Avg fatigue</span>
+                </div>
+                <div class="stat">
+                  <strong id="stat-adherence">94%</strong>
+                  <span>Med adherence</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="card">
+              <h3>Key Findings</h3>
+              <p style="margin-bottom: 8px;"><span class="badge trigger">Trigger</span> Gluten exposure → flares within 24-48h</p>
+              <p style="margin-bottom: 8px;"><span class="badge">Pattern</span> Worse symptoms during luteal phase</p>
+              <p><span class="badge safe">Improvement</span> 40% fewer flares since starting AIP</p>
+            </div>
+
+            <div class="card">
+              <h3>Generate PDF Report</h3>
+              <p>Includes symptom timeline, triggers, medications, and cycle correlation.</p>
+              <button class="cta" id="generate-report">Generate Doctor Report</button>
+              <p class="footer-note" id="report-status">Last generated: never</p>
+            </div>
+          </section>
+        </main>
+
+        <nav class="nav">
+          <button data-screen="dashboard" class="active">
+            <span>🏠</span>
+            Dashboard
+          </button>
+          <button data-screen="log">
+            <span>📝</span>
+            Log
+          </button>
+          <button data-screen="patterns">
+            <span>🔍</span>
+            Patterns
+          </button>
+          <button data-screen="doctor">
+            <span>🩺</span>
+            Doctor
+          </button>
+        </nav>
+      </div>
+
+      <!-- Business / Investor Report Section -->
+      <section class="report" aria-labelledby="report-title">
+        <header class="report-header">
+          <h2 id="report-title">AutoImmuneHer Business Case</h2>
+          <p>
+            The first comprehensive multi-condition autoimmune tracker designed specifically for women. 
+            Positioned at $8.99/month to capture a massively underserved market where alternatives cost $200+/month.
+          </p>
+        </header>
+
+        <div class="report-grid">
+          <article class="report-card">
+            <h3>Executive Summary</h3>
+            <p>
+              32-40M US women live with autoimmune conditions. No dedicated multi-condition tracker exists. 
+              We fill the gap between generic symptom trackers and expensive coaching services like Mymee ($200+/mo).
+            </p>
+            <div class="pill-row">
+              <span class="pill-tag">Target: 32-40M women</span>
+              <span class="pill-tag">Price: $8.99/mo</span>
+              <span class="pill-tag">91% Gross Margin</span>
+            </div>
+          </article>
+
+          <article class="report-card">
+            <h3>The Problem</h3>
+            <p>
+              Women with autoimmune conditions struggle to identify triggers, track multiple symptoms, 
+              and communicate effectively with doctors. Existing solutions are too generic or prohibitively expensive.
+            </p>
+            <div class="icon-list">
+              <span>🔥 80+ autoimmune conditions with overlapping symptoms</span>
+              <span>📊 No way to correlate symptoms with food, stress, hormones</span>
+              <span>💰 Premium coaching costs $200-300/month</span>
+              <span>🩺 Doctors only see 15-min snapshots</span>
+            </div>
+          </article>
+
+          <article class="report-card">
+            <h3>Core Features</h3>
+            <div class="icon-list">
+              <span>📍 Multi-condition symptom tracking</span>
+              <span>💊 Medication & supplement logging</span>
+              <span>🍽️ Food trigger identification</span>
+              <span>🌙 Menstrual cycle correlation</span>
+              <span>🤖 AI pattern analysis</span>
+              <span>📄 Doctor-ready PDF reports</span>
+              <span>⚠️ Flare prediction alerts</span>
+            </div>
+          </article>
+
+          <article class="report-card">
+            <h3>Market Opportunity</h3>
+            <div class="metric-highlight">
+              <strong>$11B</strong>
+              <span>US Autoimmune Digital Health Market</span>
+            </div>
+            <div class="icon-list" style="margin-top: 14px;">
+              <span>👩 32-40M US women with autoimmune conditions</span>
+              <span>📈 Autoimmune diseases rising 3-9% annually</span>
+              <span>💎 High willingness to pay for relief</span>
+              <span>🎯 Women 78% of autoimmune patients</span>
+            </div>
+          </article>
+
+          <article class="report-card">
+            <h3>Competition</h3>
+            <div class="competitor">
+              <div><strong>Mymee</strong> — $200-300/mo, coaching + tracking</div>
+              <div><strong>Bearable</strong> — Free/premium, generic symptoms</div>
+              <div><strong>Flaredown</strong> — Free, basic, discontinued updates</div>
+              <div><strong>Period trackers</strong> — Not autoimmune-focused</div>
+            </div>
+            <p class="highlight">Our gap: Affordable AI-powered autoimmune tracker for women at $8.99/mo</p>
+          </article>
+
+          <article class="report-card">
+            <h3>Business Model</h3>
+            <div class="pricing-grid">
+              <div class="pricing-item">
+                <strong>Free Tier</strong>
+                <span>Basic logging, 7-day history</span>
+              </div>
+              <div class="pricing-item">
+                <strong>Premium $8.99/mo</strong>
+                <span>AI insights, unlimited history, reports</span>
+              </div>
+              <div class="pricing-item">
+                <strong>Premium+ $14.99/mo</strong>
+                <span>+ Lab integration, community</span>
+              </div>
+            </div>
+          </article>
+
+          <article class="report-card">
+            <h3>Unit Economics</h3>
+            <div class="costs">
+              <div><span>Monthly Revenue (Premium)</span><strong>$8.99</strong></div>
+              <div><span>Hosting & Infra</span><strong>-$0.15</strong></div>
+              <div><span>AI API Costs</span><strong>-$0.45</strong></div>
+              <div><span>Payment Processing</span><strong>-$0.30</strong></div>
+              <div style="border-top: 1px solid #e8dcc8; padding-top: 8px; margin-top: 4px;">
+                <span><strong>Gross Margin</strong></span>
+                <strong style="color: var(--sage-dark);">91% ($8.18)</strong>
+              </div>
+            </div>
+            <p style="margin-top: 12px; font-size: 12px; color: var(--muted);">
+              Break-even: ~50 subscribers. Target: 10K subscribers = $90K MRR.
+            </p>
+          </article>
+
+          <article class="report-card">
+            <h3>Why This Will Work</h3>
+            <div class="icon-list">
+              <span>🎯 No multi-condition autoimmune tracker exists</span>
+              <span>💰 22x cheaper than Mymee ($8.99 vs $200)</span>
+              <span>👩 Women-focused = better retention</span>
+              <span>🔄 Cycle correlation = unique value prop</span>
+              <span>🤖 AI differentiation at affordable price</span>
+              <span>📈 Chronic conditions = long LTV (years)</span>
+            </div>
+          </article>
+
+          <article class="report-card">
+            <h3>Go-to-Market</h3>
+            <div class="icon-list">
+              <span>📱 Autoimmune Facebook groups (millions of members)</span>
+              <span>🎙️ Chronic illness influencers & podcasts</span>
+              <span>🏥 Rheumatologist & endocrinologist referrals</span>
+              <span>🔍 SEO: "autoimmune symptom tracker"</span>
+              <span>💬 Reddit r/autoimmune, r/hashimotos communities</span>
+            </div>
+          </article>
+        </div>
+      </section>
+    </div>
+
+    <script>
+      const storageKey = "autoImmuneHerState";
+      const defaultState = {
+        feeling: null,
+        pain: 3,
+        fatigue: 4,
+        conditions: ["hashimoto"],
+        meds: [],
+        symptoms: [],
+        foods: [],
+        cycle: null,
+        notes: "",
+        lastReport: null,
+        logs: []
+      };
+
+      const loadState = () => {
+        try {
+          const saved = JSON.parse(localStorage.getItem(storageKey));
+          return saved ? { ...defaultState, ...saved } : { ...defaultState };
+        } catch (error) {
+          return { ...defaultState };
+        }
+      };
+
+      const saveState = (state) => {
+        localStorage.setItem(storageKey, JSON.stringify(state));
+      };
+
+      let state = loadState();
+
+      // Feeling buttons
+      const updateFeeling = () => {
+        document.querySelectorAll("#feeling-options .feeling-btn").forEach((btn) => {
+          btn.classList.toggle("active", btn.dataset.feeling === state.feeling);
+        });
+        const checkinStatus = document.getElementById("checkin-status");
+        checkinStatus.textContent = state.feeling ? `Feeling: ${state.feeling}` : "Not logged";
+        updateFlareStatus();
+      };
+
+      document.getElementById("feeling-options").addEventListener("click", (e) => {
+        if (e.target.classList.contains("feeling-btn")) {
+          state.feeling = e.target.dataset.feeling;
+          updateFeeling();
+          saveState(state);
+        }
+      });
+
+      // Flare status
+      const updateFlareStatus = () => {
+        const flareChip = document.getElementById("flare-status");
+        const flarePill = document.getElementById("flare-risk-pill");
+        const flareBar = document.getElementById("flare-risk-bar");
+        const flareAdvice = document.getElementById("flare-advice");
+
+        let level = "Low";
+        let percent = 25;
+        let advice = "✨ Keep it up! Your inflammation markers look stable.";
+
+        if (state.feeling === "Flaring" || state.pain >= 7 || state.fatigue >= 8) {
+          level = "High";
+          percent = 85;
+          advice = "🔥 Active flare detected. Rest, hydrate, and consider anti-inflammatory support.";
+        } else if (state.feeling === "Low" || state.pain >= 5 || state.fatigue >= 6) {
+          level = "Moderate";
+          percent = 55;
+          advice = "⚠️ Elevated risk. Monitor closely and avoid known triggers today.";
+        }
+
+        flareChip.textContent = `${level} Flare`;
+        flareChip.className = "chip flare-chip";
+        if (level === "High") flareChip.classList.add("alert");
+        else if (level === "Moderate") flareChip.classList.add("warning");
+
+        flarePill.textContent = level;
+        flarePill.className = "pill";
+        if (level === "High") flarePill.classList.add("flare-high");
+        else if (level === "Moderate") flarePill.classList.add("flare-mod");
+        else flarePill.classList.add("flare-low");
+
+        flareBar.style.width = `${percent}%`;
+        flareBar.className = "correlation-fill";
+        if (level === "High") flareBar.classList.add("high");
+        else if (level === "Moderate") flareBar.classList.add("medium");
+        else flareBar.classList.add("low");
+
+        flareAdvice.textContent = advice;
+      };
+
+      // Sliders
+      const updateSliders = () => {
+        document.getElementById("pain-range").value = state.pain;
+        document.getElementById("pain-value").textContent = state.pain;
+        document.getElementById("fatigue-range").value = state.fatigue;
+        document.getElementById("fatigue-value").textContent = state.fatigue;
+      };
+
+      document.getElementById("pain-range").addEventListener("input", (e) => {
+        state.pain = Number(e.target.value);
+        updateSliders();
+        updateFlareStatus();
+        updateDoctorStats();
+        saveState(state);
+      });
+
+      document.getElementById("fatigue-range").addEventListener("input", (e) => {
+        state.fatigue = Number(e.target.value);
+        updateSliders();
+        updateFlareStatus();
+        updateDoctorStats();
+        saveState(state);
+      });
+
+      // Conditions
+      document.getElementById("condition-pills").addEventListener("click", (e) => {
+        if (e.target.classList.contains("condition-pill")) {
+          const condition = e.target.dataset.condition;
+          if (state.conditions.includes(condition)) {
+            state.conditions = state.conditions.filter(c => c !== condition);
+          } else {
+            state.conditions.push(condition);
+          }
+          updateConditions();
+          saveState(state);
+        }
+      });
+
+      const updateConditions = () => {
+        document.querySelectorAll(".condition-pill").forEach((pill) => {
+          pill.classList.toggle("active", state.conditions.includes(pill.dataset.condition));
+        });
+      };
+
+      // Toggle buttons (meds, symptoms, foods, cycle)
+      const setupToggles = (containerId, stateKey, dataAttr) => {
+        const container = document.getElementById(containerId);
+        container.addEventListener("click", (e) => {
+          const btn = e.target.closest("button");
+          if (!btn) return;
+          const value = btn.dataset[dataAttr];
+          if (stateKey === "cycle") {
+            state[stateKey] = state[stateKey] === value ? null : value;
+          } else {
+            if (state[stateKey].includes(value)) {
+              state[stateKey] = state[stateKey].filter(v => v !== value);
+            } else {
+              state[stateKey].push(value);
+            }
+          }
+          updateToggles();
+          saveState(state);
+        });
+      };
+
+      const updateToggles = () => {
+        document.querySelectorAll("#med-options button").forEach((btn) => {
+          btn.classList.toggle("active", state.meds.includes(btn.dataset.med));
+        });
+        document.querySelectorAll("#symptom-options button").forEach((btn) => {
+          btn.classList.toggle("active", state.symptoms.includes(btn.dataset.symptom));
+        });
+        document.querySelectorAll("#food-options button").forEach((btn) => {
+          btn.classList.toggle("active", state.foods.includes(btn.dataset.food));
+        });
+        document.querySelectorAll("#cycle-options button").forEach((btn) => {
+          btn.classList.toggle("active", state.cycle === btn.dataset.cycle);
+        });
+      };
+
+      setupToggles("med-options", "meds", "med");
+      setupToggles("symptom-options", "symptoms", "symptom");
+      setupToggles("food-options", "foods", "food");
+      setupToggles("cycle-options", "cycle", "cycle");
+
+      // Notes
+      const updateNotes = () => {
+        const notes = document.getElementById("notes");
+        notes.value = state.notes || "";
+        notes.addEventListener("input", (e) => {
+          state.notes = e.target.value;
+          saveState(state);
+        });
+      };
+
+      // Save log
+      document.getElementById("save-log").addEventListener("click", () => {
+        state.logs.push({
+          date: new Date().toISOString(),
+          feeling: state.feeling,
+          pain: state.pain,
+          fatigue: state.fatigue,
+          meds: [...state.meds],
+          symptoms: [...state.symptoms],
+          foods: [...state.foods],
+          cycle: state.cycle,
+          notes: state.notes
+        });
+        saveState(state);
+        alert("Log saved! ✨");
+      });
+
+      // Doctor stats
+      const updateDoctorStats = () => {
+        const flares = state.feeling === "Flaring" ? 6 : (state.feeling === "Low" ? 4 : 2);
+        document.getElementById("stat-flares").textContent = flares;
+        document.getElementById("stat-pain").textContent = (state.pain * 0.9 + 0.5).toFixed(1);
+        document.getElementById("stat-fatigue").textContent = (state.fatigue * 0.95 + 0.3).toFixed(1);
+        document.getElementById("stat-adherence").textContent = state.meds.length > 0 ? "94%" : "—";
+      };
+
+      // Report
+      const updateReportStatus = () => {
+        const status = document.getElementById("report-status");
+        status.textContent = state.lastReport
+          ? `Last generated: ${new Date(state.lastReport).toLocaleDateString()}`
+          : "Last generated: never";
+      };
+
+      document.getElementById("generate-report").addEventListener("click", () => {
+        state.lastReport = new Date().toISOString();
+        updateReportStatus();
+        saveState(state);
+        alert("Doctor report generated! 📄\n\nIn the real app, this would create a PDF with your symptom timeline, triggers, and patterns.");
+      });
+
+      // Navigation
+      document.querySelectorAll(".nav button").forEach((button) => {
+        button.addEventListener("click", () => {
+          document.querySelectorAll(".nav button").forEach((btn) => btn.classList.remove("active"));
+          button.classList.add("active");
+          const target = button.dataset.screen;
+          document.querySelectorAll(".screen").forEach((screen) => {
+            screen.classList.toggle("active", screen.id === `screen-${target}`);
+          });
+        });
+      });
+
+      // AI Insight updates based on cycle
+      const updateAIInsight = () => {
+        const insight = document.getElementById("ai-insight");
+        if (state.cycle === "luteal") {
+          insight.textContent = "⚠️ You're in your luteal phase — historically your highest flare risk. Extra rest and anti-inflammatory foods recommended.";
+        } else if (state.foods.includes("gluten")) {
+          insight.textContent = "🚨 Gluten logged today. Based on your history, watch for symptoms in the next 24-48 hours.";
+        } else if (state.symptoms.includes("brain-fog")) {
+          insight.textContent = "🧠 Brain fog often correlates with poor sleep in your logs. Consider tracking sleep quality tonight.";
+        } else {
+          insight.textContent = "Your flares are 3x more likely during your luteal phase. Consider extra rest and anti-inflammatory foods during this time.";
+        }
+      };
+
+      // Initialize
+      const initialize = () => {
+        updateFeeling();
+        updateSliders();
+        updateConditions();
+        updateToggles();
+        updateNotes();
+        updateDoctorStats();
+        updateReportStatus();
+        updateFlareStatus();
+        updateAIInsight();
+      };
+
+      initialize();
+    </script>
+  </body>
+</html>

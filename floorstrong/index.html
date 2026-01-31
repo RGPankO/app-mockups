@@ -1,0 +1,1295 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>FloorStrong — Pelvic Floor Health</title>
+    <style>
+      :root {
+        --cream: #faf9f6;
+        --coral: #e07a5f;
+        --coral-light: #f4a593;
+        --sage: #81b29a;
+        --sage-dark: #5a8a6f;
+        --sage-light: #d8e8de;
+        --ink: #2d3436;
+        --muted: #636e72;
+        --warm: #fdf4ef;
+        --shadow: 0 18px 35px rgba(45, 52, 54, 0.08);
+      }
+
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      body {
+        font-family: "Avenir Next", "Segoe UI", sans-serif;
+        background: radial-gradient(circle at top, #ffffff 0%, #f8f6f3 45%, #f4f1ed 100%);
+        color: var(--ink);
+        min-height: 100vh;
+        padding: 28px 16px 60px;
+      }
+
+      .page {
+        width: min(1100px, 100%);
+        margin: 0 auto;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 36px;
+      }
+
+      .phone {
+        width: 100%;
+        max-width: 400px;
+        background: #ffffff;
+        border-radius: 32px;
+        box-shadow: var(--shadow);
+        overflow: hidden;
+        border: 1px solid rgba(90, 90, 90, 0.08);
+        position: relative;
+      }
+
+      .status {
+        padding: 18px 22px 8px;
+        display: flex;
+        justify-content: space-between;
+        font-size: 12px;
+        color: var(--muted);
+        letter-spacing: 0.3px;
+      }
+
+      .header {
+        padding: 4px 22px 18px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 12px;
+      }
+
+      .brand h1 {
+        font-size: 22px;
+        letter-spacing: 0.6px;
+        color: var(--sage-dark);
+      }
+
+      .brand p {
+        font-size: 13px;
+        color: var(--muted);
+        margin-top: 4px;
+      }
+
+      .chip {
+        background: var(--sage-light);
+        color: var(--sage-dark);
+        padding: 6px 12px;
+        border-radius: 999px;
+        font-size: 12px;
+        font-weight: 600;
+      }
+
+      .content {
+        padding: 0 22px 92px;
+      }
+
+      .screen {
+        display: none;
+        animation: fadeIn 0.3s ease;
+      }
+
+      .screen.active {
+        display: block;
+      }
+
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+          transform: translateY(6px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      @keyframes pulse {
+        0%, 100% { transform: scale(1); opacity: 1; }
+        50% { transform: scale(1.15); opacity: 0.8; }
+      }
+
+      @keyframes breathe {
+        0%, 100% { transform: scale(0.85); background: var(--sage-light); }
+        50% { transform: scale(1); background: var(--sage); }
+      }
+
+      .card {
+        background: #fff;
+        border-radius: 22px;
+        padding: 18px;
+        box-shadow: 0 10px 20px rgba(72, 58, 46, 0.06);
+        margin-bottom: 16px;
+        border: 1px solid rgba(93, 75, 66, 0.05);
+      }
+
+      .card h3 {
+        font-size: 16px;
+        margin-bottom: 10px;
+        color: var(--ink);
+      }
+
+      .card p {
+        font-size: 13px;
+        color: var(--muted);
+        line-height: 1.5;
+      }
+
+      .row {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 12px;
+      }
+
+      .pill {
+        background: var(--coral-light);
+        color: #7d4b42;
+        padding: 6px 12px;
+        border-radius: 999px;
+        font-size: 12px;
+        font-weight: 600;
+      }
+
+      .streak-container {
+        display: flex;
+        align-items: center;
+        gap: 16px;
+        padding: 12px 0;
+      }
+
+      .streak-number {
+        font-size: 42px;
+        font-weight: 700;
+        color: var(--coral);
+        line-height: 1;
+      }
+
+      .streak-label {
+        font-size: 13px;
+        color: var(--muted);
+      }
+
+      .streak-flames {
+        display: flex;
+        gap: 4px;
+      }
+
+      .workout-preview {
+        background: linear-gradient(135deg, var(--sage-light) 0%, #e8f4ed 100%);
+        border-radius: 18px;
+        padding: 16px;
+        margin: 12px 0;
+        border: 1px solid rgba(129, 178, 154, 0.3);
+      }
+
+      .workout-preview h4 {
+        font-size: 15px;
+        color: var(--sage-dark);
+        margin-bottom: 8px;
+      }
+
+      .workout-preview .duration {
+        font-size: 12px;
+        color: var(--muted);
+        margin-bottom: 12px;
+      }
+
+      .progress-bar {
+        height: 8px;
+        background: rgba(255, 255, 255, 0.7);
+        border-radius: 4px;
+        overflow: hidden;
+      }
+
+      .progress-fill {
+        height: 100%;
+        background: var(--sage);
+        border-radius: 4px;
+        transition: width 0.3s ease;
+      }
+
+      .tips-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 10px;
+        margin-top: 12px;
+      }
+
+      .tip {
+        background: var(--warm);
+        padding: 12px;
+        border-radius: 14px;
+        font-size: 12px;
+        color: var(--muted);
+        border: 1px solid rgba(224, 122, 95, 0.15);
+      }
+
+      .tip strong {
+        display: block;
+        color: var(--coral);
+        margin-bottom: 4px;
+        font-size: 11px;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+      }
+
+      /* Workout Screen */
+      .workout-area {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 20px 0;
+      }
+
+      .exercise-circle {
+        width: 180px;
+        height: 180px;
+        border-radius: 50%;
+        background: var(--sage-light);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 20px;
+        transition: all 0.5s ease;
+        border: 4px solid var(--sage);
+      }
+
+      .exercise-circle.contracting {
+        animation: breathe 4s ease-in-out infinite;
+      }
+
+      .exercise-circle .timer {
+        font-size: 48px;
+        font-weight: 700;
+        color: var(--sage-dark);
+      }
+
+      .exercise-circle .instruction {
+        font-size: 14px;
+        color: var(--sage-dark);
+        font-weight: 600;
+        margin-top: 4px;
+      }
+
+      .rep-counter {
+        font-size: 16px;
+        color: var(--muted);
+        margin-bottom: 16px;
+      }
+
+      .exercise-controls {
+        display: flex;
+        gap: 12px;
+        width: 100%;
+      }
+
+      .cta {
+        flex: 1;
+        border: none;
+        background: var(--coral);
+        color: #fff;
+        padding: 14px 16px;
+        border-radius: 18px;
+        font-weight: 600;
+        cursor: pointer;
+        box-shadow: 0 10px 20px rgba(224, 122, 95, 0.3);
+        transition: transform 0.2s ease;
+      }
+
+      .cta:hover {
+        transform: translateY(-2px);
+      }
+
+      .cta.secondary {
+        background: var(--sage-light);
+        color: var(--sage-dark);
+        box-shadow: none;
+      }
+
+      .cta.sage {
+        background: var(--sage);
+        box-shadow: 0 10px 20px rgba(129, 178, 154, 0.3);
+      }
+
+      .exercise-info {
+        margin-top: 20px;
+        text-align: center;
+      }
+
+      .exercise-info h4 {
+        font-size: 15px;
+        color: var(--ink);
+        margin-bottom: 6px;
+      }
+
+      .exercise-info p {
+        font-size: 12px;
+        color: var(--muted);
+        line-height: 1.5;
+      }
+
+      /* Progress Screen */
+      .stat-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 12px;
+        margin-bottom: 16px;
+      }
+
+      .stat {
+        background: var(--sage-light);
+        padding: 14px;
+        border-radius: 16px;
+        text-align: left;
+      }
+
+      .stat strong {
+        display: block;
+        font-size: 22px;
+        color: var(--sage-dark);
+      }
+
+      .stat span {
+        font-size: 12px;
+        color: var(--muted);
+      }
+
+      .stat.coral {
+        background: var(--warm);
+      }
+
+      .stat.coral strong {
+        color: var(--coral);
+      }
+
+      .chart-placeholder {
+        background: linear-gradient(135deg, #f8f8f8 0%, #f0f0f0 100%);
+        border-radius: 16px;
+        height: 140px;
+        display: flex;
+        align-items: flex-end;
+        justify-content: space-around;
+        padding: 16px;
+        margin: 12px 0;
+      }
+
+      .chart-bar {
+        width: 28px;
+        background: var(--sage);
+        border-radius: 6px 6px 0 0;
+        transition: height 0.3s ease;
+      }
+
+      .chart-bar.coral {
+        background: var(--coral-light);
+      }
+
+      .improvement-tag {
+        display: inline-flex;
+        align-items: center;
+        gap: 4px;
+        background: rgba(129, 178, 154, 0.2);
+        color: var(--sage-dark);
+        padding: 6px 12px;
+        border-radius: 999px;
+        font-size: 12px;
+        font-weight: 600;
+      }
+
+      /* Settings Screen */
+      .setting-item {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 14px 0;
+        border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+      }
+
+      .setting-item:last-child {
+        border-bottom: none;
+      }
+
+      .setting-label {
+        font-size: 14px;
+        color: var(--ink);
+      }
+
+      .setting-value {
+        font-size: 13px;
+        color: var(--muted);
+      }
+
+      .toggle {
+        width: 48px;
+        height: 26px;
+        background: #ddd;
+        border-radius: 13px;
+        position: relative;
+        cursor: pointer;
+        transition: background 0.3s ease;
+      }
+
+      .toggle.active {
+        background: var(--sage);
+      }
+
+      .toggle::after {
+        content: '';
+        position: absolute;
+        width: 22px;
+        height: 22px;
+        background: #fff;
+        border-radius: 50%;
+        top: 2px;
+        left: 2px;
+        transition: transform 0.3s ease;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      }
+
+      .toggle.active::after {
+        transform: translateX(22px);
+      }
+
+      .profile-header {
+        display: flex;
+        align-items: center;
+        gap: 16px;
+        padding: 16px 0;
+        margin-bottom: 8px;
+      }
+
+      .avatar {
+        width: 56px;
+        height: 56px;
+        background: linear-gradient(135deg, var(--sage) 0%, var(--sage-dark) 100%);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 24px;
+        color: #fff;
+      }
+
+      .profile-info h4 {
+        font-size: 16px;
+        color: var(--ink);
+      }
+
+      .profile-info p {
+        font-size: 13px;
+        color: var(--muted);
+      }
+
+      .nav {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        background: #fff;
+        border-top: 1px solid rgba(80, 64, 55, 0.06);
+        display: flex;
+        justify-content: space-around;
+        padding: 10px 8px 16px;
+      }
+
+      .nav button {
+        background: none;
+        border: none;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 4px;
+        font-size: 11px;
+        color: var(--muted);
+        cursor: pointer;
+        transition: color 0.2s ease;
+      }
+
+      .nav button.active {
+        color: var(--sage-dark);
+        font-weight: 600;
+      }
+
+      .nav span {
+        font-size: 18px;
+      }
+
+      /* Report Section */
+      .report {
+        width: 100%;
+        background: #ffffff;
+        border-radius: 28px;
+        padding: 34px 30px 40px;
+        box-shadow: var(--shadow);
+        border: 1px solid rgba(90, 90, 90, 0.08);
+        display: flex;
+        flex-direction: column;
+        gap: 24px;
+      }
+
+      .report-header {
+        background: linear-gradient(135deg, var(--warm) 0%, #f8efe6 100%);
+        border-radius: 22px;
+        padding: 22px 24px;
+        border: 1px solid rgba(129, 178, 154, 0.2);
+      }
+
+      .report-header h2 {
+        font-size: 24px;
+        letter-spacing: 0.4px;
+        margin-bottom: 8px;
+        color: var(--sage-dark);
+      }
+
+      .report-header p {
+        font-size: 14px;
+        color: var(--muted);
+        max-width: 680px;
+      }
+
+      .report-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 16px;
+      }
+
+      .report-card {
+        background: #fffdfb;
+        border-radius: 20px;
+        padding: 18px 18px 20px;
+        border: 1px solid rgba(90, 90, 90, 0.08);
+        box-shadow: 0 12px 28px rgba(70, 54, 45, 0.08);
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+      }
+
+      .report-card h3 {
+        font-size: 16px;
+        color: var(--ink);
+      }
+
+      .report-card p {
+        font-size: 13px;
+        color: var(--muted);
+        line-height: 1.5;
+      }
+
+      .pill-row {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+      }
+
+      .pill-tag {
+        background: var(--sage-light);
+        color: var(--sage-dark);
+        padding: 6px 10px;
+        border-radius: 999px;
+        font-size: 11px;
+        font-weight: 600;
+      }
+
+      .pill-tag.coral {
+        background: rgba(224, 122, 95, 0.15);
+        color: #a85842;
+      }
+
+      .icon-list {
+        display: grid;
+        gap: 10px;
+        font-size: 13px;
+        color: var(--muted);
+      }
+
+      .icon-list span {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+
+      .pricing-grid {
+        display: grid;
+        gap: 12px;
+      }
+
+      .pricing-item {
+        background: rgba(129, 178, 154, 0.12);
+        border-radius: 16px;
+        padding: 12px 14px;
+        border: 1px solid rgba(129, 178, 154, 0.2);
+        font-size: 13px;
+        color: var(--sage-dark);
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      .pricing-item strong {
+        font-size: 14px;
+      }
+
+      .competitor {
+        display: grid;
+        gap: 10px;
+        font-size: 13px;
+        color: var(--muted);
+      }
+
+      .competitor div {
+        background: #f8f2ed;
+        border-radius: 14px;
+        padding: 10px 12px;
+        border: 1px solid rgba(90, 90, 90, 0.08);
+        display: flex;
+        justify-content: space-between;
+      }
+
+      .competitor .price {
+        color: var(--coral);
+        font-weight: 600;
+      }
+
+      .highlight {
+        background: var(--sage);
+        color: #fff;
+        border-radius: 16px;
+        padding: 12px 14px;
+        font-size: 13px;
+        font-weight: 600;
+      }
+
+      .costs {
+        display: grid;
+        gap: 8px;
+        font-size: 13px;
+        color: var(--muted);
+      }
+
+      .costs div {
+        display: flex;
+        justify-content: space-between;
+      }
+
+      .costs div.total {
+        border-top: 1px solid rgba(0, 0, 0, 0.08);
+        padding-top: 8px;
+        margin-top: 4px;
+        color: var(--ink);
+        font-weight: 600;
+      }
+
+      .badge {
+        background: rgba(129, 178, 154, 0.16);
+        color: var(--sage-dark);
+        padding: 4px 10px;
+        border-radius: 999px;
+        font-size: 11px;
+        font-weight: 600;
+        display: inline-block;
+        margin-right: 6px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="page">
+      <div class="phone">
+        <div class="status">
+          <div>9:41</div>
+          <div>FloorStrong Premium · $9.99/mo</div>
+        </div>
+        <div class="header">
+          <div class="brand">
+            <h1>FloorStrong</h1>
+            <p>Your pelvic floor, your strength</p>
+          </div>
+          <div class="chip">Day 12</div>
+        </div>
+
+        <main class="content">
+          <!-- Dashboard Screen -->
+          <section class="screen active" id="screen-dashboard">
+            <div class="card">
+              <div class="row">
+                <h3>🔥 Your Streak</h3>
+                <span class="pill" id="streak-status">On Fire!</span>
+              </div>
+              <div class="streak-container">
+                <div class="streak-number" id="streak-count">12</div>
+                <div>
+                  <div class="streak-label">days in a row</div>
+                  <div class="streak-flames">🔥🔥🔥</div>
+                </div>
+              </div>
+            </div>
+
+            <div class="card">
+              <h3>Today's Workout</h3>
+              <div class="workout-preview">
+                <h4>Core Strengthening</h4>
+                <div class="duration">5 min · 3 sets · 10 reps each</div>
+                <div class="progress-bar">
+                  <div class="progress-fill" id="workout-progress" style="width: 0%"></div>
+                </div>
+              </div>
+              <button class="cta sage" id="start-workout-btn">Start Workout →</button>
+            </div>
+
+            <div class="card">
+              <h3>Quick Tips</h3>
+              <div class="tips-grid">
+                <div class="tip">
+                  <strong>💡 Posture</strong>
+                  Sit tall with feet flat on floor for better engagement
+                </div>
+                <div class="tip">
+                  <strong>🌬️ Breathing</strong>
+                  Exhale during contraction, inhale during relaxation
+                </div>
+                <div class="tip">
+                  <strong>⏰ Consistency</strong>
+                  Same time daily builds lasting habits
+                </div>
+                <div class="tip">
+                  <strong>💧 Hydration</strong>
+                  Drink water but empty bladder before exercises
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <!-- Workout Screen -->
+          <section class="screen" id="screen-workout">
+            <div class="card">
+              <h3>Guided Kegel Exercise</h3>
+              <div class="workout-area">
+                <div class="exercise-circle" id="exercise-circle">
+                  <div class="timer" id="timer">10</div>
+                  <div class="instruction" id="instruction">Ready</div>
+                </div>
+                <div class="rep-counter">
+                  Rep <span id="current-rep">0</span> of <span id="total-reps">10</span>
+                </div>
+                <div class="exercise-controls">
+                  <button class="cta secondary" id="reset-btn">Reset</button>
+                  <button class="cta" id="exercise-btn">Start</button>
+                </div>
+              </div>
+              <div class="exercise-info">
+                <h4>Slow Squeeze & Hold</h4>
+                <p>Contract your pelvic floor muscles as if stopping urine flow. Hold for the count, then relax completely.</p>
+              </div>
+            </div>
+
+            <div class="card">
+              <div class="row">
+                <h3>Session Progress</h3>
+                <span class="improvement-tag">Set 1 of 3</span>
+              </div>
+              <div class="progress-bar" style="margin-top: 12px;">
+                <div class="progress-fill" id="session-progress" style="width: 0%"></div>
+              </div>
+            </div>
+          </section>
+
+          <!-- Progress Screen -->
+          <section class="screen" id="screen-progress">
+            <div class="card">
+              <h3>Your Progress</h3>
+              <div class="stat-grid">
+                <div class="stat">
+                  <strong id="total-sessions">36</strong>
+                  <span>Total sessions</span>
+                </div>
+                <div class="stat coral">
+                  <strong id="total-minutes">180</strong>
+                  <span>Minutes trained</span>
+                </div>
+                <div class="stat">
+                  <strong id="hold-time">8s</strong>
+                  <span>Avg hold time</span>
+                </div>
+                <div class="stat coral">
+                  <strong id="improvement">+40%</strong>
+                  <span>Strength gain</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="card">
+              <div class="row">
+                <h3>Weekly Activity</h3>
+                <span class="improvement-tag">↑ 15% vs last week</span>
+              </div>
+              <div class="chart-placeholder">
+                <div class="chart-bar" style="height: 40%"></div>
+                <div class="chart-bar coral" style="height: 60%"></div>
+                <div class="chart-bar" style="height: 80%"></div>
+                <div class="chart-bar coral" style="height: 55%"></div>
+                <div class="chart-bar" style="height: 90%"></div>
+                <div class="chart-bar coral" style="height: 70%"></div>
+                <div class="chart-bar" style="height: 45%"></div>
+              </div>
+              <p style="font-size: 11px; text-align: center; color: var(--muted);">Mon · Tue · Wed · Thu · Fri · Sat · Sun</p>
+            </div>
+
+            <div class="card">
+              <h3>Milestones</h3>
+              <p><span class="badge">Week 1</span>Established daily habit ✓</p>
+              <p><span class="badge">Week 2</span>Hold time increased to 8 seconds ✓</p>
+              <p><span class="badge">Week 3</span>Reduced urgency episodes by 30%</p>
+              <p><span class="badge">Week 4</span>Generate first doctor report</p>
+            </div>
+
+            <div class="card">
+              <h3>Doctor Report</h3>
+              <p>Generate a PDF summary for your healthcare provider.</p>
+              <button class="cta" id="generate-report">Generate Report</button>
+              <p style="font-size: 11px; color: var(--muted); margin-top: 8px; text-align: center;" id="report-status">Last generated: never</p>
+            </div>
+          </section>
+
+          <!-- Settings Screen -->
+          <section class="screen" id="screen-settings">
+            <div class="card">
+              <div class="profile-header">
+                <div class="avatar">👤</div>
+                <div class="profile-info">
+                  <h4>Sarah M.</h4>
+                  <p>Member since Dec 2024</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="card">
+              <h3>Workout Settings</h3>
+              <div class="setting-item">
+                <span class="setting-label">Daily reminder</span>
+                <div class="toggle active" data-setting="reminder"></div>
+              </div>
+              <div class="setting-item">
+                <span class="setting-label">Reminder time</span>
+                <span class="setting-value">9:00 AM</span>
+              </div>
+              <div class="setting-item">
+                <span class="setting-label">Difficulty level</span>
+                <span class="setting-value">Intermediate</span>
+              </div>
+              <div class="setting-item">
+                <span class="setting-label">Sound cues</span>
+                <div class="toggle active" data-setting="sound"></div>
+              </div>
+              <div class="setting-item">
+                <span class="setting-label">Vibration feedback</span>
+                <div class="toggle" data-setting="vibration"></div>
+              </div>
+            </div>
+
+            <div class="card">
+              <h3>Program</h3>
+              <div class="setting-item">
+                <span class="setting-label">Current program</span>
+                <span class="setting-value">Postpartum Recovery</span>
+              </div>
+              <div class="setting-item">
+                <span class="setting-label">Week</span>
+                <span class="setting-value">2 of 8</span>
+              </div>
+              <button class="cta secondary" style="margin-top: 8px;">Change Program</button>
+            </div>
+
+            <div class="card">
+              <h3>Account</h3>
+              <div class="setting-item">
+                <span class="setting-label">Subscription</span>
+                <span class="setting-value" style="color: var(--sage-dark); font-weight: 600;">Premium Active</span>
+              </div>
+              <div class="setting-item">
+                <span class="setting-label">Email</span>
+                <span class="setting-value">sarah.m@email.com</span>
+              </div>
+              <button class="cta secondary" style="margin-top: 8px;">Manage Subscription</button>
+            </div>
+          </section>
+        </main>
+
+        <nav class="nav">
+          <button data-screen="dashboard" class="active">
+            <span>🏠</span>
+            Home
+          </button>
+          <button data-screen="workout">
+            <span>💪</span>
+            Workout
+          </button>
+          <button data-screen="progress">
+            <span>📊</span>
+            Progress
+          </button>
+          <button data-screen="settings">
+            <span>⚙️</span>
+            Settings
+          </button>
+        </nav>
+      </div>
+
+      <!-- Business Report Section -->
+      <section class="report" aria-labelledby="report-title">
+        <header class="report-header">
+          <h2 id="report-title">FloorStrong Business Report</h2>
+          <p>
+            A comprehensive analysis of the pelvic floor health app opportunity. Targeting 78M+ US women with a no-hardware, 
+            software-only solution at 1/15th the cost of device-based competitors.
+          </p>
+        </header>
+
+        <div class="report-grid">
+          <article class="report-card">
+            <h3>Executive Summary</h3>
+            <p>
+              FloorStrong addresses pelvic floor health for postpartum women and those with urinary incontinence—a massively 
+              underserved market. No expensive hardware required, just guided exercises and progress tracking.
+            </p>
+            <div class="pill-row">
+              <span class="pill-tag">Target: 78M+ women</span>
+              <span class="pill-tag">Price: $9.99/mo</span>
+              <span class="pill-tag coral">94% gross margin</span>
+            </div>
+          </article>
+
+          <article class="report-card">
+            <h3>The Problem</h3>
+            <p>
+              1 in 3 women experience pelvic floor dysfunction. Current solutions require expensive hardware or embarrassing 
+              in-person therapy. Most women suffer in silence.
+            </p>
+            <div class="icon-list">
+              <span>😔 Urinary incontinence affects quality of life</span>
+              <span>💸 Hardware solutions cost $150-$200+</span>
+              <span>🏥 Physical therapy is inconvenient & costly</span>
+              <span>🤫 Stigma prevents seeking help</span>
+            </div>
+          </article>
+
+          <article class="report-card">
+            <h3>Market Opportunity</h3>
+            <div class="icon-list">
+              <span>🌎 <strong>$2.9B</strong> digital pelvic healthcare market (2024)</span>
+              <span>📈 Growing to <strong>$7.5B by 2035</strong></span>
+              <span>👩 <strong>78M+ US women</strong> in target demographic</span>
+              <span>🤰 <strong>3.6M births/year</strong> = new postpartum users</span>
+            </div>
+          </article>
+
+          <article class="report-card">
+            <h3>Core Features</h3>
+            <div class="icon-list">
+              <span>📱 Personalized Kegel programs</span>
+              <span>⏱️ Guided exercises with timer & visual cues</span>
+              <span>📊 Progress tracking & streaks</span>
+              <span>📄 Doctor-ready PDF reports</span>
+              <span>🔔 Smart reminders</span>
+              <span>📚 Educational content library</span>
+            </div>
+          </article>
+
+          <article class="report-card">
+            <h3>Competition</h3>
+            <div class="competitor">
+              <div><span>Elvie Trainer</span><span class="price">$199 device</span></div>
+              <div><span>Perifit</span><span class="price">$149 device</span></div>
+              <div><span>Kegel Trainer apps</span><span class="price">Free (basic)</span></div>
+            </div>
+            <p class="highlight">Our edge: Premium features, no hardware, 1/15th the price</p>
+          </article>
+
+          <article class="report-card">
+            <h3>Business Model</h3>
+            <div class="pricing-grid">
+              <div class="pricing-item">
+                <strong>Free tier</strong>
+                <span>Basic exercises, limited tracking</span>
+              </div>
+              <div class="pricing-item">
+                <strong>Premium $9.99/mo</strong>
+                <span>Full programs, unlimited tracking</span>
+              </div>
+              <div class="pricing-item">
+                <strong>Annual $79.99/yr</strong>
+                <span>33% discount, higher LTV</span>
+              </div>
+            </div>
+          </article>
+
+          <article class="report-card">
+            <h3>Operational Costs (per 1,000 users/month)</h3>
+            <div class="costs">
+              <div><span>Hosting (Vercel/Railway)</span><strong>$20</strong></div>
+              <div><span>Database (Supabase)</span><strong>$25</strong></div>
+              <div><span>Push notifications</span><strong>$10</strong></div>
+              <div><span>PDF generation</span><strong>$5</strong></div>
+              <div class="total"><span>Total per 1K users</span><strong>~$60/mo</strong></div>
+            </div>
+          </article>
+
+          <article class="report-card">
+            <h3>Unit Economics</h3>
+            <div class="costs">
+              <div><span>Revenue per user</span><strong>$9.99/mo</strong></div>
+              <div><span>Cost per user (at scale)</span><strong>~$0.60/mo</strong></div>
+              <div><span>Gross margin</span><strong style="color: var(--sage-dark);">94%</strong></div>
+              <div class="total"><span>Break-even</span><strong>~10 users</strong></div>
+            </div>
+          </article>
+
+          <article class="report-card">
+            <h3>Why This Will Work</h3>
+            <div class="icon-list">
+              <span>✅ Massive underserved market (78M+ women)</span>
+              <span>✅ No hardware = frictionless onboarding</span>
+              <span>✅ 94% gross margin at scale</span>
+              <span>✅ High retention (health habit)</span>
+              <span>✅ Word-of-mouth growth potential</span>
+              <span>✅ Clear differentiation from $150+ devices</span>
+            </div>
+          </article>
+
+          <article class="report-card">
+            <h3>Growth Strategy</h3>
+            <div class="icon-list">
+              <span>🎯 SEO: "kegel exercises", "pelvic floor"</span>
+              <span>🤝 OB-GYN partnerships for referrals</span>
+              <span>📱 App Store Optimization</span>
+              <span>💬 Postpartum community marketing</span>
+              <span>🏥 Insurance/HSA eligibility (future)</span>
+            </div>
+          </article>
+        </div>
+      </section>
+    </div>
+
+    <script>
+      // State management
+      const storageKey = "floorstrongState";
+      const defaultState = {
+        streak: 12,
+        totalSessions: 36,
+        totalMinutes: 180,
+        currentRep: 0,
+        currentSet: 1,
+        workoutComplete: false,
+        lastReport: null,
+        settings: {
+          reminder: true,
+          sound: true,
+          vibration: false
+        }
+      };
+
+      const loadState = () => {
+        try {
+          const saved = JSON.parse(localStorage.getItem(storageKey));
+          return saved ? { ...defaultState, ...saved } : { ...defaultState };
+        } catch (error) {
+          return { ...defaultState };
+        }
+      };
+
+      const saveState = (state) => {
+        localStorage.setItem(storageKey, JSON.stringify(state));
+      };
+
+      let state = loadState();
+      let exerciseInterval = null;
+      let isExercising = false;
+      let currentPhase = 'ready'; // ready, contract, relax
+      let timer = 0;
+
+      // Navigation
+      document.querySelectorAll(".nav button").forEach((button) => {
+        button.addEventListener("click", () => {
+          document.querySelectorAll(".nav button").forEach((btn) => btn.classList.remove("active"));
+          button.classList.add("active");
+          const target = button.dataset.screen;
+          document.querySelectorAll(".screen").forEach((screen) => {
+            screen.classList.toggle("active", screen.id === `screen-${target}`);
+          });
+        });
+      });
+
+      // Dashboard: Start workout button
+      document.getElementById("start-workout-btn").addEventListener("click", () => {
+        document.querySelector('[data-screen="workout"]').click();
+      });
+
+      // Exercise logic
+      const exerciseBtn = document.getElementById("exercise-btn");
+      const resetBtn = document.getElementById("reset-btn");
+      const timerEl = document.getElementById("timer");
+      const instructionEl = document.getElementById("instruction");
+      const circleEl = document.getElementById("exercise-circle");
+      const currentRepEl = document.getElementById("current-rep");
+      const sessionProgressEl = document.getElementById("session-progress");
+      const workoutProgressEl = document.getElementById("workout-progress");
+
+      const contractTime = 5;
+      const relaxTime = 5;
+      const totalReps = 10;
+
+      const updateUI = () => {
+        currentRepEl.textContent = state.currentRep;
+        document.getElementById("streak-count").textContent = state.streak;
+        document.getElementById("total-sessions").textContent = state.totalSessions;
+        document.getElementById("total-minutes").textContent = state.totalMinutes;
+        
+        const repProgress = (state.currentRep / totalReps) * 100;
+        sessionProgressEl.style.width = repProgress + '%';
+        workoutProgressEl.style.width = repProgress + '%';
+        
+        // Report status
+        const reportStatus = document.getElementById("report-status");
+        reportStatus.textContent = state.lastReport
+          ? `Last generated: ${new Date(state.lastReport).toLocaleDateString()}`
+          : "Last generated: never";
+          
+        // Settings toggles
+        document.querySelectorAll('.toggle').forEach(toggle => {
+          const setting = toggle.dataset.setting;
+          if (state.settings[setting]) {
+            toggle.classList.add('active');
+          } else {
+            toggle.classList.remove('active');
+          }
+        });
+      };
+
+      const startExercise = () => {
+        if (isExercising) {
+          // Pause
+          clearInterval(exerciseInterval);
+          isExercising = false;
+          exerciseBtn.textContent = "Resume";
+          circleEl.classList.remove("contracting");
+          return;
+        }
+
+        isExercising = true;
+        exerciseBtn.textContent = "Pause";
+        runExerciseCycle();
+      };
+
+      const runExerciseCycle = () => {
+        if (state.currentRep >= totalReps) {
+          completeSet();
+          return;
+        }
+
+        // Contract phase
+        currentPhase = 'contract';
+        timer = contractTime;
+        instructionEl.textContent = "SQUEEZE";
+        circleEl.classList.add("contracting");
+        timerEl.textContent = timer;
+
+        exerciseInterval = setInterval(() => {
+          timer--;
+          timerEl.textContent = timer;
+
+          if (timer <= 0) {
+            clearInterval(exerciseInterval);
+            
+            if (currentPhase === 'contract') {
+              // Switch to relax
+              currentPhase = 'relax';
+              timer = relaxTime;
+              instructionEl.textContent = "RELAX";
+              circleEl.classList.remove("contracting");
+              timerEl.textContent = timer;
+
+              exerciseInterval = setInterval(() => {
+                timer--;
+                timerEl.textContent = timer;
+
+                if (timer <= 0) {
+                  clearInterval(exerciseInterval);
+                  state.currentRep++;
+                  updateUI();
+                  saveState(state);
+                  
+                  if (isExercising) {
+                    runExerciseCycle();
+                  }
+                }
+              }, 1000);
+            }
+          }
+        }, 1000);
+      };
+
+      const completeSet = () => {
+        isExercising = false;
+        circleEl.classList.remove("contracting");
+        instructionEl.textContent = "Complete! 🎉";
+        timerEl.textContent = "✓";
+        exerciseBtn.textContent = "Start Next Set";
+        
+        state.currentSet++;
+        state.totalSessions++;
+        state.totalMinutes += 5;
+        saveState(state);
+        updateUI();
+      };
+
+      const resetExercise = () => {
+        clearInterval(exerciseInterval);
+        isExercising = false;
+        currentPhase = 'ready';
+        state.currentRep = 0;
+        timer = 0;
+        
+        timerEl.textContent = "10";
+        instructionEl.textContent = "Ready";
+        exerciseBtn.textContent = "Start";
+        circleEl.classList.remove("contracting");
+        updateUI();
+        saveState(state);
+      };
+
+      exerciseBtn.addEventListener("click", startExercise);
+      resetBtn.addEventListener("click", resetExercise);
+
+      // Generate report
+      document.getElementById("generate-report").addEventListener("click", () => {
+        state.lastReport = new Date().toISOString();
+        saveState(state);
+        updateUI();
+        alert("Doctor report generated! (In production, this would create a PDF)");
+      });
+
+      // Toggle switches
+      document.querySelectorAll('.toggle').forEach(toggle => {
+        toggle.addEventListener('click', () => {
+          const setting = toggle.dataset.setting;
+          state.settings[setting] = !state.settings[setting];
+          saveState(state);
+          updateUI();
+        });
+      });
+
+      // Initialize
+      updateUI();
+    </script>
+  </body>
+</html>
