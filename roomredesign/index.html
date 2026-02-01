@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>RoomRedesign AI — App Hub</title>
+  <style>
+    :root {
+      --primary: #0d9488;
+      --primary-light: #ccfbf1;
+      --primary-dark: #0f766e;
+      --accent: #14b8a6;
+      --bg: #f0fdfa;
+      --card: #ffffff;
+      --text: #1e1b3a;
+      --muted: #6b7280;
+      --border: #e5e7eb;
+      --shadow: 0 4px 12px rgba(0,0,0,0.08);
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { 
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      background: linear-gradient(180deg, #134e4a 0%, #0f766e 30%, var(--bg) 100%);
+      color: var(--text); line-height: 1.6;
+      padding: 24px 16px 60px;
+      min-height: 100vh;
+    }
+    .container { max-width: 900px; margin: 0 auto; }
+    
+    header { text-align: center; padding: 40px 20px; margin-bottom: 32px; color: white; }
+    .logo { font-size: 48px; margin-bottom: 12px; }
+    h1 { font-size: 32px; color: #99f6e4; margin-bottom: 8px; }
+    .tagline { color: #5eead4; font-size: 18px; }
+    
+    .badges { display: flex; gap: 12px; justify-content: center; margin-top: 20px; flex-wrap: wrap; }
+    .badge { background: rgba(255,255,255,0.2); color: white; padding: 6px 14px; 
+             border-radius: 20px; font-size: 13px; font-weight: 500; }
+    .badge.build { background: #10b981; color: white; }
+    
+    .section { background: var(--card); border-radius: 16px; padding: 24px; 
+               margin-bottom: 20px; box-shadow: var(--shadow); }
+    .section h2 { font-size: 18px; color: var(--primary-dark); margin-bottom: 16px; 
+                  padding-bottom: 12px; border-bottom: 2px solid var(--primary-light); }
+    
+    .keywords { display: flex; flex-wrap: wrap; gap: 8px; }
+    .keyword { background: #f0f0f0; padding: 4px 10px; border-radius: 12px; font-size: 12px; color: #666; }
+    
+    .quote { background: linear-gradient(135deg, #ccfbf1 0%, #a7f3d0 100%); border-left: 4px solid var(--primary); 
+             padding: 16px; margin-bottom: 12px; border-radius: 0 8px 8px 0; font-style: italic; }
+    .quote-source { font-size: 12px; color: var(--muted); margin-top: 8px; font-style: normal; }
+    
+    .feature { display: flex; gap: 12px; margin-bottom: 16px; align-items: flex-start; }
+    .feature-icon { font-size: 24px; }
+    .feature h3 { font-size: 15px; margin-bottom: 4px; }
+    .feature p { font-size: 13px; color: var(--muted); }
+    
+    .stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 16px; }
+    .stat { text-align: center; padding: 16px; background: var(--primary-light); border-radius: 12px; }
+    .stat-value { font-size: 28px; font-weight: 700; color: var(--primary-dark); }
+    .stat-label { font-size: 12px; color: var(--muted); }
+    
+    table { width: 100%; border-collapse: collapse; font-size: 14px; }
+    th, td { padding: 10px 12px; text-align: left; border-bottom: 1px solid var(--border); }
+    th { background: var(--primary-light); font-weight: 600; }
+    
+    .back-link { display: inline-block; margin-bottom: 20px; color: #99f6e4; text-decoration: none; }
+    .back-link:hover { text-decoration: underline; }
+    
+    .subreddits { display: flex; flex-wrap: wrap; gap: 8px; }
+    .subreddit { background: #fff4f0; color: #ff4500; padding: 4px 10px; border-radius: 12px; font-size: 12px; }
+    
+    .highlight { background: linear-gradient(135deg, #ccfbf1 0%, #d1fae5 100%); padding: 16px; border-radius: 12px; margin-bottom: 20px; }
+    .highlight h3 { color: var(--primary-dark); margin-bottom: 8px; }
+    
+    @media (max-width: 600px) {
+      .stats-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <a href="../index.html" class="back-link">← Back to All Apps</a>
+    
+    <header>
+      <div class="logo">🏠</div>
+      <h1>RoomRedesign AI</h1>
+      <p class="tagline">Transform Any Space With One Photo</p>
+      <div class="badges">
+        <span class="badge build">✅ BUILD</span>
+        <span class="badge">62-75% Margin</span>
+        <span class="badge">$4.2B Market</span>
+        <span class="badge">$7.99/mo</span>
+      </div>
+    </header>
+    
+    <!-- Key Insight -->
+    <div class="highlight">
+      <h3>💡 Key Insight</h3>
+      <p>RoomGPT and Interior AI each have <strong>2M+ users</strong>. Virtual staging sells homes <strong>87% faster</strong> and for <strong>15% higher prices</strong>. But most apps target pros—there's a gap for consumers who just want to see how their room COULD look before buying furniture.
+         <br><br>
+         <strong>Renter pain is real:</strong> 44M US rental households can't visualize changes to spaces they can't modify.</p>
+    </div>
+    
+    <!-- App Store Info -->
+    <div class="section">
+      <h2>📱 App Store Listing</h2>
+      <table>
+        <tr><th>Field</th><th>Value</th></tr>
+        <tr><td>App Name</td><td><strong>RoomRedesign AI</strong></td></tr>
+        <tr><td>Subtitle</td><td>See Your Room Transformed Instantly</td></tr>
+        <tr><td>Category</td><td>Lifestyle / Home</td></tr>
+        <tr><td>Price</td><td>$3.99-7.99/month</td></tr>
+      </table>
+      
+      <h3 style="margin: 20px 0 12px; font-size: 15px;">Keywords</h3>
+      <div class="keywords">
+        <span class="keyword">room design</span>
+        <span class="keyword">interior design</span>
+        <span class="keyword">home decor</span>
+        <span class="keyword">room makeover</span>
+        <span class="keyword">AI design</span>
+        <span class="keyword">virtual staging</span>
+        <span class="keyword">home renovation</span>
+        <span class="keyword">decor ideas</span>
+      </div>
+    </div>
+    
+    <!-- Market Stats -->
+    <div class="section">
+      <h2>📊 Market Opportunity</h2>
+      <div class="stats-grid">
+        <div class="stat">
+          <div class="stat-value">$4.2B</div>
+          <div class="stat-label">Interior Design Software</div>
+        </div>
+        <div class="stat">
+          <div class="stat-value">$463B</div>
+          <div class="stat-label">US Home Renovation</div>
+        </div>
+        <div class="stat">
+          <div class="stat-value">12%</div>
+          <div class="stat-label">CAGR Growth</div>
+        </div>
+        <div class="stat">
+          <div class="stat-value">2M+</div>
+          <div class="stat-label">RoomGPT Users</div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Features -->
+    <div class="section">
+      <h2>✨ Core Features</h2>
+      <div class="feature">
+        <span class="feature-icon">📸</span>
+        <div>
+          <h3>Photo-to-Redesign</h3>
+          <p>Upload room photo → select style → get AI transformation in <30 seconds. 15+ design styles.</p>
+        </div>
+      </div>
+      <div class="feature">
+        <span class="feature-icon">🎨</span>
+        <div>
+          <h3>Style Quiz</h3>
+          <p>5-question quiz discovers your style preference. Personalized recommendations from day one.</p>
+        </div>
+      </div>
+      <div class="feature">
+        <span class="feature-icon">↔️</span>
+        <div>
+          <h3>Before/After Comparison</h3>
+          <p>Interactive slider view. Side-by-side export for sharing. Show your partner exactly what you mean!</p>
+        </div>
+      </div>
+      <div class="feature">
+        <span class="feature-icon">🏷️</span>
+        <div>
+          <h3>Shop This Look (V2)</h3>
+          <p>Identify furniture in designs, link to buy. Affiliate revenue opportunity.</p>
+        </div>
+      </div>
+      <div class="feature">
+        <span class="feature-icon">🏢</span>
+        <div>
+          <h3>Renter Mode (V2)</h3>
+          <p>Filter for temporary, non-permanent solutions only. Perfect for the 44M US rental households.</p>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Design Styles -->
+    <div class="section">
+      <h2>🎨 Design Styles</h2>
+      <div class="keywords">
+        <span class="keyword">Modern</span>
+        <span class="keyword">Scandinavian</span>
+        <span class="keyword">Boho</span>
+        <span class="keyword">Industrial</span>
+        <span class="keyword">Minimalist</span>
+        <span class="keyword">Mid-Century</span>
+        <span class="keyword">Farmhouse</span>
+        <span class="keyword">Coastal</span>
+        <span class="keyword">Traditional</span>
+        <span class="keyword">Japandi</span>
+        <span class="keyword">Art Deco</span>
+        <span class="keyword">Rustic</span>
+        <span class="keyword">Contemporary</span>
+        <span class="keyword">Eclectic</span>
+        <span class="keyword">Tropical</span>
+      </div>
+    </div>
+    
+    <!-- Reddit Quotes -->
+    <div class="section">
+      <h2>💬 User Pain Points (Reddit)</h2>
+      <div class="quote">
+        "Just curious if anyone had experience using anything like this. I'd rather not spend more than $100, but think the purchase would be worth it for me and my significant other to share ideas."
+        <div class="quote-source">— r/HomeImprovement</div>
+      </div>
+      <div class="quote">
+        "There are just SO many things, I don't know where to start or how far the money could really go. Do I hire a general contractor? DIY? Hire a designer? HOW Do you deal with it?"
+        <div class="quote-source">— r/homeowners</div>
+      </div>
+      <div class="quote">
+        "I'm trying to find a wall color to go with my kitchen. I love all of my other picks, but just can't seem to nail down wall color."
+        <div class="quote-source">— r/HomeImprovement</div>
+      </div>
+      <div class="quote">
+        "Virtually staged homes sell 87% faster and for 15% higher prices."
+        <div class="quote-source">— Interior AI</div>
+      </div>
+    </div>
+    
+    <!-- Target Subreddits -->
+    <div class="section">
+      <h2>🎯 Target Communities</h2>
+      <div class="subreddits">
+        <span class="subreddit">r/InteriorDesign (4.2M)</span>
+        <span class="subreddit">r/HomeImprovement (5.8M)</span>
+        <span class="subreddit">r/HomeDecorating (1.2M)</span>
+        <span class="subreddit">r/AmateurRoomPorn (1.4M)</span>
+        <span class="subreddit">r/malelivingspace (900k)</span>
+        <span class="subreddit">r/femalelivingspace (700k)</span>
+        <span class="subreddit">r/DesignMyRoom (400k)</span>
+        <span class="subreddit">r/CozyPlaces (4M)</span>
+      </div>
+    </div>
+    
+    <!-- Marketing Headlines -->
+    <div class="section">
+      <h2>📣 Marketing Headlines</h2>
+      <ul style="list-style: none; font-size: 15px;">
+        <li>🔥 "See Your Room Transformed in 20 Seconds"</li>
+        <li>🔥 "Try 50 Designs Before Buying Anything"</li>
+        <li>🔥 "Your Personal Interior Designer — For $8/Month"</li>
+        <li>🔥 "What If You Could See the After... Before?"</li>
+        <li>🔥 "Tired of Buying Furniture That Doesn't Match?"</li>
+        <li>🔥 "Can't Afford a Designer? Neither Could We."</li>
+      </ul>
+    </div>
+    
+    <!-- Target Segments -->
+    <div class="section">
+      <h2>👥 Target Segments</h2>
+      <table>
+        <tr><th>Segment</th><th>Size</th><th>Key Pain</th></tr>
+        <tr><td><strong>Pinterest Dreamers</strong></td><td>Primary</td><td>Gap between inspiration and execution</td></tr>
+        <tr><td><strong>First-Time Renovators</strong></td><td>Secondary</td><td>Fear of expensive mistakes</td></tr>
+        <tr><td><strong>Design-Curious Renters</strong></td><td>Tertiary</td><td>Can't modify space, need visualization</td></tr>
+        <tr><td><strong>Real Estate Pros</strong></td><td>B2B</td><td>Virtual staging ROI</td></tr>
+      </table>
+    </div>
+    
+    <!-- Competitors -->
+    <div class="section">
+      <h2>⚔️ Competitive Landscape</h2>
+      <table>
+        <tr><th>Competitor</th><th>Pricing</th><th>Gap</th></tr>
+        <tr><td>Interior AI (levelsio)</td><td>$39-390/yr</td><td>Expensive, pro-focused</td></tr>
+        <tr><td>RoomGPT</td><td>Freemium</td><td>Lower quality output</td></tr>
+        <tr><td>DecorMatters</td><td>$10-100/yr</td><td>More game than tool</td></tr>
+        <tr><td>Foyr Neo</td><td>$22-99/mo</td><td>Steep learning curve</td></tr>
+      </table>
+      <p style="margin-top: 12px; font-size: 13px; color: var(--muted);"><strong>Our gap:</strong> Consumer-focused (not pro), renter-specific features, budget-conscious suggestions, "shop this look" integration.</p>
+    </div>
+    
+    <!-- Unit Economics -->
+    <div class="section">
+      <h2>💰 Unit Economics</h2>
+      <table>
+        <tr><th>Metric</th><th>Value</th></tr>
+        <tr><td>Price</td><td>$7.99/month</td></tr>
+        <tr><td>AI Cost (40 renders)</td><td>~$0.80</td></tr>
+        <tr><td>App Store Cut</td><td>$1.20-2.40</td></tr>
+        <tr><td><strong>Net per User</strong></td><td><strong>~$5.00 (62-75% margin)</strong></td></tr>
+      </table>
+      <p style="margin-top: 12px; font-size: 13px; color: var(--muted);">AI generation costs ~$0.02/image with ControlNet + SD on Replicate.</p>
+    </div>
+    
+    <!-- Technical Stack -->
+    <div class="section">
+      <h2>🔧 Technical Approach</h2>
+      <table>
+        <tr><th>Component</th><th>Choice</th><th>Cost</th></tr>
+        <tr><td>AI Pipeline</td><td>ControlNet + Stable Diffusion (Replicate)</td><td>~$0.02/image</td></tr>
+        <tr><td>Depth Mapping</td><td>ControlNet Depth mode</td><td>Maintains room structure</td></tr>
+        <tr><td>Edge Detection</td><td>Canny/MLSD</td><td>Preserves architectural lines</td></tr>
+        <tr><td>Processing Time</td><td>15-30 seconds</td><td>Target: <20s</td></tr>
+      </table>
+    </div>
+    
+    <!-- Scoring -->
+    <div class="section">
+      <h2>📈 Scoring & Verdict</h2>
+      <table>
+        <tr><th>Criteria</th><th>Score</th><th>Notes</th></tr>
+        <tr><td>Market Size</td><td>⭐⭐⭐⭐⭐</td><td>$4.2B software + $463B renovation</td></tr>
+        <tr><td>Margin</td><td>⭐⭐⭐⭐</td><td>62-75% gross margin</td></tr>
+        <tr><td>Competition</td><td>⭐⭐⭐</td><td>Fragmented, but Interior AI strong</td></tr>
+        <tr><td>Build Complexity</td><td>⭐⭐⭐</td><td>ControlNet expertise needed, 8-12 weeks</td></tr>
+        <tr><td>Differentiation</td><td>⭐⭐⭐⭐</td><td>Renter focus, consumer UX, shop-the-look</td></tr>
+      </table>
+      <div class="highlight" style="margin-top: 16px;">
+        <h3>✅ VERDICT: BUILD</h3>
+        <p>Large market, proven demand (2M+ users on competitors), healthy margins. Differentiate with consumer focus (vs pro), renter-specific features, and "shop this look" affiliate integration. Before/after content is highly shareable.</p>
+      </div>
+    </div>
+    
+  </div>
+</body>
+</html>

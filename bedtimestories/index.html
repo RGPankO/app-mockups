@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AI Bedtime Stories — App Hub</title>
+  <style>
+    :root {
+      --primary: #6366f1;
+      --primary-light: #e0e7ff;
+      --primary-dark: #4338ca;
+      --accent: #8b5cf6;
+      --bg: #eef2ff;
+      --card: #ffffff;
+      --text: #1e1b3a;
+      --muted: #6b7280;
+      --border: #e5e7eb;
+      --shadow: 0 4px 12px rgba(0,0,0,0.08);
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { 
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      background: linear-gradient(180deg, #1e1b4b 0%, #312e81 50%, var(--bg) 100%);
+      color: var(--text); line-height: 1.6;
+      padding: 24px 16px 60px;
+      min-height: 100vh;
+    }
+    .container { max-width: 900px; margin: 0 auto; }
+    
+    header { text-align: center; padding: 40px 20px; margin-bottom: 32px; color: white; }
+    .logo { font-size: 48px; margin-bottom: 12px; }
+    h1 { font-size: 32px; color: #c7d2fe; margin-bottom: 8px; }
+    .tagline { color: #a5b4fc; font-size: 18px; }
+    
+    .badges { display: flex; gap: 12px; justify-content: center; margin-top: 20px; flex-wrap: wrap; }
+    .badge { background: rgba(255,255,255,0.2); color: white; padding: 6px 14px; 
+             border-radius: 20px; font-size: 13px; font-weight: 500; }
+    .badge.build { background: #10b981; color: white; }
+    
+    .section { background: var(--card); border-radius: 16px; padding: 24px; 
+               margin-bottom: 20px; box-shadow: var(--shadow); }
+    .section h2 { font-size: 18px; color: var(--primary-dark); margin-bottom: 16px; 
+                  padding-bottom: 12px; border-bottom: 2px solid var(--primary-light); }
+    
+    .keywords { display: flex; flex-wrap: wrap; gap: 8px; }
+    .keyword { background: #f0f0f0; padding: 4px 10px; border-radius: 12px; font-size: 12px; color: #666; }
+    
+    .quote { background: linear-gradient(135deg, #e0e7ff 0%, #ede9fe 100%); border-left: 4px solid var(--primary); 
+             padding: 16px; margin-bottom: 12px; border-radius: 0 8px 8px 0; font-style: italic; }
+    .quote-source { font-size: 12px; color: var(--muted); margin-top: 8px; font-style: normal; }
+    
+    .feature { display: flex; gap: 12px; margin-bottom: 16px; align-items: flex-start; }
+    .feature-icon { font-size: 24px; }
+    .feature h3 { font-size: 15px; margin-bottom: 4px; }
+    .feature p { font-size: 13px; color: var(--muted); }
+    
+    .stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 16px; }
+    .stat { text-align: center; padding: 16px; background: var(--primary-light); border-radius: 12px; }
+    .stat-value { font-size: 28px; font-weight: 700; color: var(--primary-dark); }
+    .stat-label { font-size: 12px; color: var(--muted); }
+    
+    table { width: 100%; border-collapse: collapse; font-size: 14px; }
+    th, td { padding: 10px 12px; text-align: left; border-bottom: 1px solid var(--border); }
+    th { background: var(--primary-light); font-weight: 600; }
+    
+    .back-link { display: inline-block; margin-bottom: 20px; color: #c7d2fe; text-decoration: none; }
+    .back-link:hover { text-decoration: underline; }
+    
+    .subreddits { display: flex; flex-wrap: wrap; gap: 8px; }
+    .subreddit { background: #fff4f0; color: #ff4500; padding: 4px 10px; border-radius: 12px; font-size: 12px; }
+    
+    .highlight { background: linear-gradient(135deg, #fef3c7 0%, #fce7f3 100%); padding: 16px; border-radius: 12px; margin-bottom: 20px; }
+    .highlight h3 { color: #92400e; margin-bottom: 8px; }
+    
+    @media (max-width: 600px) {
+      .stats-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <a href="../index.html" class="back-link">← Back to All Apps</a>
+    
+    <header>
+      <div class="logo">🌙</div>
+      <h1>AI Bedtime Stories</h1>
+      <p class="tagline">Personalized Story Magic for Your Kids</p>
+      <div class="badges">
+        <span class="badge build">✅ BUILD</span>
+        <span class="badge">61% Margin</span>
+        <span class="badge">$1.9B Market</span>
+        <span class="badge">$4.99/mo</span>
+      </div>
+    </header>
+    
+    <!-- Key Insight -->
+    <div class="highlight">
+      <h3>💡 Key Insight</h3>
+      <p>Parents are EXHAUSTED after work. Kids demand NEW stories every single night—"Dada, I heard this story already." Parents literally freeze trying to make up stories on the spot.
+         <br><br>
+         <strong>The killer feature:</strong> Deep personalization. Child's name, friends, interests, recent events, AND the lesson you want to teach tonight.</p>
+    </div>
+    
+    <!-- App Store Info -->
+    <div class="section">
+      <h2>📱 App Store Listing</h2>
+      <table>
+        <tr><th>Field</th><th>Value</th></tr>
+        <tr><td>App Name</td><td><strong>AI Bedtime Stories</strong></td></tr>
+        <tr><td>Subtitle</td><td>A New Magical Story Every Night</td></tr>
+        <tr><td>Category</td><td>Kids / Entertainment</td></tr>
+        <tr><td>Price</td><td>$4.99/mo or $9.99/mo with illustrations</td></tr>
+      </table>
+      
+      <h3 style="margin: 20px 0 12px; font-size: 15px;">Keywords</h3>
+      <div class="keywords">
+        <span class="keyword">bedtime stories</span>
+        <span class="keyword">kids audiobooks</span>
+        <span class="keyword">personalized stories</span>
+        <span class="keyword">sleep stories</span>
+        <span class="keyword">children stories</span>
+        <span class="keyword">AI stories</span>
+        <span class="keyword">toddler bedtime</span>
+        <span class="keyword">story time</span>
+      </div>
+    </div>
+    
+    <!-- Market Stats -->
+    <div class="section">
+      <h2>📊 Market Opportunity</h2>
+      <div class="stats-grid">
+        <div class="stat">
+          <div class="stat-value">$1.9B</div>
+          <div class="stat-label">Kids Audiobooks Market</div>
+        </div>
+        <div class="stat">
+          <div class="stat-value">$569M</div>
+          <div class="stat-label">Personalized Kids Books</div>
+        </div>
+        <div class="stat">
+          <div class="stat-value">28.8%</div>
+          <div class="stat-label">CAGR Growth</div>
+        </div>
+        <div class="stat">
+          <div class="stat-value">100K+</div>
+          <div class="stat-label">Moshi Subscribers</div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Features -->
+    <div class="section">
+      <h2>✨ Core Features</h2>
+      <div class="feature">
+        <span class="feature-icon">👶</span>
+        <div>
+          <h3>Child Profile Creation</h3>
+          <p>Name, age, appearance, interests, friends/family to include, fears to avoid.</p>
+        </div>
+      </div>
+      <div class="feature">
+        <span class="feature-icon">📖</span>
+        <div>
+          <h3>Story Generation</h3>
+          <p>3-5 minute stories. Pick genre (adventure, fairy tale, funny). Pick lesson (kindness, courage, sharing).</p>
+        </div>
+      </div>
+      <div class="feature">
+        <span class="feature-icon">🎧</span>
+        <div>
+          <h3>Premium Audio Narration</h3>
+          <p>ElevenLabs-tier warm, soothing voice. Background music options. Adjustable speed.</p>
+        </div>
+      </div>
+      <div class="feature">
+        <span class="feature-icon">📚</span>
+        <div>
+          <h3>Story Library</h3>
+          <p>Save favorites. Offline playback. Story history. Never lose a beloved tale.</p>
+        </div>
+      </div>
+      <div class="feature">
+        <span class="feature-icon">🎨</span>
+        <div>
+          <h3>AI Illustrations (Premium)</h3>
+          <p>3-5 custom images per story. Consistent character design across stories.</p>
+        </div>
+      </div>
+    </div>
+    
+    <!-- User Flow -->
+    <div class="section">
+      <h2>⚡ Nightly User Flow</h2>
+      <table>
+        <tr><th>Step</th><th>Action</th></tr>
+        <tr><td>1</td><td>Parent opens app → picks tonight's theme/lesson</td></tr>
+        <tr><td>2</td><td>AI generates unique story with child as hero</td></tr>
+        <tr><td>3</td><td>Story displays with optional illustrations</td></tr>
+        <tr><td>4</td><td>Audio narration plays (or parent reads)</td></tr>
+        <tr><td>5</td><td>Story saved → Child drifts to sleep ✨</td></tr>
+      </table>
+    </div>
+    
+    <!-- Reddit Quotes -->
+    <div class="section">
+      <h2>💬 User Pain Points (Reddit)</h2>
+      <div class="quote">
+        "After a rough day of work and dealing with the kids, the last thing my brain wants to do is be creative."
+        <div class="quote-source">— r/ChatGPT</div>
+      </div>
+      <div class="quote">
+        "My almost 5yo wants a new bedtime story every night... I now have to create brand new stories ('Dada, I heard this story already...')"
+        <div class="quote-source">— r/Parenting</div>
+      </div>
+      <div class="quote">
+        "My daughter loves asking me for a story at bedtime... and I am terrible at them. I really freeze, and they end up being 2 sentences long."
+        <div class="quote-source">— r/Parenting</div>
+      </div>
+      <div class="quote">
+        "We've read the same bedtime books so many times that my kid literally finishes the sentences for me."
+        <div class="quote-source">— r/Parenting</div>
+      </div>
+      <div class="quote">
+        "Some nights, I'm fully into it—doing all the voices. But other times… I'm struggling to keep my eyes open."
+        <div class="quote-source">— r/daddit</div>
+      </div>
+    </div>
+    
+    <!-- Target Subreddits -->
+    <div class="section">
+      <h2>🎯 Target Communities</h2>
+      <div class="subreddits">
+        <span class="subreddit">r/Parenting (5.5M)</span>
+        <span class="subreddit">r/daddit (1.2M)</span>
+        <span class="subreddit">r/Mommit (700k)</span>
+        <span class="subreddit">r/toddlers (200k)</span>
+        <span class="subreddit">r/Preschoolers (50k)</span>
+        <span class="subreddit">r/SingleParents (100k)</span>
+        <span class="subreddit">r/sleeptrain (100k)</span>
+        <span class="subreddit">r/beyondthebump (300k)</span>
+      </div>
+    </div>
+    
+    <!-- Marketing Headlines -->
+    <div class="section">
+      <h2>📣 Marketing Headlines</h2>
+      <ul style="list-style: none; font-size: 15px;">
+        <li>🔥 "Too tired to make up bedtime stories? We've got you."</li>
+        <li>🔥 "When 'One more story!' meets your empty creative tank"</li>
+        <li>🔥 "Your kid wants a new story every night. Your brain disagrees."</li>
+        <li>🔥 "A magical new story starring YOUR child—every single night"</li>
+        <li>🔥 "Personalized bedtime stories that teach kindness, courage & more"</li>
+        <li>🔥 "Make bedtime the best 10 minutes of their day"</li>
+      </ul>
+    </div>
+    
+    <!-- Competitors -->
+    <div class="section">
+      <h2>⚔️ Competitive Landscape</h2>
+      <table>
+        <tr><th>Competitor</th><th>Pricing</th><th>Gap</th></tr>
+        <tr><td>Oscar Stories</td><td>$4.99/mo, $39.99/yr</td><td>Limited to preset traits</td></tr>
+        <tr><td>Moshi Kids</td><td>$40-60/yr</td><td>Static library, not AI-generated</td></tr>
+        <tr><td>Storybook</td><td>$59.99/yr</td><td>Relaxation-focused, less story</td></tr>
+        <tr><td>Calm Kids</td><td>$69.99/yr</td><td>Not personalized</td></tr>
+      </table>
+      <p style="margin-top: 12px; font-size: 13px; color: var(--muted);"><strong>Our gap:</strong> Deep personalization (friends, interests, lessons), premium audio, story continuity across nights.</p>
+    </div>
+    
+    <!-- Unit Economics -->
+    <div class="section">
+      <h2>💰 Unit Economics</h2>
+      <table>
+        <tr><th>Tier</th><th>Price</th><th>Costs</th><th>Margin</th></tr>
+        <tr><td>Text + Audio</td><td>$4.99/mo</td><td>$1.20 + $0.75</td><td><strong>61% ✅</strong></td></tr>
+        <tr><td>With Illustrations</td><td>$9.99/mo</td><td>$5.76 + $1.50</td><td><strong>27% ✅</strong></td></tr>
+      </table>
+      <p style="margin-top: 12px; font-size: 13px; color: var(--muted);">Audio-only tier is high margin. Illustrations drive upgrades but cost more.</p>
+    </div>
+    
+    <!-- Pricing Strategy -->
+    <div class="section">
+      <h2>💳 Pricing Strategy</h2>
+      <table>
+        <tr><th>Tier</th><th>Price</th><th>Features</th></tr>
+        <tr><td>Free</td><td>$0</td><td>3 stories/month, basic TTS</td></tr>
+        <tr><td>Storyteller</td><td>$4.99/mo</td><td>Unlimited stories, premium TTS, save library</td></tr>
+        <tr><td>Storybook Pro</td><td>$9.99/mo</td><td>+ AI illustrations, voice selection, print option</td></tr>
+        <tr><td>Family</td><td>$14.99/mo</td><td>Pro + up to 4 child profiles</td></tr>
+      </table>
+    </div>
+    
+    <!-- Scoring -->
+    <div class="section">
+      <h2>📈 Scoring & Verdict</h2>
+      <table>
+        <tr><th>Criteria</th><th>Score</th><th>Notes</th></tr>
+        <tr><td>Market Size</td><td>⭐⭐⭐⭐⭐</td><td>$1.9B+ audiobooks, 28.8% CAGR</td></tr>
+        <tr><td>Margin</td><td>⭐⭐⭐⭐</td><td>61% on audio tier</td></tr>
+        <tr><td>Competition</td><td>⭐⭐⭐</td><td>Moshi/Oscar exist, but gaps clear</td></tr>
+        <tr><td>Build Complexity</td><td>⭐⭐⭐⭐</td><td>GPT + ElevenLabs stack proven</td></tr>
+        <tr><td>Differentiation</td><td>⭐⭐⭐⭐⭐</td><td>Deep personalization is moat</td></tr>
+      </table>
+      <div class="highlight" style="margin-top: 16px;">
+        <h3>✅ VERDICT: BUILD</h3>
+        <p>Exhausted parents are a massive, paying market. The personalization depth (friends, lessons, interests) is genuinely differentiated. Audio-only MVP keeps margins healthy.</p>
+      </div>
+    </div>
+    
+  </div>
+</body>
+</html>

@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PhotoRestore AI — App Hub</title>
+  <style>
+    :root {
+      --primary: #d97706;
+      --primary-light: #fef3c7;
+      --primary-dark: #b45309;
+      --accent: #92400e;
+      --bg: #fffbeb;
+      --card: #ffffff;
+      --text: #1e1b3a;
+      --muted: #6b7280;
+      --border: #e5e7eb;
+      --shadow: 0 4px 12px rgba(0,0,0,0.08);
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { 
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      background: linear-gradient(180deg, #78350f 0%, #92400e 30%, var(--bg) 100%);
+      color: var(--text); line-height: 1.6;
+      padding: 24px 16px 60px;
+      min-height: 100vh;
+    }
+    .container { max-width: 900px; margin: 0 auto; }
+    
+    header { text-align: center; padding: 40px 20px; margin-bottom: 32px; color: white; }
+    .logo { font-size: 48px; margin-bottom: 12px; }
+    h1 { font-size: 32px; color: #fef3c7; margin-bottom: 8px; }
+    .tagline { color: #fcd34d; font-size: 18px; }
+    
+    .badges { display: flex; gap: 12px; justify-content: center; margin-top: 20px; flex-wrap: wrap; }
+    .badge { background: rgba(255,255,255,0.2); color: white; padding: 6px 14px; 
+             border-radius: 20px; font-size: 13px; font-weight: 500; }
+    .badge.build { background: #10b981; color: white; }
+    
+    .section { background: var(--card); border-radius: 16px; padding: 24px; 
+               margin-bottom: 20px; box-shadow: var(--shadow); }
+    .section h2 { font-size: 18px; color: var(--primary-dark); margin-bottom: 16px; 
+                  padding-bottom: 12px; border-bottom: 2px solid var(--primary-light); }
+    
+    .keywords { display: flex; flex-wrap: wrap; gap: 8px; }
+    .keyword { background: #f0f0f0; padding: 4px 10px; border-radius: 12px; font-size: 12px; color: #666; }
+    
+    .quote { background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%); border-left: 4px solid var(--primary); 
+             padding: 16px; margin-bottom: 12px; border-radius: 0 8px 8px 0; font-style: italic; }
+    .quote-source { font-size: 12px; color: var(--muted); margin-top: 8px; font-style: normal; }
+    
+    .feature { display: flex; gap: 12px; margin-bottom: 16px; align-items: flex-start; }
+    .feature-icon { font-size: 24px; }
+    .feature h3 { font-size: 15px; margin-bottom: 4px; }
+    .feature p { font-size: 13px; color: var(--muted); }
+    
+    .stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 16px; }
+    .stat { text-align: center; padding: 16px; background: var(--primary-light); border-radius: 12px; }
+    .stat-value { font-size: 28px; font-weight: 700; color: var(--primary-dark); }
+    .stat-label { font-size: 12px; color: var(--muted); }
+    
+    table { width: 100%; border-collapse: collapse; font-size: 14px; }
+    th, td { padding: 10px 12px; text-align: left; border-bottom: 1px solid var(--border); }
+    th { background: var(--primary-light); font-weight: 600; }
+    
+    .back-link { display: inline-block; margin-bottom: 20px; color: #fef3c7; text-decoration: none; }
+    .back-link:hover { text-decoration: underline; }
+    
+    .subreddits { display: flex; flex-wrap: wrap; gap: 8px; }
+    .subreddit { background: #fff4f0; color: #ff4500; padding: 4px 10px; border-radius: 12px; font-size: 12px; }
+    
+    .highlight { background: linear-gradient(135deg, #fef3c7 0%, #fed7aa 100%); padding: 16px; border-radius: 12px; margin-bottom: 20px; }
+    .highlight h3 { color: var(--accent); margin-bottom: 8px; }
+    
+    @media (max-width: 600px) {
+      .stats-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <a href="../index.html" class="back-link">← Back to All Apps</a>
+    
+    <header>
+      <div class="logo">📸</div>
+      <h1>PhotoRestore AI</h1>
+      <p class="tagline">Bring Your Memories Back to Life</p>
+      <div class="badges">
+        <span class="badge build">✅ BUILD</span>
+        <span class="badge">65% Margin</span>
+        <span class="badge">100M+ MAU (Remini)</span>
+        <span class="badge">$4.99/mo</span>
+      </div>
+    </header>
+    
+    <!-- Key Insight -->
+    <div class="highlight">
+      <h3>💡 Key Insight</h3>
+      <p>Remini has <strong>100M+ monthly active users</strong> and <strong>5 billion photos restored</strong>. The market is MASSIVE and validated. But Remini charges $40/month and shows aggressive ads.
+         <br><br>
+         <strong>Emotional trigger = viral gold.</strong> "Showing grandma restored photos of grandpa" videos get millions of views.</p>
+    </div>
+    
+    <!-- App Store Info -->
+    <div class="section">
+      <h2>📱 App Store Listing</h2>
+      <table>
+        <tr><th>Field</th><th>Value</th></tr>
+        <tr><td>App Name</td><td><strong>PhotoRestore AI</strong></td></tr>
+        <tr><td>Subtitle</td><td>Restore Old Photos in Seconds</td></tr>
+        <tr><td>Category</td><td>Photo & Video</td></tr>
+        <tr><td>Price</td><td>$4.99/mo or $0.99/photo</td></tr>
+      </table>
+      
+      <h3 style="margin: 20px 0 12px; font-size: 15px;">Keywords</h3>
+      <div class="keywords">
+        <span class="keyword">photo restoration</span>
+        <span class="keyword">old photos</span>
+        <span class="keyword">colorize photos</span>
+        <span class="keyword">enhance photos</span>
+        <span class="keyword">family photos</span>
+        <span class="keyword">photo repair</span>
+        <span class="keyword">vintage photos</span>
+        <span class="keyword">AI enhance</span>
+      </div>
+    </div>
+    
+    <!-- Market Stats -->
+    <div class="section">
+      <h2>📊 Market Opportunity</h2>
+      <div class="stats-grid">
+        <div class="stat">
+          <div class="stat-value">100M+</div>
+          <div class="stat-label">Remini Monthly Users</div>
+        </div>
+        <div class="stat">
+          <div class="stat-value">5B+</div>
+          <div class="stat-label">Photos Restored (Remini)</div>
+        </div>
+        <div class="stat">
+          <div class="stat-value">$4.5B</div>
+          <div class="stat-label">Photo Editing Market</div>
+        </div>
+        <div class="stat">
+          <div class="stat-value">15M</div>
+          <div class="stat-label">Remini Monthly Downloads</div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Features -->
+    <div class="section">
+      <h2>✨ Core Features</h2>
+      <div class="feature">
+        <span class="feature-icon">✨</span>
+        <div>
+          <h3>One-Tap Restoration</h3>
+          <p>Auto-detect damage, enhance faces, sharpen details, upscale resolution. <30 seconds processing.</p>
+        </div>
+      </div>
+      <div class="feature">
+        <span class="feature-icon">🎨</span>
+        <div>
+          <h3>AI Colorization</h3>
+          <p>Black & white to realistic color. Adjustable intensity. See ancestors "in color" for emotional connection.</p>
+        </div>
+      </div>
+      <div class="feature">
+        <span class="feature-icon">↔️</span>
+        <div>
+          <h3>Before/After Comparison</h3>
+          <p>Interactive slider view. Side-by-side export. Animated transition for social media sharing.</p>
+        </div>
+      </div>
+      <div class="feature">
+        <span class="feature-icon">💾</span>
+        <div>
+          <h3>Simple Photo Management</h3>
+          <p>Upload from camera roll or scan. Save to gallery. History of all restorations.</p>
+        </div>
+      </div>
+      <div class="feature">
+        <span class="feature-icon">🖼️</span>
+        <div>
+          <h3>Print Integration (V2)</h3>
+          <p>Order prints, photo books, framed photos. Heritage storytelling features.</p>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Reddit Quotes -->
+    <div class="section">
+      <h2>💬 User Pain Points (Reddit)</h2>
+      <div class="quote">
+        "This app is amazing. I had an old photo of my grandmother when she was about 25 years old, and Remini has dramatically improved that. It was the only photo I had of her when she was young."
+        <div class="quote-source">— Remini App Review</div>
+      </div>
+      <div class="quote">
+        "The best restoration work brings people to tears. When you see a blurry photo of a deceased parent become clear, it's emotionally overwhelming."
+        <div class="quote-source">— r/estoration</div>
+      </div>
+      <div class="quote">
+        "I showed my 90-year-old grandmother the colorized photo of her parents. She hadn't seen their faces so clearly in 60 years. She cried for an hour."
+        <div class="quote-source">— Reddit testimonial</div>
+      </div>
+      <div class="quote">
+        "There's something magical about seeing old black and white photos in color. It makes history feel real, not like a distant memory."
+        <div class="quote-source">— r/colorization</div>
+      </div>
+    </div>
+    
+    <!-- Target Subreddits -->
+    <div class="section">
+      <h2>🎯 Target Communities</h2>
+      <div class="subreddits">
+        <span class="subreddit">r/estoration (550k)</span>
+        <span class="subreddit">r/OldPhotosInRealLife (2M)</span>
+        <span class="subreddit">r/colorization (300k)</span>
+        <span class="subreddit">r/colorizationrequests (50k)</span>
+        <span class="subreddit">r/TheWayWeWere (2.5M)</span>
+        <span class="subreddit">r/genealogy (500k)</span>
+        <span class="subreddit">r/Ancestry (100k)</span>
+        <span class="subreddit">r/OldSchoolCool (17M)</span>
+      </div>
+    </div>
+    
+    <!-- Marketing Headlines -->
+    <div class="section">
+      <h2>📣 Marketing Headlines</h2>
+      <ul style="list-style: none; font-size: 15px;">
+        <li>🔥 "See Your Loved Ones Clearly Again"</li>
+        <li>🔥 "The Photo You Thought Was Lost Forever"</li>
+        <li>🔥 "Bring Grandma Back to Life (In HD)"</li>
+        <li>🔥 "One Tap. Decades of Memories Restored."</li>
+        <li>🔥 "What If You Could See Ancestors in Color?"</li>
+        <li>🔥 "Warning: May Cause Tears of Joy"</li>
+      </ul>
+    </div>
+    
+    <!-- Viral Potential -->
+    <div class="section">
+      <h2>📈 Viral Hooks</h2>
+      <table>
+        <tr><th>Hook</th><th>Format</th><th>Potential</th></tr>
+        <tr><td>Before/After reveals</td><td>Slider video</td><td>⭐⭐⭐⭐⭐</td></tr>
+        <tr><td>"Showing grandma restored photos"</td><td>Reaction video</td><td>⭐⭐⭐⭐⭐</td></tr>
+        <tr><td>Heritage month content</td><td>Cultural pride</td><td>⭐⭐⭐⭐</td></tr>
+        <tr><td>Holiday nostalgia</td><td>Mother's/Father's Day</td><td>⭐⭐⭐⭐</td></tr>
+        <tr><td>"Ancestors in color"</td><td>TikTok trend</td><td>⭐⭐⭐⭐⭐</td></tr>
+      </table>
+    </div>
+    
+    <!-- Competitors -->
+    <div class="section">
+      <h2>⚔️ Competitive Landscape</h2>
+      <table>
+        <tr><th>Competitor</th><th>Pricing</th><th>Gap</th></tr>
+        <tr><td>Remini</td><td>$9.99/week ($40/mo)</td><td>Extremely expensive, aggressive ads</td></tr>
+        <tr><td>MyHeritage InColor</td><td>Subscription bundle</td><td>Not standalone, bundled product</td></tr>
+        <tr><td>PicWish</td><td>Freemium credits</td><td>Less polished, trust issues</td></tr>
+        <tr><td>VanceAI</td><td>Credits/subscription</td><td>Complex pricing, desktop-focused</td></tr>
+      </table>
+      <p style="margin-top: 12px; font-size: 13px; color: var(--muted);"><strong>Our gap:</strong> Reasonable pricing ($4.99/mo vs $40/mo), no aggressive ads, heritage storytelling features, print integration.</p>
+    </div>
+    
+    <!-- Unit Economics -->
+    <div class="section">
+      <h2>💰 Unit Economics</h2>
+      <table>
+        <tr><th>Metric</th><th>Value</th></tr>
+        <tr><td>Price</td><td>$4.99/month</td></tr>
+        <tr><td>AI Cost (20 photos)</td><td>~$0.23</td></tr>
+        <tr><td>App Store Cut</td><td>$1.50</td></tr>
+        <tr><td><strong>Net per User</strong></td><td><strong>$3.26 (65% margin)</strong></td></tr>
+        <tr><td>Break-even</td><td>~11 subscribers</td></tr>
+      </table>
+      <p style="margin-top: 12px; font-size: 13px; color: var(--muted);">API costs are incredibly low (~$0.01/photo). Margins are excellent.</p>
+    </div>
+    
+    <!-- Technical Stack -->
+    <div class="section">
+      <h2>🔧 AI Pipeline (Replicate)</h2>
+      <table>
+        <tr><th>Task</th><th>Model</th><th>Cost/Run</th></tr>
+        <tr><td>Face Restoration</td><td>GFPGAN</td><td>~$0.003</td></tr>
+        <tr><td>Upscaling</td><td>Real-ESRGAN</td><td>~$0.002</td></tr>
+        <tr><td>Colorization</td><td>DeOldify / DDColor</td><td>~$0.003</td></tr>
+        <tr><td><strong>Full Pipeline</strong></td><td>Combined</td><td><strong>~$0.01/photo</strong></td></tr>
+      </table>
+    </div>
+    
+    <!-- Scoring -->
+    <div class="section">
+      <h2>📈 Scoring & Verdict</h2>
+      <table>
+        <tr><th>Criteria</th><th>Score</th><th>Notes</th></tr>
+        <tr><td>Market Size</td><td>⭐⭐⭐⭐⭐</td><td>100M MAU proven by Remini</td></tr>
+        <tr><td>Margin</td><td>⭐⭐⭐⭐⭐</td><td>65% gross, $0.01/photo cost</td></tr>
+        <tr><td>Competition</td><td>⭐⭐⭐</td><td>Remini dominant, but overpriced</td></tr>
+        <tr><td>Build Complexity</td><td>⭐⭐⭐⭐⭐</td><td>Replicate models ready, 6-8 weeks</td></tr>
+        <tr><td>Viral Potential</td><td>⭐⭐⭐⭐⭐</td><td>Emotional content = shareable</td></tr>
+      </table>
+      <div class="highlight" style="margin-top: 16px;">
+        <h3>✅ VERDICT: STRONG BUILD</h3>
+        <p>Massive validated market (100M MAU), excellent margins (~$0.01/photo), clear price differentiation vs Remini ($5 vs $40), and inherently viral emotional content. This is a no-brainer.</p>
+      </div>
+    </div>
+    
+  </div>
+</body>
+</html>

@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AI Coloring Pages — App Hub</title>
+  <style>
+    :root {
+      --primary: #a855f7;
+      --primary-light: #f3e8ff;
+      --primary-dark: #7c3aed;
+      --accent: #ec4899;
+      --bg: #faf5ff;
+      --card: #ffffff;
+      --text: #1e1b3a;
+      --muted: #6b7280;
+      --border: #e5e7eb;
+      --shadow: 0 4px 12px rgba(0,0,0,0.08);
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { 
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      background: var(--bg); color: var(--text); line-height: 1.6;
+      padding: 24px 16px 60px;
+    }
+    .container { max-width: 900px; margin: 0 auto; }
+    
+    header { text-align: center; padding: 40px 20px; margin-bottom: 32px; }
+    .logo { font-size: 48px; margin-bottom: 12px; }
+    h1 { font-size: 32px; color: var(--primary-dark); margin-bottom: 8px; }
+    .tagline { color: var(--muted); font-size: 18px; }
+    
+    .badges { display: flex; gap: 12px; justify-content: center; margin-top: 20px; flex-wrap: wrap; }
+    .badge { background: var(--primary-light); color: var(--primary-dark); padding: 6px 14px; 
+             border-radius: 20px; font-size: 13px; font-weight: 500; }
+    .badge.build { background: #10b981; color: white; }
+    
+    .section { background: var(--card); border-radius: 16px; padding: 24px; 
+               margin-bottom: 20px; box-shadow: var(--shadow); }
+    .section h2 { font-size: 18px; color: var(--primary-dark); margin-bottom: 16px; 
+                  padding-bottom: 12px; border-bottom: 2px solid var(--primary-light); }
+    
+    .keywords { display: flex; flex-wrap: wrap; gap: 8px; }
+    .keyword { background: #f0f0f0; padding: 4px 10px; border-radius: 12px; font-size: 12px; color: #666; }
+    
+    .quote { background: var(--primary-light); border-left: 4px solid var(--primary); 
+             padding: 16px; margin-bottom: 12px; border-radius: 0 8px 8px 0; font-style: italic; }
+    .quote-source { font-size: 12px; color: var(--muted); margin-top: 8px; font-style: normal; }
+    
+    .feature { display: flex; gap: 12px; margin-bottom: 16px; align-items: flex-start; }
+    .feature-icon { font-size: 24px; }
+    .feature h3 { font-size: 15px; margin-bottom: 4px; }
+    .feature p { font-size: 13px; color: var(--muted); }
+    
+    .stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 16px; }
+    .stat { text-align: center; padding: 16px; background: var(--primary-light); border-radius: 12px; }
+    .stat-value { font-size: 28px; font-weight: 700; color: var(--primary-dark); }
+    .stat-label { font-size: 12px; color: var(--muted); }
+    
+    table { width: 100%; border-collapse: collapse; font-size: 14px; }
+    th, td { padding: 10px 12px; text-align: left; border-bottom: 1px solid var(--border); }
+    th { background: var(--primary-light); font-weight: 600; }
+    
+    .back-link { display: inline-block; margin-bottom: 20px; color: var(--primary); text-decoration: none; }
+    .back-link:hover { text-decoration: underline; }
+    
+    .subreddits { display: flex; flex-wrap: wrap; gap: 8px; }
+    .subreddit { background: #fff4f0; color: #ff4500; padding: 4px 10px; border-radius: 12px; font-size: 12px; }
+    
+    .highlight { background: linear-gradient(135deg, #fce7f3 0%, #f3e8ff 100%); padding: 16px; border-radius: 12px; margin-bottom: 20px; }
+    .highlight h3 { color: var(--primary-dark); margin-bottom: 8px; }
+    
+    @media (max-width: 600px) {
+      .stats-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <a href="../index.html" class="back-link">← Back to All Apps</a>
+    
+    <header>
+      <div class="logo">🖍️</div>
+      <h1>AI Coloring Pages</h1>
+      <p class="tagline">Endless Custom Coloring for Your Kids</p>
+      <div class="badges">
+        <span class="badge build">✅ BUILD</span>
+        <span class="badge">56% Margin</span>
+        <span class="badge">$9.8B Market</span>
+        <span class="badge">$4.99/mo</span>
+      </div>
+    </header>
+    
+    <!-- Key Insight -->
+    <div class="highlight">
+      <h3>💡 Key Insight</h3>
+      <p>Parents are already using ChatGPT/DALL-E to make coloring pages—but it's clunky. Kids want IMPOSSIBLE combinations: "dinosaur princess in space with rainbows." Generic Google results don't match their imagination.
+         <br><br>
+         <strong>Screen-free activities = parenting gold.</strong> Coloring is the #1 mentioned alternative to screen time.</p>
+    </div>
+    
+    <!-- App Store Info -->
+    <div class="section">
+      <h2>📱 App Store Listing</h2>
+      <table>
+        <tr><th>Field</th><th>Value</th></tr>
+        <tr><td>App Name</td><td><strong>AI Coloring Pages</strong></td></tr>
+        <tr><td>Subtitle</td><td>Create Any Coloring Page Instantly</td></tr>
+        <tr><td>Category</td><td>Kids / Education</td></tr>
+        <tr><td>Price</td><td>$4.99/month, 3 free pages to start</td></tr>
+      </table>
+      
+      <h3 style="margin: 20px 0 12px; font-size: 15px;">Keywords</h3>
+      <div class="keywords">
+        <span class="keyword">coloring pages</span>
+        <span class="keyword">kids activities</span>
+        <span class="keyword">printable</span>
+        <span class="keyword">toddler activities</span>
+        <span class="keyword">screen free</span>
+        <span class="keyword">educational</span>
+        <span class="keyword">custom coloring</span>
+        <span class="keyword">AI kids</span>
+      </div>
+    </div>
+    
+    <!-- Market Stats -->
+    <div class="section">
+      <h2>📊 Market Opportunity</h2>
+      <div class="stats-grid">
+        <div class="stat">
+          <div class="stat-value">$9.8B</div>
+          <div class="stat-label">Children's Books Market</div>
+        </div>
+        <div class="stat">
+          <div class="stat-value">$608M</div>
+          <div class="stat-label">Kids Coloring Apps</div>
+        </div>
+        <div class="stat">
+          <div class="stat-value">10.2%</div>
+          <div class="stat-label">CAGR Growth</div>
+        </div>
+        <div class="stat">
+          <div class="stat-value">40M+</div>
+          <div class="stat-label">US Households w/ Kids</div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Features -->
+    <div class="section">
+      <h2>✨ Core Features</h2>
+      <div class="feature">
+        <span class="feature-icon">💬</span>
+        <div>
+          <h3>Text-to-Coloring Page</h3>
+          <p>"Dinosaur riding a skateboard" → instant printable coloring page. Age-appropriate line thickness.</p>
+        </div>
+      </div>
+      <div class="feature">
+        <span class="feature-icon">📸</span>
+        <div>
+          <h3>Photo-to-Coloring Page</h3>
+          <p>Turn family photos into coloring pages. Kids color pictures of themselves!</p>
+        </div>
+      </div>
+      <div class="feature">
+        <span class="feature-icon">🎨</span>
+        <div>
+          <h3>Theme Browser</h3>
+          <p>Pre-made categories: Animals, Vehicles, Princesses, Superheroes, Holidays. "Surprise Me" button.</p>
+        </div>
+      </div>
+      <div class="feature">
+        <span class="feature-icon">🖨️</span>
+        <div>
+          <h3>Instant Print</h3>
+          <p>One-tap print to home printer. PDF download. Optimized for standard paper sizes.</p>
+        </div>
+      </div>
+      <div class="feature">
+        <span class="feature-icon">👨‍🏫</span>
+        <div>
+          <h3>Classroom Mode (V2)</h3>
+          <p>Teacher bulk generation with student name personalization. Educational content add-ons.</p>
+        </div>
+      </div>
+    </div>
+    
+    <!-- User Flow -->
+    <div class="section">
+      <h2>⚡ User Flow (30 Seconds to Coloring!)</h2>
+      <table>
+        <tr><th>Step</th><th>Time</th><th>Action</th></tr>
+        <tr><td>1</td><td>2 sec</td><td>Parent opens app</td></tr>
+        <tr><td>2</td><td>10 sec</td><td>Kid picks theme or describes idea</td></tr>
+        <tr><td>3</td><td>5 sec</td><td>AI generates page</td></tr>
+        <tr><td>4</td><td>5 sec</td><td>Preview → Print button</td></tr>
+        <tr><td>5</td><td>—</td><td>Kid is coloring! 🎨</td></tr>
+      </table>
+    </div>
+    
+    <!-- Reddit Quotes -->
+    <div class="section">
+      <h2>💬 User Pain Points (Reddit)</h2>
+      <div class="quote">
+        "Is there any app that provides printable coloring pages for kids? Where you could just scroll through a ton of selections, let kids pick some they like and then print them out? Important that you can print them."
+        <div class="quote-source">— r/kindergarten</div>
+      </div>
+      <div class="quote">
+        "The selection from Google & Co. is limited and never really matches the kids' imaginations and wishes. Are dinosaurs and castles super interesting right now? Why not combine both?"
+        <div class="quote-source">— r/toddlers</div>
+      </div>
+      <div class="quote">
+        "I used GPT/DALL-E to make a coloring book for my kids of all the cool things we did this year... The kids really loved it!"
+        <div class="quote-source">— r/ChatGPT</div>
+      </div>
+      <div class="quote">
+        "You can enter the age of your kid, and then tell it what you want (Spiderman on a horse fighting a dragon, for example lol), and it'll generate a coloring page for you to print out."
+        <div class="quote-source">— r/kindergarten</div>
+      </div>
+    </div>
+    
+    <!-- Target Subreddits -->
+    <div class="section">
+      <h2>🎯 Target Communities</h2>
+      <div class="subreddits">
+        <span class="subreddit">r/toddlers (305k)</span>
+        <span class="subreddit">r/Preschoolers (55k)</span>
+        <span class="subreddit">r/kindergarten (32k)</span>
+        <span class="subreddit">r/homeschool (150k)</span>
+        <span class="subreddit">r/Parenting (5.6M)</span>
+        <span class="subreddit">r/Montessori (45k)</span>
+        <span class="subreddit">r/ECEProfessionals (80k)</span>
+        <span class="subreddit">r/Coloring (80k)</span>
+      </div>
+    </div>
+    
+    <!-- Marketing Headlines -->
+    <div class="section">
+      <h2>📣 Marketing Headlines</h2>
+      <ul style="list-style: none; font-size: 15px;">
+        <li>🔥 "Create the Coloring Page Your Kid Actually Wants"</li>
+        <li>🔥 "Dinosaur + Princess + Spaceship? We Can Do That"</li>
+        <li>🔥 "From 'I Want to Color!' to Coloring in 30 Seconds"</li>
+        <li>🔥 "Screen-Free Fun, Powered by AI"</li>
+        <li>🔥 "Turn Family Photos Into Coloring Pages"</li>
+        <li>🔥 "Custom Coloring Pages for Your Classroom in Seconds"</li>
+      </ul>
+    </div>
+    
+    <!-- Target Segments -->
+    <div class="section">
+      <h2>👥 Target Segments</h2>
+      <table>
+        <tr><th>Segment</th><th>Size</th><th>Key Pain</th></tr>
+        <tr><td><strong>Pinterest Parents</strong></td><td>Primary</td><td>Want screen-free activities, endless variety</td></tr>
+        <tr><td><strong>Homeschool Heroes</strong></td><td>Secondary</td><td>Need educational, customizable content</td></tr>
+        <tr><td><strong>Teachers</strong></td><td>Tertiary</td><td>Need classroom printables fast</td></tr>
+        <tr><td><strong>Grandparents</strong></td><td>Bonus</td><td>Want bonding activities, print-focused</td></tr>
+      </table>
+    </div>
+    
+    <!-- Unit Economics -->
+    <div class="section">
+      <h2>💰 Unit Economics</h2>
+      <table>
+        <tr><th>Metric</th><th>Value</th></tr>
+        <tr><td>Price</td><td>$4.99/month</td></tr>
+        <tr><td>AI Cost (20 pages)</td><td>~$0.40-0.80</td></tr>
+        <tr><td>App Store Cut</td><td>$1.50</td></tr>
+        <tr><td><strong>Net per User</strong></td><td><strong>$2.79 (56% margin)</strong></td></tr>
+        <tr><td>Break-even</td><td>~100 subscribers</td></tr>
+      </table>
+    </div>
+    
+    <!-- Competitors -->
+    <div class="section">
+      <h2>⚔️ Competitive Landscape</h2>
+      <table>
+        <tr><th>Competitor</th><th>Pricing</th><th>Gap</th></tr>
+        <tr><td>ColorBliss</td><td>$7-83/mo</td><td>Web-only, creator-focused</td></tr>
+        <tr><td>Coloring.app</td><td>Credits system</td><td>Confusing pricing, no mobile</td></tr>
+        <tr><td>BestColoringPages.ai</td><td>Freemium</td><td>Less parent-focused</td></tr>
+        <tr><td>Pigment/Lake</td><td>$60/yr</td><td>No AI generation, adults-focused</td></tr>
+      </table>
+      <p style="margin-top: 12px; font-size: 13px; color: var(--muted);"><strong>Our gap:</strong> Mobile-first, parent-focused UX, family subscription pricing, photo-to-coloring feature.</p>
+    </div>
+    
+    <!-- Scoring -->
+    <div class="section">
+      <h2>📈 Scoring & Verdict</h2>
+      <table>
+        <tr><th>Criteria</th><th>Score</th><th>Notes</th></tr>
+        <tr><td>Market Size</td><td>⭐⭐⭐⭐⭐</td><td>$9.8B+ market, 40M households</td></tr>
+        <tr><td>Margin</td><td>⭐⭐⭐⭐</td><td>56% gross margin</td></tr>
+        <tr><td>Competition</td><td>⭐⭐⭐⭐</td><td>Fragmented, no mobile leader</td></tr>
+        <tr><td>Build Complexity</td><td>⭐⭐⭐⭐</td><td>Proven AI stack, 4-6 weeks MVP</td></tr>
+        <tr><td>Differentiation</td><td>⭐⭐⭐⭐⭐</td><td>Photo-to-coloring, 30-sec flow</td></tr>
+      </table>
+      <div class="highlight" style="margin-top: 16px;">
+        <h3>✅ VERDICT: BUILD</h3>
+        <p>Strong product-market fit. Parents already hacking together solutions with ChatGPT. Mobile-first gap is clear. Screen-free positioning is powerful.</p>
+      </div>
+    </div>
+    
+  </div>
+</body>
+</html>
