@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>WeddingMagic — App Hub</title>
+  <style>
+    :root {
+      --primary: #f472b6;
+      --primary-light: #fce7f3;
+      --primary-dark: #db2777;
+      --bg: #fdf2f8;
+      --card: #ffffff;
+      --text: #1e1b3a;
+      --muted: #6b7280;
+      --border: #e5e7eb;
+      --shadow: 0 4px 12px rgba(0,0,0,0.08);
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { 
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      background: var(--bg); color: var(--text); line-height: 1.6;
+      padding: 24px 16px 60px;
+    }
+    .container { max-width: 900px; margin: 0 auto; }
+    
+    header { text-align: center; padding: 40px 20px; margin-bottom: 32px; }
+    .logo { font-size: 48px; margin-bottom: 12px; }
+    h1 { font-size: 32px; color: var(--primary-dark); margin-bottom: 8px; }
+    .tagline { color: var(--muted); font-size: 18px; }
+    
+    .badges { display: flex; gap: 12px; justify-content: center; margin-top: 20px; flex-wrap: wrap; }
+    .badge { background: var(--primary-light); color: var(--primary-dark); padding: 6px 14px; 
+             border-radius: 20px; font-size: 13px; font-weight: 500; }
+    .badge.build { background: #10b981; color: white; }
+    
+    .section { background: var(--card); border-radius: 16px; padding: 24px; 
+               margin-bottom: 20px; box-shadow: var(--shadow); }
+    .section h2 { font-size: 18px; color: var(--primary-dark); margin-bottom: 16px; 
+                  padding-bottom: 12px; border-bottom: 2px solid var(--primary-light); }
+    
+    .keywords { display: flex; flex-wrap: wrap; gap: 8px; }
+    .keyword { background: #f0f0f0; padding: 4px 10px; border-radius: 12px; font-size: 12px; color: #666; }
+    
+    .quote { background: var(--primary-light); border-left: 4px solid var(--primary); 
+             padding: 16px; margin-bottom: 12px; border-radius: 0 8px 8px 0; font-style: italic; }
+    .quote-source { font-size: 12px; color: var(--muted); margin-top: 8px; font-style: normal; }
+    
+    .feature { display: flex; gap: 12px; margin-bottom: 16px; align-items: flex-start; }
+    .feature-icon { font-size: 24px; }
+    .feature h3 { font-size: 15px; margin-bottom: 4px; }
+    .feature p { font-size: 13px; color: var(--muted); }
+    
+    .stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 16px; }
+    .stat { text-align: center; padding: 16px; background: var(--primary-light); border-radius: 12px; }
+    .stat-value { font-size: 28px; font-weight: 700; color: var(--primary-dark); }
+    .stat-label { font-size: 12px; color: var(--muted); }
+    
+    table { width: 100%; border-collapse: collapse; font-size: 14px; }
+    th, td { padding: 10px 12px; text-align: left; border-bottom: 1px solid var(--border); }
+    th { background: var(--primary-light); font-weight: 600; }
+    
+    .back-link { display: inline-block; margin-bottom: 20px; color: var(--primary); text-decoration: none; }
+    .back-link:hover { text-decoration: underline; }
+    
+    .subreddits { display: flex; flex-wrap: wrap; gap: 8px; }
+    .subreddit { background: #fff4f0; color: #ff4500; padding: 4px 10px; border-radius: 12px; font-size: 12px; }
+    
+    .highlight { background: #fef3c7; padding: 16px; border-radius: 12px; margin-bottom: 20px; }
+    .highlight h3 { color: #92400e; margin-bottom: 8px; }
+    
+    @media (max-width: 600px) {
+      .stats-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <a href="../image-gen.html" class="back-link">← Back to Image Gen Apps</a>
+    
+    <header>
+      <div class="logo">💒</div>
+      <h1>WeddingMagic</h1>
+      <p class="tagline">Professional Wedding Photo Results in Minutes, Not Months</p>
+      <div class="badges">
+        <span class="badge build">✅ BUILD</span>
+        <span class="badge">63% Margin</span>
+        <span class="badge">$23B+ Market</span>
+        <span class="badge">$29.99/pack</span>
+      </div>
+    </header>
+    
+    <!-- Key Insight -->
+    <div class="highlight">
+      <h3>💡 Key Insight</h3>
+      <p>Wedding photography costs $2,900 average (up to $16K!). Couples wait 4-16 weeks for photos. 
+         Many regret missed shots that can never be recovered.
+         <br><br>
+         <strong>Multiple monetization angles:</strong> Enhancement saves $200-500 vs outsourcing. Restoration for anniversaries. 
+         Stationery (save-the-dates) at fraction of Minted prices.</p>
+    </div>
+    
+    <!-- App Store Info -->
+    <div class="section">
+      <h2>📱 App Store Listing</h2>
+      <table>
+        <tr><th>Field</th><th>Value</th></tr>
+        <tr><td>App Name</td><td><strong>WeddingMagic</strong></td></tr>
+        <tr><td>Subtitle</td><td>Perfect Wedding Photos, Instantly</td></tr>
+        <tr><td>Category</td><td>Photo & Video (primary)</td></tr>
+        <tr><td>Price</td><td>$19.99-29.99 per pack (100 photos)</td></tr>
+      </table>
+      
+      <h3 style="margin: 20px 0 12px; font-size: 15px;">Keywords</h3>
+      <div class="keywords">
+        <span class="keyword">wedding photos</span>
+        <span class="keyword">wedding edit</span>
+        <span class="keyword">photo enhancement</span>
+        <span class="keyword">save the date</span>
+        <span class="keyword">wedding card</span>
+        <span class="keyword">fix blink</span>
+        <span class="keyword">photo restore</span>
+        <span class="keyword">anniversary gift</span>
+        <span class="keyword">bridal photos</span>
+      </div>
+    </div>
+    
+    <!-- Market Stats -->
+    <div class="section">
+      <h2>📊 Market Opportunity</h2>
+      <div class="stats-grid">
+        <div class="stat">
+          <div class="stat-value">$23B+</div>
+          <div class="stat-label">Wedding Photo Market</div>
+        </div>
+        <div class="stat">
+          <div class="stat-value">2.2M</div>
+          <div class="stat-label">US Weddings/Year</div>
+        </div>
+        <div class="stat">
+          <div class="stat-value">63%</div>
+          <div class="stat-label">Gross Margin</div>
+        </div>
+        <div class="stat">
+          <div class="stat-value">$2,900</div>
+          <div class="stat-label">Avg Photographer Cost</div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Key Differentiator -->
+    <div class="section">
+      <h2>🎯 Key Differentiator</h2>
+      <p style="margin-bottom: 16px; font-size: 15px;">
+        <strong>All-in-one wedding photo solution</strong> — No competitor combines Enhancement + Generation + Stationery.<br><br>
+        <strong>Budget-couple positioning</strong> — "Professional results without professional prices" for the 800K+ couples/year with budget constraints.<br><br>
+        <strong>Speed</strong> — Instant results vs 4-16 week wait from photographers.
+      </p>
+      <table>
+        <tr><th>What You Get</th><th>Traditional Cost</th><th>Our Cost</th><th>Savings</th></tr>
+        <tr><td>100 photo edits</td><td>$200-500 (outsourced)</td><td>$29.99</td><td>85-94%</td></tr>
+        <tr><td>Eye/blink fixes</td><td>$5-10/each</td><td>Included</td><td>100%</td></tr>
+        <tr><td>Save-the-dates (50)</td><td>$75-150</td><td>$14.99</td><td>80-90%</td></tr>
+        <tr><td>Old photo restoration</td><td>$25-100/photo</td><td>$4.99</td><td>80-95%</td></tr>
+      </table>
+    </div>
+    
+    <!-- Features -->
+    <div class="section">
+      <h2>✨ Core Features</h2>
+      <div class="feature">
+        <span class="feature-icon">✨</span>
+        <div>
+          <h3>AI Photo Enhancement</h3>
+          <p>Auto-fix lighting, skin smoothing, blemish removal, white balance. Batch processing for full galleries.</p>
+        </div>
+      </div>
+      <div class="feature">
+        <span class="feature-icon">👁️</span>
+        <div>
+          <h3>Eye Fix / Blink Correction</h3>
+          <p>Open closed eyes in group photos — the #1 ruined shot problem. AI replaces from other photos in set.</p>
+        </div>
+      </div>
+      <div class="feature">
+        <span class="feature-icon">🗑️</span>
+        <div>
+          <h3>Object Removal</h3>
+          <p>Remove unwanted people, exit signs, cables, trash. Clean up backgrounds instantly.</p>
+        </div>
+      </div>
+      <div class="feature">
+        <span class="feature-icon">💌</span>
+        <div>
+          <h3>Save-the-Date / Thank You Cards</h3>
+          <p>10-20 template styles (modern, rustic, elegant). Export print-ready or digital sharing.</p>
+        </div>
+      </div>
+      <div class="feature">
+        <span class="feature-icon">🖼️</span>
+        <div>
+          <h3>Old Photo Restoration</h3>
+          <p>Repair scratches, tears, fading. Colorize B&W photos. Upscale low-res scans. Perfect for anniversaries.</p>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Reddit Quotes -->
+    <div class="section">
+      <h2>💬 User Pain Points (Reddit)</h2>
+      <div class="quote">
+        "Why are wedding photographers so expensive?! I'm having a tiny 25 guest, 3 hour wedding and the quotes I've been getting are for more than 30% of my entire wedding budget"
+        <div class="quote-source">— r/Weddingsunder10k</div>
+      </div>
+      <div class="quote">
+        "I paid 16k for my photographer which sometimes I'm like I cannot believe that."
+        <div class="quote-source">— r/WedditNYC</div>
+      </div>
+      <div class="quote">
+        "The wait is excruciating lol... I've also heard some people wait 6 months for photos which I think is ridiculous"
+        <div class="quote-source">— r/WeddingPhotography</div>
+      </div>
+      <div class="quote">
+        "We didn't get any cute poses. Definite regret."
+        <div class="quote-source">— r/WeddingsCanada</div>
+      </div>
+      <div class="quote">
+        "I paid a well-reviewed photography business about $300 an hour for photos, and... I didn't get what I paid for. The groom's face is practically blacked out."
+        <div class="quote-source">— r/weddingplanning</div>
+      </div>
+      <div class="quote">
+        "In a lot of the photos my family took, my eyes are closed 😅"
+        <div class="quote-source">— r/PhotoshopRequest</div>
+      </div>
+    </div>
+    
+    <!-- Target Subreddits -->
+    <div class="section">
+      <h2>🎯 Target Subreddits</h2>
+      <div class="subreddits">
+        <span class="subreddit">r/weddingplanning (900k+)</span>
+        <span class="subreddit">r/Weddingsunder10k (179k+)</span>
+        <span class="subreddit">r/wedding (200k+)</span>
+        <span class="subreddit">r/WeddingPhotography (100k+)</span>
+        <span class="subreddit">r/Brides (50k+)</span>
+        <span class="subreddit">r/estoration (300k+)</span>
+      </div>
+    </div>
+    
+    <!-- Marketing Headlines -->
+    <div class="section">
+      <h2>📣 Marketing Headlines</h2>
+      <ul style="list-style: none; font-size: 15px;">
+        <li>🔥 "Stop waiting months for wedding photos — enhance them yourself in minutes"</li>
+        <li>🔥 "Couldn't afford a $3,000 photographer? Make your photos look like you did"</li>
+        <li>🔥 "Fix every blink, enhance every shot — AI wedding photo magic"</li>
+        <li>🔥 "Turn your phone photos into save-the-date cards worthy of Minted"</li>
+        <li>🔥 "Restore your parents' wedding photos for their anniversary"</li>
+        <li>🔥 "Professional results in minutes, not months — for a fraction of the cost"</li>
+      </ul>
+    </div>
+    
+    <!-- Competitors -->
+    <div class="section">
+      <h2>🏆 Competitors</h2>
+      <table>
+        <tr><th>App</th><th>Pricing</th><th>Strengths</th><th>Weaknesses</th></tr>
+        <tr>
+          <td>Remini</td>
+          <td>$4-10/week</td>
+          <td>Strong AI upscaling, huge user base</td>
+          <td>Generic, not wedding-optimized</td>
+        </tr>
+        <tr>
+          <td>DreamShootAI</td>
+          <td>$15-40/pack</td>
+          <td>Wedding-specific styles</td>
+          <td>No enhancement, generation only</td>
+        </tr>
+        <tr>
+          <td>VanceAI</td>
+          <td>$4.95/mo</td>
+          <td>Good old photo restoration</td>
+          <td>Generic, no wedding features</td>
+        </tr>
+        <tr>
+          <td>FixThePhoto</td>
+          <td>$0.14-2.50/img</td>
+          <td>Professional outsourcing</td>
+          <td>24-48h wait, not instant</td>
+        </tr>
+        <tr>
+          <td>Imagen AI</td>
+          <td>$0.05/image</td>
+          <td>AI-first, fast</td>
+          <td>B2B only, for photographers</td>
+        </tr>
+      </table>
+      <p style="margin-top: 16px; font-size: 14px; color: var(--muted);">
+        <strong>Gap:</strong> No one does all-in-one (Enhancement + Generation + Stationery) with wedding-specific positioning.
+      </p>
+    </div>
+    
+    <!-- Cost Breakdown -->
+    <div class="section">
+      <h2>💰 Cost & Margin</h2>
+      <table>
+        <tr><th>Component</th><th>Cost</th><th>Notes</th></tr>
+        <tr><td>Face Enhancement (GFPGAN)</td><td>~$0.005/image</td><td>Replicate API</td></tr>
+        <tr><td>Upscaling (Real-ESRGAN)</td><td>~$0.003/image</td><td>Replicate API</td></tr>
+        <tr><td>Object Removal (LaMa)</td><td>~$0.01/image</td><td>Replicate API</td></tr>
+        <tr><td>Eye Opening</td><td>~$0.01/image</td><td>Custom fine-tune</td></tr>
+        <tr><td>Storage (S3)</td><td>~$0.10/user/mo</td><td>5GB average</td></tr>
+      </table>
+      <div style="margin-top: 20px; padding: 16px; background: var(--primary-light); border-radius: 12px;">
+        <h4 style="margin-bottom: 8px;">At $29.99/pack (100 photos):</h4>
+        <ul style="font-size: 14px; margin-left: 20px;">
+          <li>Processing cost: ~$2.00</li>
+          <li>App Store fee (30%): $9.00</li>
+          <li><strong>Gross margin: 63% ($18.99)</strong></li>
+        </ul>
+      </div>
+    </div>
+    
+    <!-- Target Segments -->
+    <div class="section">
+      <h2>👥 Target Segments</h2>
+      <div class="feature">
+        <span class="feature-icon">💒</span>
+        <div>
+          <h3>Primary: Budget-Conscious Engaged Couples</h3>
+          <p>Age 25-35, $50-100K income, $10-25K wedding budget. ~800K US couples/year with budget constraints.</p>
+        </div>
+      </div>
+      <div class="feature">
+        <span class="feature-icon">💍</span>
+        <div>
+          <h3>Secondary: Anniversary Celebrants</h3>
+          <p>Parents/grandparents at 25th, 50th anniversaries. Want to restore old photos. ~1M milestone anniversaries/year.</p>
+        </div>
+      </div>
+      <div class="feature">
+        <span class="feature-icon">📸</span>
+        <div>
+          <h3>Tertiary: DIY Brides</h3>
+          <p>Already doing own editing, searching for Lightroom presets. Want professional results without professional cost.</p>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Launch Strategy -->
+    <div class="section">
+      <h2>🚀 Launch Strategy</h2>
+      <p style="font-size: 15px; color: var(--muted);">
+        <strong>Target: Before engagement season (November).</strong> 47% of proposals happen Nov-Feb.
+        <br><br>
+        <strong>Seasonal Calendar:</strong>
+      </p>
+      <table style="margin-top: 12px;">
+        <tr><th>Period</th><th>Event</th><th>Focus</th></tr>
+        <tr><td>Nov-Feb</td><td>Engagement Season</td><td>Save-the-date focus, "just engaged" targeting</td></tr>
+        <tr><td>Mar-May</td><td>Planning Season</td><td>Full enhancement, budget messaging</td></tr>
+        <tr><td>Jun-Oct</td><td>Wedding Season (peak Sep/Oct)</td><td>"Photos back in minutes not months"</td></tr>
+        <tr><td>Nov-Dec</td><td>Anniversaries + Holidays</td><td>Restoration, gift-giving, thank you cards</td></tr>
+      </table>
+    </div>
+    
+    <!-- Scoring -->
+    <div class="section">
+      <h2>📊 Scoring Summary</h2>
+      <table>
+        <tr><th>Criterion</th><th>Score</th><th>Notes</th></tr>
+        <tr><td>Market Size</td><td>9/10</td><td>$23B+ wedding photo market</td></tr>
+        <tr><td>Pain Severity</td><td>9/10</td><td>High cost, long waits, regret</td></tr>
+        <tr><td>Willingness to Pay</td><td>8/10</td><td>Already spending $3K+ on photos</td></tr>
+        <tr><td>Competition</td><td>6/10</td><td>Generalist AI apps, no wedding-specific winner</td></tr>
+        <tr><td>Technical Feasibility</td><td>8/10</td><td>Existing AI models, clear implementation</td></tr>
+        <tr><td>Differentiation</td><td>7/10</td><td>Wedding-specific positioning</td></tr>
+        <tr><td><strong>OVERALL</strong></td><td><strong>7.8/10</strong></td><td><strong>Strong opportunity</strong></td></tr>
+      </table>
+    </div>
+    
+  </div>
+</body>
+</html>
