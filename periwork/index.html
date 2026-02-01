@@ -1,0 +1,656 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PeriWork — Career-Saving Strategies for Perimenopause</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+      background: linear-gradient(135deg, #0f2027 0%, #203a43 50%, #2c5364 100%);
+      min-height: 100vh;
+      color: #e0e0e0;
+      line-height: 1.6;
+    }
+
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 40px 20px;
+    }
+
+    header {
+      text-align: center;
+      padding: 60px 20px;
+      background: linear-gradient(135deg, rgba(0, 150, 136, 0.3) 0%, rgba(0, 96, 100, 0.4) 100%);
+      border-radius: 24px;
+      margin-bottom: 40px;
+      border: 1px solid rgba(0, 188, 212, 0.3);
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
+    }
+
+    .logo {
+      font-size: 80px;
+      margin-bottom: 20px;
+      filter: drop-shadow(0 4px 20px rgba(0, 188, 212, 0.5));
+    }
+
+    h1 {
+      font-size: 3.5rem;
+      font-weight: 800;
+      background: linear-gradient(135deg, #4dd0e1 0%, #00bcd4 50%, #00acc1 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 15px;
+    }
+
+    .tagline {
+      font-size: 1.4rem;
+      color: #b2ebf2;
+      margin-bottom: 30px;
+      font-weight: 300;
+    }
+
+    .badges {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 12px;
+    }
+
+    .badge {
+      padding: 10px 20px;
+      border-radius: 30px;
+      font-weight: 600;
+      font-size: 0.9rem;
+      background: rgba(255, 255, 255, 0.1);
+      border: 1px solid rgba(0, 188, 212, 0.3);
+      color: #e0f7fa;
+    }
+
+    .badge.build {
+      background: linear-gradient(135deg, #00897b 0%, #00695c 100%);
+      border: none;
+      color: white;
+      box-shadow: 0 4px 15px rgba(0, 137, 123, 0.4);
+    }
+
+    .badge.score {
+      background: linear-gradient(135deg, #00bcd4 0%, #0097a7 100%);
+      border: none;
+      color: white;
+      font-size: 1rem;
+      box-shadow: 0 4px 15px rgba(0, 188, 212, 0.4);
+    }
+
+    .section {
+      background: rgba(255, 255, 255, 0.05);
+      backdrop-filter: blur(10px);
+      border-radius: 20px;
+      padding: 35px;
+      margin-bottom: 30px;
+      border: 1px solid rgba(0, 188, 212, 0.15);
+    }
+
+    h2 {
+      font-size: 1.6rem;
+      color: #4dd0e1;
+      margin-bottom: 25px;
+      padding-bottom: 12px;
+      border-bottom: 2px solid rgba(0, 188, 212, 0.3);
+    }
+
+    h3 {
+      color: #80deea;
+      margin: 20px 0 12px;
+      font-size: 1.1rem;
+    }
+
+    /* Stats Grid */
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 20px;
+    }
+
+    .stat {
+      text-align: center;
+      padding: 25px;
+      background: linear-gradient(135deg, rgba(0, 150, 136, 0.2) 0%, rgba(0, 96, 100, 0.3) 100%);
+      border-radius: 16px;
+      border: 1px solid rgba(0, 188, 212, 0.2);
+    }
+
+    .stat-value {
+      font-size: 2.2rem;
+      font-weight: 800;
+      color: #4dd0e1;
+      text-shadow: 0 2px 10px rgba(0, 188, 212, 0.3);
+    }
+
+    .stat-label {
+      color: #b2ebf2;
+      font-size: 0.9rem;
+      margin-top: 8px;
+    }
+
+    /* Tables */
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 15px 0;
+    }
+
+    th, td {
+      padding: 14px 16px;
+      text-align: left;
+      border-bottom: 1px solid rgba(0, 188, 212, 0.15);
+    }
+
+    th {
+      background: rgba(0, 150, 136, 0.2);
+      color: #4dd0e1;
+      font-weight: 600;
+    }
+
+    tr:hover {
+      background: rgba(0, 188, 212, 0.05);
+    }
+
+    /* Keywords */
+    .keywords {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 15px;
+    }
+
+    .keyword {
+      background: linear-gradient(135deg, rgba(0, 150, 136, 0.3) 0%, rgba(0, 96, 100, 0.4) 100%);
+      padding: 8px 16px;
+      border-radius: 20px;
+      font-size: 0.85rem;
+      color: #b2ebf2;
+      border: 1px solid rgba(0, 188, 212, 0.2);
+    }
+
+    /* Features */
+    .feature {
+      display: flex;
+      align-items: flex-start;
+      gap: 20px;
+      padding: 20px;
+      background: rgba(0, 150, 136, 0.1);
+      border-radius: 16px;
+      margin-bottom: 15px;
+      border: 1px solid rgba(0, 188, 212, 0.15);
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    .feature:hover {
+      transform: translateX(5px);
+      box-shadow: 0 5px 20px rgba(0, 188, 212, 0.2);
+    }
+
+    .feature-icon {
+      font-size: 2.5rem;
+      flex-shrink: 0;
+    }
+
+    .feature h3 {
+      margin: 0 0 8px;
+      color: #4dd0e1;
+    }
+
+    .feature p {
+      color: #b2ebf2;
+      font-size: 0.95rem;
+    }
+
+    /* Quotes */
+    .quote {
+      background: linear-gradient(135deg, rgba(0, 77, 64, 0.3) 0%, rgba(0, 96, 100, 0.2) 100%);
+      padding: 25px;
+      border-radius: 16px;
+      margin-bottom: 15px;
+      border-left: 4px solid #00897b;
+      font-style: italic;
+      color: #e0f7fa;
+    }
+
+    .quote-source {
+      margin-top: 12px;
+      font-style: normal;
+      font-size: 0.85rem;
+      color: #80cbc4;
+    }
+
+    /* Subreddits */
+    .subreddits {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .subreddit {
+      background: linear-gradient(135deg, rgba(0, 150, 136, 0.25) 0%, rgba(0, 96, 100, 0.35) 100%);
+      padding: 12px 20px;
+      border-radius: 25px;
+      font-size: 0.9rem;
+      border: 1px solid rgba(0, 188, 212, 0.2);
+      color: #b2ebf2;
+    }
+
+    /* Verdict */
+    .verdict {
+      background: linear-gradient(135deg, rgba(0, 137, 123, 0.3) 0%, rgba(0, 105, 92, 0.4) 100%);
+      padding: 30px;
+      border-radius: 16px;
+      text-align: center;
+      margin-top: 25px;
+      border: 2px solid rgba(0, 188, 212, 0.3);
+    }
+
+    .verdict h3 {
+      font-size: 1.8rem;
+      color: #4dd0e1;
+      margin-bottom: 15px;
+    }
+
+    .verdict p {
+      color: #e0f7fa;
+      font-size: 1.1rem;
+    }
+
+    /* Lists */
+    ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    ul li {
+      padding: 12px 0;
+      border-bottom: 1px solid rgba(0, 188, 212, 0.1);
+      color: #e0f7fa;
+    }
+
+    ul li:last-child {
+      border-bottom: none;
+    }
+
+    ul li strong {
+      color: #4dd0e1;
+    }
+
+    /* Crisis Banner */
+    .crisis-banner {
+      background: linear-gradient(135deg, rgba(183, 28, 28, 0.2) 0%, rgba(198, 40, 40, 0.3) 100%);
+      padding: 25px;
+      border-radius: 16px;
+      margin-bottom: 25px;
+      border: 1px solid rgba(255, 82, 82, 0.3);
+      text-align: center;
+    }
+
+    .crisis-banner .big-number {
+      font-size: 3rem;
+      font-weight: 800;
+      color: #ff8a80;
+      display: block;
+    }
+
+    .crisis-banner .crisis-text {
+      color: #ffcdd2;
+      font-size: 1.1rem;
+    }
+
+    /* Blue Ocean */
+    .blue-ocean {
+      background: linear-gradient(135deg, rgba(0, 150, 136, 0.25) 0%, rgba(0, 188, 212, 0.2) 100%);
+      padding: 25px;
+      border-radius: 16px;
+      margin-top: 20px;
+      border: 2px dashed rgba(0, 188, 212, 0.4);
+    }
+
+    .blue-ocean h4 {
+      color: #4dd0e1;
+      margin-bottom: 15px;
+      font-size: 1.1rem;
+    }
+
+    .blue-ocean ul li {
+      border-bottom: none;
+      padding: 6px 0;
+    }
+
+    .blue-ocean ul li::before {
+      content: "✅ ";
+    }
+
+    /* Description box */
+    .description-box {
+      background: rgba(0, 150, 136, 0.1);
+      padding: 20px;
+      border-radius: 12px;
+      margin-top: 15px;
+      border: 1px solid rgba(0, 188, 212, 0.15);
+    }
+
+    .description-box p {
+      color: #b2ebf2;
+      line-height: 1.7;
+    }
+
+    /* Responsive */
+    @media (max-width: 600px) {
+      h1 {
+        font-size: 2.5rem;
+      }
+
+      .tagline {
+        font-size: 1.1rem;
+      }
+
+      .section {
+        padding: 25px 20px;
+      }
+
+      .feature {
+        flex-direction: column;
+        text-align: center;
+      }
+
+      .stat-value {
+        font-size: 1.8rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <!-- Header -->
+    <header>
+      <div class="logo">💼</div>
+      <h1>PeriWork</h1>
+      <p class="tagline">Career-Saving Strategies for Perimenopause</p>
+      <div class="badges">
+        <span class="badge score">⭐ 4.80/5</span>
+        <span class="badge build">✅ BUILD</span>
+        <span class="badge">67% Margin</span>
+        <span class="badge">$26.6B Market</span>
+        <span class="badge">$9.99/mo</span>
+      </div>
+    </header>
+
+    <!-- App Store Listing -->
+    <div class="section">
+      <h2>📱 App Store Listing</h2>
+      <table>
+        <tr><th>Field</th><th>Value</th></tr>
+        <tr><td>App Name</td><td><strong>PeriWork: Career Focus Toolkit</strong></td></tr>
+        <tr><td>Subtitle</td><td>Beat Brain Fog, Save Your Job</td></tr>
+        <tr><td>Category</td><td>Productivity / Health & Fitness</td></tr>
+        <tr><td>Price</td><td>Free trial, $9.99/month Premium</td></tr>
+      </table>
+
+      <h3>Keywords (99 chars)</h3>
+      <div class="keywords">
+        <span class="keyword">brain fog</span>
+        <span class="keyword">perimenopause</span>
+        <span class="keyword">work productivity</span>
+        <span class="keyword">focus</span>
+        <span class="keyword">memory</span>
+        <span class="keyword">energy</span>
+        <span class="keyword">meetings</span>
+        <span class="keyword">career</span>
+        <span class="keyword">menopause</span>
+        <span class="keyword">women 40+</span>
+      </div>
+
+      <div class="description-box">
+        <p><strong>Keep your career while your hormones go haywire.</strong></p>
+        <p style="margin-top: 12px;">PeriWork is the first app designed specifically for working women navigating perimenopause. Get instant brain fog recovery strategies, energy-matched scheduling, and career protection tools. Unlike symptom trackers, we focus on what matters most—helping you perform at work when your body is working against you.</p>
+      </div>
+    </div>
+
+    <!-- Market Opportunity -->
+    <div class="section">
+      <h2>📊 Market Opportunity</h2>
+
+      <div class="crisis-banner">
+        <span class="big-number">$26.6 BILLION</span>
+        <span class="crisis-text">Annual U.S. productivity loss from perimenopause/menopause symptoms</span>
+      </div>
+
+      <div class="stats-grid">
+        <div class="stat">
+          <div class="stat-value">27M</div>
+          <div class="stat-label">U.S. Working Women 40-55</div>
+        </div>
+        <div class="stat">
+          <div class="stat-value">1 in 10</div>
+          <div class="stat-label">Quit Jobs Due to Symptoms</div>
+        </div>
+        <div class="stat">
+          <div class="stat-value">44%</div>
+          <div class="stat-label">Are Senior Leaders</div>
+        </div>
+        <div class="stat">
+          <div class="stat-value">67%</div>
+          <div class="stat-label">Gross Margin</div>
+        </div>
+      </div>
+
+      <table style="margin-top: 25px;">
+        <tr><th>Market Metric</th><th>Value</th></tr>
+        <tr><td>Global Corporate Wellness</td><td>$68B (2025) → $129B (2034)</td></tr>
+        <tr><td>Perimenopause Duration</td><td>4-10 years average</td></tr>
+        <tr><td>Target Income Level</td><td>$75K+ career-driven women</td></tr>
+        <tr><td>Primary Market</td><td>~15M U.S. knowledge workers</td></tr>
+      </table>
+    </div>
+
+    <!-- Core Features -->
+    <div class="section">
+      <h2>✨ Core Features</h2>
+
+      <div class="feature">
+        <div class="feature-icon">🧠</div>
+        <div>
+          <h3>Brain Fog Emergency Mode</h3>
+          <p>One-tap "fog alert" with pre-loaded responses, meeting delay templates, voice-to-notes capture, and 2-minute focus breathing resets. Recover quickly when your mind blanks.</p>
+        </div>
+      </div>
+
+      <div class="feature">
+        <div class="feature-icon">📅</div>
+        <div>
+          <h3>Energy-Matched Scheduling</h3>
+          <p>Track daily energy patterns, get AI-suggested optimal meeting times, sync with your work calendar, and auto-block low-energy periods. Never schedule high-stakes calls at your worst.</p>
+        </div>
+      </div>
+
+      <div class="feature">
+        <div class="feature-icon">🗣️</div>
+        <div>
+          <h3>Disclosure Decision Tree</h3>
+          <p>Interactive "should I tell my manager?" flow with risk assessment by industry/role. Get exact scripts for what to say, what NOT to say, and HR accommodation request templates.</p>
+        </div>
+      </div>
+
+      <div class="feature">
+        <div class="feature-icon">📝</div>
+        <div>
+          <h3>Meeting Survival Kit</h3>
+          <p>Pre-meeting prep checklists, speaking notes formatter, "I'll follow up" tracker that never lets you forget, and post-meeting summary generator. Stop the slips that lead to PIPs.</p>
+        </div>
+      </div>
+
+      <div class="feature">
+        <div class="feature-icon">🚨</div>
+        <div>
+          <h3>PIP Prevention & Survival</h3>
+          <p>Performance documentation tracker, mistake pattern detection, recovery action plans, and legal rights information. Protect your career before problems escalate.</p>
+        </div>
+      </div>
+
+      <div class="feature">
+        <div class="feature-icon">💊</div>
+        <div>
+          <h3>Symptom-to-Work Impact Journal</h3>
+          <p>Log symptoms with work impact correlation, identify worst trigger patterns, generate doctor visit reports, and build accommodation evidence. Connect the dots between body and work.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Real User Pain Points -->
+    <div class="section">
+      <h2>💬 Real User Pain Points</h2>
+
+      <div class="quote">
+        "My brain fog just cost me my job... I turn 45 this year. After being a SAM for years I had started working as admin support two months ago. I was let go today. I am devastated."
+        <div class="quote-source">— r/Perimenopause, Feb 2025</div>
+      </div>
+
+      <div class="quote">
+        "Meno and my own ignorance 💯 destroyed my career."
+        <div class="quote-source">— r/Menopause, Oct 2025</div>
+      </div>
+
+      <div class="quote">
+        "I have been put on a PIP... my performance reviews show 2 problems, both were forgetting to follow up on things."
+        <div class="quote-source">— r/Menopause, Oct 2022</div>
+      </div>
+
+      <div class="quote">
+        "I completely blanked for a couple seconds and had to go back and regroup... I cannot even get a grasp on our procedures, our features or our new products."
+        <div class="quote-source">— r/Perimenopause, Oct 2024</div>
+      </div>
+
+      <div class="quote">
+        "Things that are less maligned than perimenopause brain fog, because being an older woman is almost like a death sentence in this industry."
+        <div class="quote-source">— r/Perimenopause, Jan 2025</div>
+      </div>
+
+      <div class="quote">
+        "I've struggled at work for 3+ years... my professional reputation suffered. My sense of self and of my own capability suffered."
+        <div class="quote-source">— r/Menopause, Oct 2025</div>
+      </div>
+    </div>
+
+    <!-- Target Communities -->
+    <div class="section">
+      <h2>🎯 Target Communities</h2>
+      <div class="subreddits">
+        <span class="subreddit">r/Perimenopause (67K+)</span>
+        <span class="subreddit">r/Menopause (95K+)</span>
+        <span class="subreddit">r/womenintech (65K+)</span>
+        <span class="subreddit">r/careerwomen (45K+)</span>
+        <span class="subreddit">r/workingmoms (180K+)</span>
+        <span class="subreddit">r/AskWomenOver40 (30K+)</span>
+        <span class="subreddit">r/productivity (2M+)</span>
+        <span class="subreddit">r/ADHD_Women (120K+)</span>
+      </div>
+    </div>
+
+    <!-- Marketing Headlines -->
+    <div class="section">
+      <h2>📣 Marketing Headlines</h2>
+      <ul>
+        <li><strong>"Keep your career while your hormones go haywire."</strong></li>
+        <li><strong>"The $26.6B problem no one's solving—until now."</strong></li>
+        <li><strong>"Brain fog at 2pm? We've got you covered."</strong></li>
+        <li><strong>"Don't let perimenopause become a PIP."</strong></li>
+        <li><strong>"Your career survival toolkit for the hormonal storm."</strong></li>
+        <li><strong>"44% of women who quit are senior leaders. Don't be a statistic."</strong></li>
+        <li><strong>"Finally—an app that helps you WORK through perimenopause, not just track it."</strong></li>
+      </ul>
+    </div>
+
+    <!-- Competitive Landscape -->
+    <div class="section">
+      <h2>⚔️ Competitive Landscape</h2>
+      <table>
+        <tr><th>Competitor</th><th>Price</th><th>Gap We Exploit</th></tr>
+        <tr><td>Balance</td><td>Free / $9.99/mo</td><td>Health-focused, zero workplace features</td></tr>
+        <tr><td>Caria</td><td>Free / $7.99/mo</td><td>Community & tracking only, no work tools</td></tr>
+        <tr><td>Perry</td><td>Free / $9.99/mo</td><td>Social support only, no productivity angle</td></tr>
+        <tr><td>Midday</td><td>$12.99/mo</td><td>General wellness, not workplace-specific</td></tr>
+        <tr><td>Elektra</td><td>B2B only</td><td>Expensive, requires employer buy-in</td></tr>
+      </table>
+
+      <div class="blue-ocean">
+        <h4>🌊 Blue Ocean: What NO Competitor Does</h4>
+        <ul>
+          <li>Meeting energy management & scheduling</li>
+          <li>Brain fog work strategies & recovery protocols</li>
+          <li>Disclosure decision guidance (should I tell HR?)</li>
+          <li>Workplace accommodation templates</li>
+          <li>PIP survival strategies</li>
+          <li>Career protection playbooks</li>
+          <li>Manager conversation scripts</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Unit Economics -->
+    <div class="section">
+      <h2>💰 Unit Economics</h2>
+      <table>
+        <tr><th>Metric</th><th>Value</th></tr>
+        <tr><td>Price Point</td><td>$9.99/month</td></tr>
+        <tr><td>App Store Fee (30%)</td><td>-$3.00</td></tr>
+        <tr><td>Cost per User (AI, DB, hosting)</td><td>-$0.33</td></tr>
+        <tr><td><strong>Net per User</strong></td><td><strong>$6.66</strong></td></tr>
+        <tr><td>Gross Margin</td><td>67%</td></tr>
+        <tr><td>Monthly Fixed Costs</td><td>~$58</td></tr>
+        <tr><td>Break-even</td><td>~10 subscribers</td></tr>
+      </table>
+
+      <h3>Revenue Projections</h3>
+      <table>
+        <tr><th>Subscribers</th><th>Monthly Revenue</th><th>Monthly Profit</th></tr>
+        <tr><td>100</td><td>$999</td><td>$908</td></tr>
+        <tr><td>1,000</td><td>$9,990</td><td>$9,602</td></tr>
+        <tr><td>10,000</td><td>$99,900</td><td>$96,542</td></tr>
+      </table>
+
+      <h3>ROI for Users</h3>
+      <table>
+        <tr><th>Metric</th><th>Value</th></tr>
+        <tr><td>App Cost</td><td>$120/year</td></tr>
+        <tr><td>Career Protected</td><td>$100K+ salary</td></tr>
+        <tr><td>User ROI</td><td>800x+ if app prevents job loss</td></tr>
+      </table>
+    </div>
+
+    <!-- Scoring & Verdict -->
+    <div class="section">
+      <h2>📈 Scoring & Verdict</h2>
+      <table>
+        <tr><th>Criteria</th><th>Score</th><th>Notes</th></tr>
+        <tr><td>Margin (25%)</td><td>5/5</td><td>67% gross margin, pure software, minimal per-user costs</td></tr>
+        <tr><td>Market Size (20%)</td><td>5/5</td><td>$26.6B problem, 27M working women in age range</td></tr>
+        <tr><td>Competition (20%)</td><td>5/5</td><td>ZERO apps focus on workplace productivity—true blue ocean</td></tr>
+        <tr><td>Build Complexity (20%)</td><td>4/5</td><td>MVP straightforward, AI coaching adds complexity</td></tr>
+        <tr><td>Differentiation (15%)</td><td>5/5</td><td>Completely unique positioning, can own "work + perimenopause"</td></tr>
+        <tr><td><strong>TOTAL</strong></td><td><strong>4.80/5</strong></td><td></td></tr>
+      </table>
+
+      <div class="verdict">
+        <h3>✅ Verdict: BUILD</h3>
+        <p>First-mover advantage in a wide-open niche with desperate demand, high willingness-to-pay (career preservation), and clear B2B expansion path. Zero competitors address workplace productivity—this is a true blue ocean opportunity targeting women at the peak of their earning power.</p>
+      </div>
+    </div>
+
+  </div>
+</body>
+</html>
