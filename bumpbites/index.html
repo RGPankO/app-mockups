@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BumpBites — App Hub</title>
+  <style>
+    :root {
+      --primary: #22c55e;
+      --primary-light: #dcfce7;
+      --primary-dark: #16a34a;
+      --bg: #f0fdf4;
+      --card: #ffffff;
+      --text: #1e1b3a;
+      --muted: #6b7280;
+      --border: #e5e7eb;
+      --shadow: 0 4px 12px rgba(0,0,0,0.08);
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { 
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      background: var(--bg); color: var(--text); line-height: 1.6;
+      padding: 24px 16px 60px;
+    }
+    .container { max-width: 900px; margin: 0 auto; }
+    
+    header { text-align: center; padding: 40px 20px; margin-bottom: 32px; }
+    .logo { font-size: 48px; margin-bottom: 12px; }
+    h1 { font-size: 32px; color: var(--primary-dark); margin-bottom: 8px; }
+    .tagline { color: var(--muted); font-size: 18px; }
+    
+    .badges { display: flex; gap: 12px; justify-content: center; margin-top: 20px; flex-wrap: wrap; }
+    .badge { background: var(--primary-light); color: var(--primary-dark); padding: 6px 14px; 
+             border-radius: 20px; font-size: 13px; font-weight: 500; }
+    .badge.build { background: #10b981; color: white; }
+    
+    .section { background: var(--card); border-radius: 16px; padding: 24px; 
+               margin-bottom: 20px; box-shadow: var(--shadow); }
+    .section h2 { font-size: 18px; color: var(--primary-dark); margin-bottom: 16px; 
+                  padding-bottom: 12px; border-bottom: 2px solid var(--primary-light); }
+    
+    .keywords { display: flex; flex-wrap: wrap; gap: 8px; }
+    .keyword { background: #f0f0f0; padding: 4px 10px; border-radius: 12px; font-size: 12px; color: #666; }
+    
+    .quote { background: var(--primary-light); border-left: 4px solid var(--primary); 
+             padding: 16px; margin-bottom: 12px; border-radius: 0 8px 8px 0; font-style: italic; }
+    .quote-source { font-size: 12px; color: var(--muted); margin-top: 8px; font-style: normal; }
+    
+    .feature { display: flex; gap: 12px; margin-bottom: 16px; align-items: flex-start; }
+    .feature-icon { font-size: 24px; }
+    .feature h3 { font-size: 15px; margin-bottom: 4px; }
+    .feature p { font-size: 13px; color: var(--muted); }
+    
+    .stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 16px; }
+    .stat { text-align: center; padding: 16px; background: var(--primary-light); border-radius: 12px; }
+    .stat-value { font-size: 28px; font-weight: 700; color: var(--primary-dark); }
+    .stat-label { font-size: 12px; color: var(--muted); }
+    
+    table { width: 100%; border-collapse: collapse; font-size: 14px; }
+    th, td { padding: 10px 12px; text-align: left; border-bottom: 1px solid var(--border); }
+    th { background: var(--primary-light); font-weight: 600; }
+    
+    .back-link { display: inline-block; margin-bottom: 20px; color: var(--primary); text-decoration: none; }
+    .back-link:hover { text-decoration: underline; }
+    
+    .subreddits { display: flex; flex-wrap: wrap; gap: 8px; }
+    .subreddit { background: #fff4f0; color: #ff4500; padding: 4px 10px; border-radius: 12px; font-size: 12px; }
+    
+    .warning { background: #fef3c7; border: 1px solid #fbbf24; padding: 16px; border-radius: 12px; margin-bottom: 20px; }
+    .warning h3 { color: #92400e; margin-bottom: 8px; }
+    
+    @media (max-width: 600px) {
+      .stats-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <a href="../pregnancy.html" class="back-link">← Back to Pregnancy Apps</a>
+    
+    <header>
+      <div class="logo">🍎</div>
+      <h1>BumpBites</h1>
+      <p class="tagline">"Can I eat this?" Answered in 2 Seconds</p>
+      <div class="badges">
+        <span class="badge build">✅ BUILD</span>
+        <span class="badge">95% Margin</span>
+        <span class="badge">$3.2B Market</span>
+        <span class="badge">Freemium</span>
+      </div>
+    </header>
+    
+    <!-- Medical Disclaimer -->
+    <div class="warning">
+      <h3>⚠️ Medical Disclaimer Required</h3>
+      <p>This app provides general educational information about food safety during pregnancy. 
+         Individual needs vary. ALWAYS consult your OB-GYN or healthcare provider for personalized advice.</p>
+    </div>
+    
+    <!-- App Store Info -->
+    <div class="section">
+      <h2>📱 App Store Listing</h2>
+      <table>
+        <tr><th>Field</th><th>Value</th></tr>
+        <tr><td>App Name</td><td><strong>BumpBites</strong></td></tr>
+        <tr><td>Subtitle</td><td>Pregnancy Food Safety Guide</td></tr>
+        <tr><td>Category</td><td>Health & Fitness (primary)</td></tr>
+        <tr><td>Price</td><td>Free (10 searches/day) / Premium $2.99/mo</td></tr>
+      </table>
+      
+      <h3 style="margin: 20px 0 12px; font-size: 15px;">Keywords</h3>
+      <div class="keywords">
+        <span class="keyword">pregnancy food</span>
+        <span class="keyword">can I eat</span>
+        <span class="keyword">food safety pregnancy</span>
+        <span class="keyword">pregnancy diet</span>
+        <span class="keyword">safe foods pregnant</span>
+        <span class="keyword">avoid pregnancy</span>
+        <span class="keyword">sushi pregnant</span>
+        <span class="keyword">caffeine pregnancy</span>
+      </div>
+    </div>
+    
+    <!-- Market Stats -->
+    <div class="section">
+      <h2>📊 Market Opportunity</h2>
+      <div class="stats-grid">
+        <div class="stat">
+          <div class="stat-value">$3.2B</div>
+          <div class="stat-label">Pregnancy App Market</div>
+        </div>
+        <div class="stat">
+          <div class="stat-value">4M</div>
+          <div class="stat-label">US Women Pregnant</div>
+        </div>
+        <div class="stat">
+          <div class="stat-value">~95%</div>
+          <div class="stat-label">Gross Margin</div>
+        </div>
+        <div class="stat">
+          <div class="stat-value">2 sec</div>
+          <div class="stat-label">Answer Time</div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Key Differentiator -->
+    <div class="section">
+      <h2>🎯 Key Differentiator</h2>
+      <p style="font-size: 16px; line-height: 1.8;">
+        <strong>"Shazam for pregnancy food"</strong> — Type any food, get instant answer.
+        <br><br>
+        Competitors (TPNL, SafeMom, Ovia) are too complex: full nutrition tracking, meal plans, recipes.
+        Nobody has nailed the <strong>2-second lookup</strong> experience.
+        <br><br>
+        Traffic light system: ✅ Safe | ⚠️ Caution | ❌ Avoid — with clear "why" explanation.
+        <br><br>
+        <em>Consider combining with SafeScan (barcode scanner) for complete food safety suite.</em>
+      </p>
+    </div>
+    
+    <!-- Features -->
+    <div class="section">
+      <h2>✨ Core Features</h2>
+      <div class="feature">
+        <span class="feature-icon">🔍</span>
+        <div>
+          <h3>Instant Food Search</h3>
+          <p>Type "sushi" → get answer in 2 seconds. Traffic light + explanation.</p>
+        </div>
+      </div>
+      <div class="feature">
+        <span class="feature-icon">🍽️</span>
+        <div>
+          <h3>Restaurant Mode</h3>
+          <p>"I'm at Chipotle, what can I order?" Pre-built safe menus for popular chains.</p>
+        </div>
+      </div>
+      <div class="feature">
+        <span class="feature-icon">☕</span>
+        <div>
+          <h3>Portion Guidance</h3>
+          <p>Not just "avoid caffeine" but "200mg/day is fine = 1 regular coffee"</p>
+        </div>
+      </div>
+      <div class="feature">
+        <span class="feature-icon">📴</span>
+        <div>
+          <h3>Offline Mode</h3>
+          <p>Works without internet at grocery store or restaurant.</p>
+        </div>
+      </div>
+      <div class="feature">
+        <span class="feature-icon">📚</span>
+        <div>
+          <h3>Categories</h3>
+          <p>Seafood, cheese, deli, caffeine, alcohol, herbs — quick browse by type.</p>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Reddit Quotes -->
+    <div class="section">
+      <h2>💬 User Pain Points (Reddit)</h2>
+      <div class="quote">
+        "I searched through all posts and the App Store but can't seem to find an app where you can search food just to check whether it's safe or not when you are unsure."
+        <div class="quote-source">— r/pregnant</div>
+      </div>
+      <div class="quote">
+        "Every day I feel like I see a new food that isn't recommended for pregnant ladies. Like apparently pineapple is bad??? Is there a complete list of foods to avoid somewhere?"
+        <div class="quote-source">— r/pregnant</div>
+      </div>
+      <div class="quote">
+        "Feeling upset and a bit scared :( I ate some unpasteurised parmesan which I just assumed was a 'hard cheese' so would be fine."
+        <div class="quote-source">— r/BabyBumps</div>
+      </div>
+      <div class="quote">
+        "I've dug myself into a hole. I've googled too much about toxoplasmosis and now every time I eat food its all I can think about."
+        <div class="quote-source">— r/pregnant</div>
+      </div>
+      <div class="quote">
+        "Can someone explain the difference between cooked meat (like a rotisserie chicken) and cold cuts if they are both eaten cold?"
+        <div class="quote-source">— r/BabyBumps</div>
+      </div>
+    </div>
+    
+    <!-- Target Subreddits -->
+    <div class="section">
+      <h2>🎯 Target Subreddits</h2>
+      <div class="subreddits">
+        <span class="subreddit">r/pregnant</span>
+        <span class="subreddit">r/BabyBumps</span>
+        <span class="subreddit">r/PregnancyUK</span>
+        <span class="subreddit">r/BabyBumpsCanada</span>
+        <span class="subreddit">r/fitpregnancy</span>
+        <span class="subreddit">r/April2026Bumpers</span>
+      </div>
+    </div>
+    
+    <!-- Marketing Headlines -->
+    <div class="section">
+      <h2>📣 Marketing Headlines</h2>
+      <ul style="list-style: none; font-size: 15px;">
+        <li>🔥 "Can I eat this?" Answered instantly.</li>
+        <li>🔥 Stop Googling every meal. Start enjoying food again.</li>
+        <li>🔥 The only pregnancy food app that respects your time.</li>
+        <li>🔥 Type. Tap. Know. That simple.</li>
+        <li>🔥 Because "just Google it" gives you 47 different answers.</li>
+      </ul>
+    </div>
+    
+    <!-- Competitors -->
+    <div class="section">
+      <h2>⚔️ Competitive Landscape</h2>
+      <table>
+        <tr><th>Competitor</th><th>Focus</th><th>Gap</th></tr>
+        <tr><td>TPNL</td><td>Full nutrition + recipes</td><td>Too comprehensive, overwhelming</td></tr>
+        <tr><td>SafeMom</td><td>Barcode scanner</td><td>Requires scanning, not quick search</td></tr>
+        <tr><td>Ovia</td><td>Full pregnancy tracking</td><td>Food is buried feature, not focused</td></tr>
+        <tr><td>Pregnancy Diet apps</td><td>Recipes, meal plans</td><td>Recipe-heavy, not lookup</td></tr>
+        <tr><td><strong>BumpBites</strong></td><td><strong>2-second lookup</strong></td><td><strong>Fast, focused, definitive</strong></td></tr>
+      </table>
+    </div>
+    
+    <!-- Unit Economics -->
+    <div class="section">
+      <h2>💰 Unit Economics</h2>
+      <table>
+        <tr><th>Component</th><th>Cost</th></tr>
+        <tr><td>Database hosting</td><td>~$0.01/user/mo</td></tr>
+        <tr><td>No AI required (simple lookup)</td><td>$0</td></tr>
+        <tr><td>App Store fee (30%)</td><td>$0.90</td></tr>
+        <tr><td><strong>At $2.99/mo premium</strong></td><td><strong>~95% margin</strong></td></tr>
+      </table>
+      <p style="margin-top: 16px; color: var(--muted); font-size: 14px;">
+        Simple database app = minimal costs. No AI, no complex backend. Profitable at very low scale.
+      </p>
+    </div>
+    
+    <!-- SafeScan Synergy -->
+    <div class="section">
+      <h2>🔗 SafeScan Synergy</h2>
+      <p style="font-size: 14px; color: var(--muted);">
+        <strong>Consider as companion to SafeScan:</strong>
+        <br>• BumpBites = quick text search for known foods
+        <br>• SafeScan = barcode scanner for packaged products
+        <br>• Shared safety database, cross-promotion
+        <br>• Bundle pricing: $4.99/mo for both
+      </p>
+    </div>
+    
+  </div>
+</body>
+</html>

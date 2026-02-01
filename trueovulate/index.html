@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TrueOvulate — App Hub</title>
+  <style>
+    :root {
+      --primary: #ec4899;
+      --primary-light: #fce7f3;
+      --primary-dark: #db2777;
+      --bg: #fdf2f8;
+      --card: #ffffff;
+      --text: #1e1b3a;
+      --muted: #6b7280;
+      --border: #e5e7eb;
+      --shadow: 0 4px 12px rgba(0,0,0,0.08);
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { 
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      background: var(--bg); color: var(--text); line-height: 1.6;
+      padding: 24px 16px 60px;
+    }
+    .container { max-width: 900px; margin: 0 auto; }
+    
+    header { text-align: center; padding: 40px 20px; margin-bottom: 32px; }
+    .logo { font-size: 48px; margin-bottom: 12px; }
+    h1 { font-size: 32px; color: var(--primary-dark); margin-bottom: 8px; }
+    .tagline { color: var(--muted); font-size: 18px; }
+    
+    .badges { display: flex; gap: 12px; justify-content: center; margin-top: 20px; flex-wrap: wrap; }
+    .badge { background: var(--primary-light); color: var(--primary-dark); padding: 6px 14px; 
+             border-radius: 20px; font-size: 13px; font-weight: 500; }
+    .badge.build { background: #10b981; color: white; }
+    
+    .section { background: var(--card); border-radius: 16px; padding: 24px; 
+               margin-bottom: 20px; box-shadow: var(--shadow); }
+    .section h2 { font-size: 18px; color: var(--primary-dark); margin-bottom: 16px; 
+                  padding-bottom: 12px; border-bottom: 2px solid var(--primary-light); }
+    
+    .keywords { display: flex; flex-wrap: wrap; gap: 8px; }
+    .keyword { background: #f0f0f0; padding: 4px 10px; border-radius: 12px; font-size: 12px; color: #666; }
+    
+    .quote { background: var(--primary-light); border-left: 4px solid var(--primary); 
+             padding: 16px; margin-bottom: 12px; border-radius: 0 8px 8px 0; font-style: italic; }
+    .quote-source { font-size: 12px; color: var(--muted); margin-top: 8px; font-style: normal; }
+    
+    .feature { display: flex; gap: 12px; margin-bottom: 16px; align-items: flex-start; }
+    .feature-icon { font-size: 24px; }
+    .feature h3 { font-size: 15px; margin-bottom: 4px; }
+    .feature p { font-size: 13px; color: var(--muted); }
+    
+    .stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 16px; }
+    .stat { text-align: center; padding: 16px; background: var(--primary-light); border-radius: 12px; }
+    .stat-value { font-size: 28px; font-weight: 700; color: var(--primary-dark); }
+    .stat-label { font-size: 12px; color: var(--muted); }
+    
+    table { width: 100%; border-collapse: collapse; font-size: 14px; }
+    th, td { padding: 10px 12px; text-align: left; border-bottom: 1px solid var(--border); }
+    th { background: var(--primary-light); font-weight: 600; }
+    
+    .back-link { display: inline-block; margin-bottom: 20px; color: var(--primary); text-decoration: none; }
+    .back-link:hover { text-decoration: underline; }
+    
+    .subreddits { display: flex; flex-wrap: wrap; gap: 8px; }
+    .subreddit { background: #fff4f0; color: #ff4500; padding: 4px 10px; border-radius: 12px; font-size: 12px; }
+    
+    .highlight { background: #fef3c7; padding: 16px; border-radius: 12px; margin-bottom: 20px; }
+    .highlight h3 { color: #92400e; margin-bottom: 8px; }
+    
+    .disclaimer { background: #fef2f2; border: 2px solid #fca5a5; padding: 16px; border-radius: 12px; margin-bottom: 20px; }
+    .disclaimer h3 { color: #dc2626; margin-bottom: 8px; }
+    .disclaimer p { font-size: 14px; color: #7f1d1d; }
+    
+    @media (max-width: 600px) {
+      .stats-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <a href="../pregnancy.html" class="back-link">← Back to Pregnancy Apps</a>
+    
+    <header>
+      <div class="logo">🎯</div>
+      <h1>TrueOvulate</h1>
+      <p class="tagline">ML-Powered Fertility Tracking That Learns YOUR Cycle</p>
+      <div class="badges">
+        <span class="badge build">✅ BUILD</span>
+        <span class="badge">68% Margin</span>
+        <span class="badge">$720M Market</span>
+        <span class="badge">$7.99/mo</span>
+      </div>
+    </header>
+    
+    <!-- Medical Disclaimer -->
+    <div class="disclaimer">
+      <h3>⚠️ Medical Disclaimer</h3>
+      <p>TrueOvulate is designed to help you conceive, NOT prevent pregnancy. It is NOT a medical device and predictions are estimates based on your data. Consult your healthcare provider for fertility concerns or medical advice.</p>
+    </div>
+    
+    <!-- Key Insight -->
+    <div class="highlight">
+      <h3>💡 Key Insight</h3>
+      <p>Academic research confirms calendar-based apps provide "highly inaccurate" ovulation predictions, yet millions of women rely on them for TTC. Reddit forums are filled with frustrated users who missed fertile windows because Flo predicted ovulation on the wrong day.
+         <br><br>
+         <strong>The Gap:</strong> No app creates truly personalized cycle models that learn YOUR patterns over time with transparent confidence levels.</p>
+    </div>
+    
+    <!-- App Store Info -->
+    <div class="section">
+      <h2>📱 App Store Listing</h2>
+      <table>
+        <tr><th>Field</th><th>Value</th></tr>
+        <tr><td>App Name</td><td><strong>TrueOvulate</strong></td></tr>
+        <tr><td>Subtitle</td><td>Smart Fertility Tracker</td></tr>
+        <tr><td>Category</td><td>Health & Fitness</td></tr>
+        <tr><td>Price</td><td>Freemium — $7.99/mo or $59.99/year</td></tr>
+      </table>
+      
+      <h3 style="margin: 20px 0 12px; font-size: 15px;">Keywords</h3>
+      <div class="keywords">
+        <span class="keyword">ovulation tracker</span>
+        <span class="keyword">fertility app</span>
+        <span class="keyword">TTC</span>
+        <span class="keyword">trying to conceive</span>
+        <span class="keyword">LH test reader</span>
+        <span class="keyword">BBT chart</span>
+        <span class="keyword">fertile window</span>
+        <span class="keyword">cycle tracking</span>
+      </div>
+    </div>
+    
+    <!-- Market Stats -->
+    <div class="section">
+      <h2>📊 Market Opportunity</h2>
+      <div class="stats-grid">
+        <div class="stat">
+          <div class="stat-value">$720M</div>
+          <div class="stat-label">Fertility Apps Market</div>
+        </div>
+        <div class="stat">
+          <div class="stat-value">3.6M</div>
+          <div class="stat-label">Women TTC in US</div>
+        </div>
+        <div class="stat">
+          <div class="stat-value">68%</div>
+          <div class="stat-label">Gross Margin</div>
+        </div>
+        <div class="stat">
+          <div class="stat-value">14.7%</div>
+          <div class="stat-label">CAGR Growth</div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Key Differentiator -->
+    <div class="section">
+      <h2>🎯 Key Differentiator</h2>
+      <p style="font-size: 15px; margin-bottom: 16px;"><strong>Honest Predictions:</strong> Shows confidence levels and explains WHY. No false precision when data is sparse.</p>
+      <table>
+        <tr><th>Feature</th><th>Flo</th><th>Clue</th><th>Fertility Friend</th><th>TrueOvulate</th></tr>
+        <tr><td>LH photo analysis</td><td>❌</td><td>❌</td><td>❌</td><td>✅</td></tr>
+        <tr><td>BBT wearable sync</td><td>Limited</td><td>Limited</td><td>Limited</td><td>✅</td></tr>
+        <tr><td>ML personalization</td><td>Population avg</td><td>Population avg</td><td>Rules-based</td><td>✅ Individual</td></tr>
+        <tr><td>Confidence levels</td><td>❌</td><td>❌</td><td>Partial</td><td>✅</td></tr>
+        <tr><td>Multi-signal fusion</td><td>❌</td><td>❌</td><td>Partial</td><td>✅</td></tr>
+        <tr><td>Explains predictions</td><td>❌</td><td>❌</td><td>Partial</td><td>✅</td></tr>
+      </table>
+    </div>
+    
+    <!-- Features -->
+    <div class="section">
+      <h2>✨ Core Features</h2>
+      <div class="feature">
+        <span class="feature-icon">📷</span>
+        <div>
+          <h3>LH Strip Photo Analysis</h3>
+          <p>AI-powered T/C line ratio reading. Numerical LH values (not just positive/negative). Historical LH curve visualization.</p>
+        </div>
+      </div>
+      <div class="feature">
+        <span class="feature-icon">🌡️</span>
+        <div>
+          <h3>BBT Integration</h3>
+          <p>Manual entry or wearable sync (Tempdrop, Oura Ring, Apple Watch). Auto temp smoothing for sleep disturbances.</p>
+        </div>
+      </div>
+      <div class="feature">
+        <span class="feature-icon">💧</span>
+        <div>
+          <h3>Cervical Mucus Tracking</h3>
+          <p>Simple categories with visual guide. Pattern recognition over cycles.</p>
+        </div>
+      </div>
+      <div class="feature">
+        <span class="feature-icon">📊</span>
+        <div>
+          <h3>Unified Fertility Chart</h3>
+          <p>All signals on one visual timeline. Color-coded fertile window. Historical cycle overlay. Export for doctors.</p>
+        </div>
+      </div>
+      <div class="feature">
+        <span class="feature-icon">🧠</span>
+        <div>
+          <h3>ML Personalization (V2)</h3>
+          <p>Model trained on YOUR data. Adapts with each cycle. Shows uncertainty range, not false precision.</p>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Reddit Quotes -->
+    <div class="section">
+      <h2>💬 User Pain Points (Reddit)</h2>
+      <div class="quote">
+        "I followed the Flo app for almost a year and when I started using LH strips I realised I was missing my peak fertile days because the app predicted ovulation much earlier."
+        <div class="quote-source">— r/TryingForABaby</div>
+      </div>
+      <div class="quote">
+        "Flo is wildly inaccurate at predicting ovulation. For example, it'll randomly put me ovulating on day 8 some months, then day 20 other months for no reason... all my cycles are pretty much the same."
+        <div class="quote-source">— What to Expect forums</div>
+      </div>
+      <div class="quote">
+        "My ovulation and high fertility period has moved by like 5 days (back and forth several times)... I'm a scientist, and I should have known better than to trust this... Like, put an error bar on that thing or give a 'low confidence' level."
+        <div class="quote-source">— r/TryingForABaby</div>
+      </div>
+      <div class="quote">
+        "I completely missed my ovulation on first cycle. I use Clue to track and I actually ovulate 3 days earlier than what the app suggests. I'm glad I bought strips, so I found it out early."
+        <div class="quote-source">— r/TryingForABaby</div>
+      </div>
+    </div>
+    
+    <!-- Target Subreddits -->
+    <div class="section">
+      <h2>🎯 Target Subreddits</h2>
+      <div class="subreddits">
+        <span class="subreddit">r/TryingForABaby (100K+)</span>
+        <span class="subreddit">r/TFABChartStalkers</span>
+        <span class="subreddit">r/waiting_to_try</span>
+        <span class="subreddit">r/BabyBumps (700k+)</span>
+        <span class="subreddit">r/infertility</span>
+        <span class="subreddit">r/CautiousBB</span>
+      </div>
+    </div>
+    
+    <!-- Marketing Headlines -->
+    <div class="section">
+      <h2>📣 Marketing Headlines</h2>
+      <ul style="list-style: none; font-size: 15px;">
+        <li>🔥 "The fertility tracker that actually learns YOUR body — not averages."</li>
+        <li>🔥 "Stop guessing, start knowing."</li>
+        <li>🔥 "Why Flo Gets Your Ovulation Wrong (And What Actually Works)"</li>
+        <li>🔥 "Confidence levels, not false precision."</li>
+        <li>🔥 "Your LH strips, decoded. Your patterns, learned."</li>
+        <li>🔥 "Because Day 14 isn't everyone's Day 14."</li>
+      </ul>
+    </div>
+    
+    <!-- Competitors -->
+    <div class="section">
+      <h2>🏆 Competitor Landscape</h2>
+      <table>
+        <tr><th>App</th><th>Pricing</th><th>Users</th><th>Issue</th></tr>
+        <tr><td>Flo</td><td>$33-40/yr</td><td>67M MAU</td><td>Calendar-based, complaints about accuracy</td></tr>
+        <tr><td>Clue</td><td>~$30/yr</td><td>10M MAU</td><td>Limited free, no BBT learning</td></tr>
+        <tr><td>Premom</td><td>Free/Premium</td><td>Popular</td><td>Data privacy concerns, clunky UI</td></tr>
+        <tr><td>Fertility Friend</td><td>$9.99/yr</td><td>TTC favorite</td><td>Outdated UI, steep learning curve</td></tr>
+        <tr><td>Natural Cycles</td><td>~$100/yr</td><td>800K+</td><td>Expensive, FDA-cleared (contraception)</td></tr>
+      </table>
+    </div>
+    
+    <!-- Cost/Margin -->
+    <div class="section">
+      <h2>💰 Cost & Margin Breakdown</h2>
+      <table>
+        <tr><th>Component</th><th>Cost/User/Mo</th><th>Notes</th></tr>
+        <tr><td>AI Coach Chat</td><td>$0.05-0.15</td><td>GPT-4o-mini, ~20 messages/mo</td></tr>
+        <tr><td>Image Analysis</td><td>$0.00</td><td>On-device CNN</td></tr>
+        <tr><td>ML Inference</td><td>$0.00</td><td>On-device</td></tr>
+        <tr><td>Database</td><td>$0.02-0.05</td><td>~1MB/user/year</td></tr>
+        <tr><td><strong>Total Variable</strong></td><td><strong>$0.08-0.21</strong></td><td></td></tr>
+        <tr><td>Revenue</td><td>$7.99</td><td>Monthly subscription</td></tr>
+        <tr><td>App Store Fee</td><td>$2.40</td><td>30%</td></tr>
+        <tr><td><strong>Gross Margin</strong></td><td><strong>$5.44 (68%)</strong></td><td></td></tr>
+      </table>
+    </div>
+    
+    <!-- ML Accuracy -->
+    <div class="section">
+      <h2>📈 ML Accuracy by Data Points</h2>
+      <table>
+        <tr><th>Cycles Tracked</th><th>Expected Accuracy</th><th>Notes</th></tr>
+        <tr><td>1-2 cycles</td><td>40-50% (Low)</td><td>Calendar-based fallback, wide windows</td></tr>
+        <tr><td>3-5 cycles</td><td>60-70% (Medium)</td><td>Pattern detection begins</td></tr>
+        <tr><td>6-12 cycles</td><td>80-85% (High)</td><td>Personal model well-trained</td></tr>
+        <tr><td>12+ cycles</td><td>85-90%+ (Very High)</td><td>Can handle irregularities</td></tr>
+      </table>
+      <p style="margin-top: 12px; font-size: 14px; color: var(--muted);">
+        <strong>Key insight:</strong> Unlike apps that give false confidence immediately, we show uncertainty until we have data.
+      </p>
+    </div>
+    
+  </div>
+</body>
+</html>

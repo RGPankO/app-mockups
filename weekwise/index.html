@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>WeekWise — App Hub</title>
+  <style>
+    :root {
+      --primary: #f97316;
+      --primary-light: #ffedd5;
+      --primary-dark: #ea580c;
+      --bg: #fff7ed;
+      --card: #ffffff;
+      --text: #1e1b3a;
+      --muted: #6b7280;
+      --border: #e5e7eb;
+      --shadow: 0 4px 12px rgba(0,0,0,0.08);
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { 
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      background: var(--bg); color: var(--text); line-height: 1.6;
+      padding: 24px 16px 60px;
+    }
+    .container { max-width: 900px; margin: 0 auto; }
+    
+    header { text-align: center; padding: 40px 20px; margin-bottom: 32px; }
+    .logo { font-size: 48px; margin-bottom: 12px; }
+    h1 { font-size: 32px; color: var(--primary-dark); margin-bottom: 8px; }
+    .tagline { color: var(--muted); font-size: 18px; }
+    
+    .badges { display: flex; gap: 12px; justify-content: center; margin-top: 20px; flex-wrap: wrap; }
+    .badge { background: var(--primary-light); color: var(--primary-dark); padding: 6px 14px; 
+             border-radius: 20px; font-size: 13px; font-weight: 500; }
+    .badge.build { background: #10b981; color: white; }
+    
+    .section { background: var(--card); border-radius: 16px; padding: 24px; 
+               margin-bottom: 20px; box-shadow: var(--shadow); }
+    .section h2 { font-size: 18px; color: var(--primary-dark); margin-bottom: 16px; 
+                  padding-bottom: 12px; border-bottom: 2px solid var(--primary-light); }
+    
+    .keywords { display: flex; flex-wrap: wrap; gap: 8px; }
+    .keyword { background: #f0f0f0; padding: 4px 10px; border-radius: 12px; font-size: 12px; color: #666; }
+    
+    .quote { background: var(--primary-light); border-left: 4px solid var(--primary); 
+             padding: 16px; margin-bottom: 12px; border-radius: 0 8px 8px 0; font-style: italic; }
+    .quote-source { font-size: 12px; color: var(--muted); margin-top: 8px; font-style: normal; }
+    
+    .feature { display: flex; gap: 12px; margin-bottom: 16px; align-items: flex-start; }
+    .feature-icon { font-size: 24px; }
+    .feature h3 { font-size: 15px; margin-bottom: 4px; }
+    .feature p { font-size: 13px; color: var(--muted); }
+    
+    .stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 16px; }
+    .stat { text-align: center; padding: 16px; background: var(--primary-light); border-radius: 12px; }
+    .stat-value { font-size: 28px; font-weight: 700; color: var(--primary-dark); }
+    .stat-label { font-size: 12px; color: var(--muted); }
+    
+    table { width: 100%; border-collapse: collapse; font-size: 14px; }
+    th, td { padding: 10px 12px; text-align: left; border-bottom: 1px solid var(--border); }
+    th { background: var(--primary-light); font-weight: 600; }
+    
+    .back-link { display: inline-block; margin-bottom: 20px; color: var(--primary); text-decoration: none; }
+    .back-link:hover { text-decoration: underline; }
+    
+    .subreddits { display: flex; flex-wrap: wrap; gap: 8px; }
+    .subreddit { background: #fff4f0; color: #ff4500; padding: 4px 10px; border-radius: 12px; font-size: 12px; }
+    
+    .highlight { background: #fef3c7; padding: 16px; border-radius: 12px; margin-bottom: 20px; }
+    .highlight h3 { color: #92400e; margin-bottom: 8px; }
+    
+    .disclaimer { background: #fef2f2; border: 2px solid #fca5a5; padding: 16px; border-radius: 12px; margin-bottom: 20px; }
+    .disclaimer h3 { color: #dc2626; margin-bottom: 8px; }
+    .disclaimer p { font-size: 14px; color: #7f1d1d; }
+    
+    .comparison { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 16px; }
+    .comparison div { padding: 16px; border-radius: 8px; font-size: 14px; }
+    .bad { background: #fef2f2; }
+    .good { background: #ecfdf5; }
+    
+    @media (max-width: 600px) {
+      .stats-grid { grid-template-columns: repeat(2, 1fr); }
+      .comparison { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <a href="../pregnancy.html" class="back-link">← Back to Pregnancy Apps</a>
+    
+    <header>
+      <div class="logo">📖</div>
+      <h1>WeekWise</h1>
+      <p class="tagline">Just the Info You Need — No Ads, No "Mama," No BS</p>
+      <div class="badges">
+        <span class="badge build">✅ BUILD</span>
+        <span class="badge">~100% Margin</span>
+        <span class="badge">$3.5B Market</span>
+        <span class="badge">$4.99 one-time</span>
+      </div>
+    </header>
+    
+    <!-- Medical Disclaimer -->
+    <div class="disclaimer">
+      <h3>⚠️ Medical Disclaimer</h3>
+      <p>WeekWise provides educational information about pregnancy. This is NOT medical advice. All content is reviewed by medical professionals but always consult your healthcare provider for personal medical guidance.</p>
+    </div>
+    
+    <!-- Key Insight -->
+    <div class="highlight">
+      <h3>💡 Key Insight</h3>
+      <p>The pregnancy app market is dominated by bloated, ad-heavy apps that frustrate users with condescending tones and aggressive upselling. A post complaining about pregnancy apps got 1,100+ upvotes on r/BabyBumps.
+         <br><br>
+         <strong>The "Anti-WTE" Opportunity:</strong> Fewer features, better experience. Clean, respectful, no-upsell pregnancy info.</p>
+    </div>
+    
+    <!-- App Store Info -->
+    <div class="section">
+      <h2>📱 App Store Listing</h2>
+      <table>
+        <tr><th>Field</th><th>Value</th></tr>
+        <tr><td>App Name</td><td><strong>WeekWise</strong></td></tr>
+        <tr><td>Subtitle</td><td>Simple Pregnancy Guide</td></tr>
+        <tr><td>Category</td><td>Health & Fitness</td></tr>
+        <tr><td>Price</td><td>$4.99 one-time purchase</td></tr>
+      </table>
+      
+      <h3 style="margin: 20px 0 12px; font-size: 15px;">Keywords</h3>
+      <div class="keywords">
+        <span class="keyword">pregnancy tracker</span>
+        <span class="keyword">week by week pregnancy</span>
+        <span class="keyword">pregnancy app no ads</span>
+        <span class="keyword">simple pregnancy</span>
+        <span class="keyword">pregnancy guide</span>
+        <span class="keyword">pregnancy weekly</span>
+        <span class="keyword">due date</span>
+        <span class="keyword">pregnancy info</span>
+      </div>
+    </div>
+    
+    <!-- Market Stats -->
+    <div class="section">
+      <h2>📊 Market Opportunity</h2>
+      <div class="stats-grid">
+        <div class="stat">
+          <div class="stat-value">$3.5B</div>
+          <div class="stat-label">Pregnancy App Market</div>
+        </div>
+        <div class="stat">
+          <div class="stat-value">3.6M</div>
+          <div class="stat-label">US Births/Year</div>
+        </div>
+        <div class="stat">
+          <div class="stat-value">~100%</div>
+          <div class="stat-label">Gross Margin</div>
+        </div>
+        <div class="stat">
+          <div class="stat-value">$0</div>
+          <div class="stat-label">Per-User Cost</div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Key Differentiator -->
+    <div class="section">
+      <h2>🎯 The "Anti-WTE" Positioning</h2>
+      <table>
+        <tr><th>What They Do</th><th>What We Do</th></tr>
+        <tr><td>"Hey mama! 👋"</td><td>Neutral, respectful greeting</td></tr>
+        <tr><td>"Your baby is the size of a kumquat!"</td><td>"Your baby is ~4cm this week"</td></tr>
+        <tr><td>47 features on home screen</td><td>1 thing: current week</td></tr>
+        <tr><td>"Pack dad's hospital bag"</td><td>Partner can pack their own bag</td></tr>
+        <tr><td>Subscription $9.99/mo</td><td>One-time $4.99</td></tr>
+        <tr><td>Ads between every section</td><td>Zero ads, ever</td></tr>
+        <tr><td>Push notifications 5x/day</td><td>Optional, max 1/week</td></tr>
+      </table>
+    </div>
+    
+    <!-- Tone Comparison -->
+    <div class="section">
+      <h2>🗣️ Tone Comparison</h2>
+      <div class="comparison">
+        <div class="bad">
+          <h4 style="color: #dc2626; margin-bottom: 8px;">❌ Competitor (Bad)</h4>
+          <p>"Hey mama! 🌟 You're 16 weeks along and your little one is the size of an avocado! Don't forget to sign up for our premium plan to unlock exclusive tips! Have you started thinking about your dream nursery? 💕"</p>
+        </div>
+        <div class="good">
+          <h4 style="color: #059669; margin-bottom: 8px;">✅ WeekWise (Good)</h4>
+          <p>"Week 16. Your baby is about 12cm and can hear your voice. Common symptoms this week: round ligament pain, nasal congestion. [Sources: ACOG, Mayo Clinic]"</p>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Features -->
+    <div class="section">
+      <h2>✨ Core Features</h2>
+      <div class="feature">
+        <span class="feature-icon">📅</span>
+        <div>
+          <h3>Week-by-Week Guide</h3>
+          <p>Current week prominent on home screen. What's happening with baby (real measurements, not kumquats). What's happening with you (symptoms, changes). Medical accuracy with sources cited.</p>
+        </div>
+      </div>
+      <div class="feature">
+        <span class="feature-icon">✅</span>
+        <div>
+          <h3>Weekly Checklist</h3>
+          <p>Simple to-do items for each week. Appointment reminders. Optional (not nagging).</p>
+        </div>
+      </div>
+      <div class="feature">
+        <span class="feature-icon">📝</span>
+        <div>
+          <h3>Symptom Tracker</h3>
+          <p>Quick log (swipe-based). Optional — not required. No judgment, no "suggestions."</p>
+        </div>
+      </div>
+      <div class="feature">
+        <span class="feature-icon">📆</span>
+        <div>
+          <h3>Due Date Calculator</h3>
+          <p>Based on LMP or ultrasound. Clean countdown widget.</p>
+        </div>
+      </div>
+      <div class="feature">
+        <span class="feature-icon">🔒</span>
+        <div>
+          <h

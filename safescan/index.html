@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SafeScan — App Hub</title>
+  <style>
+    :root {
+      --primary: #10b981;
+      --primary-light: #d1fae5;
+      --primary-dark: #059669;
+      --bg: #ecfdf5;
+      --card: #ffffff;
+      --text: #1e1b3a;
+      --muted: #6b7280;
+      --border: #e5e7eb;
+      --shadow: 0 4px 12px rgba(0,0,0,0.08);
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { 
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      background: var(--bg); color: var(--text); line-height: 1.6;
+      padding: 24px 16px 60px;
+    }
+    .container { max-width: 900px; margin: 0 auto; }
+    
+    header { text-align: center; padding: 40px 20px; margin-bottom: 32px; }
+    .logo { font-size: 48px; margin-bottom: 12px; }
+    h1 { font-size: 32px; color: var(--primary-dark); margin-bottom: 8px; }
+    .tagline { color: var(--muted); font-size: 18px; }
+    
+    .badges { display: flex; gap: 12px; justify-content: center; margin-top: 20px; flex-wrap: wrap; }
+    .badge { background: var(--primary-light); color: var(--primary-dark); padding: 6px 14px; 
+             border-radius: 20px; font-size: 13px; font-weight: 500; }
+    .badge.build { background: #10b981; color: white; }
+    
+    .section { background: var(--card); border-radius: 16px; padding: 24px; 
+               margin-bottom: 20px; box-shadow: var(--shadow); }
+    .section h2 { font-size: 18px; color: var(--primary-dark); margin-bottom: 16px; 
+                  padding-bottom: 12px; border-bottom: 2px solid var(--primary-light); }
+    
+    .keywords { display: flex; flex-wrap: wrap; gap: 8px; }
+    .keyword { background: #f0f0f0; padding: 4px 10px; border-radius: 12px; font-size: 12px; color: #666; }
+    
+    .quote { background: var(--primary-light); border-left: 4px solid var(--primary); 
+             padding: 16px; margin-bottom: 12px; border-radius: 0 8px 8px 0; font-style: italic; }
+    .quote-source { font-size: 12px; color: var(--muted); margin-top: 8px; font-style: normal; }
+    
+    .feature { display: flex; gap: 12px; margin-bottom: 16px; align-items: flex-start; }
+    .feature-icon { font-size: 24px; }
+    .feature h3 { font-size: 15px; margin-bottom: 4px; }
+    .feature p { font-size: 13px; color: var(--muted); }
+    
+    .stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 16px; }
+    .stat { text-align: center; padding: 16px; background: var(--primary-light); border-radius: 12px; }
+    .stat-value { font-size: 28px; font-weight: 700; color: var(--primary-dark); }
+    .stat-label { font-size: 12px; color: var(--muted); }
+    
+    table { width: 100%; border-collapse: collapse; font-size: 14px; }
+    th, td { padding: 10px 12px; text-align: left; border-bottom: 1px solid var(--border); }
+    th { background: var(--primary-light); font-weight: 600; }
+    
+    .back-link { display: inline-block; margin-bottom: 20px; color: var(--primary); text-decoration: none; }
+    .back-link:hover { text-decoration: underline; }
+    
+    .subreddits { display: flex; flex-wrap: wrap; gap: 8px; }
+    .subreddit { background: #fff4f0; color: #ff4500; padding: 4px 10px; border-radius: 12px; font-size: 12px; }
+    
+    .highlight { background: #fef3c7; padding: 16px; border-radius: 12px; margin-bottom: 20px; }
+    .highlight h3 { color: #92400e; margin-bottom: 8px; }
+    
+    .disclaimer { background: #fef2f2; border: 2px solid #fca5a5; padding: 16px; border-radius: 12px; margin-bottom: 20px; }
+    .disclaimer h3 { color: #dc2626; margin-bottom: 8px; }
+    .disclaimer p { font-size: 14px; color: #7f1d1d; }
+    
+    @media (max-width: 600px) {
+      .stats-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <a href="../pregnancy.html" class="back-link">← Back to Pregnancy Apps</a>
+    
+    <header>
+      <div class="logo">🔍</div>
+      <h1>SafeScan</h1>
+      <p class="tagline">Know Before You Buy — Pregnancy Product Safety Scanner</p>
+      <div class="badges">
+        <span class="badge build">✅ BUILD</span>
+        <span class="badge">68% Margin</span>
+        <span class="badge">$357M Market</span>
+        <span class="badge">$4.99/mo</span>
+      </div>
+    </header>
+    
+    <!-- Medical Disclaimer -->
+    <div class="disclaimer">
+      <h3>⚠️ Medical Disclaimer</h3>
+      <p>SafeScan provides educational information only and is NOT medical advice. Always consult your healthcare provider before making decisions about products during pregnancy. When in doubt, ask your OB-GYN.</p>
+    </div>
+    
+    <!-- Key Insight -->
+    <div class="highlight">
+      <h3>💡 Key Insight</h3>
+      <p>The exact request "I wish there was an app with a barcode scanner that would tell us whether or not a product is safe during pregnancy" has been posted on r/pregnant with significant engagement — validating genuine unmet demand.
+         <br><br>
+         <strong>Competitive Gap:</strong> Existing solutions (Little Bean, SafeMom) focus on cosmetics/skincare ONLY. No app covers FOOD + skincare + household products in one pregnancy-focused scanner.</p>
+    </div>
+    
+    <!-- App Store Info -->
+    <div class="section">
+      <h2>📱 App Store Listing</h2>
+      <table>
+        <tr><th>Field</th><th>Value</th></tr>
+        <tr><td>App Name</td><td><strong>SafeScan</strong></td></tr>
+        <tr><td>Subtitle</td><td>Pregnancy Product Safety Scanner</td></tr>
+        <tr><td>Category</td><td>Health & Fitness</td></tr>
+        <tr><td>Price</td><td>Freemium — $4.99/mo or $29.99/year</td></tr>
+      </table>
+      
+      <h3 style="margin: 20px 0 12px; font-size: 15px;">Keywords</h3>
+      <div class="keywords">
+        <span class="keyword">pregnancy safe</span>
+        <span class="keyword">ingredient scanner</span>
+        <span class="keyword">barcode checker</span>
+        <span class="keyword">skincare pregnancy</span>
+        <span class="keyword">food safety pregnant</span>
+        <span class="keyword">product scanner</span>
+        <span class="keyword">retinol checker</span>
+        <span class="keyword">pregnancy products</span>
+      </div>
+    </div>
+    
+    <!-- Market Stats -->
+    <div class="section">
+      <h2>📊 Market Opportunity</h2>
+      <div class="stats-grid">
+        <div class="stat">
+          <div class="stat-value">$357M</div>
+          <div class="stat-label">Pregnancy App Market</div>
+        </div>
+        <div class="stat">
+          <div class="stat-value">4M+</div>
+          <div class="stat-label">US Pregnant Women</div>
+        </div>
+        <div class="stat">
+          <div class="stat-value">68%</div>
+          <div class="stat-label">Gross Margin</div>
+        </div>
+        <div class="stat">
+          <div class="stat-value">18.4%</div>
+          <div class="stat-label">CAGR Growth</div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Key Differentiator -->
+    <div class="section">
+      <h2>🎯 Key Differentiator</h2>
+      <p style="font-size: 15px; margin-bottom: 16px;"><strong>Comprehensive Coverage:</strong> Only app covering Food + Skincare + Household products in one pregnancy-focused scanner.</p>
+      <table>
+        <tr><th>Feature</th><th>Little Bean</th><th>SafeMom</th><th>SafeScan</th></tr>
+        <tr><td>Cosmetics</td><td>✅</td><td>✅</td><td>✅</td></tr>
+        <tr><td>Food Products</td><td>❌</td><td>Limited</td><td>✅</td></tr>
+        <tr><td>Household Items</td><td>❌</td><td>❌</td><td>✅</td></tr>
+        <tr><td>Barcode Scanning</td><td>OCR Only</td><td>✅</td><td>✅</td></tr>
+        <tr><td>AI Explanations</td><td>Limited</td><td>✅</td><td>✅</td></tr>
+      </table>
+    </div>
+    
+    <!-- Features -->
+    <div class="section">
+      <h2>✨ Core Features</h2>
+      <div class="feature">
+        <span class="feature-icon">📷</span>
+        <div>
+          <h3>Barcode Scanner</h3>
+          <p>Camera-based UPC/EAN scanning. Instant product lookup via Open Food Facts + Open Beauty Facts databases.</p>
+        </div>
+      </div>
+      <div class="feature">
+        <span class="feature-icon">🚦</span>
+        <div>
+          <h3>Ingredient Safety Check</h3>
+          <p>Color-coded rating: 🟢 Safe / 🟡 Caution / 🔴 Avoid. Tap any ingredient for detailed pregnancy-related warnings.</p>
+        </div>
+      </div>
+      <div class="feature">
+        <span class="feature-icon">🤖</span>
+        <div>
+          <h3>AI-Powered Explanations</h3>
+          <p>GPT-4o-mini for natural language explanations with medical source citations.</p>
+        </div>
+      </div>
+      <div class="feature">
+        <span class="feature-icon">🔍</span>
+        <div>
+          <h3>Search Function</h3>
+          <p>Search products by name or search ingredients directly. Filter by category.</p>
+        </div>
+      </div>
+      <div class="feature">
+        <span class="feature-icon">📚</span>
+        <div>
+          <h3>Scan History</h3>
+          <p>View past scans, mark favorites, share safe product lists with partner.</p>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Reddit Quotes -->
+    <div class="section">
+      <h2>💬 User Pain Points (Reddit)</h2>
+      <div class="quote">
+        "I wish there was an app with a barcode scanner that would tell us whether or not a product is safe during pregnancy. Or maybe just a list of things we can have/use since it's pretty short."
+        <div class="quote-source">— r/pregnant, June 2022</div>
+      </div>
+      <div class="quote">
+        "Yuka: This app lets you scan products and gives an overall rating based on ingredients, but it doesn't break things down specifically for pregnancy safety."
+        <div class="quote-source">— r/pregnant, Sept 2025</div>
+      </div>
+      <div class="quote">
+        "I see so much about 'pregnancy safe skincare' that I don't know what's legitimate and what's a marketing ploy"
+        <div class="quote-source">— r/pregnant</div>
+      </div>
+      <div class="quote">
+        "I was using Trader Joe's Lemongrass Body Oil and Prose Rosemary Shampoo + Conditioner, only to find out that both lemongrass and rosemary can potentially be harmful during pregnancy (am I overthinking this?)"
+        <div class="quote-source">— r/pregnant</div>
+      </div>
+    </div>
+    
+    <!-- Target Subreddits -->
+    <div class="section">
+      <h2>🎯 Target Subreddits</h2>
+      <div class="subreddits">
+        <span class="subreddit">r/pregnant (500k+)</span>
+        <span class="subreddit">r/BabyBumps (700k+)</span>
+        <span class="subreddit">r/moderatelygranolamoms (50k+)</span>
+        <span class="subreddit">r/SkincareAddiction (2M+)</span>
+        <span class="subreddit">r/Sephora (300k+)</span>
+        <span class="subreddit">r/PregnancyUK (40k+)</span>
+      </div>
+    </div>
+    
+    <!-- Marketing Headlines -->
+    <div class="section">
+      <h2>📣 Marketing Headlines</h2>
+      <ul style="list-style: none; font-size: 15px;">
+        <li>🔥 "Is that safe for baby? Scan to know instantly."</li>
+        <li>🔥 "40,000 products checked. Zero guesswork."</li>
+        <li>🔥 "The pregnancy safety scanner doctors recommend"</li>
+        <li>🔥 "Stop Googling. Start scanning."</li>
+        <li>🔥 "Food, skincare, household — all in one app"</li>
+        <li>🔥 "3 seconds to peace of mind"</li>
+      </ul>
+    </div>
+    
+    <!-- Competitors -->
+    <div class="section">
+      <h2>🏆 Competitor Landscape</h2>
+      <table>
+        <tr><th>App</th><th>Pricing</th><th>Focus</th><th>Gap</th></tr>
+        <tr><td>Little Bean</td><td>~$30/year</td><td>Cosmetics only</td><td>No food, no barcode</td></tr>
+        <tr><td>SafeMom</td><td>Subscription</td><td>Cosmetics focused</td><td>Limited food coverage</td></tr>
+        <tr><td>Yuka</td><td>Free/$15/yr</td><td>General health</td><td>No pregnancy mode</td></tr>
+        <tr><td>Think Dirty</td><td>$40-60/yr</td><td>Cosmetics only</td><td>No pregnancy-specific</td></tr>
+        <tr><td>EWG Healthy Living</td><td>Free</td><td>General safety</td><td>No pregnancy filter</td></tr>
+      </table>
+    </div>
+    
+    <!-- Cost/Margin -->
+    <div class="section">
+      <h2>💰 Cost & Margin Breakdown</h2>
+      <table>
+        <tr><th>Component</th><th>Cost/User/Mo</th><th>Notes</th></tr>
+        <tr><td>AI/LLM</td><td>$0.05</td><td>~100 scans × $0.0005/scan</td></tr>
+        <tr><td>Database</td><td>$0.01</td><td>Supabase free tier covers most</td></tr>
+        <tr><td>Barcode API</td><td>$0.02</td><td>Go-UPC fallback (~5% of scans)</td></tr>
+        <tr><td><strong>Total Variable</strong></td><td><strong>$0.08</strong></td><td></td></tr>
+        <tr><td>Revenue</td><td>$4.99</td><td>Monthly subscription</td></tr>
+        <tr><td>App Store Fee</td><td>$1.50</td><td>30%</td></tr>
+        <tr><td><strong>Gross Margin</strong></td><td><strong>$3.41 (68%)</strong></td><td></td></tr>
+      </table>
+    </div>
+    
+  </div>
+</body>
+</html>

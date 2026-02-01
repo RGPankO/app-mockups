@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BumpBuddy — App Hub</title>
+  <style>
+    :root {
+      --primary: #14b8a6;
+      --primary-light: #ccfbf1;
+      --primary-dark: #0d9488;
+      --bg: #f0fdfa;
+      --card: #ffffff;
+      --text: #1e1b3a;
+      --muted: #6b7280;
+      --border: #e5e7eb;
+      --shadow: 0 4px 12px rgba(0,0,0,0.08);
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { 
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      background: var(--bg); color: var(--text); line-height: 1.6;
+      padding: 24px 16px 60px;
+    }
+    .container { max-width: 900px; margin: 0 auto; }
+    
+    header { text-align: center; padding: 40px 20px; margin-bottom: 32px; }
+    .logo { font-size: 48px; margin-bottom: 12px; }
+    h1 { font-size: 32px; color: var(--primary-dark); margin-bottom: 8px; }
+    .tagline { color: var(--muted); font-size: 18px; }
+    
+    .badges { display: flex; gap: 12px; justify-content: center; margin-top: 20px; flex-wrap: wrap; }
+    .badge { background: var(--primary-light); color: var(--primary-dark); padding: 6px 14px; 
+             border-radius: 20px; font-size: 13px; font-weight: 500; }
+    .badge.build { background: #10b981; color: white; }
+    
+    .section { background: var(--card); border-radius: 16px; padding: 24px; 
+               margin-bottom: 20px; box-shadow: var(--shadow); }
+    .section h2 { font-size: 18px; color: var(--primary-dark); margin-bottom: 16px; 
+                  padding-bottom: 12px; border-bottom: 2px solid var(--primary-light); }
+    
+    .keywords { display: flex; flex-wrap: wrap; gap: 8px; }
+    .keyword { background: #f0f0f0; padding: 4px 10px; border-radius: 12px; font-size: 12px; color: #666; }
+    
+    .quote { background: var(--primary-light); border-left: 4px solid var(--primary); 
+             padding: 16px; margin-bottom: 12px; border-radius: 0 8px 8px 0; font-style: italic; }
+    .quote-source { font-size: 12px; color: var(--muted); margin-top: 8px; font-style: normal; }
+    
+    .feature { display: flex; gap: 12px; margin-bottom: 16px; align-items: flex-start; }
+    .feature-icon { font-size: 24px; }
+    .feature h3 { font-size: 15px; margin-bottom: 4px; }
+    .feature p { font-size: 13px; color: var(--muted); }
+    
+    .stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 16px; }
+    .stat { text-align: center; padding: 16px; background: var(--primary-light); border-radius: 12px; }
+    .stat-value { font-size: 28px; font-weight: 700; color: var(--primary-dark); }
+    .stat-label { font-size: 12px; color: var(--muted); }
+    
+    table { width: 100%; border-collapse: collapse; font-size: 14px; }
+    th, td { padding: 10px 12px; text-align: left; border-bottom: 1px solid var(--border); }
+    th { background: var(--primary-light); font-weight: 600; }
+    
+    .back-link { display: inline-block; margin-bottom: 20px; color: var(--primary); text-decoration: none; }
+    .back-link:hover { text-decoration: underline; }
+    
+    .subreddits { display: flex; flex-wrap: wrap; gap: 8px; }
+    .subreddit { background: #fff4f0; color: #ff4500; padding: 4px 10px; border-radius: 12px; font-size: 12px; }
+    
+    .highlight { background: #fef3c7; padding: 16px; border-radius: 12px; margin-bottom: 20px; }
+    .highlight h3 { color: #92400e; margin-bottom: 8px; }
+    
+    .disclaimer { background: #fef2f2; border: 2px solid #fca5a5; padding: 16px; border-radius: 12px; margin-bottom: 20px; }
+    .disclaimer h3 { color: #dc2626; margin-bottom: 8px; }
+    .disclaimer p { font-size: 14px; color: #7f1d1d; }
+    
+    @media (max-width: 600px) {
+      .stats-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <a href="../pregnancy.html" class="back-link">← Back to Pregnancy Apps</a>
+    
+    <header>
+      <div class="logo">🤖💜</div>
+      <h1>BumpBuddy</h1>
+      <p class="tagline">Your 24/7 AI Pregnancy Companion — Never Judges, Always Listens</p>
+      <div class="badges">
+        <span class="badge build">✅ BUILD</span>
+        <span class="badge">65% Margin</span>
+        <span class="badge">$217M Market</span>
+        <span class="badge">$7.99/mo</span>
+      </div>
+    </header>
+    
+    <!-- Medical Disclaimer -->
+    <div class="disclaimer">
+      <h3>⚠️ Medical Disclaimer</h3>
+      <p>BumpBuddy provides general pregnancy information and emotional support. We are NOT a substitute for medical care. Always consult your healthcare provider for medical concerns. In an emergency, call 911 or your local emergency number.</p>
+    </div>
+    
+    <!-- Key Insight -->
+    <div class="highlight">
+      <h3>💡 Key Insight</h3>
+      <p>Pregnancy communities are notoriously toxic. Women are shamed for formula feeding, epidurals, caffeine, even baby names. The result? Women suffer in silence rather than ask "stupid questions."
+         <br><br>
+         <strong>BumpBuddy fills the gap:</strong> The supportive best friend who never judges, never sleeps, and always has time for your 2AM questions.</p>
+    </div>
+    
+    <!-- App Store Info -->
+    <div class="section">
+      <h2>📱 App Store Listing</h2>
+      <table>
+        <tr><th>Field</th><th>Value</th></tr>
+        <tr><td>App Name</td><td><strong>BumpBuddy</strong></td></tr>
+        <tr><td>Subtitle</td><td>24/7 AI Pregnancy Support</td></tr>
+        <tr><td>Category</td><td>Health & Fitness</td></tr>
+        <tr><td>Price</td><td>Freemium — $7.99/mo or $59.99/year</td></tr>
+      </table>
+      
+      <h3 style="margin: 20px 0 12px; font-size: 15px;">Keywords</h3>
+      <div class="keywords">
+        <span class="keyword">pregnancy chat</span>
+        <span class="keyword">AI pregnancy</span>
+        <span class="keyword">pregnancy questions</span>
+        <span class="keyword">pregnancy anxiety</span>
+        <span class="keyword">is this normal pregnant</span>
+        <span class="keyword">pregnancy support</span>
+        <span class="keyword">pregnancy help</span>
+        <span class="keyword">first trimester</span>
+      </div>
+    </div>
+    
+    <!-- Market Stats -->
+    <div class="section">
+      <h2>📊 Market Opportunity</h2>
+      <div class="stats-grid">
+        <div class="stat">
+          <div class="stat-value">$217M</div>
+          <div class="stat-label">Pregnancy App Market</div>
+        </div>
+        <div class="stat">
+          <div class="stat-value">140M</div>
+          <div class="stat-label">Pregnancies Globally/Yr</div>
+        </div>
+        <div class="stat">
+          <div class="stat-value">65%</div>
+          <div class="stat-label">Gross Margin</div>
+        </div>
+        <div class="stat">
+          <div class="stat-value">24/7</div>
+          <div class="stat-label">Available When You Need</div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Key Differentiator -->
+    <div class="section">
+      <h2>🎯 Key Differentiator</h2>
+      <p style="font-size: 15px; margin-bottom: 16px;"><strong>Conversation-First:</strong> Not tracking-first, content-first, or community-first. BumpBuddy is the AI companion you text when spiraling at 2AM.</p>
+      <table>
+        <tr><th>Approach</th><th>Flo</th><th>BabyCenter</th><th>What to Expect</th><th>BumpBuddy</th></tr>
+        <tr><td>Core Value</td><td>Tracking</td><td>Community</td><td>Content</td><td>Conversation</td></tr>
+        <tr><td>AI Chat</td><td>Basic (buried)</td><td>❌</td><td>❌</td><td>✅ Core Feature</td></tr>
+        <tr><td>24/7 Availability</td><td>Content only</td><td>Forums</td><td>Content only</td><td>✅ Instant</td></tr>
+        <tr><td>Judgment-Free</td><td>❌ Toxic forums</td><td>❌ Toxic forums</td><td>❌ Toxic forums</td><td>✅ Always</td></tr>
+        <tr><td>Personalized</td><td>Generic</td><td>Generic</td><td>Generic</td><td>✅ Week-aware</td></tr>
+      </table>
+    </div>
+    
+    <!-- Features -->
+    <div class="section">
+      <h2>✨ Core Features</h2>
+      <div class="feature">
+        <span class="feature-icon">💬</span>
+        <div>
+          <h3>AI Chat (Heart of the App)</h3>
+          <p>Natural conversation about pregnancy questions. "Is this normal?" answering with gentle reassurance. Never judges, always validates feelings first.</p>
+        </div>
+      </div>
+      <div class="feature">
+        <span class="feature-icon">🔍</span>
+        <div>
+          <h3>Symptom Explainer</h3>
+          <p>Quick symptom lookup with context. Normal range explanations. "When to call your doctor" guidance. Personalized to your week.</p>
+        </div>
+      </div>
+      <div class="feature">
+        <span class="feature-icon">📅</span>
+        <div>
+          <h3>Daily Check-In</h3>
+          <p>"How are you feeling today?" (mood + symptoms). AI responds with encouragement. Tracks patterns over time.</p>
+        </div>
+      </div>
+      <div class="feature">
+        <span class="feature-icon">📊</span>
+        <div>
+          <h3>Pregnancy Week Context</h3>
+          <p>AI knows your current week. Tailors responses to developmental stage. "At 8 weeks, many women experience..."</p>
+        </div>
+      </div>
+      <div class="feature">
+        <span class="feature-icon">👫</span>
+        <div>
+          <h3>Partner Mode (Optional)</h3>
+          <p>"What is she going through this week?" "How can I help?" suggestions. Communication scripts for difficult conversations.</p>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Reddit Quotes -->
+    <div class="section">
+      <h2>💬 User Pain Points (Reddit)</h2>
+      <div class="quote">
+        "I tossed and turned all night. I dreamt that I went to the hospital and received the bad news I've been worrying about. My stomach started hurting from the anxiety. I cried this morning after breakfast and don't know what to do to alleviate my fears."
+        <div class="quote-source">— r/BabyBumps</div>
+      </div>
+      <div class="quote">
+        "I just needed to vent. It's frustrating how judgmental others can be about a mother's individual choices. Many times other women or women without children seem to be the main perpetrators."
+        <div class="quote-source">— r/BabyBumps</div>
+      </div>
+      <div class="quote">
+        "I'm just over 5 weeks pregnant and I feel like every little change in my body makes me nervous... So I'm constantly searching Google and my pregnancy tracker for what's 'normal' or 'atypical' about everything."
+        <div class="quote-source">— r/pregnant</div>
+      </div>
+      <div class="quote">
+        "I can never think of anything to ask my doctor... My sister always has so much to ask me about the appointments and what I asked the doctor but to be honest I never have any questions for them."
+        <div class="quote-source">— r/pregnant</div>
+      </div>
+      <div class="quote">
+        "My bf downplays everything I worry about, too, he is annoyed at me at this point of pregnancy."
+        <div class="quote-source">— r/pregnant</div>
+      </div>
+    </div>
+    
+    <!-- Target Subreddits -->
+    <div class="section">
+      <h2>🎯 Target Subreddits</h2>
+      <div class="subreddits">
+        <span class="subreddit">r/pregnant (636K+)</span>
+        <span class="subreddit">r/BabyBumps (350K+)</span>
+        <span class="subreddit">r/beyondthebump (600K+)</span>
+        <span class="subreddit">r/Mommit (600K+)</span>
+        <span class="subreddit">r/TryingForABaby (100K+)</span>
+        <span class="subreddit">r/CautiousBB</span>
+        <span class="subreddit">r/PregnancyAfterLoss</span>
+      </div>
+    </div>
+    
+    <!-- Marketing Headlines -->
+    <div class="section">
+      <h2>📣 Marketing Headlines</h2>
+      <ul style="list-style: none; font-size: 15px;">
+        <li>🔥 "Your 24/7 pregnancy companion who never judges, never sleeps, and always has time."</li>
+        <li>🔥 "Ask the 'stupid questions' you're afraid to Google at 2AM."</li>
+        <li>🔥 "Finally, pregnancy support without the toxic mommy forums."</li>
+        <li>🔥 "'Is this normal?' Answered instantly. No judgment."</li>
+        <li>🔥 "The supportive best friend every pregnant woman deserves."</li>
+        <li>🔥 "Anxious at 2AM? We're awake too."</li>
+      </ul>
+    </div>
+    
+    <!-- Competitors -->
+    <div class="section">
+      <h2>🏆 Competitor Landscape</h2>
+      <table>
+        <tr><th>App</th><th>AI Features</th><th>Focus</th><th>Gap</th></tr>
+        <tr><td>Flo</td><td>Basic chatbot (buried)</td><td>Tracking</td><td>AI not core value prop</td></tr>
+        <tr><td>BabyCenter</td><td>None</td><td>Community</td><td>Forums can be toxic</td></tr>
+        <tr><td>What to Expect</td><td>None</td><td>Content</td><td>Dated UI, forum drama</td></tr>
+        <tr><td>Glow Nurture</td><td>Limited</td><td>Tracking</td><td>Small user base</td></tr>
+        <tr><td>ChatGPT/Claude</td><td>General AI</td><td>Everything</td><td>No pregnancy guardrails</td></tr>
+      </table>
+    </div>
+    
+    <!-- Cost/Margin -->
+    <div class="section">
+      <h2>💰 Cost & Margin Breakdown</h2>
+      <table>
+        <tr><th>Component</th><th>Cost/User/Mo</th><th>Notes</th></tr>
+        <tr><td>AI/LLM (Claude Haiku)</td><td>$0.15-0.30</td><td>~50 conversations/mo, 500 tokens each</td></tr>
+        <tr><td>Database</td><td>$0.02</td><td>~1MB per user</td></tr>
+        <tr><td>Hosting</td><td>$0.05</td><td>Shared infrastructure</td></tr>
+        <tr><td>Push Notifications</td><td>$0.01</td><td>Free tier</td></tr>
+        <tr><td><strong>Total Variable</strong></td><td><strong>~$0.25-0.40</strong></td><td></td></tr>
+        <tr><td>Revenue</td><td>$7.99</td><td>Monthly subscription</td></tr>
+        <tr><td>App Store Fee</td><td>$2.40</td><td>30%</td></tr>
+        <tr><td><strong>Gross Margin</strong></td><td><strong>~$5.20 (65%)</strong></td><td></td></tr>
+      </table>
+    </div>
+    
+    <!-- AI Safety Section -->
+    <div class="section">
+      <h2>🛡️ AI Safety & Guardrails</h2>
+      <div style="background: #fef2f2; padding: 16px; border-radius: 8px; margin-bottom: 16px;">
+        <h4 style="color: #dc2626; margin-bottom: 8px;">Questions AI Must REFUSE or REDIRECT:</h4>
+        <ul style="font-size: 14px; padding-left: 20px; color: #7f1d1d;">
+          <li><strong>Emergency symptoms</strong> → "Please call your doctor or 911 immediately"</li>
+          <li><strong>Medical diagnosis</strong> → "I can't diagnose conditions. Please discuss with your healthcare provider"</li>
+          <li><strong>Medication advice</strong> → "Medication decisions should be made with your doctor"</li>
+          <li><strong>Mental health crisis</strong> → "I'm here for you. Please reach out to [crisis resources]"</li>
+        </ul>
+      </div>
+      <div style="background: #ecfdf5; padding: 16px; border-radius: 8px;">
+        <h4 style="color: #059669; margin-bottom: 8px;">Questions AI SHOULD Answer (with caveats):</h4>
+        <ul style="font-size: 14px; padding-left: 20px; color: #065f46;">
+          <li>"Is it normal to have [common symptom] at [X] weeks?"</li>
+          <li>"Can I eat [food item] while pregnant?"</li>
+          <li>"I'm feeling anxious about [common fear]"</li>
+          <li>"What should I expect at my [X] week appointment?"</li>
+        </ul>
+      </div>
+    </div>
+    
+  </div>
+</body>
+</html>

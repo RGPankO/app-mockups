@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>VaultBump — App Hub</title>
+  <style>
+    :root {
+      --primary: #8b5cf6;
+      --primary-light: #ede9fe;
+      --primary-dark: #7c3aed;
+      --bg: #f5f3ff;
+      --card: #ffffff;
+      --text: #1e1b3a;
+      --muted: #6b7280;
+      --border: #e5e7eb;
+      --shadow: 0 4px 12px rgba(0,0,0,0.08);
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { 
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      background: var(--bg); color: var(--text); line-height: 1.6;
+      padding: 24px 16px 60px;
+    }
+    .container { max-width: 900px; margin: 0 auto; }
+    
+    header { text-align: center; padding: 40px 20px; margin-bottom: 32px; }
+    .logo { font-size: 48px; margin-bottom: 12px; }
+    h1 { font-size: 32px; color: var(--primary-dark); margin-bottom: 8px; }
+    .tagline { color: var(--muted); font-size: 18px; }
+    
+    .badges { display: flex; gap: 12px; justify-content: center; margin-top: 20px; flex-wrap: wrap; }
+    .badge { background: var(--primary-light); color: var(--primary-dark); padding: 6px 14px; 
+             border-radius: 20px; font-size: 13px; font-weight: 500; }
+    .badge.build { background: #10b981; color: white; }
+    
+    .section { background: var(--card); border-radius: 16px; padding: 24px; 
+               margin-bottom: 20px; box-shadow: var(--shadow); }
+    .section h2 { font-size: 18px; color: var(--primary-dark); margin-bottom: 16px; 
+                  padding-bottom: 12px; border-bottom: 2px solid var(--primary-light); }
+    
+    .keywords { display: flex; flex-wrap: wrap; gap: 8px; }
+    .keyword { background: #f0f0f0; padding: 4px 10px; border-radius: 12px; font-size: 12px; color: #666; }
+    
+    .quote { background: var(--primary-light); border-left: 4px solid var(--primary); 
+             padding: 16px; margin-bottom: 12px; border-radius: 0 8px 8px 0; font-style: italic; }
+    .quote-source { font-size: 12px; color: var(--muted); margin-top: 8px; font-style: normal; }
+    
+    .feature { display: flex; gap: 12px; margin-bottom: 16px; align-items: flex-start; }
+    .feature-icon { font-size: 24px; }
+    .feature h3 { font-size: 15px; margin-bottom: 4px; }
+    .feature p { font-size: 13px; color: var(--muted); }
+    
+    .stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 16px; }
+    .stat { text-align: center; padding: 16px; background: var(--primary-light); border-radius: 12px; }
+    .stat-value { font-size: 28px; font-weight: 700; color: var(--primary-dark); }
+    .stat-label { font-size: 12px; color: var(--muted); }
+    
+    table { width: 100%; border-collapse: collapse; font-size: 14px; }
+    th, td { padding: 10px 12px; text-align: left; border-bottom: 1px solid var(--border); }
+    th { background: var(--primary-light); font-weight: 600; }
+    
+    .back-link { display: inline-block; margin-bottom: 20px; color: var(--primary); text-decoration: none; }
+    .back-link:hover { text-decoration: underline; }
+    
+    .subreddits { display: flex; flex-wrap: wrap; gap: 8px; }
+    .subreddit { background: #fff4f0; color: #ff4500; padding: 4px 10px; border-radius: 12px; font-size: 12px; }
+    
+    .highlight { background: #fef3c7; padding: 16px; border-radius: 12px; margin-bottom: 20px; }
+    .highlight h3 { color: #92400e; margin-bottom: 8px; }
+    
+    .disclaimer { background: #fef2f2; border: 2px solid #fca5a5; padding: 16px; border-radius: 12px; margin-bottom: 20px; }
+    .disclaimer h3 { color: #dc2626; margin-bottom: 8px; }
+    .disclaimer p { font-size: 14px; color: #7f1d1d; }
+    
+    @media (max-width: 600px) {
+      .stats-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <a href="../pregnancy.html" class="back-link">← Back to Pregnancy Apps</a>
+    
+    <header>
+      <div class="logo">🔐</div>
+      <h1>VaultBump</h1>
+      <p class="tagline">Privacy-First Pregnancy Tracker — Your Data Never Leaves Your Device</p>
+      <div class="badges">
+        <span class="badge build">✅ BUILD</span>
+        <span class="badge">100% Margin</span>
+        <span class="badge">$954M Market</span>
+        <span class="badge">$9.99 one-time</span>
+      </div>
+    </header>
+    
+    <!-- Medical Disclaimer -->
+    <div class="disclaimer">
+      <h3>⚠️ Medical Disclaimer</h3>
+      <p>VaultBump is a wellness tracking app, NOT a medical device. It does not provide medical advice. Always consult your healthcare provider for medical concerns.</p>
+    </div>
+    
+    <!-- Key Insight -->
+    <div class="highlight">
+      <h3>💡 Key Insight</h3>
+      <p>Post-Dobbs (June 2022), reproductive health data has become legally dangerous in 14+ states. Women mass-deleted period apps over fears their data could be subpoenaed.
+         <br><br>
+         <strong>"Privacy Arbitrage":</strong> Flo's FTC settlement + $56M lawsuit eroded trust. Free alternatives (Drip, Euki) lack polish. VaultBump fills the gap: premium quality + bulletproof privacy.</p>
+    </div>
+    
+    <!-- App Store Info -->
+    <div class="section">
+      <h2>📱 App Store Listing</h2>
+      <table>
+        <tr><th>Field</th><th>Value</th></tr>
+        <tr><td>App Name</td><td><strong>VaultBump</strong></td></tr>
+        <tr><td>Subtitle</td><td>Private Period & Pregnancy Tracker</td></tr>
+        <tr><td>Category</td><td>Health & Fitness</td></tr>
+        <tr><td>Price</td><td>$9.99 one-time purchase</td></tr>
+      </table>
+      
+      <h3 style="margin: 20px 0 12px; font-size: 15px;">Keywords</h3>
+      <div class="keywords">
+        <span class="keyword">private period tracker</span>
+        <span class="keyword">secure pregnancy app</span>
+        <span class="keyword">no cloud</span>
+        <span class="keyword">local storage</span>
+        <span class="keyword">encrypted tracker</span>
+        <span class="keyword">privacy first</span>
+        <span class="keyword">no account</span>
+        <span class="keyword">data protection</span>
+      </div>
+    </div>
+    
+    <!-- Market Stats -->
+    <div class="section">
+      <h2>📊 Market Opportunity</h2>
+      <div class="stats-grid">
+        <div class="stat">
+          <div class="stat-value">$954M</div>
+          <div class="stat-label">Menstrual Apps Market</div>
+        </div>
+        <div class="stat">
+          <div class="stat-value">45M</div>
+          <div class="stat-label">Women in Restriction States</div>
+        </div>
+        <div class="stat">
+          <div class="stat-value">100%</div>
+          <div class="stat-label">Gross Margin</div>
+        </div>
+        <div class="stat">
+          <div class="stat-value">$0</div>
+          <div class="stat-label">Server Costs (None!)</div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Key Differentiator -->
+    <div class="section">
+      <h2>🎯 Key Differentiator</h2>
+      <p style="font-size: 15px; margin-bottom: 16px;"><strong>Nothing to Subpoena:</strong> 100% local storage means law enforcement can't request data from servers that don't exist.</p>
+      <table>
+        <tr><th>Feature</th><th>Flo</th><th>Clue</th><th>Drip</th><th>VaultBump</th></tr>
+        <tr><td>Local-only storage</td><td>❌</td><td>❌</td><td>✅</td><td>✅</td></tr>
+        <tr><td>No account required</td><td>❌</td><td>❌</td><td>✅</td><td>✅</td></tr>
+        <tr><td>Panic button</td><td>❌</td><td>❌</td><td>❌</td><td>✅</td></tr>
+        <tr><td>Premium design</td><td>✅</td><td>✅</td><td>❌</td><td>✅</td></tr>
+        <tr><td>Pregnancy-specific</td><td>✅</td><td>❌</td><td>❌</td><td>✅</td></tr>
+        <tr><td>Sustainable funding</td><td>✅</td><td>✅</td><td>❌</td><td>✅</td></tr>
+      </table>
+    </div>
+    
+    <!-- Features -->
+    <div class="section">
+      <h2>✨ Core Features</h2>
+      <div class="feature">
+        <span class="feature-icon">🔒</span>
+        <div>
+          <h3>100% Local Storage</h3>
+          <p>SQLite encrypted with AES-256. No servers = nothing to subpoena. No internet permissions requested.</p>
+        </div>
+      </div>
+      <div class="feature">
+        <span class="feature-icon">🚨</span>
+        <div>
+          <h3>Panic Button™</h3>
+          <p>One-tap data wipe. Optional "decoy mode" shows empty/fake data. No trace left on device. Widget + in-app access.</p>
+        </div>
+      </div>
+      <div class="feature">
+        <span class="feature-icon">👤</span>
+        <div>
+          <h3>No Account Required</h3>
+          <p>No email, no phone number, no identity link. Face ID / Touch ID lock for app access.</p>
+        </div>
+      </div>
+      <div class="feature">
+        <span class="feature-icon">📊</span>
+        <div>
+          <h3>Comprehensive Tracking</h3>
+          <p>Period start/end, flow intensity, 20+ symptoms, mood tracking, pregnancy mode with week counter.</p>
+        </div>
+      </div>
+      <div class="feature">
+        <span class="feature-icon">⏱️</span>
+        <div>
+          <h3>Contraction Timer</h3>
+          <p>Built-in contraction timer for late pregnancy. All data stays encrypted on device.</p>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Reddit Quotes -->
+    <div class="section">
+      <h2>💬 User Pain Points (Reddit)</h2>
+      <div class="quote">
+        "If they are trying to prosecute a woman for getting an illegal abortion, they can subpoena any app on their device, including period trackers."
+        <div class="quote-source">— Sara Spector, Criminal Defense Attorney (The Guardian)</div>
+      </div>
+      <div class="quote">
+        "Seen a lot of talk about how you should delete your period tracker with the new abortion debacle. Any idea if any are particularly good? I know that all free apps are privacy nightmares so I'm only talking about paid ones."
+        <div class="quote-source">— r/privacy</div>
+      </div>
+      <div class="quote">
+        "Flo disclosed health data from millions of users... to Facebook's analytics division, Google's analytics division..."
+        <div class="quote-source">— FTC Complaint</div>
+      </div>
+      <div class="quote">
+        "Hidden under More > Settings > Privacy settings is a toggle, enabled by default, which claims 'I agree that Clue may collect my usage data and use third-party services for: The purposes of advertising, such as tracking or retargeting'"
+        <div class="quote-source">— r/TwoXChromosomes (about Clue)</div>
+      </div>
+    </div>
+    
+    <!-- Target Subreddits -->
+    <div class="section">
+      <h2>🎯 Target Subreddits</h2>
+      <div class="subreddits">
+        <span class="subreddit">r/privacy (1.5M+)</span>
+        <span class="subreddit">r/TwoXChromosomes (13M+)</span>
+        <span class="subreddit">r/pregnant (500k+)</span>
+        <span class="subreddit">r/BabyBumps (700k+)</span>
+        <span class="subreddit">r/prochoice</span>
+        <span class="subreddit">r/childfree</span>
+      </div>
+    </div>
+    
+    <!-- Marketing Headlines -->
+    <div class="section">
+      <h2>📣 Marketing Headlines</h2>
+      <ul style="list-style: none; font-size: 15px;">
+        <li>🔥 "Your pregnancy data, locked in a vault only you can open—or instantly destroy."</li>
+        <li>🔥 "Nothing to subpoena. Nothing to leak. Nothing to fear."</li>
+        <li>🔥 "Built for the post-Roe reality."</li>
+        <li>🔥 "Privacy isn't a feature. It's the whole point."</li>
+        <li>🔥 "No internet permission—verify it yourself."</li>
+        <li>🔥 "One-time purchase = no data harvesting incentive."</li>
+      </ul>
+    </div>
+    
+    <!-- Competitors -->
+    <div class="section">
+      <h2>🏆 Competitor Landscape</h2>
+      <table>
+        <tr><th>App</th><th>Pricing</th><th>Privacy</th><th>Issue</th></tr>
+        <tr><td>Flo</td><td>$49.99/yr</td><td>Cloud-based</td><td>FTC settlement, $56M lawsuit</td></tr>
+        <tr><td>Clue</td><td>$79.99/yr</td><td>Cloud-based</td><td>Ad tracking by default</td></tr>
+        <tr><td>Drip</td><td>Free</td><td>Local-only ✅</td><td>Basic UI, volunteer project</td></tr>
+        <tr><td>Euki</td><td>Free</td><td>Local-only ✅</td><td>Donation-funded, uncertain future</td></tr>
+        <tr><td>Natural Cycles</td><td>$99.99/yr</td><td>Cloud-based</td><td>Data stored on servers</td></tr>
+      </table>
+    </div>
+    
+    <!-- Cost/Margin -->
+    <div class="section">
+      <h2>💰 Cost & Margin Breakdown</h2>
+      <table>
+        <tr><th>Component</th><th>Cost</th><th>Notes</th></tr>
+        <tr><td>AI/LLM</td><td>$0</td><td>No AI features</td></tr>
+        <tr><td>Database</td><td>$0</td><td>On-device storage</td></tr>
+        <tr><td>Hosting</td><td>$0</td><td>No servers</td></tr>
+        <tr><td>Email</td><td>$0</td><td>No accounts</td></tr>
+        <tr><td><strong>Total Variable</strong></td><td><strong>$0</strong></td><td>Zero marginal cost per user</td></tr>
+        <tr><td>Revenue</td><td>$9.99</td><td>One-time purchase</td></tr>
+        <tr><td>App Store Fee</td><td>$3.00</td><td>30%</td></tr>
+        <tr><td><strong>Net per Sale</strong></td><td><strong>$6.99 (100%)</strong></td><td></td></tr>
+      </table>
+      <p style="margin-top: 16px; font-size: 14px; color: var(--muted);">
+        <strong>Revenue projections:</strong> 10,000 users = $69,930 | 50,000 users = $349,650 | 100,000 users = $699,300
+      </p>
+    </div>
+    
+    <!-- Trust Signal -->
+    <div class="section">
+      <h2>🤝 The "One-Time Purchase" Trust Signal</h2>
+      <p style="font-size: 15px;">
+        <strong>Critical differentiator:</strong> Subscription apps need to extract value from users continuously to justify recurring fees. That value is <em>data</em>.
+        <br><br>
+        VaultBump's one-time purchase proves:
+      </p>
+      <ul style="margin-top: 12px; font-size: 14px; padding-left: 20px;">
+        <li>No incentive to collect data (we got paid already)</li>
+        <li>No need for user accounts (nothing to upsell)</li>
+        <li>No tracking infrastructure (unnecessary cost)</li>
+        <li>Business model aligned with privacy</li>
+      </ul>
+    </div>
+    
+  </div>
+</body>
+</html>

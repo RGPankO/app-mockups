@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DadMode — App Hub</title>
+  <style>
+    :root {
+      --primary: #6366f1;
+      --primary-light: #e0e7ff;
+      --primary-dark: #4f46e5;
+      --bg: #eef2ff;
+      --card: #ffffff;
+      --text: #1e1b3a;
+      --muted: #6b7280;
+      --border: #e5e7eb;
+      --shadow: 0 4px 12px rgba(0,0,0,0.08);
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { 
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      background: var(--bg); color: var(--text); line-height: 1.6;
+      padding: 24px 16px 60px;
+    }
+    .container { max-width: 900px; margin: 0 auto; }
+    
+    header { text-align: center; padding: 40px 20px; margin-bottom: 32px; }
+    .logo { font-size: 48px; margin-bottom: 12px; }
+    h1 { font-size: 32px; color: var(--primary-dark); margin-bottom: 8px; }
+    .tagline { color: var(--muted); font-size: 18px; }
+    
+    .badges { display: flex; gap: 12px; justify-content: center; margin-top: 20px; flex-wrap: wrap; }
+    .badge { background: var(--primary-light); color: var(--primary-dark); padding: 6px 14px; 
+             border-radius: 20px; font-size: 13px; font-weight: 500; }
+    .badge.build { background: #10b981; color: white; }
+    
+    .section { background: var(--card); border-radius: 16px; padding: 24px; 
+               margin-bottom: 20px; box-shadow: var(--shadow); }
+    .section h2 { font-size: 18px; color: var(--primary-dark); margin-bottom: 16px; 
+                  padding-bottom: 12px; border-bottom: 2px solid var(--primary-light); }
+    
+    .keywords { display: flex; flex-wrap: wrap; gap: 8px; }
+    .keyword { background: #f0f0f0; padding: 4px 10px; border-radius: 12px; font-size: 12px; color: #666; }
+    
+    .quote { background: var(--primary-light); border-left: 4px solid var(--primary); 
+             padding: 16px; margin-bottom: 12px; border-radius: 0 8px 8px 0; font-style: italic; }
+    .quote-source { font-size: 12px; color: var(--muted); margin-top: 8px; font-style: normal; }
+    
+    .feature { display: flex; gap: 12px; margin-bottom: 16px; align-items: flex-start; }
+    .feature-icon { font-size: 24px; }
+    .feature h3 { font-size: 15px; margin-bottom: 4px; }
+    .feature p { font-size: 13px; color: var(--muted); }
+    
+    .stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 16px; }
+    .stat { text-align: center; padding: 16px; background: var(--primary-light); border-radius: 12px; }
+    .stat-value { font-size: 28px; font-weight: 700; color: var(--primary-dark); }
+    .stat-label { font-size: 12px; color: var(--muted); }
+    
+    table { width: 100%; border-collapse: collapse; font-size: 14px; }
+    th, td { padding: 10px 12px; text-align: left; border-bottom: 1px solid var(--border); }
+    th { background: var(--primary-light); font-weight: 600; }
+    
+    .back-link { display: inline-block; margin-bottom: 20px; color: var(--primary); text-decoration: none; }
+    .back-link:hover { text-decoration: underline; }
+    
+    .subreddits { display: flex; flex-wrap: wrap; gap: 8px; }
+    .subreddit { background: #fff4f0; color: #ff4500; padding: 4px 10px; border-radius: 12px; font-size: 12px; }
+    
+    .highlight { background: #fef3c7; padding: 16px; border-radius: 12px; margin-bottom: 20px; }
+    .highlight h3 { color: #92400e; margin-bottom: 8px; }
+    
+    .disclaimer { background: #fef2f2; border: 2px solid #fca5a5; padding: 16px; border-radius: 12px; margin-bottom: 20px; }
+    .disclaimer h3 { color: #dc2626; margin-bottom: 8px; }
+    .disclaimer p { font-size: 14px; color: #7f1d1d; }
+    
+    @media (max-width: 600px) {
+      .stats-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <a href="../pregnancy.html" class="back-link">← Back to Pregnancy Apps</a>
+    
+    <header>
+      <div class="logo">👨‍👧</div>
+      <h1>DadMode</h1>
+      <p class="tagline">Partner's Pregnancy Guide — Week-by-Week Support</p>
+      <div class="badges">
+        <span class="badge build">✅ BUILD</span>
+        <span class="badge">82% Margin</span>
+        <span class="badge">3.6M Dads/Yr</span>
+        <span class="badge">$4.99/mo</span>
+      </div>
+    </header>
+    
+    <!-- Medical Disclaimer -->
+    <div class="disclaimer">
+      <h3>⚠️ Medical Disclaimer</h3>
+      <p>DadMode provides educational information about pregnancy for partners. It is NOT medical advice. All medical questions should be directed to a healthcare provider.</p>
+    </div>
+    
+    <!-- Key Insight -->
+    <div class="highlight">
+      <h3>💡 Key Insight</h3>
+      <p>While hundreds of pregnancy apps serve expecting mothers, almost no well-designed apps specifically address what partners need to know and how they can actively support.
+         <br><br>
+         <strong>Viral Potential:</strong> Women gift it to partners; couples download together as a bonding activity. r/predaddit has 34K members actively seeking this content.</p>
+    </div>
+    
+    <!-- App Store Info -->
+    <div class="section">
+      <h2>📱 App Store Listing</h2>
+      <table>
+        <tr><th>Field</th><th>Value</th></tr>
+        <tr><td>App Name</td><td><strong>DadMode</strong></td></tr>
+        <tr><td>Subtitle</td><td>Partner's Pregnancy Guide</td></tr>
+        <tr><td>Category</td><td>Health & Fitness</td></tr>
+        <tr><td>Price</td><td>Freemium — $4.99/mo or $29.99/year</td></tr>
+      </table>
+      
+      <h3 style="margin: 20px 0 12px; font-size: 15px;">Keywords</h3>
+      <div class="keywords">
+        <span class="keyword">pregnancy for dads</span>
+        <span class="keyword">expecting father</span>
+        <span class="keyword">partner pregnancy app</span>
+        <span class="keyword">dad to be</span>
+        <span class="keyword">support pregnant wife</span>
+        <span class="keyword">first time dad</span>
+        <span class="keyword">pregnancy guide men</span>
+        <span class="keyword">labor support</span>
+      </div>
+    </div>
+    
+    <!-- Market Stats -->
+    <div class="section">
+      <h2>📊 Market Opportunity</h2>
+      <div class="stats-grid">
+        <div class="stat">
+          <div class="stat-value">3.6M</div>
+          <div class="stat-label">US Births/Year</div>
+        </div>
+        <div class="stat">
+          <div class="stat-value">~2M</div>
+          <div class="stat-label">First-Time Dads/Yr</div>
+        </div>
+        <div class="stat">
+          <div class="stat-value">82%</div>
+          <div class="stat-label">Gross Margin</div>
+        </div>
+        <div class="stat">
+          <div class="stat-value">&lt;$10M</div>
+          <div class="stat-label">Current Market (Underserved!)</div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Key Differentiator -->
+    <div class="section">
+      <h2>🎯 Key Differentiator</h2>
+      <p style="font-size: 15px; margin-bottom: 16px;"><strong>Partner-First Design:</strong> Not a pregnancy tracker with "dad mode" — built FROM THE GROUND UP for the partner's perspective.</p>
+      <table>
+        <tr><th>Need</th><th>Daddy Up</th><th>HiDaddy</th><th>DadMode</th></tr>
+        <tr><td>Weekly partner guidance</td><td>✅</td><td>Partial</td><td>✅</td></tr>
+        <tr><td>What SHE is feeling</td><td>Limited</td><td>Limited</td><td>✅</td></tr>
+        <tr><td>Hospital bag for HIM</td><td>Partial</td><td>❌</td><td>✅</td></tr>
+        <tr><td>Labor playbook</td><td>Basic</td><td>❌</td><td>✅</td></tr>
+        <tr><td>Modern, non-cringe design</td><td>❌ Lumberjack</td><td>Gimmicky</td><td>✅</td></tr>
+        <tr><td>Partner sync</td><td>❌</td><td>❌</td><td>✅ (V2)</td></tr>
+      </table>
+    </div>
+    
+    <!-- Features -->
+    <div class="section">
+      <h2>✨ Core Features</h2>
+      <div class="feature">
+        <span class="feature-icon">📅</span>
+        <div>
+          <h3>Weekly Partner Updates</h3>
+          <p>What SHE is experiencing (physical + emotional). What the baby is developing. "How to help this week" — actionable tips.</p>
+        </div>
+      </div>
+      <div class="feature">
+        <span class="feature-icon">💪</span>
+        <div>
+          <h3>Support Action Cards</h3>
+          <p>Daily micro-actions: "Offer to rub her feet tonight." Weekly bigger gestures. Context-aware based on week + her symptoms.</p>
+        </div>
+      </div>
+      <div class="feature">
+        <span class="feature-icon">✅</span>
+        <div>
+          <h3>Checklists</h3>
+          <p>Hospital bag (HIS essentials). Nursery prep. Baby-proofing. Financial/insurance tasks. Questions for appointments.</p>
+        </div>
+      </div>
+      <div class="feature">
+        <span class="feature-icon">🏥</span>
+        <div>
+          <h3>Labor Playbook</h3>
+          <p>Stages of labor explained simply. Your role at each stage. What to pack. Phrases to say/avoid. Contraction timer.</p>
+        </div>
+      </div>
+      <div class="feature">
+        <span class="feature-icon">📝</span>
+        <div>
+          <h3>Partner Symptom Tracker</h3>
+          <p>Quick check-in: "How is she feeling today?" Helps him stay aware without her having to explain.</p>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Reddit Quotes -->
+    <div class="section">
+      <h2>💬 User Pain Points (Reddit)</h2>
+      <div class="quote">
+        "As a Dad, you only have your voice and a helping hand, ie. you feel pretty useless for your wife/partner. She will go through immense pain that you don't even get to say you understand."
+        <div class="quote-source">— r/predaddit</div>
+      </div>
+      <div class="quote">
+        "I spent hours researching what to pack for the Big Day, and I could not find a straightforward list."
+        <div class="quote-source">— r/predaddit</div>
+      </div>
+      <div class="quote">
+        "Look up second night syndrome. Come that second night your beautiful newborn may turn into the spawn of satan... This is normal. It will go away. You and your partner are not doing anything wrong."
+        <div class="quote-source">— r/predaddit</div>
+      </div>
+      <div class="quote">
+        "There is a good chance your partner is going to feel extremely isolated and/or alone... My recommendation guys, If you're there, be there with her."
+        <div class="quote-source">— r/predaddit</div>
+      </div>
+      <div class="quote">
+        "Helpless isn't a feeling I'm used to. But I was helpless here. I could only squeeze her hand, pull her close, and feel this with her."
+        <div class="quote-source">— r/predaddit (on miscarriage)</div>
+      </div>
+    </div>
+    
+    <!-- Target Subreddits -->
+    <div class="section">
+      <h2>🎯 Target Subreddits</h2>
+      <div class="subreddits">
+        <span class="subreddit">r/predaddit (34K)</span>
+        <span class="subreddit">r/daddit (1.4M)</span>
+        <span class="subreddit">r/BabyBumps (700k+)</span>
+        <span class="subreddit">r/NewParents (200K+)</span>
+        <span class="subreddit">r/Parenting (5M+)</span>
+        <span class="subreddit">r/pregnant (500k+)</span>
+      </div>
+    </div>
+    
+    <!-- Marketing Headlines -->
+    <div class="section">
+      <h2>📣 Marketing Headlines</h2>
+      <ul style="list-style: none; font-size: 15px;">
+        <li>🔥 "Be the partner she needs — with weekly guidance on exactly how to help."</li>
+        <li>🔥 "She's growing a human. Here's how you actually support that."</li>
+        <li>🔥 "Finally, a pregnancy app for the person NOT carrying the baby."</li>
+        <li>🔥 "Don't feel useless. Be useful."</li>
+        <li>🔥 "Week 16: What she's feeling. What you can do. No guessing."</li>
+        <li>🔥 "Hospital bag for HIM. Because you need stuff too."</li>
+      </ul>
+    </div>
+    
+    <!-- Competitors -->
+    <div class="section">
+      <h2>🏆 Competitor Landscape</h2>
+      <table>
+        <tr><th>App</th><th>Pricing</th><th>Style</th><th>Gap</th></tr>
+        <tr><td>Daddy Up</td><td>~$4.99/mo</td><td>Lumberjack humor</td><td>Niche aesthetic alienates many</td></tr>
+        <tr><td>HiDaddy</td><td>Freemium</td><td>"Messages from baby"</td><td>Gimmicky, less practical</td></tr>
+        <tr><td>What to Expect</td><td>Free</td><td>Mom-focused</td><td>Partners are afterthought</td></tr>
+        <tr><td>The Bump</td><td>Free</td><td>Mom-focused</td><td>Same — secondary partner content</td></tr>
+      </table>
+    </div>
+    
+    <!-- Cost/Margin -->
+    <div class="section">
+      <h2>💰 Cost & Margin Breakdown</h2>
+      <table>
+        <tr><th>Component</th><th>Cost/User/Mo</th><th>Notes</th></tr>
+        <tr><td>AI/LLM</td><td>$0.10</td><td>Light personalization queries</td></tr>
+        <tr><td>Database</td><td>$0.02</td><td>Supabase free tier covers most</td></tr>
+        <tr><td>Push Notifications</td><td>$0.01</td><td>Daily engagement critical</td></tr>
+        <tr><td><strong>Total Variable</strong></td><td><strong>$0.14</strong></td><td></td></tr>
+        <tr><td>Revenue</td><td>$4.99</td><td>Monthly subscription</td></tr>
+        <tr><td>Platform Fee (15%)</td><td>$0.75</td><td></td></tr>
+        <tr><td><strong>Gross Margin</strong></td><td><strong>$4.10 (82%)</strong></td><td></td></tr>
+      </table>
+      <p style="margin-top: 16px; font-size: 14px; color: var(--muted);">
+        <strong>Revenue projections:</strong> 1,000 subs = $4,100/mo | 10,000 subs = $41,000/mo | 50,000 subs = $205,000/mo
+      </p>
+    </div>
+    
+    <!-- Viral Mechanics -->
+    <div class="section">
+      <h2>🚀 Viral Mechanics</h2>
+      <ul style="font-size: 15px; padding-left: 20px;">
+        <li><strong>Gift mechanic:</strong> Easy flow for women to send app link to partners</li>
+        <li><strong>Couples discount:</strong> Both partners subscribe = 30% off each</li>
+        <li><strong>Share weekly tips:</strong> "What to Expect" style shareable cards for Instagram/text</li>
+        <li><strong>Graduation posts:</strong> "I was ready for delivery thanks to DadMode" social proof</li>
+      </ul>
+    </div>
+    
+  </div>
+</body>
+</html>
