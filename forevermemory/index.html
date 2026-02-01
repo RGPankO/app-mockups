@@ -69,6 +69,10 @@
     .back-link { display: inline-block; margin-bottom: 20px; color: var(--primary); text-decoration: none; }
     .back-link:hover { text-decoration: underline; }
     
+    .keyword { background: var(--primary-light); color: var(--primary-dark); padding: 6px 12px; 
+               border-radius: 16px; font-size: 12px; font-weight: 500; }
+    .keywords { display: flex; gap: 8px; flex-wrap: wrap; }
+    
     @media (max-width: 600px) {
       .stats-grid { grid-template-columns: repeat(2, 1fr); }
     }
@@ -105,6 +109,28 @@
       </p>
     </div>
     
+    <!-- App Store Listing -->
+    <div class="section">
+      <h2>📱 App Store Listing</h2>
+      <table>
+        <tr><td style="padding: 8px 0; color: var(--muted); width: 120px;">App Name</td><td style="padding: 8px 0;"><strong>ForeverMemory</strong></td></tr>
+        <tr><td style="padding: 8px 0; color: var(--muted);">Subtitle</td><td style="padding: 8px 0;">Honor Those You've Lost</td></tr>
+        <tr><td style="padding: 8px 0; color: var(--muted);">Category</td><td style="padding: 8px 0;">Photo & Video</td></tr>
+        <tr><td style="padding: 8px 0; color: var(--muted);">Price</td><td style="padding: 8px 0;">$9.99 single / $29.99 bundle / $99.99/yr</td></tr>
+      </table>
+      <h3 style="margin-top: 16px; font-size: 14px;">Keywords (100 chars)</h3>
+      <div class="keywords" style="margin-top: 8px;">
+        <span class="keyword">photo restoration</span>
+        <span class="keyword">memorial</span>
+        <span class="keyword">old photos</span>
+        <span class="keyword">colorize</span>
+        <span class="keyword">enhance</span>
+        <span class="keyword">restore</span>
+        <span class="keyword">remember</span>
+        <span class="keyword">honor</span>
+      </div>
+    </div>
+
     <!-- Market Stats -->
     <div class="section">
       <h2>📊 Market Opportunity</h2>
@@ -298,6 +324,47 @@
         <strong>Partner, don't advertise:</strong> Grief support orgs, funeral homes, genealogy sites, Facebook memorial groups. 
         Word-of-mouth is the primary channel—let the service earn trust organically.
       </p>
+    </div>
+
+    <!-- Competitive Landscape -->
+    <div class="section">
+      <h2>⚔️ Competitive Landscape</h2>
+      <table>
+        <tr><th style="background: var(--primary-light);">Competitor</th><th style="background: var(--primary-light);">Price</th><th style="background: var(--primary-light);">Weakness</th></tr>
+        <tr><td><strong>Remini</strong></td><td>$9.99/week</td><td>Mass market, not grief-focused, generic</td></tr>
+        <tr><td><strong>MyHeritage Deep Nostalgia</strong></td><td>$13-$29/mo</td><td>Uncanny valley animations, subscription locks</td></tr>
+        <tr><td><strong>Photomyne</strong></td><td>$59.99/yr</td><td>Focused on digitization, not restoration</td></tr>
+        <tr><td><strong>MemoryCherish</strong></td><td>$38/photo</td><td>Slow (days), expensive at scale</td></tr>
+        <tr><td><strong>Manual Restoration</strong></td><td>$50-300+/photo</td><td>Expensive, slow, inconsistent quality</td></tr>
+      </table>
+      <p style="margin-top: 16px; background: var(--primary-light); padding: 12px; border-radius: 8px; font-weight: 600; color: var(--primary-dark);">
+        🎯 Gap: No memorial-specific app with grief-aware UX, ethical guidelines, and premium pricing justified by emotional value.
+      </p>
+    </div>
+
+    <!-- Scoring & Verdict -->
+    <div class="section">
+      <h2>📈 Scoring & Verdict</h2>
+      <table>
+        <tr style="background: var(--primary-light);">
+          <th style="padding: 10px; text-align: left;">Criteria</th>
+          <th style="padding: 10px; text-align: center;">Score</th>
+          <th style="padding: 10px; text-align: left;">Notes</th>
+        </tr>
+        <tr><td style="padding: 10px;">Margin (25%)</td><td style="padding: 10px; text-align: center;"><strong>4/5</strong></td><td style="padding: 10px;">65% gross margin on bundles</td></tr>
+        <tr><td style="padding: 10px;">Market Size (20%)</td><td style="padding: 10px; text-align: center;"><strong>5/5</strong></td><td style="padding: 10px;">$105B funeral market, 2.5M deaths/year × 5 grieving family</td></tr>
+        <tr><td style="padding: 10px;">Competition (20%)</td><td style="padding: 10px; text-align: center;"><strong>4/5</strong></td><td style="padding: 10px;">No memorial-specific competitor with ethical focus</td></tr>
+        <tr><td style="padding: 10px;">Complexity (20%)</td><td style="padding: 10px; text-align: center;"><strong>3/5</strong></td><td style="padding: 10px;">High — requires ethics board, grief counselor review</td></tr>
+        <tr><td style="padding: 10px;">Differentiation (15%)</td><td style="padding: 10px; text-align: center;"><strong>4/5</strong></td><td style="padding: 10px;">Grief-aware UX, ethical guardrails, dignity-first approach</td></tr>
+        <tr style="background: var(--primary-light);"><td style="padding: 10px;"><strong>TOTAL</strong></td><td style="padding: 10px; text-align: center;"><strong>4.0/5</strong></td><td style="padding: 10px;"></td></tr>
+      </table>
+      <div style="background: var(--warning); border: 2px solid #fbbf24; padding: 16px; border-radius: 12px; margin-top: 16px; text-align: center;">
+        <strong style="font-size: 16px; color: var(--warning-dark);">⚠️ CAREFUL — Ethics Required</strong>
+        <p style="font-size: 13px; margin-top: 8px; color: #78350f;">
+          Strong opportunity but requires ethics-first development, grief counselor consultation, and patience for slow organic growth. 
+          Build as a service of healing first, business second.
+        </p>
+      </div>
     </div>
     
     <!-- Final Note -->
