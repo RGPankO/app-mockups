@@ -1,0 +1,559 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pregnancy & Fertility Apps — Research & Mockups</title>
+  <style>
+    :root {
+      --bg: #fefefe;
+      --text: #2d2d2d;
+      --muted: #6b7280;
+      --accent: #f472b6;
+      --accent-light: #fdf2f8;
+      --success: #10b981;
+      --warning: #f59e0b;
+      --danger: #ef4444;
+      --card-bg: #ffffff;
+      --border: #e5e7eb;
+      --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+      --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: linear-gradient(180deg, #fdf2f8 0%, #fefefe 100%);
+      color: var(--text);
+      min-height: 100vh;
+      padding: 24px 16px 60px;
+      line-height: 1.6;
+    }
+
+    .container { max-width: 1200px; margin: 0 auto; }
+
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      color: var(--accent);
+      text-decoration: none;
+      font-weight: 500;
+      margin-bottom: 24px;
+    }
+
+    header {
+      text-align: center;
+      margin-bottom: 48px;
+      padding: 40px 20px;
+      background: var(--card-bg);
+      border-radius: 24px;
+      box-shadow: var(--shadow);
+    }
+
+    h1 {
+      font-size: 2.5rem;
+      margin-bottom: 12px;
+      background: linear-gradient(135deg, #f472b6, #ec4899);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .subtitle {
+      color: var(--muted);
+      font-size: 1.1rem;
+      max-width: 600px;
+      margin: 0 auto 24px;
+    }
+
+    .stats-row {
+      display: flex;
+      gap: 24px;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-top: 24px;
+    }
+
+    .stat {
+      background: var(--accent-light);
+      padding: 12px 20px;
+      border-radius: 12px;
+      text-align: center;
+    }
+
+    .stat-value {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--accent);
+    }
+
+    .stat-label { font-size: 0.85rem; color: var(--muted); }
+
+    .section-title {
+      font-size: 1.5rem;
+      margin: 48px 0 24px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .market-insight {
+      background: linear-gradient(135deg, var(--accent-light), #fce7f3);
+      padding: 24px;
+      border-radius: 16px;
+      margin-bottom: 32px;
+    }
+
+    .market-insight h3 {
+      font-size: 1.1rem;
+      margin-bottom: 12px;
+      color: var(--accent);
+    }
+
+    .market-insight ul {
+      list-style: none;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 8px;
+    }
+
+    .market-insight li {
+      padding: 8px 12px;
+      background: white;
+      border-radius: 8px;
+      font-size: 0.9rem;
+    }
+
+    /* Priority Table */
+    .priority-table {
+      background: var(--card-bg);
+      border-radius: 16px;
+      box-shadow: var(--shadow);
+      overflow: hidden;
+      margin-bottom: 48px;
+    }
+
+    .priority-table table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    .priority-table th,
+    .priority-table td {
+      padding: 16px;
+      text-align: left;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .priority-table th {
+      background: var(--accent-light);
+      font-weight: 600;
+      font-size: 0.85rem;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      color: var(--muted);
+    }
+
+    .priority-table tr:last-child td {
+      border-bottom: none;
+    }
+
+    .priority-table tr:hover {
+      background: #fdf2f8;
+    }
+
+    .verdict {
+      display: inline-block;
+      padding: 4px 12px;
+      border-radius: 999px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      text-transform: uppercase;
+    }
+
+    .verdict-build { background: #d1fae5; color: #065f46; }
+    .verdict-caution { background: #fef3c7; color: #92400e; }
+    .verdict-careful { background: #fee2e2; color: #991b1b; }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+      gap: 24px;
+    }
+
+    .card {
+      background: var(--card-bg);
+      border-radius: 16px;
+      padding: 24px;
+      box-shadow: var(--shadow);
+      border: 1px solid var(--border);
+      transition: transform 0.2s, box-shadow 0.2s;
+      text-decoration: none;
+      color: inherit;
+      display: block;
+    }
+
+    .card:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-lg);
+    }
+
+    .card-header {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 16px;
+    }
+
+    .card-icon {
+      width: 48px;
+      height: 48px;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 24px;
+    }
+
+    .card-title { font-size: 1.25rem; font-weight: 600; }
+
+    .card-subtitle {
+      font-size: 0.9rem;
+      color: var(--muted);
+      margin-bottom: 12px;
+    }
+
+    .card-description {
+      font-size: 0.95rem;
+      color: var(--text);
+      margin-bottom: 16px;
+      line-height: 1.5;
+    }
+
+    .card-stats {
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+      padding-top: 16px;
+      border-top: 1px solid var(--border);
+    }
+
+    .card-stat {
+      font-size: 0.85rem;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .card-stat-value { font-weight: 600; color: var(--accent); }
+
+    .badge {
+      display: inline-block;
+      padding: 4px 10px;
+      border-radius: 20px;
+      font-size: 0.75rem;
+      font-weight: 500;
+      text-transform: uppercase;
+    }
+
+    .badge-build { background: #d1fae5; color: #059669; }
+    .badge-caution { background: #fef3c7; color: #d97706; }
+    .badge-careful { background: #fee2e2; color: #dc2626; }
+    .badge-privacy { background: #dbeafe; color: #1d4ed8; }
+
+    .disclaimer {
+      background: #fef3c7;
+      border: 1px solid #fcd34d;
+      border-radius: 12px;
+      padding: 16px 20px;
+      margin-bottom: 32px;
+      font-size: 0.9rem;
+    }
+
+    .disclaimer strong { color: #92400e; }
+
+    @media (max-width: 640px) {
+      h1 { font-size: 1.75rem; }
+      .grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <a href="index.html" class="back-link">← All Categories</a>
+    
+    <header>
+      <h1>🤰 Pregnancy & Fertility Apps</h1>
+      <p class="subtitle">
+        Educational support apps for conception through birth. AI-powered guidance, 
+        privacy-first tracking, and practical tools. Strong medical disclaimers required.
+      </p>
+      <div class="stats-row">
+        <div class="stat">
+          <div class="stat-value">$3B+</div>
+          <div class="stat-label">Market Size</div>
+        </div>
+        <div class="stat">
+          <div class="stat-value">65-95%</div>
+          <div class="stat-label">Gross Margin</div>
+        </div>
+        <div class="stat">
+          <div class="stat-value">8</div>
+          <div class="stat-label">App Concepts</div>
+        </div>
+        <div class="stat">
+          <div class="stat-value">$5-30</div>
+          <div class="stat-label">Price Point</div>
+        </div>
+      </div>
+    </header>
+
+    <div class="disclaimer">
+      <strong>⚠️ Medical Disclaimer:</strong> All pregnancy apps require strong medical disclaimers. 
+      These are educational/support tools only — NOT medical devices. Always recommend users consult 
+      healthcare providers. Legal review recommended before launch.
+    </div>
+
+    <div class="market-insight">
+      <h3>💡 Business Model Insight</h3>
+      <ul>
+        <li><strong>Market:</strong> 140M pregnancies globally/year, ~4M in US</li>
+        <li><strong>Model:</strong> Freemium or one-time purchase ($5-30)</li>
+        <li><strong>Key:</strong> Privacy-first = competitive advantage post-Roe</li>
+        <li><strong>Window:</strong> 9-12 month user lifecycle (TTC → birth)</li>
+        <li><strong>Retention:</strong> Extend with postpartum/baby features</li>
+        <li><strong>Validation:</strong> Flo = $263M revenue, 67M MAU</li>
+      </ul>
+    </div>
+
+    <h2 class="section-title">📊 Priority Rankings</h2>
+    <div class="priority-table">
+      <table>
+        <tr>
+          <th>App</th>
+          <th>Verdict</th>
+          <th>Margin</th>
+          <th>Key Insight</th>
+        </tr>
+        <tr>
+          <td>🔒 VaultBump</td>
+          <td><span class="verdict verdict-build">BUILD</span></td>
+          <td>~95%</td>
+          <td>Post-Roe privacy gap — 100% local storage, no servers to subpoena</td>
+        </tr>
+        <tr>
+          <td>🥗 BumpBites</td>
+          <td><span class="verdict verdict-build">BUILD</span></td>
+          <td>95%</td>
+          <td>2-second food safety lookup — "Can I eat this?" answered instantly</td>
+        </tr>
+        <tr>
+          <td>📅 WeekWise</td>
+          <td><span class="verdict verdict-build">BUILD</span></td>
+          <td>~95%</td>
+          <td>Clean, no-BS weekly guide — anti-WTE positioning, no condescending tone</td>
+        </tr>
+        <tr>
+          <td>👨 DadMode</td>
+          <td><span class="verdict verdict-build">BUILD</span></td>
+          <td>82%</td>
+          <td>Partners completely ignored by major apps — 3.6M dads/year underserved</td>
+        </tr>
+        <tr>
+          <td>🎙️ LaborCoach</td>
+          <td><span class="verdict verdict-build">BUILD</span></td>
+          <td>70%</td>
+          <td>Voice-activated contractions — hands-free when you can't tap a screen</td>
+        </tr>
+        <tr>
+          <td>📱 SafeScan</td>
+          <td><span class="verdict verdict-build">BUILD</span></td>
+          <td>68%</td>
+          <td>Barcode scanner for ALL categories — food + skincare + household in one</td>
+        </tr>
+        <tr>
+          <td>🧬 TrueOvulate</td>
+          <td><span class="verdict verdict-build">BUILD</span></td>
+          <td>68%</td>
+          <td>ML fertility tracking — learns YOUR cycle, not population averages</td>
+        </tr>
+        <tr>
+          <td>💬 BumpBuddy AI</td>
+          <td><span class="verdict verdict-build">BUILD</span></td>
+          <td>65%</td>
+          <td>24/7 AI companion — judgment-free answers to 2AM anxiety questions</td>
+        </tr>
+      </table>
+    </div>
+
+    <h2 class="section-title">📱 App Concepts</h2>
+    <div class="grid">
+      
+      <!-- VaultBump -->
+      <a href="vaultbump/" class="card">
+        <div class="card-header">
+          <div class="card-icon" style="background: linear-gradient(135deg, #6366f1, #8b5cf6);">🔒</div>
+          <div>
+            <div class="card-title">VaultBump</div>
+            <span class="badge badge-build">BUILD</span>
+            <span class="badge badge-privacy">PRIVACY</span>
+          </div>
+        </div>
+        <p class="card-subtitle">Privacy-first pregnancy tracker</p>
+        <p class="card-description">
+          100% local storage — nothing to subpoena. Post-Dobbs, women deleted period apps 
+          over data fears. VaultBump: no servers, no accounts, panic button for instant wipe.
+        </p>
+        <div class="card-stats">
+          <div class="card-stat">Margin: <span class="card-stat-value">~95%</span></div>
+          <div class="card-stat">Price: <span class="card-stat-value">$9.99</span></div>
+        </div>
+      </a>
+
+      <!-- BumpBites -->
+      <a href="bumpbites/" class="card">
+        <div class="card-header">
+          <div class="card-icon" style="background: linear-gradient(135deg, #22c55e, #16a34a);">🥗</div>
+          <div>
+            <div class="card-title">BumpBites</div>
+            <span class="badge badge-build">BUILD</span>
+          </div>
+        </div>
+        <p class="card-subtitle">"Can I eat this?" in 2 seconds</p>
+        <p class="card-description">
+          Every pregnant woman Googles "can I eat X" 10+ times/day. BumpBites: instant food safety 
+          lookup with clear answers, caffeine tracking, and restaurant mode.
+        </p>
+        <div class="card-stats">
+          <div class="card-stat">Margin: <span class="card-stat-value">95%</span></div>
+          <div class="card-stat">Price: <span class="card-stat-value">$2.99/mo</span></div>
+        </div>
+      </a>
+
+      <!-- WeekWise -->
+      <a href="weekwise/" class="card">
+        <div class="card-header">
+          <div class="card-icon" style="background: linear-gradient(135deg, #f472b6, #ec4899);">📅</div>
+          <div>
+            <div class="card-title">WeekWise</div>
+            <span class="badge badge-build">BUILD</span>
+          </div>
+        </div>
+        <p class="card-subtitle">Just the info you need, no fluff</p>
+        <p class="card-description">
+          Anti-WTE positioning: no "Hey mama!", no absurd fruit comparisons, no Pinterest pressure. 
+          Clean week-by-week info that respects your intelligence. One-time purchase.
+        </p>
+        <div class="card-stats">
+          <div class="card-stat">Margin: <span class="card-stat-value">~95%</span></div>
+          <div class="card-stat">Price: <span class="card-stat-value">$4.99</span></div>
+        </div>
+      </a>
+
+      <!-- DadMode -->
+      <a href="dadmode/" class="card">
+        <div class="card-header">
+          <div class="card-icon" style="background: linear-gradient(135deg, #3b82f6, #1d4ed8);">👨</div>
+          <div>
+            <div class="card-title">DadMode</div>
+            <span class="badge badge-build">BUILD</span>
+          </div>
+        </div>
+        <p class="card-subtitle">Partner's pregnancy guide</p>
+        <p class="card-description">
+          3.6M expecting dads/year feel useless and excluded. Weekly guidance on how to actually 
+          support her, labor playbook, hospital bag checklist FOR HIM. Viral gift mechanic.
+        </p>
+        <div class="card-stats">
+          <div class="card-stat">Margin: <span class="card-stat-value">82%</span></div>
+          <div class="card-stat">Price: <span class="card-stat-value">$4.99/mo</span></div>
+        </div>
+      </a>
+
+      <!-- LaborCoach -->
+      <a href="laborcoach/" class="card">
+        <div class="card-header">
+          <div class="card-icon" style="background: linear-gradient(135deg, #ef4444, #dc2626);">🎙️</div>
+          <div>
+            <div class="card-title">LaborCoach</div>
+            <span class="badge badge-build">BUILD</span>
+          </div>
+        </div>
+        <p class="card-subtitle">Voice-activated contraction timer</p>
+        <p class="card-description">
+          During labor, you can't tap a screen. "Hey LaborCoach, contraction starting" — true 
+          hands-free tracking with AI hospital timing guidance and breathing coach.
+        </p>
+        <div class="card-stats">
+          <div class="card-stat">Margin: <span class="card-stat-value">70%</span></div>
+          <div class="card-stat">Price: <span class="card-stat-value">$9.99</span></div>
+        </div>
+      </a>
+
+      <!-- SafeScan -->
+      <a href="safescan/" class="card">
+        <div class="card-header">
+          <div class="card-icon" style="background: linear-gradient(135deg, #14b8a6, #0d9488);">📱</div>
+          <div>
+            <div class="card-title">SafeScan</div>
+            <span class="badge badge-build">BUILD</span>
+          </div>
+        </div>
+        <p class="card-subtitle">Know before you buy</p>
+        <p class="card-description">
+          Barcode scanner for pregnancy safety. Unlike competitors (cosmetics only), SafeScan covers 
+          FOOD + skincare + household products. AI explanations with medical citations.
+        </p>
+        <div class="card-stats">
+          <div class="card-stat">Margin: <span class="card-stat-value">68%</span></div>
+          <div class="card-stat">Price: <span class="card-stat-value">$4.99/mo</span></div>
+        </div>
+      </a>
+
+      <!-- TrueOvulate -->
+      <a href="trueovulate/" class="card">
+        <div class="card-header">
+          <div class="card-icon" style="background: linear-gradient(135deg, #a855f7, #9333ea);">🧬</div>
+          <div>
+            <div class="card-title">TrueOvulate</div>
+            <span class="badge badge-build">BUILD</span>
+          </div>
+        </div>
+        <p class="card-subtitle">ML-powered fertility tracking</p>
+        <p class="card-description">
+          Existing apps use population averages and are consistently wrong. TrueOvulate learns YOUR 
+          unique cycle with LH strip photo analysis, BBT sync, and confidence levels.
+        </p>
+        <div class="card-stats">
+          <div class="card-stat">Margin: <span class="card-stat-value">68%</span></div>
+          <div class="card-stat">Price: <span class="card-stat-value">$7.99/mo</span></div>
+        </div>
+      </a>
+
+      <!-- BumpBuddy AI -->
+      <a href="bumpbuddy/" class="card">
+        <div class="card-header">
+          <div class="card-icon" style="background: linear-gradient(135deg, #f472b6, #db2777);">💬</div>
+          <div>
+            <div class="card-title">BumpBuddy AI</div>
+            <span class="badge badge-build">BUILD</span>
+          </div>
+        </div>
+        <p class="card-subtitle">Your 24/7 pregnancy companion</p>
+        <p class="card-description">
+          2AM anxiety? Judgment-free AI that always has time. Unlike toxic mommy groups, BumpBuddy 
+          never shames. Instant answers without waiting for doctor appointments.
+        </p>
+        <div class="card-stats">
+          <div class="card-stat">Margin: <span class="card-stat-value">65%</span></div>
+          <div class="card-stat">Price: <span class="card-stat-value">$7.99/mo</span></div>
+        </div>
+      </a>
+
+    </div>
+
+  </div>
+</body>
+</html>
