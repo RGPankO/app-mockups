@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BabyGlow — App Hub</title>
+  <style>
+    :root {
+      --primary: #f472b6;
+      --primary-light: #fce7f3;
+      --primary-dark: #db2777;
+      --bg: #fdf2f8;
+      --card: #ffffff;
+      --text: #1e1b3a;
+      --muted: #6b7280;
+      --border: #e5e7eb;
+      --shadow: 0 4px 12px rgba(0,0,0,0.08);
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { 
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      background: var(--bg); color: var(--text); line-height: 1.6;
+      padding: 24px 16px 60px;
+    }
+    .container { max-width: 900px; margin: 0 auto; }
+    
+    header { text-align: center; padding: 40px 20px; margin-bottom: 32px; }
+    .logo { font-size: 48px; margin-bottom: 12px; }
+    h1 { font-size: 32px; color: var(--primary-dark); margin-bottom: 8px; }
+    .tagline { color: var(--muted); font-size: 18px; }
+    
+    .badges { display: flex; gap: 12px; justify-content: center; margin-top: 20px; flex-wrap: wrap; }
+    .badge { background: var(--primary-light); color: var(--primary-dark); padding: 6px 14px; 
+             border-radius: 20px; font-size: 13px; font-weight: 500; }
+    .badge.build { background: #10b981; color: white; }
+    
+    .section { background: var(--card); border-radius: 16px; padding: 24px; 
+               margin-bottom: 20px; box-shadow: var(--shadow); }
+    .section h2 { font-size: 18px; color: var(--primary-dark); margin-bottom: 16px; 
+                  padding-bottom: 12px; border-bottom: 2px solid var(--primary-light); }
+    
+    .keywords { display: flex; flex-wrap: wrap; gap: 8px; }
+    .keyword { background: #f0f0f0; padding: 4px 10px; border-radius: 12px; font-size: 12px; color: #666; }
+    
+    .quote { background: var(--primary-light); border-left: 4px solid var(--primary); 
+             padding: 16px; margin-bottom: 12px; border-radius: 0 8px 8px 0; font-style: italic; }
+    .quote-source { font-size: 12px; color: var(--muted); margin-top: 8px; font-style: normal; }
+    
+    .feature { display: flex; gap: 12px; margin-bottom: 16px; align-items: flex-start; }
+    .feature-icon { font-size: 24px; }
+    .feature h3 { font-size: 15px; margin-bottom: 4px; }
+    .feature p { font-size: 13px; color: var(--muted); }
+    
+    .stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 16px; }
+    .stat { text-align: center; padding: 16px; background: var(--primary-light); border-radius: 12px; }
+    .stat-value { font-size: 28px; font-weight: 700; color: var(--primary-dark); }
+    .stat-label { font-size: 12px; color: var(--muted); }
+    
+    table { width: 100%; border-collapse: collapse; font-size: 14px; }
+    th, td { padding: 10px 12px; text-align: left; border-bottom: 1px solid var(--border); }
+    th { background: var(--primary-light); font-weight: 600; }
+    
+    .back-link { display: inline-block; margin-bottom: 20px; color: var(--primary); text-decoration: none; }
+    .back-link:hover { text-decoration: underline; }
+    
+    .subreddits { display: flex; flex-wrap: wrap; gap: 8px; }
+    .subreddit { background: #fff4f0; color: #ff4500; padding: 4px 10px; border-radius: 12px; font-size: 12px; }
+    
+    .highlight { background: #fef3c7; padding: 16px; border-radius: 12px; margin-bottom: 20px; }
+    .highlight h3 { color: #92400e; margin-bottom: 8px; }
+    
+    @media (max-width: 600px) {
+      .stats-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <a href="../image-gen.html" class="back-link">← Back to Image Gen Apps</a>
+    
+    <header>
+      <div class="logo">👶</div>
+      <h1>BabyGlow</h1>
+      <p class="tagline">Studio-Quality Baby Portraits from Your Phone</p>
+      <div class="badges">
+        <span class="badge build">✅ BUILD</span>
+        <span class="badge">77% Margin</span>
+        <span class="badge">$320B+ Market</span>
+        <span class="badge">$19.99/pack</span>
+      </div>
+    </header>
+    
+    <!-- Key Insight -->
+    <div class="highlight">
+      <h3>💡 Key Insight</h3>
+      <p>Pro baby photos cost $400-500 for a 15-minute session. Parents deeply regret not having quality photos 
+         of their babies' fleeting early months. They describe "SO much regret" and crying over missed opportunities.
+         <br><br>
+         <strong>Grandparent gift market is huge.</strong> They'll pay premium for grandchild content.</p>
+    </div>
+    
+    <!-- App Store Info -->
+    <div class="section">
+      <h2>📱 App Store Listing</h2>
+      <table>
+        <tr><th>Field</th><th>Value</th></tr>
+        <tr><td>App Name</td><td><strong>BabyGlow</strong></td></tr>
+        <tr><td>Subtitle</td><td>Pro Baby Photos, Instantly</td></tr>
+        <tr><td>Category</td><td>Photo & Video (primary)</td></tr>
+        <tr><td>Price</td><td>$14.99-19.99 per pack (20-30 images)</td></tr>
+      </table>
+      
+      <h3 style="margin: 20px 0 12px; font-size: 15px;">Keywords</h3>
+      <div class="keywords">
+        <span class="keyword">baby photos</span>
+        <span class="keyword">newborn portrait</span>
+        <span class="keyword">milestone photos</span>
+        <span class="keyword">baby milestone</span>
+        <span class="keyword">first year</span>
+        <span class="keyword">baby gift</span>
+        <span class="keyword">grandparent gift</span>
+        <span class="keyword">AI baby</span>
+      </div>
+    </div>
+    
+    <!-- Market Stats -->
+    <div class="section">
+      <h2>📊 Market Opportunity</h2>
+      <div class="stats-grid">
+        <div class="stat">
+          <div class="stat-value">$320B+</div>
+          <div class="stat-label">Baby Products Market</div>
+        </div>
+        <div class="stat">
+          <div class="stat-value">3.6M</div>
+          <div class="stat-label">US Births/Year</div>
+        </div>
+        <div class="stat">
+          <div class="stat-value">77%</div>
+          <div class="stat-label">Gross Margin</div>
+        </div>
+        <div class="stat">
+          <div class="stat-value">$400-500</div>
+          <div class="stat-label">Pro Photo Session Cost</div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Popular Themes -->
+    <div class="section">
+      <h2>🎨 Popular Themes</h2>
+      <table>
+        <tr><th>Category</th><th>Themes</th><th>Demand</th></tr>
+        <tr><td>Monthly Milestones</td><td>Month 1-12, "X weeks old"</td><td>⭐⭐⭐⭐⭐</td></tr>
+        <tr><td>Holiday</td><td>Christmas, Halloween, Easter</td><td>⭐⭐⭐⭐⭐</td></tr>
+        <tr><td>Fantasy</td><td>Fairy, Angel, Superhero, Royalty</td><td>⭐⭐⭐⭐</td></tr>
+        <tr><td>Classic</td><td>Studio Portrait, B&W Artistic</td><td>⭐⭐⭐⭐</td></tr>
+        <tr><td>Gift-Ready</td><td>Framed, Vintage, Print-ready</td><td>⭐⭐⭐</td></tr>
+      </table>
+    </div>
+    
+    <!-- Features -->
+    <div class="section">
+      <h2>✨ Core Features</h2>
+      <div class="feature">
+        <span class="feature-icon">🎨</span>
+        <div>
+          <h3>Studio Portrait Transform</h3>
+          <p>Upload phone photo → AI generates studio-quality portrait. Classic backgrounds, lighting enhancement.</p>
+        </div>
+      </div>
+      <div class="feature">
+        <span class="feature-icon">📅</span>
+        <div>
+          <h3>Monthly Milestone Templates</h3>
+          <p>Pre-designed "Month 1-12" templates. Auto-reminders on baby's monthly birthday.</p>
+        </div>
+      </div>
+      <div class="feature">
+        <span class="feature-icon">🎄</span>
+        <div>
+          <h3>Holiday Themes</h3>
+          <p>Santa, elf, pumpkin patch, bunny ears. Seasonal revenue spikes.</p>
+        </div>
+      </div>
+      <div class="feature">
+        <span class="feature-icon">🧚</span>
+        <div>
+          <h3>Fantasy Themes</h3>
+          <p>Fairy princess, superhero baby, royal portrait. High viral potential.</p>
+        </div>
+      </div>
+      <div class="feature">
+        <span class="feature-icon">🎁</span>
+        <div>
+          <h3>Gift Mode</h3>
+          <p>Send to grandparents. Print integration for canvas/books.</p>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Reddit Quotes -->
+    <div class="section">
+      <h2>💬 User Pain Points (Reddit)</h2>
+      <div class="quote">
+        "For her 'mini session' (15 minutes of shooting time and 5 final photos), she wanted $450... I called 14. Different. Photographers. It was all the same price."
+        <div class="quote-source">— r/Mommit</div>
+      </div>
+      <div class="quote">
+        "I'm just filled with SO much regret as I wish I had more memories of when my baby was that tiny. Feeling so guilty and sad."
+        <div class="quote-source">— r/beyondthebump</div>
+      </div>
+      <div class="quote">
+        "I had postpartum depression for at least eight months. In those months I hardly ever took a photo of my baby... No photo of her smiling, her first teeth, those adorable fat cheeks."
+        <div class="quote-source">— r/Parenting</div>
+      </div>
+      <div class="quote">
+        "Baby just would not settle down and go to sleep for the photographer... I keep crying every time I think about it."
+        <div class="quote-source">— r/beyondthebump</div>
+      </div>
+      <div class="quote">
+        "I just keep forgetting that it's something we started and so it has been getting skipped. I did good until 4 months, forgot 5, got 6, forgot 7, 8, and 9..."
+        <div class="quote-source">— r/Mommit</div>
+      </div>
+    </div>
+    
+    <!-- Target Subreddits -->
+    <div class="section">
+      <h2>🎯 Target Subreddits</h2>
+      <div class="subreddits">
+        <span class="subreddit">r/beyondthebump (700k+)</span>
+        <span class="subreddit">r/Mommit (500k+)</span>
+        <span class="subreddit">r/daddit (800k+)</span>
+        <span class="subreddit">r/Parenting (5M+)</span>
+        <span class="subreddit">r/NewParents</span>
+        <span class="subreddit">r/BabyBumps</span>
+      </div>
+    </div>
+    
+    <!-- Marketing Headlines -->
+    <div class="section">
+      <h2>📣 Marketing Headlines</h2>
+      <ul style="list-style: none; font-size: 15px;">
+        <li>🔥 "The photos you'll treasure forever—created in seconds"</li>
+        <li>🔥 "They're only this tiny once. Make it count."</li>
+        <li>🔥 "Skip the $500 photographer. Keep the studio quality."</li>
+        <li>🔥 "From phone snap to frame-worthy in one tap"</li>
+        <li>🔥 "The milestone photos you meant to take (but life happened)"</li>
+        <li>🔥 "Give grandma the gift that makes her cry happy tears"</li>
+      </ul>
+    </div>
+    
+    <!-- Grandparent Market -->
+    <div class="section">
+      <h2>👴 Grandparent Gift Market</h2>
+      <p style="margin-bottom: 16px;">Grandparents are #1 gift receivers from new parents. They actively demand baby photos!</p>
+      <div class="feature">
+        <span class="feature-icon">🎁</span>
+        <div>
+          <h3>Gift Card Purchase</h3>
+          <p>Buy credits for someone else</p>
+        </div>
+      </div>
+      <div class="feature">
+        <span class="feature-icon">📮</span>
+        <div>
+          <h3>Direct Delivery</h3>
+          <p>Generate + ship canvas/print to grandparent address</p>
+        </div>
+      </div>
+      <div class="feature">
+        <span class="feature-icon">🖼️</span>
+        <div>
+          <h3>Digital Frame Sync</h3>
+          <p>Auto-send new portraits to their Frameo</p>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Launch Timing -->
+    <div class="section">
+      <h2>🎄 Launch Strategy</h2>
+      <p style="font-size: 15px; color: var(--muted);">
+        <strong>Target: Before Q4 2026.</strong> Soft launch October, paid push November 1 - December 10.
+        <br><br>
+        Christmas card photos = massive revenue spike. Holiday themes drive seasonal purchases.
+        <br><br>
+        Secondary peaks: Valentine's Day, Mother's Day, Easter.
+      </p>
+    </div>
+    
+  </div>
+</body>
+</html>

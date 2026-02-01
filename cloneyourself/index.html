@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CloneYourself — App Hub</title>
+  <style>
+    :root {
+      --primary: #8b5cf6;
+      --primary-light: #ede9fe;
+      --primary-dark: #6d28d9;
+      --bg: #f8f7fc;
+      --card: #ffffff;
+      --text: #1e1b3a;
+      --muted: #6b7280;
+      --border: #e5e7eb;
+      --shadow: 0 4px 12px rgba(0,0,0,0.08);
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { 
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      background: var(--bg); color: var(--text); line-height: 1.6;
+      padding: 24px 16px 60px;
+    }
+    .container { max-width: 900px; margin: 0 auto; }
+    
+    header { text-align: center; padding: 40px 20px; margin-bottom: 32px; }
+    .logo { font-size: 48px; margin-bottom: 12px; }
+    h1 { font-size: 32px; color: var(--primary-dark); margin-bottom: 8px; }
+    .tagline { color: var(--muted); font-size: 18px; }
+    
+    .badges { display: flex; gap: 12px; justify-content: center; margin-top: 20px; flex-wrap: wrap; }
+    .badge { background: var(--primary-light); color: var(--primary-dark); padding: 6px 14px; 
+             border-radius: 20px; font-size: 13px; font-weight: 500; }
+    .badge.score { background: var(--primary); color: white; }
+    .badge.build { background: #10b981; color: white; }
+    
+    .section { background: var(--card); border-radius: 16px; padding: 24px; 
+               margin-bottom: 20px; box-shadow: var(--shadow); }
+    .section h2 { font-size: 18px; color: var(--primary-dark); margin-bottom: 16px; 
+                  padding-bottom: 12px; border-bottom: 2px solid var(--primary-light); }
+    
+    .keywords { display: flex; flex-wrap: wrap; gap: 8px; }
+    .keyword { background: #f0f0f0; padding: 4px 10px; border-radius: 12px; font-size: 12px; color: #666; }
+    
+    .quote { background: var(--primary-light); border-left: 4px solid var(--primary); 
+             padding: 16px; margin-bottom: 12px; border-radius: 0 8px 8px 0; font-style: italic; }
+    .quote-source { font-size: 12px; color: var(--muted); margin-top: 8px; font-style: normal; }
+    
+    .feature { display: flex; gap: 12px; margin-bottom: 16px; align-items: flex-start; }
+    .feature-icon { font-size: 24px; }
+    .feature h3 { font-size: 15px; margin-bottom: 4px; }
+    .feature p { font-size: 13px; color: var(--muted); }
+    
+    .stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 16px; }
+    .stat { text-align: center; padding: 16px; background: var(--primary-light); border-radius: 12px; }
+    .stat-value { font-size: 28px; font-weight: 700; color: var(--primary-dark); }
+    .stat-label { font-size: 12px; color: var(--muted); }
+    
+    table { width: 100%; border-collapse: collapse; font-size: 14px; }
+    th, td { padding: 10px 12px; text-align: left; border-bottom: 1px solid var(--border); }
+    th { background: var(--primary-light); font-weight: 600; }
+    
+    .back-link { display: inline-block; margin-bottom: 20px; color: var(--primary); text-decoration: none; }
+    .back-link:hover { text-decoration: underline; }
+    
+    .subreddits { display: flex; flex-wrap: wrap; gap: 8px; }
+    .subreddit { background: #fff4f0; color: #ff4500; padding: 4px 10px; border-radius: 12px; font-size: 12px; }
+    
+    @media (max-width: 600px) {
+      .stats-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <a href="../image-gen.html" class="back-link">← Back to Image Gen Apps</a>
+    
+    <header>
+      <div class="logo">🧬</div>
+      <h1>CloneYourself</h1>
+      <p class="tagline">Your Digital Twin in Any Scenario</p>
+      <div class="badges">
+        <span class="badge build">✅ BUILD</span>
+        <span class="badge">58% Margin</span>
+        <span class="badge">$2.5B+ Market</span>
+        <span class="badge">$19-25/pack</span>
+      </div>
+    </header>
+    
+    <!-- App Store Info -->
+    <div class="section">
+      <h2>📱 App Store Listing</h2>
+      <table>
+        <tr><th>Field</th><th>Value</th></tr>
+        <tr><td>App Name</td><td><strong>CloneYourself</strong></td></tr>
+        <tr><td>Subtitle</td><td>AI Photos That Actually Look Like You</td></tr>
+        <tr><td>Category</td><td>Photo & Video (primary)</td></tr>
+        <tr><td>Price</td><td>$19-25 per pack (40+ images)</td></tr>
+      </table>
+      
+      <h3 style="margin: 20px 0 12px; font-size: 15px;">Keywords</h3>
+      <div class="keywords">
+        <span class="keyword">AI photos</span>
+        <span class="keyword">digital twin</span>
+        <span class="keyword">avatar generator</span>
+        <span class="keyword">AI selfie</span>
+        <span class="keyword">photo generator</span>
+        <span class="keyword">dating photos</span>
+        <span class="keyword">content creator</span>
+        <span class="keyword">headshots</span>
+      </div>
+    </div>
+    
+    <!-- Market Stats -->
+    <div class="section">
+      <h2>📊 Market Opportunity</h2>
+      <div class="stats-grid">
+        <div class="stat">
+          <div class="stat-value">$2.5B+</div>
+          <div class="stat-label">AI Avatar Market</div>
+        </div>
+        <div class="stat">
+          <div class="stat-value">50M+</div>
+          <div class="stat-label">Potential Users</div>
+        </div>
+        <div class="stat">
+          <div class="stat-value">58%</div>
+          <div class="stat-label">Gross Margin</div>
+        </div>
+        <div class="stat">
+          <div class="stat-value">$2.20</div>
+          <div class="stat-label">Cost/User</div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Key Differentiator -->
+    <div class="section">
+      <h2>🎯 Key Differentiator</h2>
+      <p style="font-size: 16px; line-height: 1.8;">
+        <strong>Side-View Generation Technology</strong> — Every competitor struggles with face consistency across angles. 
+        Users report spending hours training LoRAs that still "look like similar people but not us." 
+        CloneYourself requires profile shots during upload and trains specifically for angle consistency.
+        <br><br>
+        <em>Own the positioning: "The app that actually looks like you from every angle."</em>
+      </p>
+    </div>
+    
+    <!-- Features -->
+    <div class="section">
+      <h2>✨ Core Features</h2>
+      <div class="feature">
+        <span class="feature-icon">📸</span>
+        <div>
+          <h3>Smart Upload Flow</h3>
+          <p>Guided selfie capture (front, 45°, profile). Photo quality analyzer rejects bad inputs.</p>
+        </div>
+      </div>
+      <div class="feature">
+        <span class="feature-icon">🎭</span>
+        <div>
+          <h3>Side-View Enhanced Training</h3>
+          <p>Multi-angle LoRA training with profile-specific face mapping.</p>
+        </div>
+      </div>
+      <div class="feature">
+        <span class="feature-icon">📦</span>
+        <div>
+          <h3>Scenario Packs</h3>
+          <p>Dating Profile, Content Creator, Professional — pre-built prompts, consistent results.</p>
+        </div>
+      </div>
+      <div class="feature">
+        <span class="feature-icon">⚡</span>
+        <div>
+          <h3>2-Minute Training</h3>
+          <p>FLUX LoRA via Replicate. Fast turnaround vs 30+ min on other platforms.</p>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Reddit Quotes -->
+    <div class="section">
+      <h2>💬 User Pain Points (Reddit)</h2>
+      <div class="quote">
+        "The LoRA just creates someone who only roughly looks like me."
+        <div class="quote-source">— r/StableDiffusion</div>
+      </div>
+      <div class="quote">
+        "The persons look more or less like similar people but they are not us. I have tested several checkpoints and created at least up to 50 pictures with them and there was not only one that got me or her right."
+        <div class="quote-source">— r/StableDiffusion</div>
+      </div>
+      <div class="quote">
+        "When I force a wider shot with full body, her proportions go weird with a big head/face."
+        <div class="quote-source">— r/StableDiffusion</div>
+      </div>
+      <div class="quote">
+        "It even fails on the hairstyle, beard, glasses and the color of the eyes."
+        <div class="quote-source">— r/StableDiffusion</div>
+      </div>
+    </div>
+    
+    <!-- Target Subreddits -->
+    <div class="section">
+      <h2>🎯 Target Subreddits</h2>
+      <div class="subreddits">
+        <span class="subreddit">r/Tinder</span>
+        <span class="subreddit">r/Bumble</span>
+        <span class="subreddit">r/OnlineDating</span>
+        <span class="subreddit">r/StableDiffusion</span>
+        <span class="subreddit">r/Instagram</span>
+        <span class="subreddit">r/TikTokCreators</span>
+        <span class="subreddit">r/GetMoreViewsYT</span>
+        <span class="subreddit">r/Entrepreneur</span>
+      </div>
+    </div>
+    
+    <!-- Marketing Headlines -->
+    <div class="section">
+      <h2>📣 Marketing Headlines</h2>
+      <ul style="list-style: none; font-size: 15px;">
+        <li>🔥 "Finally, dating profile pics that actually look like you"</li>
+        <li>🔥 "AI photos so realistic, your matches won't be disappointed IRL"</li>
+        <li>🔥 "100 photoshoots worth of content, zero travel required"</li>
+        <li>🔥 "Your digital twin for unlimited content scenarios"</li>
+        <li>🔥 "Stop scheduling photoshoots. Start generating."</li>
+      </ul>
+    </div>
+    
+    <!-- Cost Breakdown -->
+    <div class="section">
+      <h2>💰 Unit Economics</h2>
+      <table>
+        <tr><th>Component</th><th>Cost</th></tr>
+        <tr><td>LoRA Training (FLUX)</td><td>$2.00</td></tr>
+        <tr><td>50 Image Generation</td><td>$0.15</td></tr>
+        <tr><td>Storage</td><td>$0.05/mo</td></tr>
+        <tr><td><strong>Total per new user</strong></td><td><strong>~$2.20</strong></td></tr>
+        <tr><td>Price point</td><td>$19-25/pack</td></tr>
+        <tr><td>App Store fee (30%)</td><td>$5.70-7.50</td></tr>
+        <tr><td><strong>Gross margin</strong></td><td><strong>58%</strong></td></tr>
+      </table>
+    </div>
+    
+    <!-- Competitors -->
+    <div class="section">
+      <h2>⚔️ Competitive Landscape</h2>
+      <table>
+        <tr><th>Competitor</th><th>Price</th><th>Gap</th></tr>
+        <tr><td>PhotoAI (Pieter Levels)</td><td>$15-29/pack</td><td>Complex UI, subscription</td></tr>
+        <tr><td>HeadshotPro</td><td>$29-59</td><td>Professional only, no creative</td></tr>
+        <tr><td>Lensa</td><td>$3.49-17.99</td><td>Artistic styles, not realistic</td></tr>
+        <tr><td>DreamBooth</td><td>Varies</td><td>30+ min training, technical</td></tr>
+      </table>
+    </div>
+    
+  </div>
+</body>
+</html>

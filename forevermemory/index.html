@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ForeverMemory — App Hub</title>
+  <style>
+    :root {
+      --primary: #6b7280;
+      --primary-light: #f3f4f6;
+      --primary-dark: #374151;
+      --bg: #f9fafb;
+      --card: #ffffff;
+      --text: #1e1b3a;
+      --muted: #6b7280;
+      --border: #e5e7eb;
+      --shadow: 0 4px 12px rgba(0,0,0,0.08);
+      --warning: #fef3c7;
+      --warning-dark: #92400e;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { 
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      background: var(--bg); color: var(--text); line-height: 1.6;
+      padding: 24px 16px 60px;
+    }
+    .container { max-width: 900px; margin: 0 auto; }
+    
+    header { text-align: center; padding: 40px 20px; margin-bottom: 32px; }
+    .logo { font-size: 48px; margin-bottom: 12px; }
+    h1 { font-size: 32px; color: var(--primary-dark); margin-bottom: 8px; }
+    .tagline { color: var(--muted); font-size: 18px; }
+    
+    .badges { display: flex; gap: 12px; justify-content: center; margin-top: 20px; flex-wrap: wrap; }
+    .badge { background: var(--primary-light); color: var(--primary-dark); padding: 6px 14px; 
+             border-radius: 20px; font-size: 13px; font-weight: 500; }
+    .badge.careful { background: #fef3c7; color: #92400e; }
+    
+    .section { background: var(--card); border-radius: 16px; padding: 24px; 
+               margin-bottom: 20px; box-shadow: var(--shadow); }
+    .section h2 { font-size: 18px; color: var(--primary-dark); margin-bottom: 16px; 
+                  padding-bottom: 12px; border-bottom: 2px solid var(--primary-light); }
+    
+    .warning { background: #fef3c7; border: 2px solid #fbbf24; padding: 20px; border-radius: 12px; margin-bottom: 20px; }
+    .warning h3 { color: #92400e; margin-bottom: 12px; font-size: 18px; }
+    .warning p { color: #78350f; font-size: 14px; }
+    
+    .ethics { background: #fdf2f8; border-left: 4px solid #ec4899; padding: 16px; margin-bottom: 12px; border-radius: 0 8px 8px 0; }
+    .ethics h4 { color: #be185d; margin-bottom: 8px; }
+    
+    .quote { background: var(--primary-light); border-left: 4px solid var(--primary); 
+             padding: 16px; margin-bottom: 12px; border-radius: 0 8px 8px 0; font-style: italic; }
+    .quote-source { font-size: 12px; color: var(--muted); margin-top: 8px; font-style: normal; }
+    
+    .feature { display: flex; gap: 12px; margin-bottom: 16px; align-items: flex-start; }
+    .feature-icon { font-size: 24px; }
+    .feature h3 { font-size: 15px; margin-bottom: 4px; }
+    .feature p { font-size: 13px; color: var(--muted); }
+    
+    .stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 16px; }
+    .stat { text-align: center; padding: 16px; background: var(--primary-light); border-radius: 12px; }
+    .stat-value { font-size: 28px; font-weight: 700; color: var(--primary-dark); }
+    .stat-label { font-size: 12px; color: var(--muted); }
+    
+    table { width: 100%; border-collapse: collapse; font-size: 14px; }
+    th, td { padding: 10px 12px; text-align: left; border-bottom: 1px solid var(--border); }
+    th { background: var(--primary-light); font-weight: 600; }
+    
+    .back-link { display: inline-block; margin-bottom: 20px; color: var(--primary); text-decoration: none; }
+    .back-link:hover { text-decoration: underline; }
+    
+    @media (max-width: 600px) {
+      .stats-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <a href="../image-gen.html" class="back-link">← Back to Image Gen Apps</a>
+    
+    <header>
+      <div class="logo">🕊️</div>
+      <h1>ForeverMemory</h1>
+      <p class="tagline">Honor Those You've Lost</p>
+      <div class="badges">
+        <span class="badge careful">⚠️ CAREFUL — Ethics Required</span>
+        <span class="badge">65% Margin</span>
+        <span class="badge">$100B+ Grief Market</span>
+      </div>
+    </header>
+    
+    <!-- Critical Warning -->
+    <div class="warning">
+      <h3>⚠️ CRITICAL: This Space Requires Extreme Care</h3>
+      <p>
+        This app addresses profound human grief. The grief community has <strong>specifically banned AI grief therapy recommendations</strong> (r/GriefSupport Rule 14).
+        <br><br>
+        <strong>Proceed ONLY if:</strong>
+        <br>• You're committed to ethics-first development
+        <br>• You can afford grief counselor consultation
+        <br>• You're patient for slow, organic growth
+        <br>• You can handle emotionally difficult support work
+        <br><br>
+        <strong>This is NOT a fast-growth opportunity.</strong> Marketing must prioritize dignity over conversion.
+      </p>
+    </div>
+    
+    <!-- Market Stats -->
+    <div class="section">
+      <h2>📊 Market Opportunity</h2>
+      <div class="stats-grid">
+        <div class="stat">
+          <div class="stat-value">$105B</div>
+          <div class="stat-label">Global Funeral Market</div>
+        </div>
+        <div class="stat">
+          <div class="stat-value">2.5M+</div>
+          <div class="stat-label">US Deaths/Year</div>
+        </div>
+        <div class="stat">
+          <div class="stat-value">$50-300</div>
+          <div class="stat-label">Manual Restoration Cost</div>
+        </div>
+        <div class="stat">
+          <div class="stat-value">5</div>
+          <div class="stat-label">Grieving Family/Death</div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Use Cases -->
+    <div class="section">
+      <h2>🎯 User Needs</h2>
+      <div class="quote">
+        "I want to commission a portrait of my father with my niece and nephew. Our dad passed right before my sister found out she was pregnant."
+        <div class="quote-source">— r/artcommissions</div>
+      </div>
+      <div class="quote">
+        "My Mother lost her child when he was 3. I wanted to know the likelihood of an age progression image so she could see how he may look today."
+        <div class="quote-source">— r/PhotoshopRequest</div>
+      </div>
+      <div class="quote">
+        "A good friend lost her sister recently and she was wondering if there was a way to create a realistic photo of her, her sister and their father."
+        <div class="quote-source">— r/midjourney</div>
+      </div>
+    </div>
+    
+    <!-- MVP Features -->
+    <div class="section">
+      <h2>✨ MVP Features (Restoration Only)</h2>
+      <div class="feature">
+        <span class="feature-icon">🔧</span>
+        <div>
+          <h3>Photo Restoration</h3>
+          <p>Fix scratches, tears, stains, fading. Enhance blurry/low-res to HD.</p>
+        </div>
+      </div>
+      <div class="feature">
+        <span class="feature-icon">🎨</span>
+        <div>
+          <h3>Colorization</h3>
+          <p>B&W photos to color. Preserve original alongside enhanced.</p>
+        </div>
+      </div>
+      <div class="feature">
+        <span class="feature-icon">🛡️</span>
+        <div>
+          <h3>Ethical Safeguards</h3>
+          <p>Consent acknowledgment. Grief resource links. Clear AI limitations disclosure.</p>
+        </div>
+      </div>
+      <div class="feature">
+        <span class="feature-icon">💬</span>
+        <div>
+          <h3>Human Support Path</h3>
+          <p>Easy escalation to human support. Staff trained in grief awareness.</p>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Features to DEFER -->
+    <div class="section">
+      <h2>⏸️ Defer to V2+ (Ethics Review Required)</h2>
+      <table>
+        <tr><th>Feature</th><th>Risk Level</th><th>Requirement</th></tr>
+        <tr><td>Age Progression</td><td>🟡 Medium</td><td>Grief counselor review, clear disclaimers</td></tr>
+        <tr><td>Composite Portraits (deceased + living)</td><td>🟠 High</td><td>Ethics board approval</td></tr>
+        <tr><td>Animation/Deep Nostalgia style</td><td>🔴 Very High</td><td>Extensive testing, user studies</td></tr>
+        <tr><td>Voice Messages (TTS)</td><td>🔴 Very High</td><td>May never be appropriate</td></tr>
+      </table>
+    </div>
+    
+    <!-- Ethical Framework -->
+    <div class="section">
+      <h2>⚖️ Ethical Framework</h2>
+      <div class="ethics">
+        <h4>Consent of the Deceased</h4>
+        <p>"Would the deceased have agreed to do what their likeness is doing?" — Require acknowledgment that user has right to use photos.</p>
+      </div>
+      <div class="ethics">
+        <h4>Psychological Impact</h4>
+        <p>"Right after a death has occurred, that's acute grief. All emotions are very, very intense." — Soft waiting period suggestion, grief resources prominent.</p>
+      </div>
+      <div class="ethics">
+        <h4>Creating False Memories</h4>
+        <p>"AI is a perfect false memory machine." — Clear labeling: "AI-enhanced" watermark, original always preserved.</p>
+      </div>
+      <div class="ethics">
+        <h4>Exploitation Concerns</h4>
+        <p>"To what extent is it acceptable for private companies to exploit the pain of mourning?" — No aggressive retargeting, donate to grief orgs.</p>
+      </div>
+    </div>
+    
+    <!-- Support Requirements -->
+    <div class="section">
+      <h2>💚 Support Requirements</h2>
+      <p style="margin-bottom: 16px;">Users may be in acute grief. Higher support needs than typical apps.</p>
+      <div class="feature">
+        <span class="feature-icon">📚</span>
+        <div>
+          <h3>Training Required</h3>
+          <p>Basic grief awareness, active listening, when to refer to professional help.</p>
+        </div>
+      </div>
+      <div class="feature">
+        <span class="feature-icon">💬</span>
+        <div>
+          <h3>Response Standards</h3>
+          <p>Warm, empathetic tone always. Never rush grieving users. Generous refunds (reputation > revenue).</p>
+        </div>
+      </div>
+      <div class="feature">
+        <span class="feature-icon">🔗</span>
+        <div>
+          <h3>Crisis Resources</h3>
+          <p>Visible links to grief support organizations. Quick path to human support.</p>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Pricing -->
+    <div class="section">
+      <h2>💰 Pricing Strategy</h2>
+      <p style="margin-bottom: 16px;">Emotional value >> functional value. Users will pay premium for meaningful preservation.</p>
+      <table>
+        <tr><th>Tier</th><th>Price</th><th>Includes</th></tr>
+        <tr><td>Single Restoration</td><td>$9.99</td><td>1 photo, full restoration + enhancement</td></tr>
+        <tr><td>Memory Bundle</td><td>$29.99</td><td>5 photos, all features</td></tr>
+        <tr><td>Family Legacy</td><td>$49.99</td><td>15 photos, priority support</td></tr>
+        <tr><td>Forever Memorial</td><td>$99.99</td><td>Unlimited (1 year), age progression</td></tr>
+      </table>
+    </div>
+    
+    <!-- Marketing Warning -->
+    <div class="section">
+      <h2>📣 Marketing Guidelines</h2>
+      <p style="color: #dc2626; font-weight: 600; margin-bottom: 16px;">NEVER:</p>
+      <ul style="list-style: none; font-size: 14px; color: var(--muted);">
+        <li>❌ Use fear-based messaging ("Don't let memories fade!")</li>
+        <li>❌ Target recently bereaved with retargeting ads</li>
+        <li>❌ Make promises about "seeing them again"</li>
+        <li>❌ Show before/after of real deceased without consent</li>
+        <li>❌ Use emotional manipulation tactics</li>
+      </ul>
+      <p style="color: #10b981; font-weight: 600; margin: 16px 0 16px;">ALWAYS:</p>
+      <ul style="list-style: none; font-size: 14px; color: var(--muted);">
+        <li>✅ Lead with dignity and respect</li>
+        <li>✅ Be transparent about AI limitations</li>
+        <li>✅ Provide grief resources</li>
+        <li>✅ Let the service speak through word-of-mouth</li>
+      </ul>
+    </div>
+    
+    <!-- Final Note -->
+    <div class="section">
+      <h2>📝 Final Note</h2>
+      <p style="font-style: italic; color: var(--muted);">
+        "This app concept addresses a real, profound human need. People desperately want to see their loved ones' faces clearly, 
+        to imagine what they would look like today, to create the family photos that fate denied them.
+        <br><br>
+        But this space demands the highest ethical standards. The grief community is rightfully protective and skeptical of commercial offerings.
+        <br><br>
+        <strong>If pursued, ForeverMemory should be built as a service of healing first, business second. 
+        Lead with empathy. Consult experts. Move slowly. Earn trust through actions, not marketing.</strong>"
+      </p>
+    </div>
+    
+  </div>
+</body>
+</html>

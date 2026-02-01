@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PetRoyalty — App Hub</title>
+  <style>
+    :root {
+      --primary: #f59e0b;
+      --primary-light: #fef3c7;
+      --primary-dark: #d97706;
+      --bg: #fffbeb;
+      --card: #ffffff;
+      --text: #1e1b3a;
+      --muted: #6b7280;
+      --border: #e5e7eb;
+      --shadow: 0 4px 12px rgba(0,0,0,0.08);
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { 
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      background: var(--bg); color: var(--text); line-height: 1.6;
+      padding: 24px 16px 60px;
+    }
+    .container { max-width: 900px; margin: 0 auto; }
+    
+    header { text-align: center; padding: 40px 20px; margin-bottom: 32px; }
+    .logo { font-size: 48px; margin-bottom: 12px; }
+    h1 { font-size: 32px; color: var(--primary-dark); margin-bottom: 8px; }
+    .tagline { color: var(--muted); font-size: 18px; }
+    
+    .badges { display: flex; gap: 12px; justify-content: center; margin-top: 20px; flex-wrap: wrap; }
+    .badge { background: var(--primary-light); color: var(--primary-dark); padding: 6px 14px; 
+             border-radius: 20px; font-size: 13px; font-weight: 500; }
+    .badge.score { background: var(--primary); color: white; }
+    .badge.build { background: #10b981; color: white; }
+    
+    .section { background: var(--card); border-radius: 16px; padding: 24px; 
+               margin-bottom: 20px; box-shadow: var(--shadow); }
+    .section h2 { font-size: 18px; color: var(--primary-dark); margin-bottom: 16px; 
+                  padding-bottom: 12px; border-bottom: 2px solid var(--primary-light); }
+    
+    .keywords { display: flex; flex-wrap: wrap; gap: 8px; }
+    .keyword { background: #f0f0f0; padding: 4px 10px; border-radius: 12px; font-size: 12px; color: #666; }
+    
+    .quote { background: var(--primary-light); border-left: 4px solid var(--primary); 
+             padding: 16px; margin-bottom: 12px; border-radius: 0 8px 8px 0; font-style: italic; }
+    .quote-source { font-size: 12px; color: var(--muted); margin-top: 8px; font-style: normal; }
+    
+    .feature { display: flex; gap: 12px; margin-bottom: 16px; align-items: flex-start; }
+    .feature-icon { font-size: 24px; }
+    .feature h3 { font-size: 15px; margin-bottom: 4px; }
+    .feature p { font-size: 13px; color: var(--muted); }
+    
+    .stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 16px; }
+    .stat { text-align: center; padding: 16px; background: var(--primary-light); border-radius: 12px; }
+    .stat-value { font-size: 28px; font-weight: 700; color: var(--primary-dark); }
+    .stat-label { font-size: 12px; color: var(--muted); }
+    
+    table { width: 100%; border-collapse: collapse; font-size: 14px; }
+    th, td { padding: 10px 12px; text-align: left; border-bottom: 1px solid var(--border); }
+    th { background: var(--primary-light); font-weight: 600; }
+    
+    .back-link { display: inline-block; margin-bottom: 20px; color: var(--primary); text-decoration: none; }
+    .back-link:hover { text-decoration: underline; }
+    
+    .subreddits { display: flex; flex-wrap: wrap; gap: 8px; }
+    .subreddit { background: #fff4f0; color: #ff4500; padding: 4px 10px; border-radius: 12px; font-size: 12px; }
+    
+    @media (max-width: 600px) {
+      .stats-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <a href="../image-gen.html" class="back-link">← Back to Image Gen Apps</a>
+    
+    <header>
+      <div class="logo">🐕</div>
+      <h1>PetRoyalty</h1>
+      <p class="tagline">Your Pet as Royalty, Superhero, or Art</p>
+      <div class="badges">
+        <span class="badge build">✅ BUILD</span>
+        <span class="badge">69% Margin</span>
+        <span class="badge">$152B Pet Market</span>
+        <span class="badge">$9.99-19.99</span>
+      </div>
+    </header>
+    
+    <!-- App Store Info -->
+    <div class="section">
+      <h2>📱 App Store Listing</h2>
+      <table>
+        <tr><th>Field</th><th>Value</th></tr>
+        <tr><td>App Name</td><td><strong>PetRoyalty</strong></td></tr>
+        <tr><td>Subtitle</td><td>Turn Your Pet into Art</td></tr>
+        <tr><td>Category</td><td>Photo & Video (primary)</td></tr>
+        <tr><td>Price</td><td>$9.99-19.99 per portrait / $29.99/year unlimited</td></tr>
+      </table>
+      
+      <h3 style="margin: 20px 0 12px; font-size: 15px;">Keywords</h3>
+      <div class="keywords">
+        <span class="keyword">pet portrait</span>
+        <span class="keyword">dog art</span>
+        <span class="keyword">cat portrait</span>
+        <span class="keyword">pet painting</span>
+        <span class="keyword">royal pet</span>
+        <span class="keyword">pet gift</span>
+        <span class="keyword">pet memorial</span>
+        <span class="keyword">AI pet</span>
+      </div>
+    </div>
+    
+    <!-- Market Stats -->
+    <div class="section">
+      <h2>📊 Market Opportunity</h2>
+      <div class="stats-grid">
+        <div class="stat">
+          <div class="stat-value">$152B</div>
+          <div class="stat-label">US Pet Industry</div>
+        </div>
+        <div class="stat">
+          <div class="stat-value">94M</div>
+          <div class="stat-label">Pet Households</div>
+        </div>
+        <div class="stat">
+          <div class="stat-value">69%</div>
+          <div class="stat-label">Gross Margin</div>
+        </div>
+        <div class="stat">
+          <div class="stat-value">$260</div>
+          <div class="stat-label">Avg Monthly Pet Spend</div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Key Differentiator -->
+    <div class="section">
+      <h2>🎯 Key Differentiator</h2>
+      <p style="font-size: 16px; line-height: 1.8;">
+        <strong>Mobile-first + Instant + Viral Sharing.</strong>
+        <br><br>
+        Existing competitors (Crown & Paw, DreamPets) require web ordering and 1-7 day wait times. 
+        PetRoyalty delivers: <strong>30-second generation</strong>, built-in Instagram/TikTok sharing 
+        with watermarked previews, and gift-focused UX.
+        <br><br>
+        <em>Pet memorial portraits are a $20-50 sweet spot with massive emotional value.</em>
+      </p>
+    </div>
+    
+    <!-- Popular Styles -->
+    <div class="section">
+      <h2>🎨 Popular Styles (Ranked)</h2>
+      <table>
+        <tr><th>Tier</th><th>Style</th><th>Demand</th></tr>
+        <tr><td>1</td><td>👑 Renaissance/Royal (King, Queen, Duke)</td><td>Highest</td></tr>
+        <tr><td>1</td><td>🦸 Superhero (Caped, Masked)</td><td>High</td></tr>
+        <tr><td>1</td><td>🧙 Fantasy/Mythical (Wizard, Knight)</td><td>High</td></tr>
+        <tr><td>2</td><td>🎖️ Military/Professional (General, Pilot)</td><td>Medium</td></tr>
+        <tr><td>2</td><td>🎬 Pop Culture (Movie parodies)</td><td>Medium</td></tr>
+        <tr><td>3</td><td>🎄 Holiday (Christmas, Halloween)</td><td>Seasonal</td></tr>
+      </table>
+    </div>
+    
+    <!-- Features -->
+    <div class="section">
+      <h2>✨ Core Features</h2>
+      <div class="feature">
+        <span class="feature-icon">⚡</span>
+        <div>
+          <h3>30-Second Generation</h3>
+          <p>Instant results vs hours/days with competitors.</p>
+        </div>
+      </div>
+      <div class="feature">
+        <span class="feature-icon">📱</span>
+        <div>
+          <h3>One-Tap Share</h3>
+          <p>Pre-formatted for Instagram Stories (9:16) and Feed (1:1). Auto-suggested captions.</p>
+        </div>
+      </div>
+      <div class="feature">
+        <span class="feature-icon">🎁</span>
+        <div>
+          <h3>Gift Flow</h3>
+          <p>"Send to friend" with personalized message. Reveal animation. Print & ship option.</p>
+        </div>
+      </div>
+      <div class="feature">
+        <span class="feature-icon">🌈</span>
+        <div>
+          <h3>Memorial Portraits</h3>
+          <p>Special "Rainbow Bridge" styles. Print-ready for framing.</p>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Reddit Quotes -->
+    <div class="section">
+      <h2>💬 User Pain Points (Reddit)</h2>
+      <div class="quote">
+        "It's so disappointing when companies take advantage of pet lovers with poor-quality portraits like this."
+        <div class="quote-source">— r/ExpectationVsReality</div>
+      </div>
+      <div class="quote">
+        "After my dog passed away, DreamPets helped ease my grief. This is the beauty of AI."
+        <div class="quote-source">— DreamPets Review</div>
+      </div>
+      <div class="quote">
+        "This is so cute, esp if it memorializes a departed pet."
+        <div class="quote-source">— r/Gifts</div>
+      </div>
+      <div class="quote">
+        "Someone gave me a large framed picture of my cat that I could hang on the wall. I treasure that so much."
+        <div class="quote-source">— r/bitcheswithtaste</div>
+      </div>
+    </div>
+    
+    <!-- Target Subreddits -->
+    <div class="section">
+      <h2>🎯 Target Subreddits</h2>
+      <div class="subreddits">
+        <span class="subreddit">r/aww (35M+)</span>
+        <span class="subreddit">r/dogs (4M+)</span>
+        <span class="subreddit">r/cats (5M+)</span>
+        <span class="subreddit">r/pets</span>
+        <span class="subreddit">r/Petloss</span>
+        <span class="subreddit">r/GiftIdeas</span>
+        <span class="subreddit">r/Gifts</span>
+      </div>
+    </div>
+    
+    <!-- Viral Headlines -->
+    <div class="section">
+      <h2>📣 Viral Headlines</h2>
+      <ul style="list-style: none; font-size: 15px;">
+        <li>🔥 "I turned my dog into a Renaissance king and I can't stop laughing"</li>
+        <li>🔥 "My cat as a superhero is the best $15 I ever spent"</li>
+        <li>🔥 "After losing my dog, this AI portrait helped me grieve"</li>
+        <li>🔥 "The internet needs to see my pet's royal portrait"</li>
+      </ul>
+    </div>
+    
+    <!-- Competitors -->
+    <div class="section">
+      <h2>⚔️ Competitive Landscape</h2>
+      <table>
+        <tr><th>Competitor</th><th>Price</th><th>Delivery</th><th>Gap</th></tr>
+        <tr><td>Crown & Paw</td><td>$59.95+</td><td>5-7 days</td><td>Web-only, slow, no refunds</td></tr>
+        <tr><td>DreamPets</td><td>$5.99-59.99</td><td>30-60 min</td><td>Subscription model</td></tr>
+        <tr><td>Purr and Mutt</td><td>$49+</td><td>7-12 days</td><td>Hidden charges, slow</td></tr>
+        <tr><td><strong>PetRoyalty (Us)</strong></td><td><strong>$9.99-19.99</strong></td><td><strong>30 seconds</strong></td><td><strong>Instant, mobile, viral</strong></td></tr>
+      </table>
+    </div>
+    
+  </div>
+</body>
+</html>

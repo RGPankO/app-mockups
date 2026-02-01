@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MatchMaker Photos — App Hub</title>
+  <style>
+    :root {
+      --primary: #ec4899;
+      --primary-light: #fce7f3;
+      --primary-dark: #be185d;
+      --bg: #fdf2f8;
+      --card: #ffffff;
+      --text: #1e1b3a;
+      --muted: #6b7280;
+      --border: #e5e7eb;
+      --shadow: 0 4px 12px rgba(0,0,0,0.08);
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { 
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      background: var(--bg); color: var(--text); line-height: 1.6;
+      padding: 24px 16px 60px;
+    }
+    .container { max-width: 900px; margin: 0 auto; }
+    
+    header { text-align: center; padding: 40px 20px; margin-bottom: 32px; }
+    .logo { font-size: 48px; margin-bottom: 12px; }
+    h1 { font-size: 32px; color: var(--primary-dark); margin-bottom: 8px; }
+    .tagline { color: var(--muted); font-size: 18px; }
+    
+    .badges { display: flex; gap: 12px; justify-content: center; margin-top: 20px; flex-wrap: wrap; }
+    .badge { background: var(--primary-light); color: var(--primary-dark); padding: 6px 14px; 
+             border-radius: 20px; font-size: 13px; font-weight: 500; }
+    .badge.score { background: var(--primary); color: white; }
+    .badge.build { background: #10b981; color: white; }
+    
+    .section { background: var(--card); border-radius: 16px; padding: 24px; 
+               margin-bottom: 20px; box-shadow: var(--shadow); }
+    .section h2 { font-size: 18px; color: var(--primary-dark); margin-bottom: 16px; 
+                  padding-bottom: 12px; border-bottom: 2px solid var(--primary-light); }
+    
+    .keywords { display: flex; flex-wrap: wrap; gap: 8px; }
+    .keyword { background: #f0f0f0; padding: 4px 10px; border-radius: 12px; font-size: 12px; color: #666; }
+    
+    .quote { background: var(--primary-light); border-left: 4px solid var(--primary); 
+             padding: 16px; margin-bottom: 12px; border-radius: 0 8px 8px 0; font-style: italic; }
+    .quote-source { font-size: 12px; color: var(--muted); margin-top: 8px; font-style: normal; }
+    
+    .feature { display: flex; gap: 12px; margin-bottom: 16px; align-items: flex-start; }
+    .feature-icon { font-size: 24px; }
+    .feature h3 { font-size: 15px; margin-bottom: 4px; }
+    .feature p { font-size: 13px; color: var(--muted); }
+    
+    .stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 16px; }
+    .stat { text-align: center; padding: 16px; background: var(--primary-light); border-radius: 12px; }
+    .stat-value { font-size: 28px; font-weight: 700; color: var(--primary-dark); }
+    .stat-label { font-size: 12px; color: var(--muted); }
+    
+    table { width: 100%; border-collapse: collapse; font-size: 14px; }
+    th, td { padding: 10px 12px; text-align: left; border-bottom: 1px solid var(--border); }
+    th { background: var(--primary-light); font-weight: 600; }
+    
+    .back-link { display: inline-block; margin-bottom: 20px; color: var(--primary); text-decoration: none; }
+    .back-link:hover { text-decoration: underline; }
+    
+    .subreddits { display: flex; flex-wrap: wrap; gap: 8px; }
+    .subreddit { background: #fff4f0; color: #ff4500; padding: 4px 10px; border-radius: 12px; font-size: 12px; }
+    
+    @media (max-width: 600px) {
+      .stats-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <a href="../image-gen.html" class="back-link">← Back to Image Gen Apps</a>
+    
+    <header>
+      <div class="logo">💘</div>
+      <h1>MatchMaker Photos</h1>
+      <p class="tagline">10x Your Dating Matches</p>
+      <div class="badges">
+        <span class="badge build">✅ BUILD</span>
+        <span class="badge">60% Margin</span>
+        <span class="badge">$6B+ Market</span>
+        <span class="badge">$14.99/pack</span>
+      </div>
+    </header>
+    
+    <!-- App Store Info -->
+    <div class="section">
+      <h2>📱 App Store Listing</h2>
+      <table>
+        <tr><th>Field</th><th>Value</th></tr>
+        <tr><td>App Name</td><td><strong>MatchMaker Photos</strong></td></tr>
+        <tr><td>Subtitle</td><td>Professional Dating Photos, Instantly</td></tr>
+        <tr><td>Category</td><td>Photo & Video (primary), Lifestyle (secondary)</td></tr>
+        <tr><td>Price</td><td>$14.99 per pack (15-20 images)</td></tr>
+      </table>
+      
+      <h3 style="margin: 20px 0 12px; font-size: 15px;">Keywords</h3>
+      <div class="keywords">
+        <span class="keyword">dating photos</span>
+        <span class="keyword">tinder photos</span>
+        <span class="keyword">bumble profile</span>
+        <span class="keyword">hinge pics</span>
+        <span class="keyword">AI headshots</span>
+        <span class="keyword">dating profile</span>
+        <span class="keyword">match more</span>
+        <span class="keyword">photo upgrade</span>
+      </div>
+    </div>
+    
+    <!-- Market Stats -->
+    <div class="section">
+      <h2>📊 Market Opportunity</h2>
+      <div class="stats-grid">
+        <div class="stat">
+          <div class="stat-value">$6.18B</div>
+          <div class="stat-label">Dating App Market</div>
+        </div>
+        <div class="stat">
+          <div class="stat-value">350M+</div>
+          <div class="stat-label">Global Users</div>
+        </div>
+        <div class="stat">
+          <div class="stat-value">60%</div>
+          <div class="stat-label">Gross Margin</div>
+        </div>
+        <div class="stat">
+          <div class="stat-value">~$1.50</div>
+          <div class="stat-label">Cost/User</div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Key Differentiator -->
+    <div class="section">
+      <h2>🎯 Key Differentiator</h2>
+      <p style="font-size: 16px; line-height: 1.8;">
+        <strong>Half the price, same quality.</strong> Competitors charge $29-49. We target $14.99.
+        <br><br>
+        Current AI dating photo complaints: "plastic skin", "fake blur", "doesn't look like me".
+        We fix these with: natural skin texture, sharp backgrounds, dating-optimized body language.
+        <br><br>
+        <em>TikTok is proven: AI headshot video got 52.5M views. Before/after transformation format is inherently viral.</em>
+      </p>
+    </div>
+    
+    <!-- Features -->
+    <div class="section">
+      <h2>✨ Core Features</h2>
+      <div class="feature">
+        <span class="feature-icon">📸</span>
+        <div>
+          <h3>Simple Upload Flow</h3>
+          <p>Upload 8-15 selfies. Auto-detect face quality. Reject bad inputs with guidance.</p>
+        </div>
+      </div>
+      <div class="feature">
+        <span class="feature-icon">🎯</span>
+        <div>
+          <h3>Dating-Optimized Output</h3>
+          <p>Multiple settings: outdoor, travel, social, casual. Natural lighting simulation.</p>
+        </div>
+      </div>
+      <div class="feature">
+        <span class="feature-icon">⭐</span>
+        <div>
+          <h3>Smart Selection</h3>
+          <p>AI ranks photos by "match potential". Highlights best 3-5 for immediate use.</p>
+        </div>
+      </div>
+      <div class="feature">
+        <span class="feature-icon">🔄</span>
+        <div>
+          <h3>Before/After Generator</h3>
+          <p>One-tap comparison image for viral sharing.</p>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Reddit Quotes -->
+    <div class="section">
+      <h2>💬 User Pain Points (Reddit)</h2>
+      <div class="quote">
+        "I'll be honest, my photos are shit. I don't like online dating because I do better in-person... My friends are shit photographers and I don't even know the first step to finding a photographer."
+        <div class="quote-source">— r/OnlineDating</div>
+      </div>
+      <div class="quote">
+        "It's funny how straight men are such visual creatures but can really struggle with photographing themselves!"
+        <div class="quote-source">— r/dating</div>
+      </div>
+      <div class="quote">
+        "I was a groomsman at my best friend's wedding in 2021, and when I put 2 of the professionally taken photos... the number of matches I was getting practically doubled overnight, no hyperbole at all."
+        <div class="quote-source">— r/Bumble</div>
+      </div>
+      <div class="quote">
+        "I hate taking photos of myself... I struggle to push the button when I know I'm looking at the camera."
+        <div class="quote-source">— r/Bumble</div>
+      </div>
+    </div>
+    
+    <!-- Target Subreddits -->
+    <div class="section">
+      <h2>🎯 Target Subreddits</h2>
+      <div class="subreddits">
+        <span class="subreddit">r/Tinder</span>
+        <span class="subreddit">r/Bumble</span>
+        <span class="subreddit">r/Hinge</span>
+        <span class="subreddit">r/OnlineDating</span>
+        <span class="subreddit">r/dating</span>
+        <span class="subreddit">r/SwipeHelper</span>
+        <span class="subreddit">r/dating_advice</span>
+      </div>
+    </div>
+    
+    <!-- Marketing Headlines -->
+    <div class="section">
+      <h2>📣 Marketing Headlines</h2>
+      <ul style="list-style: none; font-size: 15px;">
+        <li>🔥 "10x your matches tonight"</li>
+        <li>🔥 "Professional dating photos without the photographer"</li>
+        <li>🔥 "What happens when you actually have good photos"</li>
+        <li>🔥 "I got more matches in 1 day than 3 months"</li>
+        <li>🔥 "The $15 dating hack that actually works"</li>
+        <li>🔥 "Stop losing to guys with photographers"</li>
+      </ul>
+    </div>
+    
+    <!-- Competitors -->
+    <div class="section">
+      <h2>⚔️ Competitive Landscape</h2>
+      <table>
+        <tr><th>Competitor</th><th>Price</th><th>Gap</th></tr>
+        <tr><td>TruShot</td><td>$29</td><td>Best quality but 2x our price</td></tr>
+        <tr><td>Aragon AI</td><td>$35</td><td>2hr delivery, some fake blur</td></tr>
+        <tr><td>ROAST/Photoshoot.Dating</td><td>$29.40</td><td>Inconsistent quality</td></tr>
+        <tr><td>ProfileBakery</td><td>$49</td><td>70% had fake blur</td></tr>
+        <tr><td><strong>MatchMaker (Us)</strong></td><td><strong>$14.99</strong></td><td><strong>Half price, great quality</strong></td></tr>
+      </table>
+    </div>
+    
+    <!-- Ethical Note -->
+    <div class="section">
+      <h2>⚖️ Ethical Positioning</h2>
+      <p style="font-size: 14px; color: var(--muted);">
+        <strong>"Enhance, Don't Deceive"</strong> — Face must match reality. No slimming, no feature changes. 
+        We position as "professional photos of the REAL you — no filters, no fakes." 
+        Photos pass face verification. Users should look like their photos IRL.
+      </p>
+    </div>
+    
+  </div>
+</body>
+</html>

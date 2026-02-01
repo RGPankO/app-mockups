@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>HeadshotPro — App Hub</title>
+  <style>
+    :root {
+      --primary: #3b82f6;
+      --primary-light: #dbeafe;
+      --primary-dark: #1d4ed8;
+      --bg: #eff6ff;
+      --card: #ffffff;
+      --text: #1e1b3a;
+      --muted: #6b7280;
+      --border: #e5e7eb;
+      --shadow: 0 4px 12px rgba(0,0,0,0.08);
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { 
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      background: var(--bg); color: var(--text); line-height: 1.6;
+      padding: 24px 16px 60px;
+    }
+    .container { max-width: 900px; margin: 0 auto; }
+    
+    header { text-align: center; padding: 40px 20px; margin-bottom: 32px; }
+    .logo { font-size: 48px; margin-bottom: 12px; }
+    h1 { font-size: 32px; color: var(--primary-dark); margin-bottom: 8px; }
+    .tagline { color: var(--muted); font-size: 18px; }
+    
+    .badges { display: flex; gap: 12px; justify-content: center; margin-top: 20px; flex-wrap: wrap; }
+    .badge { background: var(--primary-light); color: var(--primary-dark); padding: 6px 14px; 
+             border-radius: 20px; font-size: 13px; font-weight: 500; }
+    .badge.caution { background: #fef3c7; color: #92400e; }
+    
+    .section { background: var(--card); border-radius: 16px; padding: 24px; 
+               margin-bottom: 20px; box-shadow: var(--shadow); }
+    .section h2 { font-size: 18px; color: var(--primary-dark); margin-bottom: 16px; 
+                  padding-bottom: 12px; border-bottom: 2px solid var(--primary-light); }
+    
+    .keywords { display: flex; flex-wrap: wrap; gap: 8px; }
+    .keyword { background: #f0f0f0; padding: 4px 10px; border-radius: 12px; font-size: 12px; color: #666; }
+    
+    .quote { background: var(--primary-light); border-left: 4px solid var(--primary); 
+             padding: 16px; margin-bottom: 12px; border-radius: 0 8px 8px 0; font-style: italic; }
+    .quote-source { font-size: 12px; color: var(--muted); margin-top: 8px; font-style: normal; }
+    
+    .feature { display: flex; gap: 12px; margin-bottom: 16px; align-items: flex-start; }
+    .feature-icon { font-size: 24px; }
+    .feature h3 { font-size: 15px; margin-bottom: 4px; }
+    .feature p { font-size: 13px; color: var(--muted); }
+    
+    .stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 16px; }
+    .stat { text-align: center; padding: 16px; background: var(--primary-light); border-radius: 12px; }
+    .stat-value { font-size: 28px; font-weight: 700; color: var(--primary-dark); }
+    .stat-label { font-size: 12px; color: var(--muted); }
+    
+    table { width: 100%; border-collapse: collapse; font-size: 14px; }
+    th, td { padding: 10px 12px; text-align: left; border-bottom: 1px solid var(--border); }
+    th { background: var(--primary-light); font-weight: 600; }
+    
+    .back-link { display: inline-block; margin-bottom: 20px; color: var(--primary); text-decoration: none; }
+    .back-link:hover { text-decoration: underline; }
+    
+    .warning { background: #fef3c7; border: 1px solid #fbbf24; padding: 16px; border-radius: 12px; margin-bottom: 20px; }
+    .warning h3 { color: #92400e; margin-bottom: 8px; }
+    
+    @media (max-width: 600px) {
+      .stats-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <a href="../image-gen.html" class="back-link">← Back to Image Gen Apps</a>
+    
+    <header>
+      <div class="logo">💼</div>
+      <h1>HeadshotPro</h1>
+      <p class="tagline">LinkedIn Headshots Without a Photographer</p>
+      <div class="badges">
+        <span class="badge caution">⚠️ CAUTION — Crowded</span>
+        <span class="badge">79-84% Margin</span>
+        <span class="badge">$100-200M Market</span>
+        <span class="badge">$19/pack</span>
+      </div>
+    </header>
+    
+    <!-- Warning -->
+    <div class="warning">
+      <h3>⚠️ Competitive Warning</h3>
+      <p>Market is crowded with 3-4 major players (Aragon, HeadshotPro, Dreamwave, Headshots.com). 
+         Proceed only if you can differentiate on <strong>price ($15-20 tier)</strong>, 
+         <strong>quality</strong>, or <strong>"pay only if you love it"</strong> model.</p>
+    </div>
+    
+    <!-- App Store Info -->
+    <div class="section">
+      <h2>📱 App Store Listing</h2>
+      <table>
+        <tr><th>Field</th><th>Value</th></tr>
+        <tr><td>App Name</td><td><strong>HeadshotPro</strong></td></tr>
+        <tr><td>Subtitle</td><td>LinkedIn-Ready in 10 Minutes</td></tr>
+        <tr><td>Category</td><td>Photo & Video (primary), Business (secondary)</td></tr>
+        <tr><td>Price</td><td>$19 per pack (pay only if you love it)</td></tr>
+      </table>
+      
+      <h3 style="margin: 20px 0 12px; font-size: 15px;">Keywords</h3>
+      <div class="keywords">
+        <span class="keyword">linkedin headshot</span>
+        <span class="keyword">professional photo</span>
+        <span class="keyword">AI headshot</span>
+        <span class="keyword">resume photo</span>
+        <span class="keyword">corporate headshot</span>
+        <span class="keyword">business portrait</span>
+        <span class="keyword">job seeker</span>
+      </div>
+    </div>
+    
+    <!-- Market Stats -->
+    <div class="section">
+      <h2>📊 Market Opportunity</h2>
+      <div class="stats-grid">
+        <div class="stat">
+          <div class="stat-value">1B+</div>
+          <div class="stat-label">LinkedIn Users</div>
+        </div>
+        <div class="stat">
+          <div class="stat-value">20M+</div>
+          <div class="stat-label">US Job Seekers</div>
+        </div>
+        <div class="stat">
+          <div class="stat-value">79-84%</div>
+          <div class="stat-label">Gross Margin</div>
+        </div>
+        <div class="stat">
+          <div class="stat-value">$1.00</div>
+          <div class="stat-label">Cost/User</div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Differentiation Strategy -->
+    <div class="section">
+      <h2>🎯 How to Differentiate</h2>
+      <div class="feature">
+        <span class="feature-icon">💰</span>
+        <div>
+          <h3>Ultra-Budget Tier ($15-20)</h3>
+          <p>Competitors charge $29-75. We undercut at $19, target job seekers.</p>
+        </div>
+      </div>
+      <div class="feature">
+        <span class="feature-icon">✨</span>
+        <div>
+          <h3>"Pay Only If You Love It"</h3>
+          <p>Preview 5 headshots FREE. Pay $19 only to download. Risk-free for users.</p>
+        </div>
+      </div>
+      <div class="feature">
+        <span class="feature-icon">🎯</span>
+        <div>
+          <h3>LinkedIn-Specific Optimization</h3>
+          <p>1:1 format, face fills 60%, soft bokeh. Built for LinkedIn, not generic "professional".</p>
+        </div>
+      </div>
+      <div class="feature">
+        <span class="feature-icon">⏱️</span>
+        <div>
+          <h3>Fewer Photos Required</h3>
+          <p>Only 3-6 selfies needed (competitors require 12+).</p>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Reddit Quotes -->
+    <div class="section">
+      <h2>💬 User Pain Points (Reddit)</h2>
+      <div class="quote">
+        "Professional photographers in my area charge $300-500, which isn't feasible during this career transition."
+        <div class="quote-source">— r/Career_Advice</div>
+      </div>
+      <div class="quote">
+        "I want the final result to look natural and not obviously AI-generated."
+        <div class="quote-source">— r/LinkedInTips</div>
+      </div>
+      <div class="quote">
+        "Would really love a professional work photo for my linkedin. I can't afford to tip sadly since I've been unemployed for almost a year."
+        <div class="quote-source">— r/PhotoshopRequest</div>
+      </div>
+      <div class="quote">
+        "Wasn't planning to spend $200+ on a photographer just for a LinkedIn refresh, so I went down the AI rabbit hole."
+        <div class="quote-source">— r/careerguidance</div>
+      </div>
+    </div>
+    
+    <!-- B2B Potential -->
+    <div class="section">
+      <h2>🏢 B2B Opportunity</h2>
+      <p style="margin-bottom: 16px;">Team packages offer higher LTV. Fortune 500s need consistent branding across employees.</p>
+      <table>
+        <tr><th>Team Size</th><th>Price/Person</th><th>Example Total</th></tr>
+        <tr><td>5-20</td><td>$35</td><td>$175-700</td></tr>
+        <tr><td>21-50</td><td>$30</td><td>$630-1,500</td></tr>
+        <tr><td>51-200</td><td>$25</td><td>$1,275-5,000</td></tr>
+        <tr><td>200+</td><td>Custom ($20 floor)</td><td>$4,000+</td></tr>
+      </table>
+    </div>
+    
+    <!-- Competitors -->
+    <div class="section">
+      <h2>⚔️ Competitive Landscape</h2>
+      <table>
+        <tr><th>Competitor</th><th>Price</th><th>Gap</th></tr>
+        <tr><td>Aragon.ai</td><td>$29-75</td><td>Stiff/unnatural, limited input</td></tr>
+        <tr><td>HeadshotPro (company)</td><td>$29-59</td><td>Requires 12+ photos</td></tr>
+        <tr><td>Dreamwave</td><td>$35-99</td><td>Hidden pricing</td></tr>
+        <tr><td>Headshots.com</td><td>$15/image</td><td>Pay-per-result (similar model)</td></tr>
+        <tr><td>BetterPic</td><td>$39-79</td><td>Poor hands, over-smoothed</td></tr>
+      </table>
+    </div>
+    
+    <!-- Technical Specs -->
+    <div class="section">
+      <h2>📐 LinkedIn Photo Standards</h2>
+      <table>
+        <tr><th>Element</th><th>Standard</th></tr>
+        <tr><td>Resolution</td><td>400x400 to 7680x4320 pixels</td></tr>
+        <tr><td>Framing</td><td>Face = 60% of frame</td></tr>
+        <tr><td>Background</td><td>Neutral, softly blurred (bokeh)</td></tr>
+        <tr><td>Lighting</td><td>Soft, even, illuminates eyes</td></tr>
+        <tr><td>Attire</td><td>Industry-appropriate, solid colors</td></tr>
+        <tr><td>Format</td><td>1:1 square ratio</td></tr>
+      </table>
+    </div>
+    
+  </div>
+</body>
+</html>

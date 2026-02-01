@@ -13,6 +13,7 @@
       --accent-light: #ede9fe;
       --success: #10b981;
       --warning: #f59e0b;
+      --danger: #ef4444;
       --card-bg: #ffffff;
       --border: #e5e7eb;
       --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
@@ -98,6 +99,84 @@
       gap: 12px;
     }
 
+    .market-insight {
+      background: linear-gradient(135deg, var(--accent-light), #e0f2fe);
+      padding: 24px;
+      border-radius: 16px;
+      margin-bottom: 32px;
+    }
+
+    .market-insight h3 {
+      font-size: 1.1rem;
+      margin-bottom: 12px;
+      color: var(--accent);
+    }
+
+    .market-insight ul {
+      list-style: none;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 8px;
+    }
+
+    .market-insight li {
+      padding: 8px 12px;
+      background: white;
+      border-radius: 8px;
+      font-size: 0.9rem;
+    }
+
+    /* Priority Table */
+    .priority-table {
+      background: var(--card-bg);
+      border-radius: 16px;
+      box-shadow: var(--shadow);
+      overflow: hidden;
+      margin-bottom: 48px;
+    }
+
+    .priority-table table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    .priority-table th,
+    .priority-table td {
+      padding: 16px;
+      text-align: left;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .priority-table th {
+      background: var(--accent-light);
+      font-weight: 600;
+      font-size: 0.85rem;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      color: var(--muted);
+    }
+
+    .priority-table tr:last-child td {
+      border-bottom: none;
+    }
+
+    .priority-table tr:hover {
+      background: #fefce8;
+    }
+
+    .verdict {
+      display: inline-block;
+      padding: 4px 12px;
+      border-radius: 999px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      text-transform: uppercase;
+    }
+
+    .verdict-build { background: #d1fae5; color: #065f46; }
+    .verdict-caution { background: #fef3c7; color: #92400e; }
+    .verdict-careful { background: #fee2e2; color: #991b1b; }
+
     .grid {
       display: grid;
       grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
@@ -179,36 +258,10 @@
       text-transform: uppercase;
     }
 
-    .badge-research { background: #fef3c7; color: #d97706; }
-    .badge-ready { background: #d1fae5; color: #059669; }
-    .badge-priority { background: #fee2e2; color: #dc2626; }
-
-    .market-insight {
-      background: linear-gradient(135deg, var(--accent-light), #e0f2fe);
-      padding: 24px;
-      border-radius: 16px;
-      margin-bottom: 32px;
-    }
-
-    .market-insight h3 {
-      font-size: 1.1rem;
-      margin-bottom: 12px;
-      color: var(--accent);
-    }
-
-    .market-insight ul {
-      list-style: none;
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 8px;
-    }
-
-    .market-insight li {
-      padding: 8px 12px;
-      background: white;
-      border-radius: 8px;
-      font-size: 0.9rem;
-    }
+    .badge-build { background: #d1fae5; color: #059669; }
+    .badge-caution { background: #fef3c7; color: #d97706; }
+    .badge-careful { background: #fee2e2; color: #dc2626; }
+    .badge-seasonal { background: #dbeafe; color: #1d4ed8; }
 
     @media (max-width: 640px) {
       h1 { font-size: 1.75rem; }
@@ -223,7 +276,7 @@
     <header>
       <h1>🎨 AI Image Generation Apps</h1>
       <p class="subtitle">
-        Paid-upfront apps that generate AI photos. User pays → gets 10 images.
+        Paid-upfront apps that generate AI photos. User pays → gets images.
         Same API backend (Replicate/FLUX), different niches & prompts.
       </p>
       <div class="stats-row">
@@ -232,7 +285,7 @@
           <div class="stat-label">Market Size</div>
         </div>
         <div class="stat">
-          <div class="stat-value">95%</div>
+          <div class="stat-value">60-77%</div>
           <div class="stat-label">Gross Margin</div>
         </div>
         <div class="stat">
@@ -240,7 +293,7 @@
           <div class="stat-label">App Concepts</div>
         </div>
         <div class="stat">
-          <div class="stat-value">$10-30</div>
+          <div class="stat-value">$10-25</div>
           <div class="stat-label">Price Point</div>
         </div>
       </div>
@@ -249,189 +302,213 @@
     <div class="market-insight">
       <h3>💡 Business Model</h3>
       <ul>
-        <li><strong>Cost:</strong> ~$0.05/image (Replicate API)</li>
-        <li><strong>Price:</strong> $1/image ($10 for 10 pack)</li>
-        <li><strong>Margin:</strong> 95% gross margin</li>
-        <li><strong>Flow:</strong> Upload selfies → Train model → Generate</li>
+        <li><strong>Cost:</strong> ~$0.02-0.10/image (Replicate API)</li>
+        <li><strong>Price:</strong> $10-25 per pack</li>
+        <li><strong>Margin:</strong> 58-77% after App Store fee</li>
+        <li><strong>Flow:</strong> Upload photos → Train model → Generate</li>
         <li><strong>Secret:</strong> Custom prompts = "unique AI"</li>
-        <li><strong>Validation:</strong> Pieter Levels = $132K/month (PhotoAI)</li>
+        <li><strong>Validation:</strong> PhotoAI = $132K/month (Pieter Levels)</li>
       </ul>
+    </div>
+
+    <h2 class="section-title">📊 Priority Rankings</h2>
+    <div class="priority-table">
+      <table>
+        <tr>
+          <th>App</th>
+          <th>Verdict</th>
+          <th>Margin</th>
+          <th>Key Insight</th>
+        </tr>
+        <tr>
+          <td><a href="babyglow/">👶 BabyGlow</a></td>
+          <td><span class="verdict verdict-build">BUILD</span></td>
+          <td>77%</td>
+          <td>Pro photos $400-500, deep parent regret, grandparent gift market</td>
+        </tr>
+        <tr>
+          <td><a href="petroyalty/">🐕 PetRoyalty</a></td>
+          <td><span class="verdict verdict-build">BUILD</span></td>
+          <td>69%</td>
+          <td>$152B pet market, no mobile-first instant app, viral sharing</td>
+        </tr>
+        <tr>
+          <td><a href="holidaymagic/">🎄 HolidayMagic</a></td>
+          <td><span class="verdict verdict-build">BUILD</span></td>
+          <td>66%</td>
+          <td>$3.5B market, seasonal (Nov 1-Dec 15 = 80% revenue)</td>
+        </tr>
+        <tr>
+          <td><a href="matchmaker/">💘 MatchMaker</a></td>
+          <td><span class="verdict verdict-build">BUILD</span></td>
+          <td>60%</td>
+          <td>Competitors $29-49, we differentiate at $14.99, TikTok proven</td>
+        </tr>
+        <tr>
+          <td><a href="cloneyourself/">🧬 CloneYourself</a></td>
+          <td><span class="verdict verdict-build">BUILD</span></td>
+          <td>58%</td>
+          <td>Side-view generation solves face consistency gap</td>
+        </tr>
+        <tr>
+          <td><a href="headshotpro/">💼 HeadshotPro</a></td>
+          <td><span class="verdict verdict-caution">CAUTION</span></td>
+          <td>79-84%</td>
+          <td>Crowded market, but $15-20 ultra-budget tier is open</td>
+        </tr>
+        <tr>
+          <td><a href="forevermemory/">🕊️ ForeverMemory</a></td>
+          <td><span class="verdict verdict-careful">CAREFUL</span></td>
+          <td>65%</td>
+          <td>Real need but ethics-first required, risk of backlash</td>
+        </tr>
+      </table>
     </div>
 
     <h2 class="section-title">📱 App Concepts</h2>
     <div class="grid">
       
-      <!-- Clone Yourself -->
-      <a href="cloneyourself.html" class="card">
+      <!-- BabyGlow -->
+      <a href="babyglow/" class="card">
         <div class="card-header">
-          <div class="card-icon" style="background: linear-gradient(135deg, #8b5cf6, #06b6d4);">🧬</div>
+          <div class="card-icon" style="background: linear-gradient(135deg, #f472b6, #ec4899);">👶</div>
           <div>
-            <div class="card-title">CloneYourself</div>
-            <span class="badge badge-priority">Priority</span>
+            <div class="card-title">BabyGlow</div>
+            <span class="badge badge-build">BUILD</span>
           </div>
         </div>
-        <p class="card-subtitle">Your digital twin in any scenario</p>
+        <p class="card-subtitle">Studio-quality baby portraits from your phone</p>
         <p class="card-description">
-          Upload selfies → AI creates hyper-realistic clone → Generate yourself 
-          in any setting. Side-view generation for perfect face accuracy.
+          Pro baby photos cost $400-500. Parents have deep regret over missed milestones. 
+          Monthly templates, holiday themes, grandparent gift market.
         </p>
         <div class="card-stats">
-          <div class="card-stat">Market: <span class="card-stat-value">Creators</span></div>
-          <div class="card-stat">Price: <span class="card-stat-value">$15-25</span></div>
-          <div class="card-stat">Status: <span class="card-stat-value">Research</span></div>
+          <div class="card-stat">Margin: <span class="card-stat-value">77%</span></div>
+          <div class="card-stat">Price: <span class="card-stat-value">$19.99</span></div>
         </div>
       </a>
 
-      <!-- Dating Photos -->
-      <a href="datingphotos.html" class="card">
-        <div class="card-header">
-          <div class="card-icon" style="background: linear-gradient(135deg, #ec4899, #f43f5e);">💘</div>
-          <div>
-            <div class="card-title">MatchMaker Photos</div>
-            <span class="badge badge-priority">Priority</span>
-          </div>
-        </div>
-        <p class="card-subtitle">10x your dating matches</p>
-        <p class="card-description">
-          Professional dating profile photos without a photographer. 
-          "You don't need a 6-pack, you need a photographer" — solved.
-        </p>
-        <div class="card-stats">
-          <div class="card-stat">Market: <span class="card-stat-value">$3B+</span></div>
-          <div class="card-stat">Price: <span class="card-stat-value">$10-20</span></div>
-          <div class="card-stat">Status: <span class="card-stat-value">Research</span></div>
-        </div>
-      </a>
-
-      <!-- Pet Portraits -->
-      <a href="petportraits.html" class="card">
+      <!-- PetRoyalty -->
+      <a href="petroyalty/" class="card">
         <div class="card-header">
           <div class="card-icon" style="background: linear-gradient(135deg, #f59e0b, #eab308);">🐕</div>
           <div>
             <div class="card-title">PetRoyalty</div>
-            <span class="badge badge-priority">Priority</span>
+            <span class="badge badge-build">BUILD</span>
           </div>
         </div>
         <p class="card-subtitle">Your pet as royalty, superhero, or art</p>
         <p class="card-description">
-          Turn pet photos into renaissance paintings, superhero posters, 
-          or fantasy art. Highly shareable, viral potential.
+          $152B pet market, 94M households. Instant generation (30 sec vs hours), 
+          built-in viral sharing, memorial portraits for $20-50 sweet spot.
         </p>
         <div class="card-stats">
-          <div class="card-stat">Market: <span class="card-stat-value">$100B pet</span></div>
-          <div class="card-stat">Price: <span class="card-stat-value">$10-20</span></div>
-          <div class="card-stat">Status: <span class="card-stat-value">Research</span></div>
+          <div class="card-stat">Margin: <span class="card-stat-value">69%</span></div>
+          <div class="card-stat">Price: <span class="card-stat-value">$9.99-19.99</span></div>
         </div>
       </a>
 
-      <!-- Professional Headshots -->
-      <a href="proheadshots.html" class="card">
+      <!-- HolidayMagic -->
+      <a href="holidaymagic/" class="card">
+        <div class="card-header">
+          <div class="card-icon" style="background: linear-gradient(135deg, #dc2626, #b91c1c);">🎄</div>
+          <div>
+            <div class="card-title">HolidayMagic</div>
+            <span class="badge badge-build">BUILD</span>
+            <span class="badge badge-seasonal">SEASONAL</span>
+          </div>
+        </div>
+        <p class="card-subtitle">AI-enhanced seasonal photo cards</p>
+        <p class="card-description">
+          Fix group photos where everyone looks terrible. AI face swap + holiday scene generation.
+          $3.5B market. 80% revenue Nov 1 - Dec 15.
+        </p>
+        <div class="card-stats">
+          <div class="card-stat">Margin: <span class="card-stat-value">66%</span></div>
+          <div class="card-stat">Price: <span class="card-stat-value">$9.99-14.99</span></div>
+        </div>
+      </a>
+
+      <!-- MatchMaker -->
+      <a href="matchmaker/" class="card">
+        <div class="card-header">
+          <div class="card-icon" style="background: linear-gradient(135deg, #ec4899, #f43f5e);">💘</div>
+          <div>
+            <div class="card-title">MatchMaker Photos</div>
+            <span class="badge badge-build">BUILD</span>
+          </div>
+        </div>
+        <p class="card-subtitle">10x your dating matches</p>
+        <p class="card-description">
+          $6.18B dating market, 350M+ users. Competitors charge $29-49, we undercut at $14.99.
+          Before/after format proven viral (52.5M TikTok views).
+        </p>
+        <div class="card-stats">
+          <div class="card-stat">Margin: <span class="card-stat-value">60%</span></div>
+          <div class="card-stat">Price: <span class="card-stat-value">$14.99</span></div>
+        </div>
+      </a>
+
+      <!-- CloneYourself -->
+      <a href="cloneyourself/" class="card">
+        <div class="card-header">
+          <div class="card-icon" style="background: linear-gradient(135deg, #8b5cf6, #06b6d4);">🧬</div>
+          <div>
+            <div class="card-title">CloneYourself</div>
+            <span class="badge badge-build">BUILD</span>
+          </div>
+        </div>
+        <p class="card-subtitle">Your digital twin in any scenario</p>
+        <p class="card-description">
+          Side-view generation tech solves the #1 complaint: "doesn't look like me".
+          Content creators + dating users. $2.5B+ AI avatar market.
+        </p>
+        <div class="card-stats">
+          <div class="card-stat">Margin: <span class="card-stat-value">58%</span></div>
+          <div class="card-stat">Price: <span class="card-stat-value">$19-25</span></div>
+        </div>
+      </a>
+
+      <!-- HeadshotPro -->
+      <a href="headshotpro/" class="card">
         <div class="card-header">
           <div class="card-icon" style="background: linear-gradient(135deg, #3b82f6, #1d4ed8);">💼</div>
           <div>
             <div class="card-title">HeadshotPro</div>
-            <span class="badge badge-research">Validated</span>
+            <span class="badge badge-caution">CAUTION</span>
           </div>
         </div>
         <p class="card-subtitle">LinkedIn headshots without a photographer</p>
         <p class="card-description">
-          Professional headshots for resumes, LinkedIn, corporate profiles.
-          Save $500 vs traditional photographer.
+          Crowded market (Aragon, HeadshotPro, Dreamwave). Differentiate with $15-20 tier
+          or "pay only if you love it" model. B2B potential.
         </p>
         <div class="card-stats">
-          <div class="card-stat">Market: <span class="card-stat-value">$200M+</span></div>
-          <div class="card-stat">Price: <span class="card-stat-value">$15-30</span></div>
-          <div class="card-stat">Status: <span class="card-stat-value">Research</span></div>
+          <div class="card-stat">Margin: <span class="card-stat-value">79-84%</span></div>
+          <div class="card-stat">Risk: <span class="card-stat-value">Crowded</span></div>
         </div>
       </a>
 
-      <!-- Baby/Family Portraits -->
-      <a href="babyportraits.html" class="card">
+      <!-- ForeverMemory -->
+      <a href="forevermemory/" class="card">
         <div class="card-header">
-          <div class="card-icon" style="background: linear-gradient(135deg, #ec4899, #f9a8d4);">👶</div>
-          <div>
-            <div class="card-title">BabyGlow</div>
-            <span class="badge badge-research">Research</span>
-          </div>
-        </div>
-        <p class="card-subtitle">Professional baby portraits at home</p>
-        <p class="card-description">
-          Turn phone photos into studio-quality baby portraits.
-          Milestone photos, family combinations, seasonal themes.
-        </p>
-        <div class="card-stats">
-          <div class="card-stat">Market: <span class="card-stat-value">Parents</span></div>
-          <div class="card-stat">Price: <span class="card-stat-value">$15-25</span></div>
-          <div class="card-stat">Status: <span class="card-stat-value">Research</span></div>
-        </div>
-      </a>
-
-      <!-- Holiday Cards -->
-      <a href="holidaycards.html" class="card">
-        <div class="card-header">
-          <div class="card-icon" style="background: linear-gradient(135deg, #22c55e, #ef4444);">🎄</div>
-          <div>
-            <div class="card-title">HolidayMagic</div>
-            <span class="badge badge-research">Seasonal</span>
-          </div>
-        </div>
-        <p class="card-subtitle">AI-enhanced holiday family photos</p>
-        <p class="card-description">
-          Christmas, Valentine's, Mother's Day photo magic.
-          Add Santa, snow, festive scenes to regular photos.
-        </p>
-        <div class="card-stats">
-          <div class="card-stat">Market: <span class="card-stat-value">Seasonal</span></div>
-          <div class="card-stat">Price: <span class="card-stat-value">$10-15</span></div>
-          <div class="card-stat">Status: <span class="card-stat-value">Research</span></div>
-        </div>
-      </a>
-
-      <!-- Memorial Photos -->
-      <a href="memorialphotos.html" class="card">
-        <div class="card-header">
-          <div class="card-icon" style="background: linear-gradient(135deg, #6b7280, #9ca3af);">🕊️</div>
+          <div class="card-icon" style="background: linear-gradient(135deg, #6b7280, #374151);">🕊️</div>
           <div>
             <div class="card-title">ForeverMemory</div>
-            <span class="badge badge-research">Premium</span>
+            <span class="badge badge-careful">CAREFUL</span>
           </div>
         </div>
-        <p class="card-subtitle">Honor loved ones with enhanced photos</p>
+        <p class="card-subtitle">Honor those you've lost</p>
         <p class="card-description">
-          Restore old photos, enhance memories, create "what would they look like today".
-          Handle with extreme sensitivity. High willingness to pay.
+          Photo restoration + memorial portraits. Real need but requires ethics-first approach.
+          Grief community skeptical of commercial offerings. Slow, organic growth only.
         </p>
         <div class="card-stats">
-          <div class="card-stat">Market: <span class="card-stat-value">Emotional</span></div>
-          <div class="card-stat">Price: <span class="card-stat-value">$25-50</span></div>
-          <div class="card-stat">Status: <span class="card-stat-value">Research</span></div>
+          <div class="card-stat">Margin: <span class="card-stat-value">65%</span></div>
+          <div class="card-stat">Risk: <span class="card-stat-value">Ethics</span></div>
         </div>
       </a>
 
-    </div>
-
-    <h2 class="section-title">📊 Research Status</h2>
-    <div class="market-insight">
-      <h3>Phase 1: Market Discovery ✅</h3>
-      <ul>
-        <li>Market size: $200M+ and growing</li>
-        <li>Success stories: PhotoAI ($132K/mo), Lensa ($30M peak)</li>
-        <li>Business model: Pack-based, paid upfront</li>
-        <li>Key insight: Utility beats novelty for sustainability</li>
-      </ul>
-    </div>
-
-    <div class="market-insight">
-      <h3>Phase 2: Deep Dives — In Progress 🔄</h3>
-      <ul>
-        <li>⏳ CloneYourself — pending</li>
-        <li>⏳ MatchMaker Photos (Dating) — pending</li>
-        <li>⏳ PetRoyalty — pending</li>
-        <li>⏳ HeadshotPro — pending</li>
-        <li>⏳ BabyGlow — pending</li>
-        <li>⏳ HolidayMagic — pending</li>
-        <li>⏳ ForeverMemory — pending</li>
-      </ul>
     </div>
 
   </div>

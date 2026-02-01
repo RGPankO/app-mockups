@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>HolidayMagic — App Hub</title>
+  <style>
+    :root {
+      --primary: #dc2626;
+      --primary-light: #fee2e2;
+      --primary-dark: #b91c1c;
+      --bg: #fef2f2;
+      --card: #ffffff;
+      --text: #1e1b3a;
+      --muted: #6b7280;
+      --border: #e5e7eb;
+      --shadow: 0 4px 12px rgba(0,0,0,0.08);
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { 
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      background: var(--bg); color: var(--text); line-height: 1.6;
+      padding: 24px 16px 60px;
+    }
+    .container { max-width: 900px; margin: 0 auto; }
+    
+    header { text-align: center; padding: 40px 20px; margin-bottom: 32px; }
+    .logo { font-size: 48px; margin-bottom: 12px; }
+    h1 { font-size: 32px; color: var(--primary-dark); margin-bottom: 8px; }
+    .tagline { color: var(--muted); font-size: 18px; }
+    
+    .badges { display: flex; gap: 12px; justify-content: center; margin-top: 20px; flex-wrap: wrap; }
+    .badge { background: var(--primary-light); color: var(--primary-dark); padding: 6px 14px; 
+             border-radius: 20px; font-size: 13px; font-weight: 500; }
+    .badge.build { background: #10b981; color: white; }
+    .badge.seasonal { background: #fbbf24; color: #78350f; }
+    
+    .section { background: var(--card); border-radius: 16px; padding: 24px; 
+               margin-bottom: 20px; box-shadow: var(--shadow); }
+    .section h2 { font-size: 18px; color: var(--primary-dark); margin-bottom: 16px; 
+                  padding-bottom: 12px; border-bottom: 2px solid var(--primary-light); }
+    
+    .keywords { display: flex; flex-wrap: wrap; gap: 8px; }
+    .keyword { background: #f0f0f0; padding: 4px 10px; border-radius: 12px; font-size: 12px; color: #666; }
+    
+    .quote { background: var(--primary-light); border-left: 4px solid var(--primary); 
+             padding: 16px; margin-bottom: 12px; border-radius: 0 8px 8px 0; font-style: italic; }
+    .quote-source { font-size: 12px; color: var(--muted); margin-top: 8px; font-style: normal; }
+    
+    .feature { display: flex; gap: 12px; margin-bottom: 16px; align-items: flex-start; }
+    .feature-icon { font-size: 24px; }
+    .feature h3 { font-size: 15px; margin-bottom: 4px; }
+    .feature p { font-size: 13px; color: var(--muted); }
+    
+    .stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 16px; }
+    .stat { text-align: center; padding: 16px; background: var(--primary-light); border-radius: 12px; }
+    .stat-value { font-size: 28px; font-weight: 700; color: var(--primary-dark); }
+    .stat-label { font-size: 12px; color: var(--muted); }
+    
+    table { width: 100%; border-collapse: collapse; font-size: 14px; }
+    th, td { padding: 10px 12px; text-align: left; border-bottom: 1px solid var(--border); }
+    th { background: var(--primary-light); font-weight: 600; }
+    
+    .back-link { display: inline-block; margin-bottom: 20px; color: var(--primary); text-decoration: none; }
+    .back-link:hover { text-decoration: underline; }
+    
+    .highlight { background: #fef3c7; padding: 16px; border-radius: 12px; margin-bottom: 20px; }
+    .highlight h3 { color: #92400e; margin-bottom: 8px; }
+    
+    .revenue-chart { font-family: monospace; font-size: 14px; line-height: 1.8; }
+    
+    @media (max-width: 600px) {
+      .stats-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <a href="../image-gen.html" class="back-link">← Back to Image Gen Apps</a>
+    
+    <header>
+      <div class="logo">🎄</div>
+      <h1>HolidayMagic</h1>
+      <p class="tagline">AI-Enhanced Seasonal Photo Cards</p>
+      <div class="badges">
+        <span class="badge build">✅ BUILD</span>
+        <span class="badge seasonal">📅 SEASONAL</span>
+        <span class="badge">66% Margin</span>
+        <span class="badge">$3.5B Market</span>
+      </div>
+    </header>
+    
+    <!-- Key Insight -->
+    <div class="highlight">
+      <h3>🎯 The Problem We Solve</h3>
+      <p>Getting everyone looking good in the same family photo is nearly impossible. Parents describe holiday photos as "disasters" 
+         with kids crying, dogs facing backwards, blurry shots. <strong>No one combines AI enhancement with holiday-specific scene generation.</strong></p>
+    </div>
+    
+    <!-- App Store Info -->
+    <div class="section">
+      <h2>📱 App Store Listing</h2>
+      <table>
+        <tr><th>Field</th><th>Value</th></tr>
+        <tr><td>App Name</td><td><strong>HolidayMagic</strong></td></tr>
+        <tr><td>Subtitle</td><td>Perfect Family Cards, AI-Fixed</td></tr>
+        <tr><td>Category</td><td>Photo & Video (primary)</td></tr>
+        <tr><td>Price</td><td>$9.99 Basic / $14.99 Family Pack</td></tr>
+      </table>
+      
+      <h3 style="margin: 20px 0 12px; font-size: 15px;">Keywords</h3>
+      <div class="keywords">
+        <span class="keyword">christmas cards</span>
+        <span class="keyword">holiday photos</span>
+        <span class="keyword">family photo fix</span>
+        <span class="keyword">photo card</span>
+        <span class="keyword">AI photo</span>
+        <span class="keyword">christmas photo</span>
+        <span class="keyword">greeting card</span>
+      </div>
+    </div>
+    
+    <!-- Market Stats -->
+    <div class="section">
+      <h2>📊 Market Opportunity</h2>
+      <div class="stats-grid">
+        <div class="stat">
+          <div class="stat-value">$3.5B</div>
+          <div class="stat-label">US Holiday Card Market</div>
+        </div>
+        <div class="stat">
+          <div class="stat-value">35M</div>
+          <div class="stat-label">Households w/ Kids</div>
+        </div>
+        <div class="stat">
+          <div class="stat-value">66%</div>
+          <div class="stat-label">Gross Margin</div>
+        </div>
+        <div class="stat">
+          <div class="stat-value">$0.07</div>
+          <div class="stat-label">Cost/Image</div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Revenue Timing -->
+    <div class="section">
+      <h2>📈 Revenue Timing (Critical!)</h2>
+      <p style="margin-bottom: 16px;"><strong>80% of Christmas card purchases happen Nov 1 - Dec 15.</strong></p>
+      <div class="revenue-chart">
+        Oct:      ▓▓░░░░░░░░ 15%<br>
+        Nov:      ▓▓▓▓▓▓▓▓░░ 45%<br>
+        Dec 1-15: ▓▓▓▓▓▓░░░░ 35%<br>
+        Dec 16+:  ▓░░░░░░░░░ 5%
+      </div>
+      <p style="margin-top: 16px; color: var(--muted); font-size: 14px;">
+        <strong>Action:</strong> MVP must ship by October 2026. Marketing spend front-loads Oct-Nov, harvest Nov-Dec.
+      </p>
+    </div>
+    
+    <!-- Features -->
+    <div class="section">
+      <h2>✨ Core Features</h2>
+      <div class="feature">
+        <span class="feature-icon">🔄</span>
+        <div>
+          <h3>AI Face Swapper</h3>
+          <p>Upload 2-5 group shots. AI picks best expression for each person. Combines into one perfect photo.</p>
+        </div>
+      </div>
+      <div class="feature">
+        <span class="feature-icon">❄️</span>
+        <div>
+          <h3>Holiday Scene Generator</h3>
+          <p>Add snow to outdoor photos. Insert Santa/elves. Festive backgrounds (fireplace, snowy forest).</p>
+        </div>
+      </div>
+      <div class="feature">
+        <span class="feature-icon">🎨</span>
+        <div>
+          <h3>One-Tap Card Creator</h3>
+          <p>Photo + AI enhancement → ready-to-share card. Digital or print-ready export.</p>
+        </div>
+      </div>
+      <div class="feature">
+        <span class="feature-icon">🖨️</span>
+        <div>
+          <h3>Print Integration</h3>
+          <p>Shutterfly/Snapfish API for physical printing. One-tap order.</p>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Reddit Quotes -->
+    <div class="section">
+      <h2>💬 User Pain Points (Reddit)</h2>
+      <div class="quote">
+        "One kid was smiling but had hair completely blocking their face. The other was crawling on the ground. The dog was faced completely backwards. The baby was red faced screaming in a carrier. Dad was half blinking, mouth open."
+        <div class="quote-source">— r/toddlers</div>
+      </div>
+      <div class="quote">
+        "Its been 10 weeks and we only have half of our photos... the photos we got back were honestly so terrible it makes my heart hurt."
+        <div class="quote-source">— r/photography</div>
+      </div>
+      <div class="quote">
+        "Try to stress less this holiday season. Send the bad holiday card - or none at all. We spend so much of our time trying to get the perfect, smiling, happy, clean photo of our family."
+        <div class="quote-source">— r/toddlers</div>
+      </div>
+    </div>
+    
+    <!-- Seasonal Calendar -->
+    <div class="section">
+      <h2>📅 Seasonal Revenue Calendar</h2>
+      <table>
+        <tr><th>Holiday</th><th>Peak Window</th><th>Revenue %</th></tr>
+        <tr><td>🎄 Christmas</td><td>Nov 1 - Dec 15</td><td>60%</td></tr>
+        <tr><td>💝 Valentine's Day</td><td>Jan 20 - Feb 10</td><td>15%</td></tr>
+        <tr><td>💐 Mother's Day</td><td>April 15 - May 8</td><td>15%</td></tr>
+        <tr><td>🐰 Easter</td><td>March-April</td><td>5%</td></tr>
+        <tr><td>👻 Halloween</td><td>September-October</td><td>5%</td></tr>
+      </table>
+    </div>
+    
+    <!-- Pricing -->
+    <div class="section">
+      <h2>💰 Pricing Strategy</h2>
+      <table>
+        <tr><th>Tier</th><th>Price</th><th>Includes</th></tr>
+        <tr><td>Basic</td><td>$9.99</td><td>5 card projects, basic templates, digital export</td></tr>
+        <tr><td>Family Pack</td><td>$14.99</td><td>Unlimited cards for season, premium templates, print-ready</td></tr>
+        <tr><td>Annual Pass</td><td>$29.99</td><td>All holidays (Christmas, Valentine's, Mother's Day, Easter)</td></tr>
+      </table>
+      <p style="margin-top: 16px; color: var(--muted); font-size: 14px;">
+        <strong>Why one-time > subscription:</strong> Seasonal usage doesn't justify monthly fees. 
+        Lower friction for stressed parents in crunch time.
+      </p>
+    </div>
+    
+    <!-- Competitors -->
+    <div class="section">
+      <h2>⚔️ Competitive Landscape</h2>
+      <table>
+        <tr><th>Category</th><th>Players</th><th>Gap</th></tr>
+        <tr><td>Traditional Cards</td><td>Shutterfly, Minted, Snapfish</td><td>No AI, requires perfect photos</td></tr>
+        <tr><td>AI Photo Apps</td><td>Remini, Lensa, Picsart</td><td>Not holiday-specific, no scene gen</td></tr>
+        <tr><td><strong>HolidayMagic (Us)</strong></td><td></td><td><strong>AI photo fix + holiday scenes</strong></td></tr>
+      </table>
+    </div>
+    
+  </div>
+</body>
+</html>
