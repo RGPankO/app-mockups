@@ -3,55 +3,44 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Women's Health App Ideas — Research & Mockups</title>
+  <title>App Ideas Hub — Research & Mockups</title>
   <style>
     :root {
       --bg: #fefefe;
       --text: #2d2d2d;
       --muted: #6b7280;
-      --accent: #ec4899;
-      --accent-light: #fce7f3;
-      --success: #10b981;
-      --warning: #f59e0b;
       --card-bg: #ffffff;
       --border: #e5e7eb;
       --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
       --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
     }
 
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
 
     body {
       font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-      background: linear-gradient(180deg, #fdf2f8 0%, #fefefe 100%);
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
       color: var(--text);
       min-height: 100vh;
       padding: 24px 16px 60px;
       line-height: 1.6;
     }
 
-    .container {
-      max-width: 1200px;
-      margin: 0 auto;
-    }
+    .container { max-width: 1000px; margin: 0 auto; }
 
     header {
       text-align: center;
       margin-bottom: 48px;
-      padding: 40px 20px;
+      padding: 60px 20px;
       background: var(--card-bg);
       border-radius: 24px;
-      box-shadow: var(--shadow);
+      box-shadow: var(--shadow-lg);
     }
 
     h1 {
-      font-size: 2.5rem;
-      margin-bottom: 12px;
-      background: linear-gradient(135deg, #ec4899, #8b5cf6);
+      font-size: 3rem;
+      margin-bottom: 16px;
+      background: linear-gradient(135deg, #667eea, #764ba2);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       background-clip: text;
@@ -59,883 +48,235 @@
 
     .subtitle {
       color: var(--muted);
-      font-size: 1.1rem;
+      font-size: 1.2rem;
       max-width: 600px;
-      margin: 0 auto 24px;
+      margin: 0 auto;
     }
 
-    .stats-row {
-      display: flex;
-      gap: 24px;
-      justify-content: center;
-      flex-wrap: wrap;
-      margin-top: 24px;
+    .categories {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 32px;
     }
 
-    .stat {
-      background: var(--accent-light);
-      padding: 12px 20px;
-      border-radius: 12px;
+    .category-card {
+      background: var(--card-bg);
+      border-radius: 24px;
+      padding: 40px 32px;
+      box-shadow: var(--shadow-lg);
+      text-decoration: none;
+      color: inherit;
+      transition: transform 0.3s, box-shadow 0.3s;
+      display: block;
       text-align: center;
     }
 
-    .stat-value {
-      font-size: 1.5rem;
-      font-weight: 700;
-      color: var(--accent);
+    .category-card:hover {
+      transform: translateY(-8px) scale(1.02);
+      box-shadow: 0 20px 40px rgba(0,0,0,0.15);
     }
 
-    .stat-label {
-      font-size: 0.85rem;
+    .category-icon {
+      font-size: 4rem;
+      margin-bottom: 20px;
+      display: block;
+    }
+
+    .category-title {
+      font-size: 1.75rem;
+      font-weight: 700;
+      margin-bottom: 12px;
+    }
+
+    .category-description {
       color: var(--muted);
+      font-size: 1rem;
+      margin-bottom: 24px;
+      line-height: 1.6;
     }
 
-    .section-title {
-      font-size: 1.5rem;
-      margin: 48px 0 24px;
+    .category-stats {
       display: flex;
-      align-items: center;
-      gap: 12px;
-    }
-
-    .section-title::before {
-      content: '';
-      width: 4px;
-      height: 28px;
-      background: var(--accent);
-      border-radius: 4px;
-    }
-
-    .priority-table {
-      background: var(--card-bg);
-      border-radius: 16px;
-      box-shadow: var(--shadow);
-      overflow: hidden;
-      margin-bottom: 48px;
-    }
-
-    .priority-table table {
-      width: 100%;
-      border-collapse: collapse;
-    }
-
-    .priority-table th,
-    .priority-table td {
-      padding: 16px;
-      text-align: left;
-      border-bottom: 1px solid var(--border);
-    }
-
-    .priority-table th {
-      background: #fdf2f8;
-      font-weight: 600;
-      font-size: 0.85rem;
-      text-transform: uppercase;
-      letter-spacing: 0.5px;
-      color: var(--muted);
-    }
-
-    .priority-table tr:last-child td {
-      border-bottom: none;
-    }
-
-    .priority-table tr:hover {
-      background: #fefce8;
-    }
-
-    .rank {
-      width: 50px;
-      font-weight: 700;
-      font-size: 1.2rem;
-    }
-
-    .rank-1 { color: #eab308; }
-    .rank-2 { color: #a3a3a3; }
-    .rank-3 { color: #d97706; }
-
-    .app-name {
-      font-weight: 600;
-    }
-
-    .app-name a {
-      color: var(--text);
-      text-decoration: none;
-    }
-
-    .app-name a:hover {
-      color: var(--accent);
-    }
-
-    .score {
-      font-weight: 700;
-      font-size: 1.1rem;
-    }
-
-    .verdict {
-      display: inline-block;
-      padding: 4px 12px;
-      border-radius: 999px;
-      font-size: 0.75rem;
-      font-weight: 600;
-      text-transform: uppercase;
-    }
-
-    .verdict-strong { background: #d1fae5; color: #065f46; }
-    .verdict-good { background: #dbeafe; color: #1e40af; }
-    .verdict-consider { background: #fef3c7; color: #92400e; }
-
-    .apps-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
-      gap: 24px;
-    }
-
-    .app-card {
-      background: var(--card-bg);
-      border-radius: 20px;
-      box-shadow: var(--shadow);
-      overflow: hidden;
-      transition: transform 0.2s, box-shadow 0.2s;
-      text-decoration: none;
-      color: inherit;
-      display: flex;
-      flex-direction: column;
-    }
-
-    .app-card:hover {
-      transform: translateY(-4px);
-      box-shadow: var(--shadow-lg);
-    }
-
-    .card-header {
-      padding: 24px 24px 16px;
-      display: flex;
-      justify-content: space-between;
-      align-items: flex-start;
-    }
-
-    .card-icon {
-      width: 48px;
-      height: 48px;
-      border-radius: 12px;
-      display: flex;
-      align-items: center;
       justify-content: center;
-      font-size: 24px;
-    }
-
-    .card-rank {
-      font-size: 0.75rem;
-      font-weight: 600;
-      padding: 4px 10px;
-      border-radius: 999px;
-      background: #f3f4f6;
-      color: var(--muted);
-    }
-
-    .card-rank.top { background: #fef3c7; color: #92400e; }
-
-    .card-body {
-      padding: 0 24px 24px;
-      flex: 1;
-    }
-
-    .card-title {
-      font-size: 1.25rem;
-      font-weight: 700;
-      margin-bottom: 8px;
-    }
-
-    .card-tagline {
-      font-size: 0.9rem;
-      color: var(--muted);
-      margin-bottom: 16px;
-    }
-
-    .card-meta {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
-      margin-bottom: 16px;
-    }
-
-    .meta-tag {
-      font-size: 0.75rem;
-      padding: 4px 10px;
-      border-radius: 999px;
-      background: #f3f4f6;
-      color: var(--muted);
-    }
-
-    .meta-tag.highlight {
-      background: var(--accent-light);
-      color: #be185d;
-    }
-
-    .card-stats {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 12px;
-      padding-top: 16px;
+      gap: 24px;
+      padding-top: 20px;
       border-top: 1px solid var(--border);
     }
 
-    .card-stat {
+    .category-stat {
       text-align: center;
     }
 
-    .card-stat-value {
+    .category-stat-value {
+      font-size: 1.5rem;
       font-weight: 700;
-      font-size: 0.95rem;
     }
 
-    .card-stat-label {
-      font-size: 0.7rem;
+    .category-stat-label {
+      font-size: 0.8rem;
       color: var(--muted);
       text-transform: uppercase;
     }
 
-    .card-footer {
-      padding: 16px 24px;
-      background: #fafafa;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
+    .womens-health .category-title { color: #ec4899; }
+    .womens-health .category-stat-value { color: #ec4899; }
+
+    .image-gen .category-title { color: #8b5cf6; }
+    .image-gen .category-stat-value { color: #8b5cf6; }
+
+    .coming-soon {
+      opacity: 0.6;
+      pointer-events: none;
     }
 
-    .view-mockup {
-      font-size: 0.85rem;
+    .coming-soon .category-title { color: var(--muted); }
+
+    .badge {
+      display: inline-block;
+      padding: 4px 12px;
+      border-radius: 20px;
+      font-size: 0.75rem;
       font-weight: 600;
-      color: var(--accent);
+      text-transform: uppercase;
+      margin-bottom: 16px;
     }
 
-    .card-score {
-      font-weight: 700;
-      font-size: 1.1rem;
-      color: var(--success);
-    }
-
-    .alert {
-      background: linear-gradient(135deg, #fef3c7, #fde68a);
-      border-left: 4px solid #f59e0b;
-      padding: 16px 20px;
-      border-radius: 12px;
-      margin-bottom: 32px;
-    }
-
-    .alert-title {
-      font-weight: 600;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      margin-bottom: 4px;
-    }
-
-    .alert-text {
-      font-size: 0.9rem;
-      color: #78350f;
-    }
+    .badge-active { background: #d1fae5; color: #059669; }
+    .badge-new { background: #ede9fe; color: #7c3aed; }
+    .badge-soon { background: #f3f4f6; color: #6b7280; }
 
     footer {
       text-align: center;
       margin-top: 60px;
-      padding: 24px;
-      color: var(--muted);
-      font-size: 0.9rem;
+      color: white;
+      opacity: 0.8;
     }
 
-    footer a {
-      color: var(--accent);
-    }
+    footer a { color: white; }
 
     @media (max-width: 640px) {
-      h1 { font-size: 1.75rem; }
-      .stats-row { gap: 12px; }
-      .stat { padding: 8px 16px; }
-      .priority-table { overflow-x: auto; }
-      .apps-grid { grid-template-columns: 1fr; }
+      h1 { font-size: 2rem; }
+      .categories { grid-template-columns: 1fr; }
+      .category-card { padding: 32px 24px; }
     }
   </style>
 </head>
 <body>
   <div class="container">
     <header>
-      <h1>🌸 Women's Health App Ideas</h1>
-      <p class="subtitle">Research-backed app concepts targeting underserved niches in women's health. Each includes market analysis, mockups, and prioritization scoring.</p>
-      <div class="stats-row">
-        <div class="stat">
-          <div class="stat-value">12</div>
-          <div class="stat-label">App Concepts</div>
-        </div>
-        <div class="stat">
-          <div class="stat-value">12</div>
-          <div class="stat-label">Deep Dives</div>
-        </div>
-        <div class="stat">
-          <div class="stat-value">12</div>
-          <div class="stat-label">Mockups</div>
-        </div>
-        <div class="stat">
-          <div class="stat-value">6</div>
-          <div class="stat-label">Strong Builds</div>
-        </div>
-      </div>
+      <h1>🚀 App Ideas Hub</h1>
+      <p class="subtitle">
+        Research, mockups, and data for mobile app ideas across multiple categories.
+        From concept to launch.
+      </p>
     </header>
 
-    <div class="alert">
-      <div class="alert-title">⚡ Time-Sensitive Opportunity</div>
-      <div class="alert-text"><strong>IntimateHeal:</strong> Rosy (main competitor) shutting down Nov 2025 — 250K users need a new home. <strong>SandwichSupport:</strong> True blue ocean with zero competitors.</div>
-    </div>
-
-    <h2 class="section-title">Priority Rankings</h2>
-    <div class="priority-table">
-      <table>
-        <thead>
-          <tr>
-            <th>Rank</th>
-            <th>App</th>
-            <th>Market</th>
-            <th>Competition</th>
-            <th>Margin</th>
-            <th>Score</th>
-            <th>Verdict</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td class="rank rank-1">#1</td>
-            <td class="app-name"><a href="sandwichsupport/">SandwichSupport</a></td>
-            <td>60M people</td>
-            <td>Zero apps</td>
-            <td>89%</td>
-            <td class="score">4.60</td>
-            <td><span class="verdict verdict-strong">Strong Build</span></td>
-          </tr>
-          <tr>
-            <td class="rank rank-2">#2</td>
-            <td class="app-name"><a href="bloom/">Bloom</a></td>
-            <td>50M+ women</td>
-            <td>Low (no AI)</td>
-            <td>67%</td>
-            <td class="score">4.45</td>
-            <td><span class="verdict verdict-strong">Strong Build</span></td>
-          </tr>
-          <tr>
-            <td class="rank rank-2">#2</td>
-            <td class="app-name"><a href="floorstrong/">FloorStrong</a></td>
-            <td>78M women</td>
-            <td>Hardware only</td>
-            <td>94%</td>
-            <td class="score">4.45</td>
-            <td><span class="verdict verdict-strong">Strong Build</span></td>
-          </tr>
-          <tr>
-            <td class="rank">#4</td>
-            <td class="app-name"><a href="focusher/">FocusHer</a></td>
-            <td>5-7M women</td>
-            <td>None track cycles</td>
-            <td>99%</td>
-            <td class="score">4.40</td>
-            <td><span class="verdict verdict-strong">Strong Build</span></td>
-          </tr>
-          <tr>
-            <td class="rank">#5</td>
-            <td class="app-name"><a href="intimateheal/">IntimateHeal</a></td>
-            <td>20M women</td>
-            <td>Rosy closing!</td>
-            <td>79%</td>
-            <td class="score">4.35</td>
-            <td><span class="verdict verdict-strong">Strong Build</span></td>
-          </tr>
-          <tr>
-            <td class="rank">#5</td>
-            <td class="app-name"><a href="crowncare/">CrownCare</a></td>
-            <td>40% by 50</td>
-            <td>All male-focused</td>
-            <td>80%</td>
-            <td class="score">4.35</td>
-            <td><span class="verdict verdict-strong">Strong Build</span></td>
-          </tr>
-          <tr>
-            <td class="rank">#7</td>
-            <td class="app-name"><a href="autoimmuneher/">AutoImmuneHer</a></td>
-            <td>32-40M women</td>
-            <td>Mymee $200+</td>
-            <td>91%</td>
-            <td class="score">4.05</td>
-            <td><span class="verdict verdict-good">Good Build</span></td>
-          </tr>
-          <tr>
-            <td class="rank">#7</td>
-            <td class="app-name"><a href="endotrack/">EndoTrack</a></td>
-            <td>190M worldwide</td>
-            <td>Phendo poor UX</td>
-            <td>86%</td>
-            <td class="score">4.05</td>
-            <td><span class="verdict verdict-good">Good Build</span></td>
-          </tr>
-          <tr>
-            <td class="rank">#9</td>
-            <td class="app-name"><a href="cycle-skin/">CycleSkin</a></td>
-            <td>Hormonal skin</td>
-            <td>Medium</td>
-            <td>~80%</td>
-            <td class="score">3.80</td>
-            <td><span class="verdict verdict-consider">Consider</span></td>
-          </tr>
-          <tr>
-            <td class="rank">#10</td>
-            <td class="app-name"><a href="pcos-circle/">PCOS Circle</a></td>
-            <td>5M+ women</td>
-            <td>Flo has features</td>
-            <td>~75%</td>
-            <td class="score">3.45</td>
-            <td><span class="verdict verdict-consider">Consider</span></td>
-          </tr>
-          <tr>
-            <td class="rank">#10</td>
-            <td class="app-name"><a href="postpartum/">PostPartum</a></td>
-            <td>3.6M births/yr</td>
-            <td>Some apps exist</td>
-            <td>~75%</td>
-            <td class="score">3.45</td>
-            <td><span class="verdict verdict-consider">Consider</span></td>
-          </tr>
-          <tr>
-            <td class="rank">#10</td>
-            <td class="app-name"><a href="mindload/">MindLoad</a></td>
-            <td>Parents</td>
-            <td>Hard to monetize</td>
-            <td>~70%</td>
-            <td class="score">3.45</td>
-            <td><span class="verdict verdict-consider">Consider</span></td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-
-    <h2 class="section-title">All App Concepts</h2>
-    <div class="apps-grid">
+    <div class="categories">
       
-      <!-- SandwichSupport -->
-      <a href="sandwichsupport/" class="app-card">
-        <div class="card-header">
-          <div class="card-icon" style="background: #dbeafe;">🥪</div>
-          <span class="card-rank top">#1 Priority</span>
-        </div>
-        <div class="card-body">
-          <h3 class="card-title">SandwichSupport</h3>
-          <p class="card-tagline">AI wellness companion for caregivers managing aging parents AND raising children</p>
-          <div class="card-meta">
-            <span class="meta-tag highlight">🔥 Blue Ocean</span>
-            <span class="meta-tag">Zero competitors</span>
-            <span class="meta-tag">$8.99/mo</span>
+      <!-- Women's Health -->
+      <a href="womens-health.html" class="category-card womens-health">
+        <span class="badge badge-active">Active</span>
+        <span class="category-icon">💜</span>
+        <h2 class="category-title">Women's Health</h2>
+        <p class="category-description">
+          Perimenopause, PCOS, pelvic health, mental load, postpartum, and more.
+          Subscription-based wellness apps.
+        </p>
+        <div class="category-stats">
+          <div class="category-stat">
+            <div class="category-stat-value">12</div>
+            <div class="category-stat-label">App Ideas</div>
           </div>
-          <div class="card-stats">
-            <div class="card-stat">
-              <div class="card-stat-value">60M+</div>
-              <div class="card-stat-label">Market</div>
-            </div>
-            <div class="card-stat">
-              <div class="card-stat-value">89%</div>
-              <div class="card-stat-label">Margin</div>
-            </div>
-            <div class="card-stat">
-              <div class="card-stat-value">10</div>
-              <div class="card-stat-label">Break-even</div>
-            </div>
+          <div class="category-stat">
+            <div class="category-stat-value">4</div>
+            <div class="category-stat-label">In Dev</div>
           </div>
-        </div>
-        <div class="card-footer">
-          <span class="view-mockup">View Mockup →</span>
-          <span class="card-score">4.60</span>
+          <div class="category-stat">
+            <div class="category-stat-value">$600B</div>
+            <div class="category-stat-label">Market</div>
+          </div>
         </div>
       </a>
 
-      <!-- Bloom -->
-      <a href="bloom/" class="app-card">
-        <div class="card-header">
-          <div class="card-icon" style="background: #fce7f3;">🌸</div>
-          <span class="card-rank top">#2 Priority</span>
-        </div>
-        <div class="card-body">
-          <h3 class="card-title">Bloom</h3>
-          <p class="card-tagline">Gentle guidance for your perimenopause journey with AI-powered insights</p>
-          <div class="card-meta">
-            <span class="meta-tag">50M+ US women</span>
-            <span class="meta-tag">$10/mo</span>
+      <!-- Image Generation -->
+      <a href="image-gen.html" class="category-card image-gen">
+        <span class="badge badge-new">New</span>
+        <span class="category-icon">🎨</span>
+        <h2 class="category-title">AI Image Generation</h2>
+        <p class="category-description">
+          Paid-upfront photo apps. Dating photos, headshots, pet portraits, 
+          holiday cards, and more. 95% margins.
+        </p>
+        <div class="category-stats">
+          <div class="category-stat">
+            <div class="category-stat-value">7</div>
+            <div class="category-stat-label">App Ideas</div>
           </div>
-          <div class="card-stats">
-            <div class="card-stat">
-              <div class="card-stat-value">$600B</div>
-              <div class="card-stat-label">Market</div>
-            </div>
-            <div class="card-stat">
-              <div class="card-stat-value">67%</div>
-              <div class="card-stat-label">Margin</div>
-            </div>
-            <div class="card-stat">
-              <div class="card-stat-value">15</div>
-              <div class="card-stat-label">Break-even</div>
-            </div>
+          <div class="category-stat">
+            <div class="category-stat-value">0</div>
+            <div class="category-stat-label">In Dev</div>
           </div>
-        </div>
-        <div class="card-footer">
-          <span class="view-mockup">View Mockup →</span>
-          <span class="card-score">4.45</span>
+          <div class="category-stat">
+            <div class="category-stat-value">$200M+</div>
+            <div class="category-stat-label">Market</div>
+          </div>
         </div>
       </a>
 
-      <!-- FloorStrong -->
-      <a href="floorstrong/" class="app-card">
-        <div class="card-header">
-          <div class="card-icon" style="background: #d1fae5;">💪</div>
-          <span class="card-rank top">#2 Priority</span>
-        </div>
-        <div class="card-body">
-          <h3 class="card-title">FloorStrong</h3>
-          <p class="card-tagline">Your pelvic floor PT in your pocket — no device, no appointments</p>
-          <div class="card-meta">
-            <span class="meta-tag highlight">No hardware needed</span>
-            <span class="meta-tag">$9.99/mo</span>
+      <!-- Coming Soon: Fitness -->
+      <div class="category-card coming-soon">
+        <span class="badge badge-soon">Coming Soon</span>
+        <span class="category-icon">💪</span>
+        <h2 class="category-title">Fitness & Wellness</h2>
+        <p class="category-description">
+          Home workouts, gym tracking, nutrition, habit building.
+          Future research category.
+        </p>
+        <div class="category-stats">
+          <div class="category-stat">
+            <div class="category-stat-value">—</div>
+            <div class="category-stat-label">App Ideas</div>
           </div>
-          <div class="card-stats">
-            <div class="card-stat">
-              <div class="card-stat-value">78M</div>
-              <div class="card-stat-label">Women</div>
-            </div>
-            <div class="card-stat">
-              <div class="card-stat-value">94%</div>
-              <div class="card-stat-label">Margin</div>
-            </div>
-            <div class="card-stat">
-              <div class="card-stat-value">10</div>
-              <div class="card-stat-label">Break-even</div>
-            </div>
+          <div class="category-stat">
+            <div class="category-stat-value">—</div>
+            <div class="category-stat-label">In Dev</div>
+          </div>
+          <div class="category-stat">
+            <div class="category-stat-value">—</div>
+            <div class="category-stat-label">Market</div>
           </div>
         </div>
-        <div class="card-footer">
-          <span class="view-mockup">View Mockup →</span>
-          <span class="card-score">4.45</span>
-        </div>
-      </a>
+      </div>
 
-      <!-- FocusHer -->
-      <a href="focusher/" class="app-card">
-        <div class="card-header">
-          <div class="card-icon" style="background: #ede9fe;">🧠</div>
-          <span class="card-rank">#4 Priority</span>
-        </div>
-        <div class="card-body">
-          <h3 class="card-title">FocusHer</h3>
-          <p class="card-tagline">The only ADHD app that tracks your cycle — because your brain changes</p>
-          <div class="card-meta">
-            <span class="meta-tag highlight">Science-backed</span>
-            <span class="meta-tag">533K Reddit</span>
-            <span class="meta-tag">$9.99/mo</span>
+      <!-- Coming Soon: Kids -->
+      <div class="category-card coming-soon">
+        <span class="badge badge-soon">Coming Soon</span>
+        <span class="category-icon">🎓</span>
+        <h2 class="category-title">Kids & Education</h2>
+        <p class="category-description">
+          Learning apps, parental controls, educational games.
+          Future research category.
+        </p>
+        <div class="category-stats">
+          <div class="category-stat">
+            <div class="category-stat-value">—</div>
+            <div class="category-stat-label">App Ideas</div>
           </div>
-          <div class="card-stats">
-            <div class="card-stat">
-              <div class="card-stat-value">5-7M</div>
-              <div class="card-stat-label">Women</div>
-            </div>
-            <div class="card-stat">
-              <div class="card-stat-value">99%</div>
-              <div class="card-stat-label">Margin</div>
-            </div>
-            <div class="card-stat">
-              <div class="card-stat-value">10</div>
-              <div class="card-stat-label">Break-even</div>
-            </div>
+          <div class="category-stat">
+            <div class="category-stat-value">—</div>
+            <div class="category-stat-label">In Dev</div>
+          </div>
+          <div class="category-stat">
+            <div class="category-stat-value">—</div>
+            <div class="category-stat-label">Market</div>
           </div>
         </div>
-        <div class="card-footer">
-          <span class="view-mockup">View Mockup →</span>
-          <span class="card-score">4.40</span>
-        </div>
-      </a>
-
-      <!-- IntimateHeal -->
-      <a href="intimateheal/" class="app-card">
-        <div class="card-header">
-          <div class="card-icon" style="background: #fce7f3;">💕</div>
-          <span class="card-rank">#5 Priority</span>
-        </div>
-        <div class="card-body">
-          <h3 class="card-title">IntimateHeal</h3>
-          <p class="card-tagline">Private AI-guided therapy for sexual pain conditions</p>
-          <div class="card-meta">
-            <span class="meta-tag highlight">⚡ Rosy closing</span>
-            <span class="meta-tag">250K orphaned users</span>
-            <span class="meta-tag">$9.99/mo</span>
-          </div>
-          <div class="card-stats">
-            <div class="card-stat">
-              <div class="card-stat-value">20M</div>
-              <div class="card-stat-label">Women</div>
-            </div>
-            <div class="card-stat">
-              <div class="card-stat-value">79%</div>
-              <div class="card-stat-label">Margin</div>
-            </div>
-            <div class="card-stat">
-              <div class="card-stat-value">7</div>
-              <div class="card-stat-label">Break-even</div>
-            </div>
-          </div>
-        </div>
-        <div class="card-footer">
-          <span class="view-mockup">View Mockup →</span>
-          <span class="card-score">4.35</span>
-        </div>
-      </a>
-
-      <!-- CrownCare -->
-      <a href="crowncare/" class="app-card">
-        <div class="card-header">
-          <div class="card-icon" style="background: #fef3c7;">👑</div>
-          <span class="card-rank">#5 Priority</span>
-        </div>
-        <div class="card-body">
-          <h3 class="card-title">CrownCare</h3>
-          <p class="card-tagline">The first hair loss tracker designed for female patterns</p>
-          <div class="card-meta">
-            <span class="meta-tag highlight">Zero female apps</span>
-            <span class="meta-tag">174K Reddit</span>
-            <span class="meta-tag">$7.99/mo</span>
-          </div>
-          <div class="card-stats">
-            <div class="card-stat">
-              <div class="card-stat-value">40%</div>
-              <div class="card-stat-label">By age 50</div>
-            </div>
-            <div class="card-stat">
-              <div class="card-stat-value">80%</div>
-              <div class="card-stat-label">Margin</div>
-            </div>
-            <div class="card-stat">
-              <div class="card-stat-value">10</div>
-              <div class="card-stat-label">Break-even</div>
-            </div>
-          </div>
-        </div>
-        <div class="card-footer">
-          <span class="view-mockup">View Mockup →</span>
-          <span class="card-score">4.35</span>
-        </div>
-      </a>
-
-      <!-- AutoImmuneHer -->
-      <a href="autoimmuneher/" class="app-card">
-        <div class="card-header">
-          <div class="card-icon" style="background: #fef3c7;">🦋</div>
-          <span class="card-rank">#7 Priority</span>
-        </div>
-        <div class="card-body">
-          <h3 class="card-title">AutoImmuneHer</h3>
-          <p class="card-tagline">Multi-condition AI tracker designed for the 80% who are women</p>
-          <div class="card-meta">
-            <span class="meta-tag">Multi-condition</span>
-            <span class="meta-tag">Mymee is $200+</span>
-            <span class="meta-tag">$8.99/mo</span>
-          </div>
-          <div class="card-stats">
-            <div class="card-stat">
-              <div class="card-stat-value">32-40M</div>
-              <div class="card-stat-label">Women</div>
-            </div>
-            <div class="card-stat">
-              <div class="card-stat-value">91%</div>
-              <div class="card-stat-label">Margin</div>
-            </div>
-            <div class="card-stat">
-              <div class="card-stat-value">12</div>
-              <div class="card-stat-label">Break-even</div>
-            </div>
-          </div>
-        </div>
-        <div class="card-footer">
-          <span class="view-mockup">View Mockup →</span>
-          <span class="card-score">4.05</span>
-        </div>
-      </a>
-
-      <!-- EndoTrack -->
-      <a href="endotrack/" class="app-card">
-        <div class="card-header">
-          <div class="card-icon" style="background: #ede9fe;">💜</div>
-          <span class="card-rank">#7 Priority</span>
-        </div>
-        <div class="card-body">
-          <h3 class="card-title">EndoTrack</h3>
-          <p class="card-tagline">All-in-one endometriosis management with doctor report export</p>
-          <div class="card-meta">
-            <span class="meta-tag highlight">Doctor reports</span>
-            <span class="meta-tag">190M worldwide</span>
-            <span class="meta-tag">$7.99/mo</span>
-          </div>
-          <div class="card-stats">
-            <div class="card-stat">
-              <div class="card-stat-value">190M</div>
-              <div class="card-stat-label">Worldwide</div>
-            </div>
-            <div class="card-stat">
-              <div class="card-stat-value">86%</div>
-              <div class="card-stat-label">Margin</div>
-            </div>
-            <div class="card-stat">
-              <div class="card-stat-value">8</div>
-              <div class="card-stat-label">Break-even</div>
-            </div>
-          </div>
-        </div>
-        <div class="card-footer">
-          <span class="view-mockup">View Mockup →</span>
-          <span class="card-score">4.05</span>
-        </div>
-      </a>
-
-      <!-- CycleSkin -->
-      <a href="cycle-skin/" class="app-card">
-        <div class="card-header">
-          <div class="card-icon" style="background: #fce7f3;">✨</div>
-          <span class="card-rank">#9</span>
-        </div>
-        <div class="card-body">
-          <h3 class="card-title">CycleSkin</h3>
-          <p class="card-tagline">Track hormonal skin changes across your menstrual cycle</p>
-          <div class="card-meta">
-            <span class="meta-tag">Hormonal acne</span>
-            <span class="meta-tag">Skin + cycle</span>
-          </div>
-          <div class="card-stats">
-            <div class="card-stat">
-              <div class="card-stat-value">—</div>
-              <div class="card-stat-label">Niche</div>
-            </div>
-            <div class="card-stat">
-              <div class="card-stat-value">~80%</div>
-              <div class="card-stat-label">Margin</div>
-            </div>
-            <div class="card-stat">
-              <div class="card-stat-value">—</div>
-              <div class="card-stat-label">TBD</div>
-            </div>
-          </div>
-        </div>
-        <div class="card-footer">
-          <span class="view-mockup">View Mockup →</span>
-          <span class="card-score">3.80</span>
-        </div>
-      </a>
-
-      <!-- PCOS Circle -->
-      <a href="pcos-circle/" class="app-card">
-        <div class="card-header">
-          <div class="card-icon" style="background: #dbeafe;">🔵</div>
-          <span class="card-rank">#10</span>
-        </div>
-        <div class="card-body">
-          <h3 class="card-title">PCOS Circle</h3>
-          <p class="card-tagline">Comprehensive PCOS management and community support</p>
-          <div class="card-meta">
-            <span class="meta-tag">5M+ women</span>
-            <span class="meta-tag">Community</span>
-          </div>
-          <div class="card-stats">
-            <div class="card-stat">
-              <div class="card-stat-value">5M+</div>
-              <div class="card-stat-label">Women</div>
-            </div>
-            <div class="card-stat">
-              <div class="card-stat-value">~75%</div>
-              <div class="card-stat-label">Margin</div>
-            </div>
-            <div class="card-stat">
-              <div class="card-stat-value">—</div>
-              <div class="card-stat-label">TBD</div>
-            </div>
-          </div>
-        </div>
-        <div class="card-footer">
-          <span class="view-mockup">View Mockup →</span>
-          <span class="card-score">3.45</span>
-        </div>
-      </a>
-
-      <!-- PostPartum -->
-      <a href="postpartum/" class="app-card">
-        <div class="card-header">
-          <div class="card-icon" style="background: #fce7f3;">👶</div>
-          <span class="card-rank">#10</span>
-        </div>
-        <div class="card-body">
-          <h3 class="card-title">PostPartum</h3>
-          <p class="card-tagline">Recovery and wellness support for new mothers</p>
-          <div class="card-meta">
-            <span class="meta-tag">3.6M births/yr</span>
-            <span class="meta-tag">Recovery</span>
-          </div>
-          <div class="card-stats">
-            <div class="card-stat">
-              <div class="card-stat-value">3.6M</div>
-              <div class="card-stat-label">Births/yr</div>
-            </div>
-            <div class="card-stat">
-              <div class="card-stat-value">~75%</div>
-              <div class="card-stat-label">Margin</div>
-            </div>
-            <div class="card-stat">
-              <div class="card-stat-value">—</div>
-              <div class="card-stat-label">TBD</div>
-            </div>
-          </div>
-        </div>
-        <div class="card-footer">
-          <span class="view-mockup">View Mockup →</span>
-          <span class="card-score">3.45</span>
-        </div>
-      </a>
-
-      <!-- MindLoad -->
-      <a href="mindload/" class="app-card">
-        <div class="card-header">
-          <div class="card-icon" style="background: #dbeafe;">🧠</div>
-          <span class="card-rank">#10</span>
-        </div>
-        <div class="card-body">
-          <h3 class="card-title">MindLoad</h3>
-          <p class="card-tagline">Manage and share the invisible mental load of parenting</p>
-          <div class="card-meta">
-            <span class="meta-tag">Parents</span>
-            <span class="meta-tag">Task sharing</span>
-          </div>
-          <div class="card-stats">
-            <div class="card-stat">
-              <div class="card-stat-value">—</div>
-              <div class="card-stat-label">Parents</div>
-            </div>
-            <div class="card-stat">
-              <div class="card-stat-value">~70%</div>
-              <div class="card-stat-label">Margin</div>
-            </div>
-            <div class="card-stat">
-              <div class="card-stat-value">—</div>
-              <div class="card-stat-label">TBD</div>
-            </div>
-          </div>
-        </div>
-        <div class="card-footer">
-          <span class="view-mockup">View Mockup →</span>
-          <span class="card-score">3.45</span>
-        </div>
-      </a>
+      </div>
 
     </div>
 
     <footer>
-      <p>Research & mockups by <strong>Geri 🌸</strong> for Plamen</p>
-      <p>Deep dives available in <a href="https://github.com/RGPankO/app-mockups">GitHub repo</a> • January 2026</p>
+      <p>Built with 🤖 by <a href="https://github.com/RGPankO">RGPankO</a></p>
     </footer>
   </div>
 </body>
