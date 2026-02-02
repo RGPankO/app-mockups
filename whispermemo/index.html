@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>WhisperMemo — App Hub</title>
+  <style>
+    :root {
+      --primary: #6366f1;
+      --primary-light: #eef2ff;
+      --primary-dark: #4f46e5;
+      --bg: #f8f9fc;
+      --card: #ffffff;
+      --text: #1e293b;
+      --muted: #64748b;
+      --border: #e2e8f0;
+      --shadow: 0 4px 12px rgba(99,102,241,0.08);
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { 
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      background: var(--bg); color: var(--text); line-height: 1.6;
+      padding: 24px 16px 60px;
+    }
+    .container { max-width: 900px; margin: 0 auto; }
+    
+    header { text-align: center; padding: 40px 20px; margin-bottom: 32px; }
+    .logo { font-size: 48px; margin-bottom: 12px; }
+    h1 { font-size: 32px; color: var(--primary-dark); margin-bottom: 8px; }
+    .tagline { color: var(--muted); font-size: 18px; }
+    
+    .badges { display: flex; gap: 12px; justify-content: center; margin-top: 20px; flex-wrap: wrap; }
+    .badge { background: var(--primary-light); color: var(--primary-dark); padding: 6px 14px; 
+             border-radius: 20px; font-size: 13px; font-weight: 500; }
+    .badge.score { background: var(--primary); color: white; }
+    
+    .section { background: var(--card); border-radius: 16px; padding: 24px; 
+               margin-bottom: 20px; box-shadow: var(--shadow); }
+    .section h2 { font-size: 18px; color: var(--primary-dark); margin-bottom: 16px; 
+                  padding-bottom: 12px; border-bottom: 2px solid var(--primary-light); }
+    
+    .repo-link { display: inline-flex; align-items: center; gap: 8px; background: #24292e; 
+                 color: white; padding: 12px 20px; border-radius: 8px; text-decoration: none;
+                 font-weight: 500; margin-bottom: 16px; }
+    .repo-link:hover { background: #3a3f44; }
+    
+    .keywords { display: flex; flex-wrap: wrap; gap: 8px; }
+    .keyword { background: #f0f0f0; padding: 4px 10px; border-radius: 12px; font-size: 12px; color: #666; }
+    
+    .quote { background: var(--primary-light); border-left: 4px solid var(--primary); 
+             padding: 16px; margin-bottom: 12px; border-radius: 0 8px 8px 0; font-style: italic; }
+    .quote-source { font-size: 12px; color: var(--muted); margin-top: 8px; font-style: normal; }
+    
+    .feature { display: flex; gap: 12px; margin-bottom: 16px; align-items: flex-start; }
+    .feature-icon { font-size: 24px; }
+    .feature h3 { font-size: 15px; margin-bottom: 4px; }
+    .feature p { font-size: 13px; color: var(--muted); }
+    
+    .stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 16px; }
+    .stat { text-align: center; padding: 16px; background: var(--primary-light); border-radius: 12px; }
+    .stat-value { font-size: 28px; font-weight: 700; color: var(--primary-dark); }
+    .stat-label { font-size: 12px; color: var(--muted); }
+    
+    .description { white-space: pre-line; font-size: 14px; }
+    
+    table { width: 100%; border-collapse: collapse; font-size: 14px; }
+    th, td { padding: 10px 12px; text-align: left; border-bottom: 1px solid var(--border); }
+    th { background: var(--primary-light); font-weight: 600; }
+    
+    .back-link { display: inline-block; margin-bottom: 20px; color: var(--primary); text-decoration: none; }
+    .back-link:hover { text-decoration: underline; }
+    
+    .tech-spec { background: #1e293b; color: #e2e8f0; padding: 16px; border-radius: 8px; 
+                 font-family: 'SF Mono', 'Consolas', monospace; font-size: 13px; margin-bottom: 16px; }
+    .tech-spec code { color: #a5b4fc; }
+    
+    .competitor-gap { background: linear-gradient(135deg, var(--primary-light) 0%, #fef3c7 100%); 
+                      padding: 20px; border-radius: 12px; margin-top: 16px; }
+    .competitor-gap h3 { color: var(--primary-dark); margin-bottom: 12px; }
+    
+    @media (max-width: 600px) {
+      .stats-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <a href="../" class="back-link">← Back to All Apps</a>
+    
+    <header>
+      <div class="logo">🎙️</div>
+      <h1>WhisperMemo</h1>
+      <p class="tagline">Offline Voice Transcription</p>
+      <div class="badges">
+        <span class="badge score">Score: 4.25</span>
+        <span class="badge">~100% Margin</span>
+        <span class="badge">$4.99 One-Time</span>
+        <span class="badge">100% Offline</span>
+      </div>
+    </header>
+    
+    <!-- GitHub Repo -->
+    <div class="section">
+      <h2>📦 Repository</h2>
+      <a href="#" class="repo-link" target="_blank">
+        <svg height="20" width="20" viewBox="0 0 16 16" fill="currentColor">
+          <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/>
+        </svg>
+        Repo TBD — Research Phase
+      </a>
+      <p style="color: var(--muted); font-size: 14px;">Status: Deep Dive Complete | Ready for MVP</p>
+    </div>
+    
+    <!-- App Store Info -->
+    <div class="section">
+      <h2>📱 App Store Listing</h2>
+      <table>
+        <tr><th>Field</th><th>Value</th></tr>
+        <tr><td>App Name</td><td><strong>WhisperMemo</strong></td></tr>
+        <tr><td>Subtitle</td><td>Offline Voice Transcription</td></tr>
+        <tr><td>Category</td><td>Productivity (primary), Utilities (secondary)</td></tr>
+        <tr><td>Age Rating</td><td>4+</td></tr>
+        <tr><td>Price</td><td>$4.99-$6.99 one-time purchase</td></tr>
+      </table>
+      
+      <h3 style="margin: 20px 0 12px; font-size: 15px;">Keywords (100 chars)</h3>
+      <div class="keywords">
+        <span class="keyword">voice recorder</span>
+        <span class="keyword">transcription</span>
+        <span class="keyword">whisper</span>
+        <span class="keyword">offline</span>
+        <span class="keyword">speech to text</span>
+        <span class="keyword">lecture</span>
+        <span class="keyword">notes</span>
+        <span class="keyword">interview</span>
+        <span class="keyword">memo</span>
+        <span class="keyword">dictation</span>
+      </div>
+      
+      <h3 style="margin: 20px 0 12px; font-size: 15px;">App Store Description</h3>
+      <p class="description">Record and transcribe voice memos instantly, offline, with zero subscriptions and complete privacy. Your audio never leaves your device.
+
+🎙️ RECORD → TRANSCRIBE → EXPORT
+One tap to start. OpenAI's Whisper AI runs entirely on your iPhone. No internet required. No account needed.
+
+✨ WHY WHISPERMEMO?
+• 100% Offline — Works in airplane mode, subway, anywhere
+• Zero Subscriptions — Pay once, use forever ($4.99)
+• Complete Privacy — Audio never uploaded, never shared
+• Fast — Transcribe 1 minute of audio in ~5 seconds
+• Accurate — Powered by Whisper AI (same tech as ChatGPT)
+
+💡 PERFECT FOR:
+• Students recording lectures
+• Journalists transcribing interviews
+• Researchers doing field work
+• Anyone tired of paying $99/year for Otter
+• Privacy-conscious professionals
+
+📝 SIMPLE WORKFLOW:
+1. Tap record
+2. Speak naturally
+3. Get instant transcription
+4. Export to Notes, Files, or share anywhere
+
+No cloud. No upload. No subscription. Just transcription.</p>
+    </div>
+    
+    <!-- Market Stats -->
+    <div class="section">
+      <h2>📊 Market Opportunity</h2>
+      <div class="stats-grid">
+        <div class="stat">
+          <div class="stat-value">$2.1B</div>
+          <div class="stat-label">Mobile Transcription Market</div>
+        </div>
+        <div class="stat">
+          <div class="stat-value">22.8%</div>
+          <div class="stat-label">CAGR Growth</div>
+        </div>
+        <div class="stat">
+          <div class="stat-value">~100%</div>
+          <div class="stat-label">Gross Margin</div>
+        </div>
+        <div class="stat">
+          <div class="stat-value">$0</div>
+          <div class="stat-label">Per-User Cost</div>
+        </div>
+      </div>
+      
+      <div class="competitor-gap">
+        <h3>💰 Competitor Gap = Our Opportunity</h3>
+        <table style="margin-top: 12px;">
+          <tr><th>Competitor</th><th>Price</th><th>Our Advantage</th></tr>
+          <tr><td>Aiko</td><td>$22 one-time</td><td>4x cheaper, similar features</td></tr>
+          <tr><td>Otter.ai</td><td>$99-399/year</td><td>One-time purchase, offline, private</td></tr>
+          <tr><td>Rev</td><td>$1.50-2/minute</td><td>Unlimited use after purchase</td></tr>
+          <tr><td>Transcribe</td><td>$14.99/month</td><td>No subscription, no cloud</td></tr>
+        </table>
+      </div>
+    </div>
+    
+    <!-- Features -->
+    <div class="section">
+      <h2>✨ Core Features</h2>
+      <div class="feature">
+        <span class="feature-icon">🔴</span>
+        <div>
+          <h3>One-Tap Recording</h3>
+          <p>Large record button, minimal UI. Background recording support with audio quality indicator.</p>
+        </div>
+      </div>
+      <div class="feature">
+        <span class="feature-icon">🧠</span>
+        <div>
+          <h3>On-Device Whisper AI</h3>
+          <p>OpenAI's Whisper model runs 100% on your iPhone. No internet, no upload, no waiting.</p>
+        </div>
+      </div>
+      <div class="feature">
+        <span class="feature-icon">✈️</span>
+        <div>
+          <h3>Works Offline</h3>
+          <p>Airplane mode, subway, remote locations — transcription works everywhere.</p>
+        </div>
+      </div>
+      <div class="feature">
+        <span class="feature-icon">🔒</span>
+        <div>
+          <h3>Complete Privacy</h3>
+          <p>Audio never leaves your device. No accounts, no sign-up, no data collection.</p>
+        </div>
+      </div>
+      <div class="feature">
+        <span class="feature-icon">📤</span>
+        <div>
+          <h3>Smart Export</h3>
+          <p>Copy to clipboard, share as text file, export to Notes or Files app.</p>
+        </div>
+      </div>
+      <div class="feature">
+        <span class="feature-icon">🔍</span>
+        <div>
+          <h3>Searchable Library</h3>
+          <p>All transcripts searchable. Auto-named by date/time. Folder organization.</p>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Technical Specs -->
+    <div class="section">
+      <h2>⚙️ Technical Specifications</h2>
+      
+      <div class="tech-spec">
+        <strong>ML Engine:</strong> <code>whisper.cpp</code> (optimized for Apple Silicon)<br>
+        <strong>Model:</strong> <code>whisper-base.en</code> (142MB) or <code>whisper-small.en</code> (466MB)<br>
+        <strong>Acceleration:</strong> Core ML / Metal / Apple Neural Engine<br>
+        <strong>Framework:</strong> React Native + Expo + Native Module<br>
+        <strong>Min Device:</strong> iPhone XS (A12 chip) / iOS 16.0+
+      </div>
+      
+      <h3 style="margin: 16px 0 12px; font-size: 15px;">Model Performance</h3>
+      <table>
+        <tr><th>Model</th><th>Size</th><th>Speed (1min audio)</th><th>Accuracy (WER)</th></tr>
+        <tr><td>tiny.en</td><td>75 MB</td><td>~3 sec</td><td>~6%</td></tr>
+        <tr><td><strong>base.en ✓</strong></td><td><strong>142 MB</strong></td><td><strong>~5 sec</strong></td><td><strong>~4.3%</strong></td></tr>
+        <tr><td>small.en</td><td>466 MB</td><td>~12 sec</td><td>~3.4%</td></tr>
+        <tr><td>medium.en</td><td>1.5 GB</td><td>~30 sec</td><td>~3.0%</td></tr>
+      </table>
+      <p style="color: var(--muted); font-size: 13px; margin-top: 12px;">
+        <strong>Recommendation:</strong> Ship with base.en (small, fast) with optional small.en download for power users.
+      </p>
+    </div>
+    
+    <!-- Reddit Quotes -->
+    <div class="section">
+      <h2>💬 Real User Pain Points (Reddit Research)</h2>
+      
+      <div class="quote">
+        "Why does everything need a subscription? I just want to transcribe my lecture notes once a week."
+        <div class="quote-source">— r/college, r/productivity (recurring theme)</div>
+      </div>
+      
+      <div class="quote">
+        "As a journalist, I can't risk uploading source interviews to some cloud service I don't control."
+        <div class="quote-source">— r/journalism</div>
+      </div>
+      
+      <div class="quote">
+        "I do a lot of field interviews in rural areas. Cloud transcription is useless when you don't have signal."
+        <div class="quote-source">— Researchers, r/qualitativeresearch</div>
+      </div>
+      
+      <div class="quote">
+        "Otter wants $100/year?! There has to be a cheaper way."
+        <div class="quote-source">— Students and casual users</div>
+      </div>
+      
+      <div class="quote">
+        "Aiko looks good but $22 is steep for something I'll use occasionally."
+        <div class="quote-source">— r/productivity</div>
+      </div>
+      
+      <h3 style="margin: 20px 0 12px; font-size: 15px;">Target User Segments</h3>
+      <ul style="padding-left: 20px; color: var(--muted); font-size: 14px;">
+        <li><strong>Students (18-28):</strong> 20M+ US college students, recording lectures, price-sensitive</li>
+        <li><strong>Journalists:</strong> 3M+ globally, daily interview transcription, source protection</li>
+        <li><strong>Researchers:</strong> Qualitative research, HIPAA concerns, field work offline</li>
+        <li><strong>Privacy-conscious:</strong> Growing 35% annually due to AI data concerns</li>
+      </ul>
+      
+      <h3 style="margin: 20px 0 12px; font-size: 15px;">Target Subreddits</h3>
+      <div class="keywords">
+        <span class="keyword">r/productivity (2.8M)</span>
+        <span class="keyword">r/GetStudying (500K+)</span>
+        <span class="keyword">r/college (1.8M)</span>
+        <span class="keyword">r/journalism (100K+)</span>
+        <span class="keyword">r/podcasting (200K+)</span>
+        <span class="keyword">r/privacy (1.6M)</span>
+        <span class="keyword">r/deaf (80K)</span>
+        <span class="keyword">r/adhd (1.5M)</span>
+      </div>
+    </div>
+    
+    <!-- Marketing Headlines -->
+    <div class="section">
+      <h2>📣 Marketing Headlines</h2>
+      <ul style="padding-left: 20px; font-size: 14px;">
+        <li>"Your Voice Memos, Transcribed in Seconds. No Internet. No Subscription. No Upload."</li>
+        <li>"Finally: Transcription That Costs Less Than Your Coffee"</li>
+        <li>"The Transcription App That Keeps Your Recordings Off the Cloud"</li>
+        <li>"One Price. Forever. Unlike Otter's $99/Year."</li>
+        <li>"From Recording to Text in 30 Seconds—Even in Airplane Mode"</li>
+        <li>"Stop paying monthly to transcribe lectures"</li>
+        <li>"Your voice, your device, zero cloud"</li>
+      </ul>
+      
+      <h3 style="margin: 20px 0 12px; font-size: 15px;">Positioning Statement</h3>
+      <p style="background: var(--primary-light); padding: 16px; border-radius: 8px; font-size: 14px;">
+        For <strong>students, journalists, and privacy-conscious professionals</strong> who need to transcribe voice recordings, 
+        WhisperMemo is an <strong>offline transcription app</strong> that provides <strong>instant, private transcription without subscriptions</strong>. 
+        Unlike <strong>Otter.ai and other cloud services</strong>, WhisperMemo runs <strong>entirely on your device</strong>—your audio never touches the internet.
+      </p>
+    </div>
+    
+    <!-- Why It Wins -->
+    <div class="section">
+      <h2>🏆 Why This App Wins</h2>
+      <table>
+        <tr><th>Factor</th><th>Score</th><th>Notes</th></tr>
+        <tr><td>Margin</td><td>5/5</td><td>100% gross margin, zero variable costs, no API calls</td></tr>
+        <tr><td>Market Size</td><td>4/5</td><td>$2.1B mobile transcription, 22.8% CAGR growth</td></tr>
+        <tr><td>Competition</td><td>4/5</td><td>One serious competitor (Aiko) at 4x our price</td></tr>
+        <tr><td>Build Complexity</td><td>4/5</td><td>whisper.cpp proven on iOS, well-documented</td></tr>
+        <tr><td>Differentiation</td><td>4/5</td><td>Cheapest quality offline option in market</td></tr>
+      </table>
+      <p style="margin-top: 16px; padding: 12px; background: var(--primary-light); border-radius: 8px; font-weight: 500;">
+        Weighted Score: <strong>4.25/5</strong> — 🟢 <span style="color: var(--primary-dark);">RECOMMENDED BUILD</span>
+      </p>
+    </div>
+    
+    <!-- Unit Economics -->
+    <div class="section">
+      <h2>💵 Unit Economics</h2>
+      
+      <h3 style="margin-bottom: 12px; font-size: 15px;">Cost Structure</h3>
+      <table>
+        <tr><th>Component</th><th>Cost</th><th>Notes</th></tr>
+        <tr><td>AI/LLM per user</td><td>$0</td><td>On-device, no API calls</td></tr>
+        <tr><td>Server per user</td><td>$0</td><td>No backend required</td></tr>
+        <tr><td>Storage per user</td><td>$0</td><td>User's device storage</td></tr>
+        <tr><td>Apple Developer</td><td>$8.33/mo</td><td>$99/year fixed</td></tr>
+        <tr><td>Domain/Website</td><td>~$5/mo</td><td>Landing page</td></tr>
+        <tr><td><strong>Total Fixed</strong></td><td><strong>~$15/mo</strong></td><td></td></tr>
+      </table>
+      
+      <h3 style="margin: 20px 0 12px; font-size: 15px;">Revenue at $4.99</h3>
+      <table>
+        <tr><th>Monthly Sales</th><th>Revenue</th><th>Net Profit</th></tr>
+        <tr><td>100</td><td>$349</td><td>$334</td></tr>
+        <tr><td>500</td><td>$1,745</td><td>$1,730</td></tr>
+        <tr><td>1,000</td><td>$3,490</td><td>$3,475</td></tr>
+        <tr><td>5,000</td><td>$17,450</td><td>$17,435</td></tr>
+      </table>
+      <p style="color: var(--muted); font-size: 13px; margin-top: 8px;">
+        Revenue = Sales × $4.99 × 0.70 (after Apple's 30%)
+      </p>
+    </div>
+    
+    <!-- MVP Scope -->
+    <div class="section">
+      <h2>🎯 MVP Scope</h2>
+      
+      <h3 style="margin-bottom: 12px; font-size: 15px;">V1.0 — Must Have</h3>
+      <ul style="padding-left: 20px; font-size: 14px; color: var(--text);">
+        <li>✅ One-tap recording with background support</li>
+        <li>✅ On-device transcription (base.en model bundled)</li>
+        <li>✅ Basic transcript viewing/editing</li>
+        <li>✅ Export (clipboard, text file, share sheet)</li>
+        <li>✅ Recording history with search</li>
+        <li>✅ Offline-first (zero internet requirement)</li>
+      </ul>
+      
+      <h3 style="margin: 16px 0 12px; font-size: 15px;">V2.0 — Future</h3>
+      <ul style="padding-left: 20px; font-size: 14px; color: var(--muted);">
+        <li>Multiple language support (download additional models)</li>
+        <li>Timestamp markers in transcript</li>
+        <li>Import audio files from other apps</li>
+        <li>iCloud sync for transcripts</li>
+        <li>Apple Watch companion</li>
+        <li>macOS version</li>
+      </ul>
+    </div>
+    
+    <!-- Risks -->
+    <div class="section">
+      <h2>⚠️ Risks & Mitigations</h2>
+      <table>
+        <tr><th>Risk</th><th>Likelihood</th><th>Mitigation</th></tr>
+        <tr><td>App size too large</td><td>Medium</td><td>Ship base model, offer small as optional download</td></tr>
+        <tr><td>Apple rejects for model bundling</td><td>Low</td><td>Precedent: Aiko exists with same approach</td></tr>
+        <tr><td>Accuracy complaints</td><td>Medium</td><td>Set expectations ("optimized for English"), offer model upgrade</td></tr>
+        <tr><td>Competitor price drop</td><td>Low</td><td>Already cheapest; compete on simplicity</td></tr>
+        <tr><td>Device compatibility</td><td>Medium</td><td>Clear minimum requirements (A12+), graceful degradation</td></tr>
+      </table>
+    </div>
+    
+    <footer style="text-align: center; padding: 40px 20px; color: var(--muted); font-size: 13px;">
+      Last updated: February 2, 2026 | Built with 🎙️ by Geri
+    </footer>
+  </div>
+</body>
+</html>

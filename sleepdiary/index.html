@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SleepDiary — App Hub</title>
+  <style>
+    :root {
+      --primary: #1e3a8a;
+      --primary-light: #dbeafe;
+      --primary-dark: #1e40af;
+      --bg: #f8fafc;
+      --card: #ffffff;
+      --text: #1e293b;
+      --muted: #64748b;
+      --border: #e2e8f0;
+      --shadow: 0 4px 12px rgba(0,0,0,0.08);
+      --accent: #7c3aed;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { 
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      background: var(--bg); color: var(--text); line-height: 1.6;
+      padding: 24px 16px 60px;
+    }
+    .container { max-width: 900px; margin: 0 auto; }
+    
+    header { text-align: center; padding: 40px 20px; margin-bottom: 32px; }
+    .logo { font-size: 48px; margin-bottom: 12px; }
+    h1 { font-size: 32px; color: var(--primary-dark); margin-bottom: 8px; }
+    .tagline { color: var(--muted); font-size: 18px; }
+    
+    .badges { display: flex; gap: 12px; justify-content: center; margin-top: 20px; flex-wrap: wrap; }
+    .badge { background: var(--primary-light); color: var(--primary-dark); padding: 6px 14px; 
+             border-radius: 20px; font-size: 13px; font-weight: 500; }
+    .badge.score { background: var(--primary); color: white; }
+    .badge.price { background: #10b981; color: white; }
+    
+    .section { background: var(--card); border-radius: 16px; padding: 24px; 
+               margin-bottom: 20px; box-shadow: var(--shadow); }
+    .section h2 { font-size: 18px; color: var(--primary-dark); margin-bottom: 16px; 
+                  padding-bottom: 12px; border-bottom: 2px solid var(--primary-light); }
+    
+    .repo-link { display: inline-flex; align-items: center; gap: 8px; background: #24292e; 
+                 color: white; padding: 12px 20px; border-radius: 8px; text-decoration: none;
+                 font-weight: 500; margin-bottom: 16px; }
+    .repo-link:hover { background: #3a3f44; }
+    
+    .keywords { display: flex; flex-wrap: wrap; gap: 8px; }
+    .keyword { background: #f0f0f0; padding: 4px 10px; border-radius: 12px; font-size: 12px; color: #666; }
+    
+    .quote { background: var(--primary-light); border-left: 4px solid var(--primary); 
+             padding: 16px; margin-bottom: 12px; border-radius: 0 8px 8px 0; font-style: italic; }
+    .quote-source { font-size: 12px; color: var(--muted); margin-top: 8px; font-style: normal; }
+    
+    .feature { display: flex; gap: 12px; margin-bottom: 16px; align-items: flex-start; }
+    .feature-icon { font-size: 24px; }
+    .feature h3 { font-size: 15px; margin-bottom: 4px; }
+    .feature p { font-size: 13px; color: var(--muted); }
+    
+    .stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 16px; }
+    .stat { text-align: center; padding: 16px; background: var(--primary-light); border-radius: 12px; }
+    .stat-value { font-size: 28px; font-weight: 700; color: var(--primary-dark); }
+    .stat-label { font-size: 12px; color: var(--muted); }
+    
+    .description { white-space: pre-line; font-size: 14px; }
+    
+    table { width: 100%; border-collapse: collapse; font-size: 14px; }
+    th, td { padding: 10px 12px; text-align: left; border-bottom: 1px solid var(--border); }
+    th { background: var(--primary-light); font-weight: 600; }
+    
+    .back-link { display: inline-block; margin-bottom: 20px; color: var(--primary); text-decoration: none; }
+    .back-link:hover { text-decoration: underline; }
+    
+    .gap-highlight { background: #fef3c7; border: 2px solid #f59e0b; border-radius: 12px; 
+                     padding: 16px; margin-top: 16px; }
+    .gap-highlight h4 { color: #b45309; margin-bottom: 8px; }
+    
+    .competitor-pain { background: #fee2e2; padding: 12px 16px; border-radius: 8px; 
+                       margin-bottom: 12px; border-left: 4px solid #ef4444; }
+    .competitor-pain strong { color: #dc2626; }
+    
+    @media (max-width: 600px) {
+      .stats-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <a href="../" class="back-link">← Back to All Apps</a>
+    
+    <header>
+      <div class="logo">😴</div>
+      <h1>SleepDiary</h1>
+      <p class="tagline">Manual Sleep Journal</p>
+      <div class="badges">
+        <span class="badge score">Score: 4.25</span>
+        <span class="badge price">$3.99 One-Time</span>
+        <span class="badge">~70% Margin</span>
+        <span class="badge">$1B+ Market</span>
+        <span class="badge">No Wearable Required</span>
+      </div>
+    </header>
+    
+    <!-- GitHub Repo -->
+    <div class="section">
+      <h2>📦 Repository</h2>
+      <a href="#" class="repo-link" target="_blank">
+        <svg height="20" width="20" viewBox="0 0 16 16" fill="currentColor">
+          <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/>
+        </svg>
+        Not Yet Created
+      </a>
+      <p style="color: var(--muted); font-size: 14px;">Status: Research Complete — Ready to Build</p>
+    </div>
+    
+    <!-- App Store Info -->
+    <div class="section">
+      <h2>📱 App Store Listing</h2>
+      <table>
+        <tr><th>Field</th><th>Value</th></tr>
+        <tr><td>App Name</td><td><strong>SleepDiary</strong></td></tr>
+        <tr><td>Subtitle</td><td>Manual Sleep Journal</td></tr>
+        <tr><td>Category</td><td>Health & Fitness (primary), Lifestyle (secondary)</td></tr>
+        <tr><td>Age Rating</td><td>4+</td></tr>
+        <tr><td>Price</td><td>$3.99 one-time purchase</td></tr>
+      </table>
+      
+      <h3 style="margin: 20px 0 12px; font-size: 15px;">Keywords (100 chars)</h3>
+      <div class="keywords">
+        <span class="keyword">sleep diary</span>
+        <span class="keyword">sleep log</span>
+        <span class="keyword">manual sleep tracker</span>
+        <span class="keyword">insomnia</span>
+        <span class="keyword">sleep journal</span>
+        <span class="keyword">DSPD</span>
+        <span class="keyword">sleep quality</span>
+        <span class="keyword">no wearable</span>
+        <span class="keyword">CBT-i</span>
+        <span class="keyword">sleep patterns</span>
+      </div>
+      
+      <h3 style="margin: 20px 0 12px; font-size: 15px;">App Description</h3>
+      <p class="description">The simplest way to understand your sleep — no wearables, no subscriptions, no accounts. Just you and your data.
+
+SleepDiary is a clean, privacy-first sleep journal for people who want to track their sleep patterns without giving up their data or buying expensive smartwatches.
+
+✓ Manual entry — log bedtime and wake time with a tap
+✓ Beautiful charts — see your patterns at a glance
+✓ Export for doctors — CSV & PDF reports for CBT-i therapy
+✓ Privacy-first — all data stays on YOUR device
+✓ No subscription — pay once, use forever
+
+Perfect for: CBT-i therapy patients, people with DSPD/N24, anyone who doesn't want to sleep with their phone on the bed, and those exhausted by subscription apps.</p>
+    </div>
+    
+    <!-- Market Stats -->
+    <div class="section">
+      <h2>📊 Market Opportunity</h2>
+      <div class="stats-grid">
+        <div class="stat">
+          <div class="stat-value">$1B+</div>
+          <div class="stat-label">Sleep App Market (2025)</div>
+        </div>
+        <div class="stat">
+          <div class="stat-value">$2.8B</div>
+          <div class="stat-label">Projected 2032 (14.6% CAGR)</div>
+        </div>
+        <div class="stat">
+          <div class="stat-value">850M+</div>
+          <div class="stat-label">People with Insomnia Globally</div>
+        </div>
+        <div class="stat">
+          <div class="stat-value">~70%</div>
+          <div class="stat-label">Gross Margin</div>
+        </div>
+      </div>
+      
+      <div class="gap-highlight">
+        <h4>🎯 The Gap We Fill</h4>
+        <p>No clean, modern, <strong>manual-only</strong> sleep diary exists with: no wearable, no subscription, no account, beautiful charts, and doctor-ready exports. The closest competitor (Sleepmeter Free) is Android-only with dated UI. AutoSleep is one-time but <strong>requires Apple Watch</strong>.</p>
+      </div>
+    </div>
+    
+    <!-- Competitor Pain -->
+    <div class="section">
+      <h2>🔥 Competitor Problems (Our Opportunity)</h2>
+      
+      <div class="competitor-pain">
+        <strong>Sleep Cycle: 2.1/5 on Trustpilot</strong>
+        <p style="font-size: 13px; margin-top: 4px;">"Despicable, money hungry company. Trying to charge me a monthly subscription for access to features I'd already paid for a lifetime access to."</p>
+      </div>
+      
+      <div class="competitor-pain">
+        <strong>AutoSleep: Requires Apple Watch</strong>
+        <p style="font-size: 13px; margin-top: 4px;">Won't work at all without a $399+ watch. Excludes millions of potential users.</p>
+      </div>
+      
+      <div class="competitor-pain">
+        <strong>Pillow: $34.99/year Subscription</strong>
+        <p style="font-size: 13px; margin-top: 4px;">Best features locked behind Apple Watch requirement and recurring payments.</p>
+      </div>
+      
+      <div class="competitor-pain">
+        <strong>CBT-i Coach: Clunky VA-Focused UI</strong>
+        <p style="font-size: 13px; margin-top: 4px;">Free but clinical, designed for therapy patients, minimal charts.</p>
+      </div>
+      
+      <table style="margin-top: 20px;">
+        <tr><th>App</th><th>Price</th><th>Manual?</th><th>Watch Required?</th></tr>
+        <tr><td>Sleep Cycle</td><td>$39.99/yr</td><td>❌ Sound-based</td><td>Optional</td></tr>
+        <tr><td>AutoSleep</td><td>$7.99</td><td>❌ Automatic</td><td>⚠️ <strong>Yes!</strong></td></tr>
+        <tr><td>Pillow</td><td>$34.99/yr</td><td>❌ Automatic</td><td>Best features need it</td></tr>
+        <tr><td>Sleep as Android</td><td>$49.99/yr</td><td>Partial</td><td>No</td></tr>
+        <tr style="background: #dcfce7;"><td><strong>SleepDiary</strong></td><td><strong>$3.99 once</strong></td><td>✅ <strong>Yes!</strong></td><td>✅ <strong>No!</strong></td></tr>
+      </table>
+    </div>
+    
+    <!-- Features -->
+    <div class="section">
+      <h2>✨ Core Features (MVP)</h2>
+      <div class="feature">
+        <span class="feature-icon">⏰</span>
+        <div>
+          <h3>Quick Sleep Entry</h3>
+          <p>Tap to log bedtime and wake time. Edit past entries easily. No sensors, no microphone.</p>
+        </div>
+      </div>
+      <div class="feature">
+        <span class="feature-icon">⭐</span>
+        <div>
+          <h3>Sleep Quality Rating</h3>
+          <p>1-5 star rating per night with optional emoji mood tracker.</p>
+        </div>
+      </div>
+      <div class="feature">
+        <span class="feature-icon">🏷️</span>
+        <div>
+          <h3>Notes & Quick Tags</h3>
+          <p>Free text notes + quick tags: 🍷 Alcohol, ☕ Caffeine, 💊 Medication, 🏃 Exercise, 😰 Stress</p>
+        </div>
+      </div>
+      <div class="feature">
+        <span class="feature-icon">📊</span>
+        <div>
+          <h3>Beautiful Charts</h3>
+          <p>Weekly/monthly sleep duration graphs. Sleep quality trends. Bedtime consistency visualization.</p>
+        </div>
+      </div>
+      <div class="feature">
+        <span class="feature-icon">📤</span>
+        <div>
+          <h3>Export for Doctors</h3>
+          <p>CSV export for therapists. PDF reports for CBT-i. Optional Apple Health sync (write-only).</p>
+        </div>
+      </div>
+      <div class="feature">
+        <span class="feature-icon">🔒</span>
+        <div>
+          <h3>Privacy-First</h3>
+          <p>No account required. All data stored locally. No cloud sync. No analytics/tracking.</p>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Reddit Quotes -->
+    <div class="section">
+      <h2>💬 Real User Pain Points (Reddit Research)</h2>
+      
+      <div class="quote">
+        "Manual Sleep tracking app.. <strong>does not exist</strong>. I've been basically ripping my hairs trying to find somewhere which would let me manually input sleep timings to chart out my sleep…"
+        <div class="quote-source">— r/DSPD (23K members)</div>
+      </div>
+      
+      <div class="quote">
+        "I'm looking for something very simple but that doesn't seem to exist— an app where I can just input my sleep times without my phone listening to me."
+        <div class="quote-source">— r/N24 (5K members)</div>
+      </div>
+      
+      <div class="quote">
+        "I don't want fancy features like sleep phase tracking, alarms or noise recording, I just want to be able to manually start recording when I go to sleep and when I wake up to show my sleep cycle."
+        <div class="quote-source">— r/N24</div>
+      </div>
+      
+      <div class="quote">
+        "What if someone only wears the watch when they leave the house, so they don't wear it to sleep... This would probably apply to me even if I did buy an Apple Watch."
+        <div class="quote-source">— r/ios</div>
+      </div>
+      
+      <div class="quote">
+        "SOMEONE RECOMMEND A REPLACEMENT APP PLEASE... I was told I would never have to pay for premium. One day, everything starting to get locked..."
+        <div class="quote-source">— r/sleepcycle (re: subscription bait-and-switch)</div>
+      </div>
+      
+      <div class="quote">
+        "I will gladly pay up to $19.99 once for an amazing app! But I refuse and I mean I will <strong>never ever pay a monthly subscription</strong> for an app!"
+        <div class="quote-source">— r/androidapps</div>
+      </div>
+      
+      <h3 style="margin: 20px 0 12px; font-size: 15px;">Key Stats</h3>
+      <ul style="padding-left: 20px; color: var(--muted); font-size: 14px;">
+        <li>10-30% of adults worldwide suffer from insomnia (850M+ people)</li>
+        <li>1 in 3 adults experience brief insomnia symptoms</li>
+        <li>1 in 10 adults have chronic insomnia (3+ months)</li>
+        <li>37% reported insomnia symptoms during/post-COVID</li>
+      </ul>
+      
+      <h3 style="margin: 20px 0 12px; font-size: 15px;">Target Subreddits</h3>
+      <div class="keywords">
+        <span class="keyword">r/sleep (600K+)</span>
+        <span class="keyword">r/insomnia (174K)</span>
+        <span class="keyword">r/DSPD (23K)</span>
+        <span class="keyword">r/N24 (5K)</span>
+        <span class="keyword">r/sleepcycle (refugees)</span>
+        <span class="keyword">r/QuantifiedSelf</span>
+      </div>
+    </div>
+    
+    <!-- Marketing Headlines -->
+    <div class="section">
+      <h2>📣 Marketing Headlines</h2>
+      <ul style="padding-left: 20px; font-size: 14px;">
+        <li><strong>"Finally: A sleep app that doesn't spy on you."</strong></li>
+        <li>"Track your sleep. Keep your privacy."</li>
+        <li>"No wearable. No subscription. No BS."</li>
+        <li>"The sleep diary your therapist actually wants you to use."</li>
+        <li>"Sleep Cycle costs $40/year. We cost $3.99 forever."</li>
+        <li>"Manual sleep tracking for humans who hate subscriptions."</li>
+      </ul>
+      
+      <h3 style="margin: 20px 0 12px; font-size: 15px;">Positioning Statement</h3>
+      <p style="font-size: 14px; padding: 16px; background: var(--primary-light); border-radius: 8px;">
+        For <strong>people who want to understand their sleep patterns</strong> without buying a smartwatch or subscribing to yet another app, SleepDiary is a <strong>manual sleep journal</strong> that provides <strong>simple logging, beautiful charts, and doctor-ready exports</strong>. Unlike Sleep Cycle or Pillow, we <strong>never require wearables, subscriptions, or accounts</strong>.
+      </p>
+    </div>
+    
+    <!-- Why It Wins -->
+    <div class="section">
+      <h2>🏆 Why This App Wins</h2>
+      <table>
+        <tr><th>Factor</th><th>Score</th><th>Notes</th></tr>
+        <tr><td>Margin</td><td>5/5</td><td>~70% after platform fees, $0 server costs</td></tr>
+        <tr><td>Market Size</td><td>3/5</td><td>$1B+ market, 850M insomnia sufferers (niche within)</td></tr>
+        <tr><td>Competition</td><td>4/5</td><td>No clean manual-only app exists; competitors have massive pain</td></tr>
+        <tr><td>Build Complexity</td><td>5/5</td><td>Simple MVP: logging + charts + export. 1-2 weeks build.</td></tr>
+        <tr><td>Differentiation</td><td>4/5</td><td>Anti-Sleep Cycle positioning, privacy-first, one-time price</td></tr>
+        <tr style="font-weight: bold; background: var(--primary-light);">
+          <td>TOTAL</td><td colspan="2">4.25 / 5 — ✅ BUILD</td>
+        </tr>
+      </table>
+    </div>
+    
+    <!-- Unit Economics -->
+    <div class="section">
+      <h2>💰 Unit Economics</h2>
+      <table>
+        <tr><th>Users</th><th>Revenue</th><th>Platform Fees (30%)</th><th>Net Profit</th></tr>
+        <tr><td>100</td><td>$399</td><td>$120</td><td>$264</td></tr>
+        <tr><td>1,000</td><td>$3,990</td><td>$1,197</td><td>$2,778</td></tr>
+        <tr><td>10,000</td><td>$39,900</td><td>$11,970</td><td>$27,910</td></tr>
+        <tr><td>50,000</td><td>$199,500</td><td>$59,850</td><td>$139,600</td></tr>
+      </table>
+      <p style="margin-top: 12px; font-size: 13px; color: var(--muted);">
+        <strong>Break-even:</strong> ~6 users/month covers fixed costs ($15/mo for dev accounts + email). 
+        <strong>Per-user server cost:</strong> $0 (local storage only).
+      </p>
+    </div>
+    
+    <!-- Risks -->
+    <div class="section">
+      <h2>⚠️ Risks & Mitigations</h2>
+      <table>
+        <tr><th>Risk</th><th>Likelihood</th><th>Mitigation</th></tr>
+        <tr><td>Sleep Cycle adds manual mode</td><td>Medium</td><td>Move fast, build community loyalty, stay simpler</td></tr>
+        <tr><td>Low discovery (ASO)</td><td>High</td><td>Reddit marketing (r/DSPD, r/N24 actively want this)</td></tr>
+        <tr><td>Users expect more features</td><td>Medium</td><td>Clear "simple by design" positioning; V2 roadmap</td></tr>
+        <tr><td>Free competitors improve</td><td>Medium</td><td>Premium UX, export features, continuous updates</td></tr>
+      </table>
+    </div>
+    
+    <!-- Tech Stack -->
+    <div class="section">
+      <h2>🛠️ Recommended Tech Stack</h2>
+      <table>
+        <tr><th>Layer</th><th>Choice</th><th>Why</th></tr>
+        <tr><td>Frontend</td><td>React Native + Expo</td><td>Cross-platform, fast iteration</td></tr>
+        <tr><td>Data Storage</td><td>SQLite (local)</td><td>No server needed, privacy-first</td></tr>
+        <tr><td>Charts</td><td>Victory Native</td><td>Beautiful, performant charting</td></tr>
+        <tr><td>Backup</td><td>iCloud/Google Drive</td><td>User-controlled sync (optional)</td></tr>
+        <tr><td>Analytics</td><td>None</td><td>Privacy differentiator</td></tr>
+      </table>
+      <p style="margin-top: 12px; font-size: 13px; color: var(--muted);">
+        <strong>No AI/LLM required</strong> — this is a differentiator. Pure local computation = zero API costs.
+      </p>
+    </div>
+    
+    <footer style="text-align: center; padding: 40px 20px; color: var(--muted); font-size: 13px;">
+      Last updated: February 2, 2026 | Built with 😴 by Geri
+    </footer>
+  </div>
+</body>
+</html>

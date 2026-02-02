@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CraftCount — App Hub</title>
+  <style>
+    :root {
+      --primary: #ec4899;
+      --primary-light: #fce7f3;
+      --primary-dark: #be185d;
+      --bg: #fdf2f8;
+      --card: #ffffff;
+      --text: #1e1e2e;
+      --muted: #6b7280;
+      --border: #f3e8f0;
+      --shadow: 0 4px 12px rgba(236,72,153,0.12);
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { 
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      background: var(--bg); color: var(--text); line-height: 1.6;
+      padding: 24px 16px 60px;
+    }
+    .container { max-width: 900px; margin: 0 auto; }
+    
+    header { text-align: center; padding: 40px 20px; margin-bottom: 32px; }
+    .logo { font-size: 48px; margin-bottom: 12px; }
+    h1 { font-size: 32px; color: var(--primary-dark); margin-bottom: 8px; }
+    .tagline { color: var(--muted); font-size: 18px; }
+    
+    .badges { display: flex; gap: 12px; justify-content: center; margin-top: 20px; flex-wrap: wrap; }
+    .badge { background: var(--primary-light); color: var(--primary-dark); padding: 6px 14px; 
+             border-radius: 20px; font-size: 13px; font-weight: 500; }
+    .badge.score { background: var(--primary); color: white; }
+    
+    .section { background: var(--card); border-radius: 16px; padding: 24px; 
+               margin-bottom: 20px; box-shadow: var(--shadow); }
+    .section h2 { font-size: 18px; color: var(--primary-dark); margin-bottom: 16px; 
+                  padding-bottom: 12px; border-bottom: 2px solid var(--primary-light); }
+    
+    .repo-link { display: inline-flex; align-items: center; gap: 8px; background: #24292e; 
+                 color: white; padding: 12px 20px; border-radius: 8px; text-decoration: none;
+                 font-weight: 500; margin-bottom: 16px; }
+    .repo-link:hover { background: #3a3f44; }
+    
+    .keywords { display: flex; flex-wrap: wrap; gap: 8px; }
+    .keyword { background: #f0f0f0; padding: 4px 10px; border-radius: 12px; font-size: 12px; color: #666; }
+    
+    .quote { background: var(--primary-light); border-left: 4px solid var(--primary); 
+             padding: 16px; margin-bottom: 12px; border-radius: 0 8px 8px 0; font-style: italic; }
+    .quote-source { font-size: 12px; color: var(--muted); margin-top: 8px; font-style: normal; }
+    
+    .feature { display: flex; gap: 12px; margin-bottom: 16px; align-items: flex-start; }
+    .feature-icon { font-size: 24px; }
+    .feature h3 { font-size: 15px; margin-bottom: 4px; }
+    .feature p { font-size: 13px; color: var(--muted); }
+    
+    .stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 16px; }
+    .stat { text-align: center; padding: 16px; background: var(--primary-light); border-radius: 12px; }
+    .stat-value { font-size: 28px; font-weight: 700; color: var(--primary-dark); }
+    .stat-label { font-size: 12px; color: var(--muted); }
+    
+    .description { white-space: pre-line; font-size: 14px; }
+    
+    table { width: 100%; border-collapse: collapse; font-size: 14px; }
+    th, td { padding: 10px 12px; text-align: left; border-bottom: 1px solid var(--border); }
+    th { background: var(--primary-light); font-weight: 600; }
+    
+    .back-link { display: inline-block; margin-bottom: 20px; color: var(--primary); text-decoration: none; }
+    .back-link:hover { text-decoration: underline; }
+    
+    .voice-cmd { background: linear-gradient(135deg, var(--primary-light), #fdf2f8); 
+                 border-radius: 12px; padding: 16px; margin-bottom: 16px; }
+    .voice-cmd code { background: var(--primary); color: white; padding: 2px 8px; 
+                      border-radius: 4px; font-size: 13px; margin-right: 8px; }
+    .voice-cmd span { color: var(--muted); font-size: 13px; }
+    
+    .competitor-gap { background: linear-gradient(135deg, #fef3c7, #fff7ed); 
+                      border-radius: 12px; padding: 20px; margin-top: 16px; }
+    .competitor-gap h3 { color: #92400e; margin-bottom: 12px; }
+    .competitor-gap table th { background: #fef3c7; }
+    
+    @media (max-width: 600px) {
+      .stats-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <a href="../" class="back-link">← Back to All Apps</a>
+    
+    <header>
+      <div class="logo">🧶</div>
+      <h1>CraftCount</h1>
+      <p class="tagline">Voice-Controlled Row Counter</p>
+      <div class="badges">
+        <span class="badge score">Score: 4.40</span>
+        <span class="badge">70-85% Margin</span>
+        <span class="badge">$4.99 One-Time</span>
+        <span class="badge">30M+ Crafters</span>
+      </div>
+    </header>
+    
+    <!-- GitHub Repo -->
+    <div class="section">
+      <h2>📦 Repository</h2>
+      <a href="#" class="repo-link" style="opacity: 0.5; pointer-events: none;">
+        <svg height="20" width="20" viewBox="0 0 16 16" fill="currentColor">
+          <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/>
+        </svg>
+        Coming Soon — Not Yet Started
+      </a>
+      <p style="color: var(--muted); font-size: 14px;">Status: Research Complete ✅ | Ready for Development</p>
+    </div>
+    
+    <!-- App Store Info -->
+    <div class="section">
+      <h2>📱 App Store Listing</h2>
+      <table>
+        <tr><th>Field</th><th>Value</th></tr>
+        <tr><td>App Name</td><td><strong>CraftCount</strong></td></tr>
+        <tr><td>Subtitle</td><td>Voice Row Counter for Knitters</td></tr>
+        <tr><td>Category</td><td>Lifestyle (primary), Productivity (secondary)</td></tr>
+        <tr><td>Age Rating</td><td>4+</td></tr>
+        <tr><td>Price</td><td><strong>$4.99 one-time</strong> (no subscription)</td></tr>
+      </table>
+      
+      <h3 style="margin: 20px 0 12px; font-size: 15px;">Keywords (100 chars)</h3>
+      <div class="keywords">
+        <span class="keyword">row counter</span>
+        <span class="keyword">knitting</span>
+        <span class="keyword">crochet</span>
+        <span class="keyword">voice control</span>
+        <span class="keyword">stitch counter</span>
+        <span class="keyword">yarn</span>
+        <span class="keyword">pattern tracker</span>
+        <span class="keyword">craft</span>
+        <span class="keyword">hands free</span>
+        <span class="keyword">counter</span>
+      </div>
+      
+      <h3 style="margin: 20px 0 12px; font-size: 15px;">App Store Description</h3>
+      <p class="description">Count your rows without touching your phone. CraftCount is the simple, voice-controlled row counter for knitters and crocheters.
+
+🧶 HANDS-FREE COUNTING
+Just say "next" to count a row. No more putting down your needles!
+
+💰 PAY ONCE, OWN FOREVER  
+$4.99. No subscriptions. No ads. No locked features.
+
+📴 WORKS OFFLINE
+No account needed. No internet required. Your projects stay on your device.
+
+Perfect for crafters who:
+• Listen to podcasts while knitting
+• Hate subscription apps
+• Want simplicity, not feature bloat
+• Need hands-free tracking</p>
+    </div>
+    
+    <!-- Market Stats -->
+    <div class="section">
+      <h2>📊 Market Opportunity</h2>
+      <div class="stats-grid">
+        <div class="stat">
+          <div class="stat-value">30M+</div>
+          <div class="stat-label">US Knitters & Crocheters</div>
+        </div>
+        <div class="stat">
+          <div class="stat-value">1.4M</div>
+          <div class="stat-label">r/knitting Members</div>
+        </div>
+        <div class="stat">
+          <div class="stat-value">$10B</div>
+          <div class="stat-label">Global Yarn Market</div>
+        </div>
+        <div class="stat">
+          <div class="stat-value">$0</div>
+          <div class="stat-label">Per-User Cost</div>
+        </div>
+      </div>
+      
+      <h3 style="margin: 20px 0 12px; font-size: 15px;">Demographics</h3>
+      <ul style="padding-left: 20px; color: var(--muted); font-size: 14px;">
+        <li><strong>Primary:</strong> Women 25-44 (44% of crocheters are 25-34)</li>
+        <li><strong>Gender split:</strong> 71-86% female</li>
+        <li><strong>Behavior:</strong> Multi-task while crafting (podcasts, audiobooks, TV)</li>
+        <li><strong>Pain point:</strong> Both hands hold yarn = can't touch phone</li>
+      </ul>
+    </div>
+    
+    <!-- Features -->
+    <div class="section">
+      <h2>✨ Core Features</h2>
+      <div class="feature">
+        <span class="feature-icon">🎤</span>
+        <div>
+          <h3>Voice Control</h3>
+          <p>Say "next" to count. Hands stay on your yarn. Works offline with on-device speech recognition.</p>
+        </div>
+      </div>
+      <div class="feature">
+        <span class="feature-icon">🔢</span>
+        <div>
+          <h3>Multiple Counters</h3>
+          <p>Main counter + 3 secondary counters per project. Link counters for automatic resets.</p>
+        </div>
+      </div>
+      <div class="feature">
+        <span class="feature-icon">📋</span>
+        <div>
+          <h3>Project Management</h3>
+          <p>Multiple projects with photos and notes. Auto-save on close. Simple and organized.</p>
+        </div>
+      </div>
+      <div class="feature">
+        <span class="feature-icon">🔔</span>
+        <div>
+          <h3>Pattern Reminders</h3>
+          <p>Set alerts at specific rows: "Decrease at row 5, 10, 15..." Visual + haptic notifications.</p>
+        </div>
+      </div>
+      <div class="feature">
+        <span class="feature-icon">📴</span>
+        <div>
+          <h3>100% Offline</h3>
+          <p>No account. No internet. No sync required. Your data stays on your device.</p>
+        </div>
+      </div>
+      <div class="feature">
+        <span class="feature-icon">👆</span>
+        <div>
+          <h3>Large Tap-to-Count</h3>
+          <p>Big button UI. Tap anywhere on screen to increment. -1 button for mistakes.</p>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Voice Commands -->
+    <div class="section">
+      <h2>🎤 Voice Commands</h2>
+      <div class="voice-cmd">
+        <code>"Next"</code> <code>"Plus"</code> <code>"Up"</code>
+        <span>→ Add 1 to current counter</span>
+      </div>
+      <div class="voice-cmd">
+        <code>"Back"</code> <code>"Minus"</code> <code>"Undo"</code>
+        <span>→ Subtract 1 (for mistakes)</span>
+      </div>
+      <div class="voice-cmd">
+        <code>"Reset"</code>
+        <span>→ Reset counter (requires "Yes" to confirm)</span>
+      </div>
+      <div class="voice-cmd">
+        <code>"Total"</code> <code>"Count"</code>
+        <span>→ Speak current count aloud (hands-free status)</span>
+      </div>
+      <div class="voice-cmd">
+        <code>"Pause"</code> <code>"Sleep"</code>
+        <span>→ Stop listening (battery saver)</span>
+      </div>
+    </div>
+    
+    <!-- Reddit Quotes -->
+    <div class="section">
+      <h2>💬 Real User Pain Points (Reddit Research)</h2>
+      
+      <div class="quote">
+        "I'd drop it in a hot second... specifically I don't want a subscription model. That's madness."
+        <div class="quote-source">— r/crochet</div>
+      </div>
+      
+      <div class="quote">
+        "subscription pricing hurts my soul…"
+        <div class="quote-source">— r/knitting</div>
+      </div>
+      
+      <div class="quote">
+        "It would be amazing if they could make it voice activated so you didn't have to stop crocheting!"
+        <div class="quote-source">— r/crochet</div>
+      </div>
+      
+      <div class="quote">
+        "You say 'next step' and it'll increment for you."
+        <div class="quote-source">— r/crochet (describing ideal feature)</div>
+      </div>
+      
+      <div class="quote">
+        "I was frustrated at always having to take my printed pattern, pencil, and eraser and always having to find a flat surface"
+        <div class="quote-source">— r/knitting</div>
+      </div>
+      
+      <div class="quote">
+        "I needed to look up tutorials to figure out how to use them"
+        <div class="quote-source">— r/knitting (about KnitCompanion's complexity)</div>
+      </div>
+      
+      <h3 style="margin: 20px 0 12px; font-size: 15px;">Key User Needs</h3>
+      <ul style="padding-left: 20px; color: var(--muted); font-size: 14px;">
+        <li><strong>Hands-free:</strong> Can't touch phone with yarn in hands</li>
+        <li><strong>No subscriptions:</strong> Willing to pay once, refuse recurring fees</li>
+        <li><strong>Simplicity:</strong> Don't want 50 features, just counting</li>
+        <li><strong>Offline:</strong> Craft anywhere without internet</li>
+      </ul>
+      
+      <h3 style="margin: 20px 0 12px; font-size: 15px;">Target Subreddits</h3>
+      <div class="keywords">
+        <span class="keyword">r/knitting (1.4M)</span>
+        <span class="keyword">r/crochet (1.2M)</span>
+        <span class="keyword">r/YarnAddicts (200K)</span>
+        <span class="keyword">r/casualknitting (80K)</span>
+        <span class="keyword">r/CrochetHelp (50K)</span>
+        <span class="keyword">r/craftsnark (40K)</span>
+      </div>
+    </div>
+    
+    <!-- Competitor Gap -->
+    <div class="section">
+      <h2>🎯 Competitor Gap Analysis</h2>
+      
+      <div class="competitor-gap">
+        <h3>⚠️ The Market Gap: Voice + One-Time = NOBODY</h3>
+        <table>
+          <tr><th>App</th><th>Voice Control</th><th>Pricing</th><th>The Problem</th></tr>
+          <tr>
+            <td><strong>My Row Counter</strong></td>
+            <td>✅ Yes</td>
+            <td>$10/year subscription</td>
+            <td>Voice requires paid tier, subscription model</td>
+          </tr>
+          <tr>
+            <td><strong>KnitCompanion</strong></td>
+            <td>✅ Yes</td>
+            <td>$30/year subscription</td>
+            <td>Expensive, steep learning curve, "needed tutorials"</td>
+          </tr>
+          <tr>
+            <td><strong>YarnBuddy</strong></td>
+            <td>❌ No</td>
+            <td>$15/yr or $45 lifetime</td>
+            <td>No voice control at all, iOS only</td>
+          </tr>
+          <tr>
+            <td><strong>Easy Knitty</strong></td>
+            <td>❌ No</td>
+            <td>$3.99 one-time ✅</td>
+            <td>One-time purchase but NO voice control</td>
+          </tr>
+          <tr style="background: var(--primary-light);">
+            <td><strong>CraftCount</strong></td>
+            <td>✅ Yes</td>
+            <td><strong>$4.99 one-time ✅</strong></td>
+            <td><strong>The only voice + one-time option!</strong></td>
+          </tr>
+        </table>
+      </div>
+      
+      <h3 style="margin: 20px 0 12px; font-size: 15px;">Pricing Landscape</h3>
+      <table>
+        <tr><th>Model</th><th>Apps</th><th>User Sentiment</th></tr>
+        <tr><td>Subscription ($10-30/yr)</td><td>My Row Counter, KnitCompanion, YarnBuddy</td><td>😤 "hurts my soul", "madness"</td></tr>
+        <tr><td>One-time ($3-5)</td><td>Easy Knitty, Knit Counter</td><td>😊 "rare", "worth it"</td></tr>
+        <tr><td>Lifetime ($45-50)</td><td>YarnBuddy ($45)</td><td>😐 Acceptable but expensive</td></tr>
+      </table>
+    </div>
+    
+    <!-- Marketing Headlines -->
+    <div class="section">
+      <h2>📣 Marketing Headlines</h2>
+      <ul style="padding-left: 20px; font-size: 14px;">
+        <li>"Count Your Rows Without Touching Your Phone"</li>
+        <li>"The Row Counter That Actually Understands 'Hands Full'"</li>
+        <li>"Pay Once. Count Forever. No Subscription."</li>
+        <li>"Voice-Controlled Row Counter for $4.99 (Not $10/Year)"</li>
+        <li>"Finally, a Knitting App That Doesn't Want Your Monthly Payment"</li>
+        <li>"Built by Crafters, For Crafters. $4.99 Forever."</li>
+      </ul>
+      
+      <h3 style="margin: 20px 0 12px; font-size: 15px;">Positioning Statement</h3>
+      <p style="font-style: italic; color: var(--muted); font-size: 14px;">
+        For <strong>knitters and crocheters</strong> who want to track their rows without subscriptions or complexity, 
+        <strong>CraftCount</strong> is a <strong>simple row counter app</strong> that provides 
+        <strong>voice control, offline functionality, and lifetime ownership</strong>. 
+        Unlike My Row Counter or KnitCompanion, we charge <strong>$4.99 once</strong> and never again.
+      </p>
+    </div>
+    
+    <!-- Unit Economics -->
+    <div class="section">
+      <h2>💰 Unit Economics</h2>
+      <table>
+        <tr><th>Sales</th><th>Gross Revenue</th><th>Platform Fees (25%)</th><th>Net Revenue</th></tr>
+        <tr><td>100</td><td>$499</td><td>$125</td><td>$374</td></tr>
+        <tr><td>1,000</td><td>$4,990</td><td>$1,248</td><td>$3,742</td></tr>
+        <tr><td>10,000</td><td>$49,900</td><td>$12,475</td><td>$37,425</td></tr>
+        <tr><td>50,000</td><td>$249,500</td><td>$62,375</td><td>$187,125</td></tr>
+      </table>
+      
+      <h3 style="margin: 20px 0 12px; font-size: 15px;">Cost Structure</h3>
+      <ul style="padding-left: 20px; color: var(--muted); font-size: 14px;">
+        <li><strong>Per-user cost:</strong> $0.00 (no backend, no AI APIs)</li>
+        <li><strong>Fixed costs:</strong> ~$12/month (Apple Dev $8.33 + Google $2.08 + Domain $1)</li>
+        <li><strong>Break-even:</strong> 3-4 sales/month</li>
+        <li><strong>Gross margin:</strong> 70-85%</li>
+      </ul>
+    </div>
+    
+    <!-- Why It Wins -->
+    <div class="section">
+      <h2>🏆 Why This App Wins</h2>
+      <table>
+        <tr><th>Factor</th><th>Score</th><th>Notes</th></tr>
+        <tr><td>Margin</td><td>5/5</td><td>70-85% gross margin, zero per-user costs</td></tr>
+        <tr><td>Market Size</td><td>4/5</td><td>30M+ US crafters, ~5M use apps</td></tr>
+        <tr><td>Competition</td><td>4/5</td><td>Crowded BUT no voice + one-time combo</td></tr>
+        <tr><td>Build Complexity</td><td>5/5</td><td>Simple app, no backend, native speech APIs</td></tr>
+        <tr><td>Differentiation</td><td>4/5</td><td>Voice + one-time + simplicity = unique position</td></tr>
+      </table>
+      <p style="margin-top: 16px; text-align: center; font-weight: 600; color: var(--primary);">
+        Overall Score: 4.40/5 — RECOMMENDED BUILD 🚀
+      </p>
+    </div>
+    
+    <!-- Tech Stack -->
+    <div class="section">
+      <h2>🛠️ Technical Approach</h2>
+      <table>
+        <tr><th>Layer</th><th>Choice</th><th>Why</th></tr>
+        <tr><td>Frontend</td><td>React Native (Expo)</td><td>Cross-platform, good for simple apps</td></tr>
+        <tr><td>Backend</td><td>None (local-first)</td><td>Offline requirement, no sync needed</td></tr>
+        <tr><td>Storage</td><td>AsyncStorage + SQLite</td><td>Simple, reliable, offline</td></tr>
+        <tr><td>Speech</td><td>Native iOS/Android</td><td>On-device, offline-capable</td></tr>
+        <tr><td>Watch</td><td>Native watchOS (V2)</td><td>Deep integration for haptics</td></tr>
+        <tr><td>Payments</td><td>App Store/Play Store</td><td>One-time purchase, simple</td></tr>
+      </table>
+      
+      <h3 style="margin: 20px 0 12px; font-size: 15px;">Why No AI?</h3>
+      <p style="color: var(--muted); font-size: 14px;">
+        This app doesn't need any AI/LLM integration — it's pure local functionality:
+        Speech recognition uses built-in OS APIs (free, offline).
+        Counter logic is simple arithmetic. No API costs, no backend = higher margins.
+      </p>
+    </div>
+    
+    <!-- Roadmap -->
+    <div class="section">
+      <h2>🗺️ Roadmap</h2>
+      <table>
+        <tr><th>Version</th><th>Features</th><th>Timeline</th></tr>
+        <tr>
+          <td><strong>v1.0 MVP</strong></td>
+          <td>Multiple projects, counters, voice control, pattern reminders, offline</td>
+          <td>Month 1</td>
+        </tr>
+        <tr>
+          <td><strong>v2.0</strong></td>
+          <td>Apple Watch app, home screen widget, PDF pattern viewer, iCloud backup</td>
+          <td>Month 2-3</td>
+        </tr>
+        <tr>
+          <td><strong>v3.0</strong></td>
+          <td>Project timer, pattern import, share project summary</td>
+          <td>Future</td>
+        </tr>
+      </table>
+    </div>
+    
+    <footer style="text-align: center; padding: 40px 20px; color: var(--muted); font-size: 13px;">
+      Last updated: February 2, 2026 | Built with 🧶 by Geri
+    </footer>
+  </div>
+</body>
+</html>

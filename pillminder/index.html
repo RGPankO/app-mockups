@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PillMinder — App Hub</title>
+  <style>
+    :root {
+      --primary: #dc2626;
+      --primary-light: #fef2f2;
+      --primary-dark: #b91c1c;
+      --bg: #fafafa;
+      --card: #ffffff;
+      --text: #1f2937;
+      --muted: #6b7280;
+      --border: #e5e7eb;
+      --shadow: 0 4px 12px rgba(0,0,0,0.08);
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { 
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      background: var(--bg); color: var(--text); line-height: 1.6;
+      padding: 24px 16px 60px;
+    }
+    .container { max-width: 900px; margin: 0 auto; }
+    
+    header { text-align: center; padding: 40px 20px; margin-bottom: 32px; }
+    .logo { font-size: 48px; margin-bottom: 12px; }
+    h1 { font-size: 32px; color: var(--primary-dark); margin-bottom: 8px; }
+    .tagline { color: var(--muted); font-size: 18px; }
+    
+    .badges { display: flex; gap: 12px; justify-content: center; margin-top: 20px; flex-wrap: wrap; }
+    .badge { background: var(--primary-light); color: var(--primary-dark); padding: 6px 14px; 
+             border-radius: 20px; font-size: 13px; font-weight: 500; }
+    .badge.score { background: var(--primary); color: white; }
+    
+    .section { background: var(--card); border-radius: 16px; padding: 24px; 
+               margin-bottom: 20px; box-shadow: var(--shadow); }
+    .section h2 { font-size: 18px; color: var(--primary-dark); margin-bottom: 16px; 
+                  padding-bottom: 12px; border-bottom: 2px solid var(--primary-light); }
+    
+    .repo-link { display: inline-flex; align-items: center; gap: 8px; background: #24292e; 
+                 color: white; padding: 12px 20px; border-radius: 8px; text-decoration: none;
+                 font-weight: 500; margin-bottom: 16px; }
+    .repo-link:hover { background: #3a3f44; }
+    
+    .keywords { display: flex; flex-wrap: wrap; gap: 8px; }
+    .keyword { background: #f0f0f0; padding: 4px 10px; border-radius: 12px; font-size: 12px; color: #666; }
+    
+    .quote { background: var(--primary-light); border-left: 4px solid var(--primary); 
+             padding: 16px; margin-bottom: 12px; border-radius: 0 8px 8px 0; font-style: italic; }
+    .quote-source { font-size: 12px; color: var(--muted); margin-top: 8px; font-style: normal; }
+    
+    .feature { display: flex; gap: 12px; margin-bottom: 16px; align-items: flex-start; }
+    .feature-icon { font-size: 24px; }
+    .feature h3 { font-size: 15px; margin-bottom: 4px; }
+    .feature p { font-size: 13px; color: var(--muted); }
+    
+    .stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 16px; }
+    .stat { text-align: center; padding: 16px; background: var(--primary-light); border-radius: 12px; }
+    .stat-value { font-size: 28px; font-weight: 700; color: var(--primary-dark); }
+    .stat-label { font-size: 12px; color: var(--muted); }
+    
+    .description { white-space: pre-line; font-size: 14px; }
+    
+    table { width: 100%; border-collapse: collapse; font-size: 14px; }
+    th, td { padding: 10px 12px; text-align: left; border-bottom: 1px solid var(--border); }
+    th { background: var(--primary-light); font-weight: 600; }
+    
+    .back-link { display: inline-block; margin-bottom: 20px; color: var(--primary); text-decoration: none; }
+    .back-link:hover { text-decoration: underline; }
+    
+    .gap-table td:first-child { font-weight: 500; }
+    .gap-table .us { color: var(--primary); font-weight: 600; }
+    .gap-table .them { color: var(--muted); }
+    
+    @media (max-width: 600px) {
+      .stats-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <a href="../" class="back-link">← Back to All Apps</a>
+    
+    <header>
+      <div class="logo">💊</div>
+      <h1>PillMinder</h1>
+      <p class="tagline">Simple Medication Reminders</p>
+      <div class="badges">
+        <span class="badge score">Score: 4.15</span>
+        <span class="badge">70% Margin</span>
+        <span class="badge">$4.99 One-Time</span>
+        <span class="badge">56M+ Seniors</span>
+      </div>
+    </header>
+    
+    <!-- GitHub Repo -->
+    <div class="section">
+      <h2>📦 Repository</h2>
+      <a href="#" class="repo-link" target="_blank" style="opacity: 0.5; pointer-events: none;">
+        <svg height="20" width="20" viewBox="0 0 16 16" fill="currentColor">
+          <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/>
+        </svg>
+        Repo pending — Ready to build
+      </a>
+      <p style="color: var(--muted); font-size: 14px;">Status: Research complete, ready for development</p>
+    </div>
+    
+    <!-- App Store Info -->
+    <div class="section">
+      <h2>📱 App Store Listing</h2>
+      <table>
+        <tr><th>Field</th><th>Value</th></tr>
+        <tr><td>App Name</td><td><strong>PillMinder</strong></td></tr>
+        <tr><td>Subtitle</td><td>Simple Medication Reminders</td></tr>
+        <tr><td>Category</td><td>Health & Fitness (primary), Medical (secondary)</td></tr>
+        <tr><td>Age Rating</td><td>4+</td></tr>
+        <tr><td>Price</td><td><strong>$4.99 one-time purchase</strong></td></tr>
+      </table>
+      
+      <h3 style="margin: 20px 0 12px; font-size: 15px;">Keywords (100 chars)</h3>
+      <div class="keywords">
+        <span class="keyword">pill reminder</span>
+        <span class="keyword">medication reminder</span>
+        <span class="keyword">medicine alarm</span>
+        <span class="keyword">pill tracker</span>
+        <span class="keyword">med reminder</span>
+        <span class="keyword">simple</span>
+        <span class="keyword">senior</span>
+        <span class="keyword">elderly</span>
+        <span class="keyword">offline</span>
+        <span class="keyword">no subscription</span>
+      </div>
+      
+      <h3 style="margin: 20px 0 12px; font-size: 15px;">App Store Description</h3>
+      <p class="description">Never miss a pill again. No accounts. No subscriptions. No confusion. Just reminders that work.
+
+💊 DEAD SIMPLE
+Add your medication in 3 taps. Set times. Done. No drug databases, no health tracking, no bloat.
+
+🔔 PERSISTENT ALARMS
+Full-screen alerts that won't quit until you tap "Taken." You WILL notice these reminders.
+
+👴 SENIOR-FRIENDLY
+Giant buttons. Huge text. Maximum 3 options per screen. Designed for real people, not tech reviewers.
+
+📴 WORKS OFFLINE
+No internet required. No account required. Ever. Your data stays on your device.
+
+💰 PAY ONCE, OWN FOREVER
+$4.99. That's it. No subscriptions. No "premium tier." No ads interrupting your health reminders.
+
+Perfect for:
+• Seniors managing daily medications
+• Caregivers setting up reminders for parents
+• Anyone tired of bloated medication apps
+• ADHD community seeking simple solutions
+
+"Only need it to do this one thing, so the more small and focused it is, the better."</p>
+    </div>
+    
+    <!-- Market Stats -->
+    <div class="section">
+      <h2>📊 Market Opportunity</h2>
+      <div class="stats-grid">
+        <div class="stat">
+          <div class="stat-value">$4B</div>
+          <div class="stat-label">Medication Adherence Market</div>
+        </div>
+        <div class="stat">
+          <div class="stat-value">56M</div>
+          <div class="stat-label">US Adults 65+</div>
+        </div>
+        <div class="stat">
+          <div class="stat-value">50%</div>
+          <div class="stat-label">Don't Take Meds As Prescribed</div>
+        </div>
+        <div class="stat">
+          <div class="stat-value">~70%</div>
+          <div class="stat-label">Gross Margin</div>
+        </div>
+      </div>
+      
+      <h3 style="margin: 20px 0 12px; font-size: 15px;">The Problem Scale</h3>
+      <ul style="padding-left: 20px; color: var(--muted); font-size: 14px;">
+        <li><strong>125,000 deaths annually</strong> from improper medication use (US)</li>
+        <li><strong>700,000 hospital visits/year</strong> from non-adherence</li>
+        <li><strong>131 million US adults</strong> take at least one prescription daily</li>
+        <li><strong>44 out of 100</strong> prescriptions never picked up</li>
+        <li>Seniors take average of <strong>4-5 medications daily</strong></li>
+      </ul>
+    </div>
+    
+    <!-- Features -->
+    <div class="section">
+      <h2>✨ Core Features</h2>
+      <div class="feature">
+        <span class="feature-icon">🔔</span>
+        <div>
+          <h3>Persistent Alarm Reminders</h3>
+          <p>Full-screen takeover alerts that repeat until acknowledged. "Taken" / "Skip" / "Snooze 15 min" — that's it.</p>
+        </div>
+      </div>
+      <div class="feature">
+        <span class="feature-icon">👆</span>
+        <div>
+          <h3>Giant Tap Targets</h3>
+          <p>56x56dp minimum buttons (larger than Apple's 44pt standard). Huge text. Can't miss, can't mis-tap.</p>
+        </div>
+      </div>
+      <div class="feature">
+        <span class="feature-icon">📱</span>
+        <div>
+          <h3>Today View Dashboard</h3>
+          <p>Giant medication cards with clear "Taken ✓" / "Pending" status. Minimal text, maximum clarity.</p>
+        </div>
+      </div>
+      <div class="feature">
+        <span class="feature-icon">📴</span>
+        <div>
+          <h3>Offline-First Architecture</h3>
+          <p>Works without internet. All data stored locally. No account required. Ever.</p>
+        </div>
+      </div>
+      <div class="feature">
+        <span class="feature-icon">📋</span>
+        <div>
+          <h3>Simple History Log</h3>
+          <p>Did I take it today? Yesterday? Just a simple 7-day list. No charts, no analytics, no confusion.</p>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Accessibility Requirements -->
+    <div class="section">
+      <h2>♿ Accessibility Requirements (Critical)</h2>
+      <table>
+        <tr><th>Category</th><th>Requirement</th></tr>
+        <tr><td>Font Size</td><td><strong>18pt minimum</strong> body, 24pt+ headers</td></tr>
+        <tr><td>Touch Targets</td><td><strong>56x56dp minimum</strong> (larger than standard 44pt)</td></tr>
+        <tr><td>Contrast</td><td><strong>7:1 ratio</strong> (WCAG AAA), no light gray text</td></tr>
+        <tr><td>Cognitive Load</td><td><strong>Maximum 3 options</strong> per screen</td></tr>
+        <tr><td>Navigation</td><td><strong>No hidden menus</strong> — everything visible</td></tr>
+        <tr><td>Feedback</td><td>Immediate feedback on all actions, haptic on presses</td></tr>
+        <tr><td>Audio</td><td>Loud alarms (adjustable), full VoiceOver/TalkBack support</td></tr>
+        <tr><td>Dynamic Type</td><td>Full support — scales with system settings</td></tr>
+      </table>
+    </div>
+    
+    <!-- Reddit Quotes -->
+    <div class="section">
+      <h2>💬 Real User Pain Points (Reddit Research)</h2>
+      
+      <div class="quote">
+        "Only need it to do this one thing, so the more small and focused it is, the better."
+        <div class="quote-source">— r/dementia user seeking caregiver medication tracking</div>
+      </div>
+      
+      <div class="quote">
+        "Another app not understanding their target audience... people who use a lot of medication are sick. And those people often don't work. And no work equals bare minimum income."
+        <div class="quote-source">— Google Play review (142 upvotes) on Medisafe subscriptions</div>
+      </div>
+      
+      <div class="quote">
+        "It's only possible to track two medications without a subscription, which is only revealed once you've created an account. This type of 'subscribe to unlock basic functionality' model is incredibly frustrating."
+        <div class="quote-source">— Google Play review (320 upvotes)</div>
+      </div>
+      
+      <div class="quote">
+        "Just don't hit taken to dismiss it and then forget, that's been my evening issue recently."
+        <div class="quote-source">— r/ADHD user on common failure mode</div>
+      </div>
+      
+      <div class="quote">
+        "Looking for something simple that isn't too resource intensive on our devices."
+        <div class="quote-source">— r/dementia user managing parent's medications</div>
+      </div>
+      
+      <h3 style="margin: 20px 0 12px; font-size: 15px;">Target Subreddits</h3>
+      <div class="keywords">
+        <span class="keyword">r/ADHD (1.9M)</span>
+        <span class="keyword">r/adhdwomen (500K)</span>
+        <span class="keyword">r/AgingParents (100K)</span>
+        <span class="keyword">r/eldercare (30K)</span>
+        <span class="keyword">r/CaregiverSupport (50K)</span>
+        <span class="keyword">r/dementia (25K)</span>
+        <span class="keyword">r/ChronicIllness (150K)</span>
+      </div>
+    </div>
+    
+    <!-- Competitor Gap -->
+    <div class="section">
+      <h2>🎯 Competitor Gap Analysis</h2>
+      <table class="gap-table">
+        <tr><th>Feature</th><th>Medisafe / MyTherapy</th><th>PillMinder</th></tr>
+        <tr>
+          <td>Pricing</td>
+          <td class="them">Free (2 meds) → $5-10/month subscription</td>
+          <td class="us">$4.99 one-time, forever</td>
+        </tr>
+        <tr>
+          <td>Account Required</td>
+          <td class="them">Yes, mandatory</td>
+          <td class="us">No. Ever.</td>
+        </tr>
+        <tr>
+          <td>Internet Required</td>
+          <td class="them">Yes, for sync</td>
+          <td class="us">No. Works offline.</td>
+        </tr>
+        <tr>
+          <td>App Size</td>
+          <td class="them">Medisafe: 239MB</td>
+          <td class="us">~15MB target</td>
+        </tr>
+        <tr>
+          <td>Features</td>
+          <td class="them">Drug interactions, health tracking, pharmacy integration, AI, social</td>
+          <td class="us">Just reminders. That's it.</td>
+        </tr>
+        <tr>
+          <td>UI Complexity</td>
+          <td class="them">Multiple menus, onboarding, tutorials</td>
+          <td class="us">3 taps to add med, max 3 options/screen</td>
+        </tr>
+        <tr>
+          <td>Senior-Friendly</td>
+          <td class="them">Standard UI (44pt targets)</td>
+          <td class="us">56dp targets, 18pt+ fonts, WCAG AAA</td>
+        </tr>
+        <tr>
+          <td>Ads</td>
+          <td class="them">MyTherapy: Ad-supported free tier</td>
+          <td class="us">Zero ads. You paid for it.</td>
+        </tr>
+      </table>
+      
+      <h3 style="margin: 20px 0 12px; font-size: 15px;">What No One Does Well</h3>
+      <ul style="padding-left: 20px; color: var(--muted); font-size: 14px;">
+        <li>✅ <strong>Simple, offline-first</strong> — Every major app requires accounts and internet</li>
+        <li>✅ <strong>One-time purchase</strong> — Dominated by subscriptions or ad-supported</li>
+        <li>✅ <strong>Senior-optimized UI</strong> — Large buttons, high contrast, minimal steps</li>
+        <li>✅ <strong>Zero feature bloat</strong> — Just reminders, nothing else</li>
+        <li>✅ <strong>Genuine accessibility</strong> — VoiceOver isn't enough; need redesigned UX</li>
+      </ul>
+    </div>
+    
+    <!-- Marketing Headlines -->
+    <div class="section">
+      <h2>📣 Marketing Headlines</h2>
+      <ul style="padding-left: 20px; font-size: 14px;">
+        <li>"Never miss a pill again. No accounts. No subscriptions. No confusion."</li>
+        <li>"No account required. Ever."</li>
+        <li>"Works without internet."</li>
+        <li>"Pay once, use forever. $4.99."</li>
+        <li>"Designed for seniors, loved by everyone."</li>
+        <li>"The medication reminder your parents can actually use."</li>
+        <li>"Big buttons. Loud alarms. That's it."</li>
+        <li>"For people who just want a pill reminder, not a medical suite."</li>
+      </ul>
+    </div>
+    
+    <!-- Why It Wins -->
+    <div class="section">
+      <h2>🏆 Why This App Wins</h2>
+      <table>
+        <tr><th>Factor</th><th>Score</th><th>Notes</th></tr>
+        <tr><td>Margin</td><td>4/5</td><td>~70% after App Store fees, zero server costs</td></tr>
+        <tr><td>Market Size</td><td>5/5</td><td>$4B market, 56M seniors, 131M daily med users</td></tr>
+        <tr><td>Competition</td><td>3/5</td><td>Big players, but all bloated + subscription-based</td></tr>
+        <tr><td>Complexity</td><td>5/5</td><td>No AI, no backend, no sync — dead simple to build</td></tr>
+        <tr><td>Differentiation</td><td>4/5</td><td>Clear positioning: "premium simple" for seniors</td></tr>
+      </table>
+      <p style="margin-top: 16px; padding: 12px; background: var(--primary-light); border-radius: 8px; font-size: 14px;">
+        <strong>Total Score: 4.15/5</strong> — Strong opportunity in a massive market with clear differentiation. The "simple + one-time" positioning is defensible against bloated competitors.
+      </p>
+    </div>
+    
+    <!-- Anti-Features -->
+    <div class="section">
+      <h2>🚫 Explicitly NOT Including (Anti-Features)</h2>
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 12px;">
+        <div style="padding: 12px; background: #fef2f2; border-radius: 8px; font-size: 13px;">❌ Drug interaction database</div>
+        <div style="padding: 12px; background: #fef2f2; border-radius: 8px; font-size: 13px;">❌ Health measurements (BP, glucose)</div>
+        <div style="padding: 12px; background: #fef2f2; border-radius: 8px; font-size: 13px;">❌ Doctor appointment scheduling</div>
+        <div style="padding: 12px; background: #fef2f2; border-radius: 8px; font-size: 13px;">❌ Pharmacy integration</div>
+        <div style="padding: 12px; background: #fef2f2; border-radius: 8px; font-size: 13px;">❌ Social features</div>
+        <div style="padding: 12px; background: #fef2f2; border-radius: 8px; font-size: 13px;">❌ AI-anything</div>
+        <div style="padding: 12px; background: #fef2f2; border-radius: 8px; font-size: 13px;">❌ Subscription model</div>
+        <div style="padding: 12px; background: #fef2f2; border-radius: 8px; font-size: 13px;">❌ Account creation</div>
+      </div>
+      <p style="margin-top: 16px; color: var(--muted); font-size: 13px; font-style: italic;">
+        Simplicity is the product. Every feature request must pass: "Does this help someone take their pill on time?"
+      </p>
+    </div>
+    
+    <!-- Unit Economics -->
+    <div class="section">
+      <h2>💰 Unit Economics</h2>
+      <table>
+        <tr><th>Downloads</th><th>Revenue</th><th>Net (after 30% fees)</th></tr>
+        <tr><td>100</td><td>$499</td><td>$349</td></tr>
+        <tr><td>1,000</td><td>$4,990</td><td>$3,493</td></tr>
+        <tr><td>10,000</td><td>$49,900</td><td>$34,930</td></tr>
+        <tr><td>100,000</td><td>$499,000</td><td>$349,300</td></tr>
+      </table>
+      <p style="margin-top: 16px; color: var(--muted); font-size: 13px;">
+        <strong>Per-user costs: $0</strong> — No server, no AI, no database hosting. Offline-first = zero operational cost per user.
+      </p>
+    </div>
+    
+    <footer style="text-align: center; padding: 40px 20px; color: var(--muted); font-size: 13px;">
+      Last updated: February 2, 2026 | Built with 💊 by Geri
+    </footer>
+  </div>
+</body>
+</html>

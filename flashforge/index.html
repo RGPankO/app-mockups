@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FlashForge — App Hub</title>
+  <style>
+    :root {
+      --primary: #7c3aed;
+      --primary-light: #ede9fe;
+      --primary-dark: #5b21b6;
+      --bg: #faf8ff;
+      --card: #ffffff;
+      --text: #1e1b3a;
+      --muted: #5a5680;
+      --border: #e8e0f0;
+      --shadow: 0 4px 12px rgba(124,58,237,0.12);
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { 
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      background: var(--bg); color: var(--text); line-height: 1.6;
+      padding: 24px 16px 60px;
+    }
+    .container { max-width: 900px; margin: 0 auto; }
+    
+    header { text-align: center; padding: 40px 20px; margin-bottom: 32px; }
+    .logo { font-size: 48px; margin-bottom: 12px; }
+    h1 { font-size: 32px; color: var(--primary-dark); margin-bottom: 8px; }
+    .tagline { color: var(--muted); font-size: 18px; }
+    
+    .badges { display: flex; gap: 12px; justify-content: center; margin-top: 20px; flex-wrap: wrap; }
+    .badge { background: var(--primary-light); color: var(--primary-dark); padding: 6px 14px; 
+             border-radius: 20px; font-size: 13px; font-weight: 500; }
+    .badge.score { background: var(--primary); color: white; }
+    
+    .section { background: var(--card); border-radius: 16px; padding: 24px; 
+               margin-bottom: 20px; box-shadow: var(--shadow); }
+    .section h2 { font-size: 18px; color: var(--primary-dark); margin-bottom: 16px; 
+                  padding-bottom: 12px; border-bottom: 2px solid var(--primary-light); }
+    
+    .repo-link { display: inline-flex; align-items: center; gap: 8px; background: #24292e; 
+                 color: white; padding: 12px 20px; border-radius: 8px; text-decoration: none;
+                 font-weight: 500; margin-bottom: 16px; }
+    .repo-link:hover { background: #3a3f44; }
+    
+    .keywords { display: flex; flex-wrap: wrap; gap: 8px; }
+    .keyword { background: #f0f0f0; padding: 4px 10px; border-radius: 12px; font-size: 12px; color: #666; }
+    
+    .quote { background: var(--primary-light); border-left: 4px solid var(--primary); 
+             padding: 16px; margin-bottom: 12px; border-radius: 0 8px 8px 0; font-style: italic; }
+    .quote-source { font-size: 12px; color: var(--muted); margin-top: 8px; font-style: normal; }
+    
+    .feature { display: flex; gap: 12px; margin-bottom: 16px; align-items: flex-start; }
+    .feature-icon { font-size: 24px; }
+    .feature h3 { font-size: 15px; margin-bottom: 4px; }
+    .feature p { font-size: 13px; color: var(--muted); }
+    
+    .stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 16px; }
+    .stat { text-align: center; padding: 16px; background: var(--primary-light); border-radius: 12px; }
+    .stat-value { font-size: 28px; font-weight: 700; color: var(--primary-dark); }
+    .stat-label { font-size: 12px; color: var(--muted); }
+    
+    .description { white-space: pre-line; font-size: 14px; }
+    
+    table { width: 100%; border-collapse: collapse; font-size: 14px; }
+    th, td { padding: 10px 12px; text-align: left; border-bottom: 1px solid var(--border); }
+    th { background: var(--primary-light); font-weight: 600; }
+    
+    .back-link { display: inline-block; margin-bottom: 20px; color: var(--primary); text-decoration: none; }
+    .back-link:hover { text-decoration: underline; }
+    
+    .competitor-table td:first-child { font-weight: 500; }
+    .competitor-table .us { background: var(--primary-light); }
+    .competitor-table .us td { font-weight: 600; }
+    
+    @media (max-width: 600px) {
+      .stats-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <a href="../" class="back-link">← Back to All Apps</a>
+    
+    <header>
+      <div class="logo">🧠</div>
+      <h1>FlashForge</h1>
+      <p class="tagline">Beautiful Spaced Repetition</p>
+      <div class="badges">
+        <span class="badge score">Score: 4.15</span>
+        <span class="badge">~70% Margin</span>
+        <span class="badge">$2B+ Market</span>
+        <span class="badge">One-Time Price</span>
+      </div>
+    </header>
+    
+    <!-- GitHub Repo -->
+    <div class="section">
+      <h2>📦 Repository</h2>
+      <a href="#" class="repo-link" target="_blank">
+        <svg height="20" width="20" viewBox="0 0 16 16" fill="currentColor">
+          <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/>
+        </svg>
+        Coming Soon — Not Yet Created
+      </a>
+      <p style="color: var(--muted); font-size: 14px;">Status: Deep Dive Complete, Ready for Development</p>
+    </div>
+    
+    <!-- App Store Info -->
+    <div class="section">
+      <h2>📱 App Store Listing</h2>
+      <table>
+        <tr><th>Field</th><th>Value</th></tr>
+        <tr><td>App Name</td><td><strong>FlashForge</strong></td></tr>
+        <tr><td>Subtitle</td><td>Beautiful Spaced Repetition</td></tr>
+        <tr><td>Category</td><td>Education (primary), Productivity (secondary)</td></tr>
+        <tr><td>Age Rating</td><td>4+</td></tr>
+        <tr><td>Price</td><td>$6.99-$9.99 one-time (launch: $4.99)</td></tr>
+      </table>
+      
+      <h3 style="margin: 20px 0 12px; font-size: 15px;">Keywords (100 chars)</h3>
+      <div class="keywords">
+        <span class="keyword">flashcards</span>
+        <span class="keyword">spaced repetition</span>
+        <span class="keyword">anki alternative</span>
+        <span class="keyword">study</span>
+        <span class="keyword">memorize</span>
+        <span class="keyword">offline</span>
+        <span class="keyword">medical</span>
+        <span class="keyword">language</span>
+        <span class="keyword">vocabulary</span>
+        <span class="keyword">FSRS</span>
+      </div>
+      
+      <h3 style="margin: 20px 0 12px; font-size: 15px;">Description</h3>
+      <p class="description">Finally, beautiful flashcards with real spaced repetition. One price, forever.
+
+Tired of Anki's confusing interface? Fed up with Quizlet's subscription? FlashForge gives you the science without the complexity.
+
+✨ FEATURES:
+• Proven FSRS algorithm (same science as Anki)
+• Stunning, modern design
+• Zero setup required — start in 30 seconds
+• 100% offline — study anywhere
+• iCloud backup included
+• Dark mode
+
+💰 ONE-TIME PURCHASE:
+No subscriptions. No hidden fees. Pay once, use forever.
+
+For students, language learners, and anyone who wants to actually remember what they study.</p>
+    </div>
+    
+    <!-- Market Stats -->
+    <div class="section">
+      <h2>📊 Market Opportunity</h2>
+      <div class="stats-grid">
+        <div class="stat">
+          <div class="stat-value">$2B+</div>
+          <div class="stat-label">Flashcard App Market</div>
+        </div>
+        <div class="stat">
+          <div class="stat-value">86%</div>
+          <div class="stat-label">Med Students Use Anki</div>
+        </div>
+        <div class="stat">
+          <div class="stat-value">~70%</div>
+          <div class="stat-label">Gross Margin</div>
+        </div>
+        <div class="stat">
+          <div class="stat-value">37%</div>
+          <div class="stat-label">Better Retention vs Traditional</div>
+        </div>
+      </div>
+      
+      <h3 style="margin: 20px 0 12px; font-size: 15px;">Market Growth</h3>
+      <ul style="padding-left: 20px; color: var(--muted); font-size: 14px;">
+        <li>9-15% CAGR through 2033</li>
+        <li>AI-personalized flashcard segment growing 20% CAGR</li>
+        <li>North America is largest regional market</li>
+        <li>60M+ Quizlet users (many unhappy with subscription model)</li>
+      </ul>
+    </div>
+    
+    <!-- Features -->
+    <div class="section">
+      <h2>✨ Core Features</h2>
+      <div class="feature">
+        <span class="feature-icon">🔬</span>
+        <div>
+          <h3>FSRS Algorithm</h3>
+          <p>Modern spaced repetition (2022) that outperforms SM-2. Same science as Anki's new default.</p>
+        </div>
+      </div>
+      <div class="feature">
+        <span class="feature-icon">🎨</span>
+        <div>
+          <h3>Beautiful Interface</h3>
+          <p>Clean, modern design with smooth animations. Dark/light mode. Actually enjoyable to use.</p>
+        </div>
+      </div>
+      <div class="feature">
+        <span class="feature-icon">🃏</span>
+        <div>
+          <h3>Multiple Card Types</h3>
+          <p>Basic, reversed, cloze deletion (fill-in-blank), and image cards. Cover all learning styles.</p>
+        </div>
+      </div>
+      <div class="feature">
+        <span class="feature-icon">📴</span>
+        <div>
+          <h3>100% Offline</h3>
+          <p>All data stored locally. No account required. Study on planes, subways, anywhere.</p>
+        </div>
+      </div>
+      <div class="feature">
+        <span class="feature-icon">☁️</span>
+        <div>
+          <h3>Free iCloud Sync</h3>
+          <p>Your cards sync across devices via iCloud. No extra cost, no account needed.</p>
+        </div>
+      </div>
+      <div class="feature">
+        <span class="feature-icon">⚡</span>
+        <div>
+          <h3>Zero Config</h3>
+          <p>No tutorials, no add-ons, no 2-hour setup. Create a deck and start studying in 30 seconds.</p>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Reddit Quotes -->
+    <div class="section">
+      <h2>💬 Real User Pain Points (Reddit Research)</h2>
+      
+      <div class="quote">
+        "It's super incredibly hard to use. It's ugly. The average person does not know nor care about desired retention, FSRS, HTML/CSS, note types etc."
+        <div class="quote-source">— r/Anki</div>
+      </div>
+      
+      <div class="quote">
+        "Anki can be so overwhelming especially to people who don't feel very tech savvy. It took me 2-3 hours to master the basics."
+        <div class="quote-source">— r/medicalschoolanki</div>
+      </div>
+      
+      <div class="quote">
+        "I don't like Anki. The terrible UI makes it unusable to me."
+        <div class="quote-source">— App Store review (Mochi competitor)</div>
+      </div>
+      
+      <div class="quote">
+        "I wanted a simple markdown-based general purpose spaced repetition app that looks good and feels good to use. It should be intuitive, with minimal configuration required."
+        <div class="quote-source">— r/languagelearning</div>
+      </div>
+      
+      <div class="quote">
+        "Quizlet made controversial changes — what students could access for free now requires $35.99/year subscription."
+        <div class="quote-source">— The NDB Catalyst</div>
+      </div>
+      
+      <h3 style="margin: 20px 0 12px; font-size: 15px;">Target Demographics</h3>
+      <ul style="padding-left: 20px; color: var(--muted); font-size: 14px;">
+        <li><strong>Medical Students:</strong> 86.2% use Anki, 66.5% daily. Must memorize 10K-30K flashcards for USMLE</li>
+        <li><strong>Language Learners:</strong> 5K-10K+ vocabulary words for fluency. Long-term retention critical</li>
+        <li><strong>General Students:</strong> SAT, GRE, LSAT, professional certs (CPA, AWS, PMP)</li>
+      </ul>
+      
+      <h3 style="margin: 20px 0 12px; font-size: 15px;">Target Subreddits</h3>
+      <div class="keywords">
+        <span class="keyword">r/Anki (150K+)</span>
+        <span class="keyword">r/languagelearning (1.5M+)</span>
+        <span class="keyword">r/medicalschool (500K+)</span>
+        <span class="keyword">r/medicalschoolanki (100K+)</span>
+        <span class="keyword">r/GetStudying (400K+)</span>
+        <span class="keyword">r/LearnJapanese (500K+)</span>
+        <span class="keyword">r/Korean (200K+)</span>
+      </div>
+    </div>
+    
+    <!-- Competitor Gap -->
+    <div class="section">
+      <h2>🎯 Competitor Gap Analysis</h2>
+      <table class="competitor-table">
+        <tr>
+          <th>App</th>
+          <th>Price</th>
+          <th>SRS Quality</th>
+          <th>UI/UX</th>
+          <th>Simplicity</th>
+        </tr>
+        <tr>
+          <td>Anki</td>
+          <td>Free (iOS: <strong>$24.99</strong>)</td>
+          <td>⭐⭐⭐⭐⭐</td>
+          <td>⭐⭐</td>
+          <td>⭐⭐</td>
+        </tr>
+        <tr>
+          <td>Quizlet</td>
+          <td><strong>$35.99/year</strong></td>
+          <td>⭐⭐</td>
+          <td>⭐⭐⭐⭐</td>
+          <td>⭐⭐⭐⭐⭐</td>
+        </tr>
+        <tr>
+          <td>Mochi</td>
+          <td><strong>$5/month</strong> (sync)</td>
+          <td>⭐⭐⭐⭐</td>
+          <td>⭐⭐⭐⭐⭐</td>
+          <td>⭐⭐⭐⭐</td>
+        </tr>
+        <tr>
+          <td>RemNote</td>
+          <td>$6/mo or $300 lifetime</td>
+          <td>⭐⭐⭐⭐</td>
+          <td>⭐⭐⭐⭐</td>
+          <td>⭐⭐⭐</td>
+        </tr>
+        <tr class="us">
+          <td>🧠 FlashForge</td>
+          <td><strong>$7.99 once</strong></td>
+          <td>⭐⭐⭐⭐</td>
+          <td>⭐⭐⭐⭐⭐</td>
+          <td>⭐⭐⭐⭐⭐</td>
+        </tr>
+      </table>
+      
+      <h3 style="margin: 20px 0 12px; font-size: 15px;">The Gap We Fill</h3>
+      <p style="color: var(--muted); font-size: 14px;">
+        <strong>No one offers:</strong> Beautiful UI + Proper SRS + One-time price + Offline-first<br><br>
+        Anki is free but ugly/complex. Quizlet is pretty but weak SRS + subscription. Mochi is beautiful but subscription for sync. 
+        We're "Anki for people who hate Anki's interface" — the premium option for users who value their time and sanity.
+      </p>
+    </div>
+    
+    <!-- Marketing Headlines -->
+    <div class="section">
+      <h2>📣 Marketing Headlines</h2>
+      <ul style="padding-left: 20px; font-size: 14px;">
+        <li><strong>"Anki for people who hate Anki"</strong></li>
+        <li>"Anki's Science, Without Anki's Complexity"</li>
+        <li>"Beautiful Flashcards. Real Spaced Repetition. $7.99 Forever."</li>
+        <li>"Study Offline. No Subscription. No Excuses."</li>
+        <li>"The Flashcard App You'll Actually Use"</li>
+        <li>"Stop Forgetting. Start Remembering."</li>
+        <li>"Finally, flashcards that don't look like they're from 2003"</li>
+      </ul>
+      
+      <h3 style="margin: 20px 0 12px; font-size: 15px;">Positioning Statement</h3>
+      <p style="color: var(--muted); font-size: 14px;">
+        For <strong>students and learners who want effective memorization without complexity</strong>, FlashForge is a <strong>beautiful flashcard app</strong> 
+        that provides <strong>real spaced repetition with zero setup</strong>. Unlike Anki (powerful but ugly/complex) or Quizlet (pretty but weak SRS + subscriptions), 
+        we <strong>combine proven science with modern design for one fair price</strong>.
+      </p>
+    </div>
+    
+    <!-- Why It Wins -->
+    <div class="section">
+      <h2>🏆 Why This App Wins</h2>
+      <table>
+        <tr><th>Factor</th><th>Score</th><th>Notes</th></tr>
+        <tr><td>Margin</td><td>4/5</td><td>~70% gross margin after Apple's cut. Zero variable costs.</td></tr>
+        <tr><td>Market Size</td><td>5/5</td><td>$2B+ market, 86% of med students use Anki, 60M+ Quizlet users</td></tr>
+        <tr><td>Competition</td><td>3/5</td><td>Crowded but no one fills the "beautiful + proper SRS + one-time" gap</td></tr>
+        <tr><td>Complexity</td><td>4/5</td><td>FSRS algorithm is well-documented, offline-first is simpler than cloud</td></tr>
+        <tr><td>Differentiation</td><td>4/5</td><td>Clear positioning: "Anki for humans" with one-time pricing</td></tr>
+      </table>
+      <p style="margin-top: 16px; color: var(--muted); font-size: 13px; text-align: center;">
+        <strong>Overall Score: 4.15/5</strong> — Strong opportunity with clear positioning
+      </p>
+    </div>
+    
+    <!-- Unit Economics -->
+    <div class="section">
+      <h2>💰 Unit Economics</h2>
+      <table>
+        <tr><th>Metric</th><th>Value</th></tr>
+        <tr><td>Price Point</td><td>$7.99 one-time (launch: $4.99)</td></tr>
+        <tr><td>Apple's Cut (30%)</td><td>-$2.40</td></tr>
+        <tr><td>Net Revenue per Sale</td><td>$5.59</td></tr>
+        <tr><td>Per-User Costs</td><td>~$0 (iCloud free, local storage)</td></tr>
+        <tr><td><strong>Gross Margin</strong></td><td><strong>~70%</strong></td></tr>
+      </table>
+      
+      <h3 style="margin: 20px 0 12px; font-size: 15px;">Revenue Projections</h3>
+      <table>
+        <tr><th>Sales/Month</th><th>Gross Revenue</th><th>Net (after Apple)</th></tr>
+        <tr><td>100</td><td>$799</td><td>$559</td></tr>
+        <tr><td>500</td><td>$3,995</td><td>$2,797</td></tr>
+        <tr><td>1,000</td><td>$7,990</td><td>$5,593</td></tr>
+        <tr><td>5,000</td><td>$39,950</td><td>$27,965</td></tr>
+      </table>
+    </div>
+    
+    <!-- MVP Scope -->
+    <div class="section">
+      <h2>🚀 MVP Scope (6-8 weeks)</h2>
+      
+      <h3 style="margin: 0 0 12px; font-size: 15px;">V1.0 — Ship This</h3>
+      <ul style="padding-left: 20px; font-size: 14px; margin-bottom: 16px;">
+        <li>✅ Core flashcard UI (create, review, flip animations)</li>
+        <li>✅ FSRS spaced repetition algorithm</li>
+        <li>✅ Deck management (create, organize, delete, search)</li>
+        <li>✅ Basic card types (front/back, cloze)</li>
+        <li>✅ Dark/light mode</li>
+        <li>✅ iCloud backup</li>
+        <li>✅ Daily statistics (streak, cards reviewed, retention)</li>
+      </ul>
+      
+      <h3 style="margin: 0 0 12px; font-size: 15px;">V2.0 — Add Later</h3>
+      <ul style="padding-left: 20px; font-size: 14px; color: var(--muted);">
+        <li>🔜 Anki import (.apkg) — HUGE for conversion</li>
+        <li>🔜 Share/export decks</li>
+        <li>🔜 Rich text formatting</li>
+        <li>🔜 Audio support (TTS)</li>
+        <li>🔜 Apple Watch widget</li>
+      </ul>
+      
+      <h3 style="margin: 16px 0 12px; font-size: 15px;">Tech Stack</h3>
+      <table>
+        <tr><th>Layer</th><th>Choice</th><th>Why</th></tr>
+        <tr><td>Frontend</td><td>SwiftUI</td><td>Native iOS, beautiful animations, offline-first</td></tr>
+        <tr><td>Database</td><td>Core Data + CloudKit</td><td>Local-first with free iCloud sync</td></tr>
+        <tr><td>Algorithm</td><td>FSRS</td><td>Open-source, proven, same as Anki</td></tr>
+        <tr><td>Analytics</td><td>TelemetryDeck</td><td>Privacy-focused, Apple-approved</td></tr>
+      </table>
+    </div>
+    
+    <!-- Risks -->
+    <div class="section">
+      <h2>⚠️ Risks & Mitigations</h2>
+      <table>
+        <tr><th>Risk</th><th>Mitigation</th></tr>
+        <tr>
+          <td><strong>Anki is free</strong></td>
+          <td>Don't compete on price. Compete on UX, simplicity, "just works" factor</td>
+        </tr>
+        <tr>
+          <td><strong>Crowded market</strong></td>
+          <td>Differentiate with design + offline + one-time pricing (unique combo)</td>
+        </tr>
+        <tr>
+          <td><strong>Anki import complexity</strong></td>
+          <td>Skip for V1, add in V2 once core is solid</td>
+        </tr>
+        <tr>
+          <td><strong>Feature creep</strong></td>
+          <td>Stay focused on simplicity — that IS the value prop</td>
+        </tr>
+      </table>
+    </div>
+    
+    <footer style="text-align: center; padding: 40px 20px; color: var(--muted); font-size: 13px;">
+      Last updated: February 2, 2026 | Built with 🧠 by Geri
+    </footer>
+  </div>
+</body>
+</html>

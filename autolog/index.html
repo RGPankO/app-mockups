@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AutoLog — App Hub</title>
+  <style>
+    :root {
+      --primary: #374151;
+      --primary-light: #f3f4f6;
+      --primary-dark: #1f2937;
+      --bg: #f9fafb;
+      --card: #ffffff;
+      --text: #1f2937;
+      --muted: #6b7280;
+      --border: #e5e7eb;
+      --shadow: 0 4px 12px rgba(0,0,0,0.08);
+      --accent: #10b981;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { 
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      background: var(--bg); color: var(--text); line-height: 1.6;
+      padding: 24px 16px 60px;
+    }
+    .container { max-width: 900px; margin: 0 auto; }
+    
+    header { text-align: center; padding: 40px 20px; margin-bottom: 32px; }
+    .logo { font-size: 48px; margin-bottom: 12px; }
+    h1 { font-size: 32px; color: var(--primary-dark); margin-bottom: 8px; }
+    .tagline { color: var(--muted); font-size: 18px; }
+    
+    .badges { display: flex; gap: 12px; justify-content: center; margin-top: 20px; flex-wrap: wrap; }
+    .badge { background: var(--primary-light); color: var(--primary-dark); padding: 6px 14px; 
+             border-radius: 20px; font-size: 13px; font-weight: 500; }
+    .badge.score { background: var(--primary); color: white; }
+    .badge.price { background: var(--accent); color: white; }
+    
+    .section { background: var(--card); border-radius: 16px; padding: 24px; 
+               margin-bottom: 20px; box-shadow: var(--shadow); }
+    .section h2 { font-size: 18px; color: var(--primary-dark); margin-bottom: 16px; 
+                  padding-bottom: 12px; border-bottom: 2px solid var(--primary-light); }
+    
+    .repo-link { display: inline-flex; align-items: center; gap: 8px; background: #24292e; 
+                 color: white; padding: 12px 20px; border-radius: 8px; text-decoration: none;
+                 font-weight: 500; margin-bottom: 16px; }
+    .repo-link:hover { background: #3a3f44; }
+    .repo-pending { display: inline-flex; align-items: center; gap: 8px; background: var(--primary-light); 
+                 color: var(--muted); padding: 12px 20px; border-radius: 8px;
+                 font-weight: 500; margin-bottom: 16px; }
+    
+    .keywords { display: flex; flex-wrap: wrap; gap: 8px; }
+    .keyword { background: #f0f0f0; padding: 4px 10px; border-radius: 12px; font-size: 12px; color: #666; }
+    
+    .quote { background: var(--primary-light); border-left: 4px solid var(--primary); 
+             padding: 16px; margin-bottom: 12px; border-radius: 0 8px 8px 0; font-style: italic; }
+    .quote-source { font-size: 12px; color: var(--muted); margin-top: 8px; font-style: normal; }
+    
+    .feature { display: flex; gap: 12px; margin-bottom: 16px; align-items: flex-start; }
+    .feature-icon { font-size: 24px; }
+    .feature h3 { font-size: 15px; margin-bottom: 4px; }
+    .feature p { font-size: 13px; color: var(--muted); }
+    
+    .stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 16px; }
+    .stat { text-align: center; padding: 16px; background: var(--primary-light); border-radius: 12px; }
+    .stat-value { font-size: 28px; font-weight: 700; color: var(--primary-dark); }
+    .stat-label { font-size: 12px; color: var(--muted); }
+    
+    .description { white-space: pre-line; font-size: 14px; }
+    
+    table { width: 100%; border-collapse: collapse; font-size: 14px; }
+    th, td { padding: 10px 12px; text-align: left; border-bottom: 1px solid var(--border); }
+    th { background: var(--primary-light); font-weight: 600; }
+    
+    .back-link { display: inline-block; margin-bottom: 20px; color: var(--primary); text-decoration: none; }
+    .back-link:hover { text-decoration: underline; }
+    
+    .gap-card { background: #fef3c7; border-left: 4px solid #f59e0b; padding: 16px; 
+                margin-bottom: 12px; border-radius: 0 8px 8px 0; }
+    .gap-card h4 { color: #92400e; font-size: 14px; margin-bottom: 4px; }
+    .gap-card p { font-size: 13px; color: #78350f; }
+    
+    @media (max-width: 600px) {
+      .stats-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <a href="../" class="back-link">← Back to All Apps</a>
+    
+    <header>
+      <div class="logo">🚗</div>
+      <h1>AutoLog</h1>
+      <p class="tagline">Offline Vehicle Maintenance Tracker</p>
+      <div class="badges">
+        <span class="badge score">Score: 4.10</span>
+        <span class="badge price">$4.99 One-Time</span>
+        <span class="badge">85% Margin</span>
+        <span class="badge">$2.5B Market</span>
+        <span class="badge">278M Vehicles</span>
+      </div>
+    </header>
+    
+    <!-- GitHub Repo -->
+    <div class="section">
+      <h2>📦 Repository</h2>
+      <div class="repo-pending">
+        <svg height="20" width="20" viewBox="0 0 16 16" fill="currentColor">
+          <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/>
+        </svg>
+        Repo not created yet
+      </div>
+      <p style="color: var(--muted); font-size: 14px;">Status: Research complete, ready for development</p>
+    </div>
+    
+    <!-- App Store Info -->
+    <div class="section">
+      <h2>📱 App Store Listing</h2>
+      <table>
+        <tr><th>Field</th><th>Value</th></tr>
+        <tr><td>App Name</td><td><strong>AutoLog</strong></td></tr>
+        <tr><td>Subtitle</td><td>Offline Vehicle Maintenance Tracker</td></tr>
+        <tr><td>Category</td><td>Utilities (primary), Lifestyle (secondary)</td></tr>
+        <tr><td>Age Rating</td><td>4+</td></tr>
+        <tr><td>Price</td><td><strong>$4.99 one-time purchase</strong></td></tr>
+      </table>
+      
+      <h3 style="margin: 20px 0 12px; font-size: 15px;">Keywords (100 chars)</h3>
+      <div class="keywords">
+        <span class="keyword">car maintenance</span>
+        <span class="keyword">vehicle tracker</span>
+        <span class="keyword">oil change</span>
+        <span class="keyword">mileage log</span>
+        <span class="keyword">service reminder</span>
+        <span class="keyword">car log</span>
+        <span class="keyword">offline</span>
+        <span class="keyword">auto repair</span>
+        <span class="keyword">fleet</span>
+        <span class="keyword">DIY</span>
+      </div>
+      
+      <h3 style="margin: 20px 0 12px; font-size: 15px;">Description</h3>
+      <p class="description">Track your vehicle maintenance forever. No subscriptions. No cloud accounts. Just buy once and own it.
+
+AutoLog is the simple, privacy-first way to log oil changes, track service costs, and never miss a maintenance reminder. Your data stays on YOUR device.
+
+✓ Unlimited vehicles (cars, trucks, motorcycles)
+✓ Smart service reminders (by time or mileage)
+✓ Cost tracking with reports
+✓ Export to PDF/CSV
+✓ Optional iCloud sync between your devices
+✓ Zero accounts required
+
+Stop paying $5/month just to track your oil changes. Pay once. Own forever.</p>
+    </div>
+    
+    <!-- Market Stats -->
+    <div class="section">
+      <h2>📊 Market Opportunity</h2>
+      <div class="stats-grid">
+        <div class="stat">
+          <div class="stat-value">$2.5B</div>
+          <div class="stat-label">Car Maintenance App Market</div>
+        </div>
+        <div class="stat">
+          <div class="stat-value">278M</div>
+          <div class="stat-label">Registered Vehicles in US</div>
+        </div>
+        <div class="stat">
+          <div class="stat-value">~85%</div>
+          <div class="stat-label">Gross Margin</div>
+        </div>
+        <div class="stat">
+          <div class="stat-value">15.5%</div>
+          <div class="stat-label">Market CAGR</div>
+        </div>
+      </div>
+      
+      <h3 style="margin: 20px 0 12px; font-size: 15px;">Target Demographics</h3>
+      <ul style="padding-left: 20px; color: var(--muted); font-size: 14px;">
+        <li><strong>Primary:</strong> DIY car owners, privacy-conscious users, subscription-fatigued consumers</li>
+        <li><strong>Secondary:</strong> Small fleet managers (landscapers, contractors — 3-20 vehicles)</li>
+        <li><strong>Tertiary:</strong> Car enthusiasts, classic car owners, resale-focused owners</li>
+      </ul>
+    </div>
+    
+    <!-- Competitor Gap -->
+    <div class="section">
+      <h2>🎯 Competitor Gap Analysis</h2>
+      
+      <div class="gap-card">
+        <h4>Simply Auto — $4.99/month subscription</h4>
+        <p>Feature-rich but requires ongoing payment. Reports of abandoned development and sync issues.</p>
+      </div>
+      
+      <div class="gap-card">
+        <h4>FIXD — $60 hardware + subscription</h4>
+        <p>Requires OBD device purchase plus ongoing subscription. Overkill for basic maintenance tracking.</p>
+      </div>
+      
+      <div class="gap-card">
+        <h4>Drivvo — Free + ads, Pro $1.99/mo</h4>
+        <p>Tracks user location and browsing. Business-focused UI, overwhelming for personal use.</p>
+      </div>
+      
+      <div class="gap-card">
+        <h4>CARFAX Car Care — Free but cloud-only</h4>
+        <p>US/Canada only, requires account, depends on cloud. No offline functionality.</p>
+      </div>
+      
+      <h3 style="margin: 20px 0 12px; font-size: 15px;">What No One Does Well</h3>
+      <ul style="padding-left: 20px; font-size: 14px;">
+        <li>✗ Simple offline-first — All competitors need cloud accounts</li>
+        <li>✗ One-time purchase — Everyone is subscription or freemium with ads</li>
+        <li>✗ Privacy-respecting — Most track location or require accounts</li>
+        <li>✗ Right-sized for small fleets — Enterprise tools are overkill</li>
+        <li>✗ Export/data ownership — Most lock data in their cloud</li>
+      </ul>
+    </div>
+    
+    <!-- Features -->
+    <div class="section">
+      <h2>✨ Core Features</h2>
+      <div class="feature">
+        <span class="feature-icon">🔧</span>
+        <div>
+          <h3>Maintenance Logging</h3>
+          <p>Quick-add oil changes, tire rotations, brakes, batteries, and custom services. Attach receipt photos.</p>
+        </div>
+      </div>
+      <div class="feature">
+        <span class="feature-icon">⏰</span>
+        <div>
+          <h3>Smart Reminders</h3>
+          <p>Time-based OR mileage-based reminders. Get notified before services are due.</p>
+        </div>
+      </div>
+      <div class="feature">
+        <span class="feature-icon">📊</span>
+        <div>
+          <h3>Cost Reports</h3>
+          <p>Track spending by vehicle, category, and time. See cost-per-mile calculations.</p>
+        </div>
+      </div>
+      <div class="feature">
+        <span class="feature-icon">🚙</span>
+        <div>
+          <h3>Unlimited Vehicles</h3>
+          <p>Track cars, trucks, motorcycles, boats — add as many as you need.</p>
+        </div>
+      </div>
+      <div class="feature">
+        <span class="feature-icon">📤</span>
+        <div>
+          <h3>Export & Backup</h3>
+          <p>PDF service history reports, CSV export, full JSON backup. Your data, your way.</p>
+        </div>
+      </div>
+      <div class="feature">
+        <span class="feature-icon">🔒</span>
+        <div>
+          <h3>Offline-First & Private</h3>
+          <p>All data stored locally. No account required. Optional iCloud sync between YOUR devices only.</p>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Reddit Quotes -->
+    <div class="section">
+      <h2>💬 Real User Pain Points (Reddit Research)</h2>
+      
+      <div class="quote">
+        "Excel, Evernote, or OneNote are probably your best bets because you can customize."
+        <div class="quote-source">— r/cars (on why they don't use maintenance apps)</div>
+      </div>
+      
+      <div class="quote">
+        "I just track it in a spreadsheet."
+        <div class="quote-source">— Multiple Reddit users across car subreddits</div>
+      </div>
+      
+      <div class="quote">
+        "I hate subscription fees for driving my own f***ing car."
+        <div class="quote-source">— r/Anticonsumption</div>
+      </div>
+      
+      <div class="quote">
+        "App is dead. Lost all entries. No product support."
+        <div class="quote-source">— App Store review for Loggy (competitor)</div>
+      </div>
+      
+      <div class="quote">
+        "In 2024, I'm dubious of any app that doesn't have some way of backing up data."
+        <div class="quote-source">— App Store reviewer</div>
+      </div>
+      
+      <div class="quote">
+        "Most major companies like Samsara, Verizon Connect, don't care about a business as small as yours."
+        <div class="quote-source">— r/smallbusiness (on fleet tools)</div>
+      </div>
+      
+      <h3 style="margin: 20px 0 12px; font-size: 15px;">Target Subreddits</h3>
+      <div class="keywords">
+        <span class="keyword">r/cars (5.5M)</span>
+        <span class="keyword">r/MechanicAdvice (1.2M)</span>
+        <span class="keyword">r/Frugal (2.3M)</span>
+        <span class="keyword">r/privacy (1.6M)</span>
+        <span class="keyword">r/smallbusiness (1.5M)</span>
+        <span class="keyword">r/Cartalk (760K)</span>
+        <span class="keyword">r/Autos (590K)</span>
+        <span class="keyword">r/Anticonsumption (700K)</span>
+        <span class="keyword">r/projectcar (390K)</span>
+        <span class="keyword">r/AutoDIY (100K)</span>
+      </div>
+    </div>
+    
+    <!-- Marketing Headlines -->
+    <div class="section">
+      <h2>📣 Marketing Headlines</h2>
+      <ul style="padding-left: 20px; font-size: 14px;">
+        <li><strong>"Track Your Car Maintenance Forever. Pay Once. Own It."</strong></li>
+        <li>"The Last Car App You'll Ever Buy. No Subscriptions. No Cloud. No BS."</li>
+        <li>"Your Mechanic's Logbook, In Your Pocket. $4.99 Forever."</li>
+        <li>"Subscription Fatigue? AutoLog: One Price. Lifetime Access."</li>
+        <li>"I Was Tired of Paying Monthly to Track Oil Changes. So I Built This."</li>
+        <li>"Simple Car Maintenance Tracking. No Account Required."</li>
+      </ul>
+    </div>
+    
+    <!-- Value Proposition -->
+    <div class="section">
+      <h2>💰 Value Proposition</h2>
+      <table>
+        <tr><th>Pain Point</th><th>AutoLog Solution</th><th>Value</th></tr>
+        <tr><td>Subscription fatigue</td><td>One-time $4.99 purchase</td><td>Save $60+/year vs competitors</td></tr>
+        <tr><td>Data loss fear</td><td>Offline-first, local backup</td><td>Your data, forever</td></tr>
+        <tr><td>Privacy concerns</td><td>No account, no cloud required</td><td>Peace of mind</td></tr>
+        <tr><td>Spreadsheet tedium</td><td>Purpose-built mobile app</td><td>30-second logging</td></tr>
+        <tr><td>Forgot oil change</td><td>Smart reminders</td><td>Prevent costly damage</td></tr>
+      </table>
+    </div>
+    
+    <!-- Why It Wins -->
+    <div class="section">
+      <h2>🏆 Why This App Wins</h2>
+      <table>
+        <tr><th>Factor</th><th>Score</th><th>Notes</th></tr>
+        <tr><td>Margin</td><td>5/5</td><td>~85% gross margin, $0 per-user costs (no cloud, no AI)</td></tr>
+        <tr><td>Market Size</td><td>4/5</td><td>$2.5B market, 278M vehicles in US alone, 15.5% CAGR</td></tr>
+        <tr><td>Competition</td><td>3/5</td><td>Established players but ALL have subscription/cloud gaps</td></tr>
+        <tr><td>Build Complexity</td><td>5/5</td><td>No backend, no AI — pure local app with optional iCloud</td></tr>
+        <tr><td>Differentiation</td><td>4/5</td><td>Only offline-first, one-time purchase option</td></tr>
+      </table>
+      <p style="margin-top: 16px; font-size: 14px; color: var(--muted);">
+        <strong>Overall Score: 4.10/5</strong> — High-margin, low-complexity app with clear differentiation and strong anti-subscription market sentiment.
+      </p>
+    </div>
+    
+    <!-- Unit Economics -->
+    <div class="section">
+      <h2>💵 Unit Economics</h2>
+      <table>
+        <tr><th>Metric</th><th>Value</th></tr>
+        <tr><td>Price</td><td>$4.99 one-time</td></tr>
+        <tr><td>Apple Fee (Year 1)</td><td>-$1.50 (30%)</td></tr>
+        <tr><td>Apple Fee (Year 2+)</td><td>-$0.75 (15% Small Business)</td></tr>
+        <tr><td>Per-User Cost</td><td>$0.00</td></tr>
+        <tr><td><strong>Gross Profit</strong></td><td><strong>$3.49 - $4.24</strong></td></tr>
+        <tr><td><strong>Gross Margin</strong></td><td><strong>70-85%</strong></td></tr>
+      </table>
+      
+      <h3 style="margin: 20px 0 12px; font-size: 15px;">Revenue Projections</h3>
+      <table>
+        <tr><th>Downloads</th><th>Revenue</th><th>Net Profit</th></tr>
+        <tr><td>100</td><td>$499</td><td>~$339</td></tr>
+        <tr><td>1,000</td><td>$4,990</td><td>~$3,483</td></tr>
+        <tr><td>10,000</td><td>$49,900</td><td>~$34,923</td></tr>
+        <tr><td>50,000</td><td>$249,500</td><td>~$174,615</td></tr>
+      </table>
+      <p style="margin-top: 12px; font-size: 13px; color: var(--muted);">
+        Break-even: Just 35 sales (at 15% Apple fee)
+      </p>
+    </div>
+    
+    <!-- Tech Stack -->
+    <div class="section">
+      <h2>🛠️ Technical Architecture</h2>
+      <table>
+        <tr><th>Layer</th><th>Choice</th><th>Why</th></tr>
+        <tr><td>Frontend</td><td>Swift/SwiftUI</td><td>Native iOS, best offline support</td></tr>
+        <tr><td>Database</td><td>Core Data + CloudKit</td><td>Apple-native, free iCloud sync</td></tr>
+        <tr><td>Backend</td><td>None (MVP)</td><td>Offline-first, no server costs</td></tr>
+        <tr><td>Notifications</td><td>Local Notifications</td><td>No push server needed</td></tr>
+        <tr><td>Payments</td><td>StoreKit 2</td><td>Apple native</td></tr>
+      </table>
+      <p style="margin-top: 12px; font-size: 13px; color: var(--muted);">
+        MVP Timeline: 4-6 weeks with Codex CLI
+      </p>
+    </div>
+    
+    <footer style="text-align: center; padding: 40px 20px; color: var(--muted); font-size: 13px;">
+      Last updated: February 2, 2026 | Built with 🚗 by Geri
+    </footer>
+  </div>
+</body>
+</html>

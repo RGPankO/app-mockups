@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>VitalLog — App Hub</title>
+  <style>
+    :root {
+      --primary: #f43f5e;
+      --primary-light: #fef2f2;
+      --primary-dark: #be123c;
+      --bg: #fafafa;
+      --card: #ffffff;
+      --text: #1e1e2e;
+      --muted: #6b7280;
+      --border: #e5e7eb;
+      --shadow: 0 4px 12px rgba(0,0,0,0.08);
+      --caution: #f59e0b;
+      --caution-light: #fef3c7;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { 
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      background: var(--bg); color: var(--text); line-height: 1.6;
+      padding: 24px 16px 60px;
+    }
+    .container { max-width: 900px; margin: 0 auto; }
+    
+    header { text-align: center; padding: 40px 20px; margin-bottom: 32px; }
+    .logo { font-size: 48px; margin-bottom: 12px; }
+    h1 { font-size: 32px; color: var(--primary-dark); margin-bottom: 8px; }
+    .tagline { color: var(--muted); font-size: 18px; }
+    
+    .badges { display: flex; gap: 12px; justify-content: center; margin-top: 20px; flex-wrap: wrap; }
+    .badge { background: var(--primary-light); color: var(--primary-dark); padding: 6px 14px; 
+             border-radius: 20px; font-size: 13px; font-weight: 500; }
+    .badge.score { background: var(--caution); color: white; }
+    .badge.caution { background: var(--caution-light); color: #92400e; }
+    
+    .section { background: var(--card); border-radius: 16px; padding: 24px; 
+               margin-bottom: 20px; box-shadow: var(--shadow); }
+    .section h2 { font-size: 18px; color: var(--primary-dark); margin-bottom: 16px; 
+                  padding-bottom: 12px; border-bottom: 2px solid var(--primary-light); }
+    
+    .caution-box { background: var(--caution-light); border-left: 4px solid var(--caution);
+                   padding: 16px; border-radius: 0 8px 8px 0; margin-bottom: 20px; }
+    .caution-box h3 { color: #92400e; font-size: 15px; margin-bottom: 8px; }
+    .caution-box p { color: #78350f; font-size: 14px; }
+    
+    .repo-link { display: inline-flex; align-items: center; gap: 8px; background: #24292e; 
+                 color: white; padding: 12px 20px; border-radius: 8px; text-decoration: none;
+                 font-weight: 500; margin-bottom: 16px; }
+    .repo-link:hover { background: #3a3f44; }
+    .repo-link.pending { background: #9ca3af; cursor: default; }
+    
+    .keywords { display: flex; flex-wrap: wrap; gap: 8px; }
+    .keyword { background: #f0f0f0; padding: 4px 10px; border-radius: 12px; font-size: 12px; color: #666; }
+    
+    .quote { background: var(--primary-light); border-left: 4px solid var(--primary); 
+             padding: 16px; margin-bottom: 12px; border-radius: 0 8px 8px 0; font-style: italic; }
+    .quote-source { font-size: 12px; color: var(--muted); margin-top: 8px; font-style: normal; }
+    
+    .feature { display: flex; gap: 12px; margin-bottom: 16px; align-items: flex-start; }
+    .feature-icon { font-size: 24px; }
+    .feature h3 { font-size: 15px; margin-bottom: 4px; }
+    .feature p { font-size: 13px; color: var(--muted); }
+    
+    .stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 16px; }
+    .stat { text-align: center; padding: 16px; background: var(--primary-light); border-radius: 12px; }
+    .stat-value { font-size: 28px; font-weight: 700; color: var(--primary-dark); }
+    .stat-label { font-size: 12px; color: var(--muted); }
+    
+    .description { white-space: pre-line; font-size: 14px; }
+    
+    table { width: 100%; border-collapse: collapse; font-size: 14px; }
+    th, td { padding: 10px 12px; text-align: left; border-bottom: 1px solid var(--border); }
+    th { background: var(--primary-light); font-weight: 600; }
+    
+    .back-link { display: inline-block; margin-bottom: 20px; color: var(--primary); text-decoration: none; }
+    .back-link:hover { text-decoration: underline; }
+    
+    .accessibility-list { list-style: none; padding: 0; }
+    .accessibility-list li { display: flex; gap: 10px; align-items: flex-start; margin-bottom: 12px; }
+    .accessibility-list .icon { font-size: 18px; }
+    .accessibility-list .content { flex: 1; }
+    .accessibility-list h4 { font-size: 14px; margin-bottom: 2px; }
+    .accessibility-list p { font-size: 13px; color: var(--muted); }
+    
+    @media (max-width: 600px) {
+      .stats-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <a href="../" class="back-link">← Back to All Apps</a>
+    
+    <header>
+      <div class="logo">❤️</div>
+      <h1>VitalLog</h1>
+      <p class="tagline">Offline Blood Pressure Tracker</p>
+      <div class="badges">
+        <span class="badge score">Score: 3.85 ⚠️</span>
+        <span class="badge">~70% Margin</span>
+        <span class="badge caution">Free Competitor Exists</span>
+        <span class="badge">119M+ Market</span>
+      </div>
+    </header>
+    
+    <!-- Caution Notice -->
+    <div class="caution-box">
+      <h3>⚠️ CAUTION: Strong Free Competition</h3>
+      <p><strong>Systolio</strong> is a FREE privacy-first BP tracker with identical positioning (no account, local storage, senior-friendly). VitalLog must differentiate through superior UX, ad-free experience, and additional vitals tracking to justify the $2.99 price point. Consider this a "validated market with established competition" scenario.</p>
+    </div>
+    
+    <!-- GitHub Repo -->
+    <div class="section">
+      <h2>📦 Repository</h2>
+      <span class="repo-link pending">
+        <svg height="20" width="20" viewBox="0 0 16 16" fill="currentColor">
+          <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/>
+        </svg>
+        Not Yet Created
+      </span>
+      <p style="color: var(--muted); font-size: 14px;">Status: Research Complete — Pending build decision</p>
+    </div>
+    
+    <!-- App Store Info -->
+    <div class="section">
+      <h2>📱 App Store Listing</h2>
+      <table>
+        <tr><th>Field</th><th>Value</th></tr>
+        <tr><td>App Name</td><td><strong>VitalLog</strong></td></tr>
+        <tr><td>Subtitle</td><td>Offline Blood Pressure Tracker</td></tr>
+        <tr><td>Category</td><td>Health & Fitness (primary), Medical (secondary)</td></tr>
+        <tr><td>Age Rating</td><td>4+</td></tr>
+        <tr><td>Price</td><td>$2.99 one-time purchase</td></tr>
+      </table>
+      
+      <h3 style="margin: 20px 0 12px; font-size: 15px;">Keywords (100 chars)</h3>
+      <div class="keywords">
+        <span class="keyword">blood pressure</span>
+        <span class="keyword">BP tracker</span>
+        <span class="keyword">hypertension</span>
+        <span class="keyword">offline</span>
+        <span class="keyword">senior</span>
+        <span class="keyword">privacy</span>
+        <span class="keyword">no account</span>
+        <span class="keyword">local storage</span>
+        <span class="keyword">health log</span>
+        <span class="keyword">heart</span>
+      </div>
+      
+      <h3 style="margin: 20px 0 12px; font-size: 15px;">Short Description</h3>
+      <p>Track your blood pressure privately. No accounts, no cloud, no subscriptions. Large text designed for seniors. Share reports with your doctor in one tap.</p>
+      
+      <h3 style="margin: 20px 0 12px; font-size: 15px;">Full Description</h3>
+      <p class="description" style="background: #f9fafb; padding: 16px; border-radius: 8px; font-size: 13px;">Your blood pressure. Your device. Your privacy.
+
+VitalLog is the simple, private way to track your blood pressure. No accounts to create. No data sent to the cloud. No monthly subscriptions. Just straightforward health tracking that respects your privacy.
+
+DESIGNED FOR REAL PEOPLE
+• Extra-large text (20pt+) — easy to read without glasses
+• Big touch targets — no tiny buttons
+• High contrast mode — see everything clearly
+• Simple flows — log a reading in under 10 seconds
+
+100% PRIVATE
+• All data stays on YOUR device
+• No internet connection required after download
+• No account creation, ever
+• No tracking, no analytics, no ads
+
+SHARE WITH YOUR DOCTOR
+• Generate PDF reports with one tap
+• Export to CSV for detailed analysis
+• Email or AirDrop directly from the app
+
+SMART FEATURES
+• Morning & evening reminders
+• 7/14/30-day trend charts
+• Color-coded readings (AHA guidelines)
+• Track position, arm, and notes
+
+Pay once, own forever. Your health data belongs to you.</p>
+    </div>
+    
+    <!-- Market Stats -->
+    <div class="section">
+      <h2>📊 Market Opportunity</h2>
+      <div class="stats-grid">
+        <div class="stat">
+          <div class="stat-value">119M+</div>
+          <div class="stat-label">US Adults with Hypertension</div>
+        </div>
+        <div class="stat">
+          <div class="stat-value">71.6%</div>
+          <div class="stat-label">Adults 60+ with High BP</div>
+        </div>
+        <div class="stat">
+          <div class="stat-value">~70%</div>
+          <div class="stat-label">Gross Margin</div>
+        </div>
+        <div class="stat">
+          <div class="stat-value">$0</div>
+          <div class="stat-label">Per-User API Cost</div>
+        </div>
+      </div>
+      <p style="margin-top: 16px; font-size: 13px; color: var(--muted);">
+        <strong>Source:</strong> CDC NHANES 2021-2023 — 47.7% of US adults have hypertension. The 60+ demographic has the highest prevalence and represents ~40M potential users who value simplicity over complexity.
+      </p>
+    </div>
+    
+    <!-- Features -->
+    <div class="section">
+      <h2>✨ Core Features</h2>
+      <div class="feature">
+        <span class="feature-icon">🩺</span>
+        <div>
+          <h3>Quick BP Logging</h3>
+          <p>Large number pads, 3 taps to save. Track systolic, diastolic, pulse, position, and arm.</p>
+        </div>
+      </div>
+      <div class="feature">
+        <span class="feature-icon">📊</span>
+        <div>
+          <h3>Visual Trends</h3>
+          <p>7/14/30-day averages with simple line charts. Color-coded readings per AHA guidelines.</p>
+        </div>
+      </div>
+      <div class="feature">
+        <span class="feature-icon">📤</span>
+        <div>
+          <h3>One-Tap Export</h3>
+          <p>Generate PDF reports for doctor visits. CSV export for detailed analysis. Works 100% offline.</p>
+        </div>
+      </div>
+      <div class="feature">
+        <span class="feature-icon">🔔</span>
+        <div>
+          <h3>Gentle Reminders</h3>
+          <p>Morning & evening measurement reminders. Never miss a reading.</p>
+        </div>
+      </div>
+      <div class="feature">
+        <span class="feature-icon">🔒</span>
+        <div>
+          <h3>100% Private</h3>
+          <p>All data stored locally. No account required. No cloud sync. Optional PIN/Face ID lock.</p>
+        </div>
+      </div>
+      <div class="feature">
+        <span class="feature-icon">👁️</span>
+        <div>
+          <h3>Senior-Friendly UI</h3>
+          <p>20pt+ text, 48x48pt touch targets, high contrast mode, VoiceOver compatible.</p>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Accessibility Requirements -->
+    <div class="section">
+      <h2>♿ Accessibility Requirements (Non-Negotiable)</h2>
+      <ul class="accessibility-list">
+        <li>
+          <span class="icon">📝</span>
+          <div class="content">
+            <h4>Text Size: Minimum 20pt</h4>
+            <p>All body text must be easily readable. Vision decline is common in 60+ users.</p>
+          </div>
+        </li>
+        <li>
+          <span class="icon">👆</span>
+          <div class="content">
+            <h4>Touch Targets: 48x48pt minimum</h4>
+            <p>No tiny buttons. Motor control issues are common in the target demographic.</p>
+          </div>
+        </li>
+        <li>
+          <span class="icon">🎨</span>
+          <div class="content">
+            <h4>Contrast: WCAG AAA (7:1 ratio)</h4>
+            <p>High contrast is the default, not an option. Critical for low vision users.</p>
+          </div>
+        </li>
+        <li>
+          <span class="icon">🗣️</span>
+          <div class="content">
+            <h4>VoiceOver: Full Compatibility</h4>
+            <p>Every element must be accessible via screen reader.</p>
+          </div>
+        </li>
+        <li>
+          <span class="icon">🔤</span>
+          <div class="content">
+            <h4>Dynamic Type: Support system text size</h4>
+            <p>Respect iOS accessibility settings for text scaling.</p>
+          </div>
+        </li>
+      </ul>
+    </div>
+    
+    <!-- Reddit Quotes -->
+    <div class="section">
+      <h2>💬 Real User Pain Points (Reddit Research)</h2>
+      
+      <div class="quote">
+        "I'm looking for a BP and heart rate tracking app that has good analytics and would like to know what others are using."
+        <div class="quote-source">— r/hypertension</div>
+      </div>
+      
+      <div class="quote">
+        "Is anybody aware of a reliable and trustworthy app for monitoring blood pressure, or is this just some kind of scam?"
+        <div class="quote-source">— r/bloodpressure (trust issues with free apps)</div>
+      </div>
+      
+      <div class="quote">
+        "The digital divide for elderly parents is unacceptable... apps are typically so poorly created, not intuitive, difficult to use... that even someone like me (who is very tech heavy user) find difficult & annoying."
+        <div class="quote-source">— r/AgingParents</div>
+      </div>
+      
+      <div class="quote">
+        "Many blood pressure apps require subscriptions to access your own health data."
+        <div class="quote-source">— Common complaint across health app reviews</div>
+      </div>
+      
+      <div class="quote">
+        "💎 One-Time Purchase – No Subscriptions!"
+        <div class="quote-source">— Frequently highlighted as key selling point in app promos</div>
+      </div>
+      
+      <h3 style="margin: 20px 0 12px; font-size: 15px;">Key Pain Points</h3>
+      <ul style="padding-left: 20px; color: var(--muted); font-size: 14px;">
+        <li>Tiny, unreadable text in most BP apps</li>
+        <li>Mandatory account creation just to log readings</li>
+        <li>Subscriptions locking access to your own data</li>
+        <li>Privacy concerns with cloud sync</li>
+        <li>Export features that don't work properly</li>
+        <li>Overwhelming feature bloat for simple needs</li>
+      </ul>
+      
+      <h3 style="margin: 20px 0 12px; font-size: 15px;">Target Subreddits</h3>
+      <div class="keywords">
+        <span class="keyword">r/hypertension (35K+)</span>
+        <span class="keyword">r/bloodpressure (15K+)</span>
+        <span class="keyword">r/AgingParents (100K+)</span>
+        <span class="keyword">r/eldercare (25K+)</span>
+        <span class="keyword">r/privacy (1.6M+)</span>
+        <span class="keyword">r/QuantifiedSelf (120K+)</span>
+      </div>
+    </div>
+    
+    <!-- Marketing Headlines -->
+    <div class="section">
+      <h2>📣 Marketing Headlines</h2>
+      <ul style="padding-left: 20px; font-size: 14px;">
+        <li>"Your Blood Pressure. Your Device. Your Privacy."</li>
+        <li>"Finally, a BP app your parents can actually read."</li>
+        <li>"No accounts. No cloud. No subscriptions. Just simple BP tracking."</li>
+        <li>"Designed for seniors, by people who love their parents."</li>
+        <li>"Log your BP in 5 seconds. Share with your doctor in 1 tap."</li>
+        <li>"Health tracking that respects your privacy and your eyesight."</li>
+      </ul>
+    </div>
+    
+    <!-- Competitor Analysis -->
+    <div class="section">
+      <h2>🔍 Key Competitor: Systolio</h2>
+      <table>
+        <tr><th>Factor</th><th>Systolio</th><th>VitalLog</th></tr>
+        <tr><td>Price</td><td><strong>FREE</strong> (ad-supported)</td><td>$2.99 one-time</td></tr>
+        <tr><td>Account Required</td><td>No</td><td>No</td></tr>
+        <tr><td>Local Storage</td><td>Yes</td><td>Yes</td></tr>
+        <tr><td>Senior-Friendly</td><td>Yes</td><td>Yes (superior UX goal)</td></tr>
+        <tr><td>Export</td><td>CSV/PDF</td><td>CSV/PDF</td></tr>
+        <tr><td>Ads</td><td>Yes</td><td><strong>No</strong></td></tr>
+        <tr><td>Additional Vitals</td><td>Blood sugar, HR, BMI</td><td>Planned in v2</td></tr>
+      </table>
+      <p style="margin-top: 16px; font-size: 13px; color: var(--muted);">
+        <strong>Differentiation Strategy:</strong> Superior accessibility/UX, ad-free experience, premium support, and better doctor-sharing features. Target users who've tried Systolio and want a cleaner experience worth $2.99.
+      </p>
+    </div>
+    
+    <!-- Why It Wins -->
+    <div class="section">
+      <h2>🏆 Why This App Could Win</h2>
+      <table>
+        <tr><th>Factor</th><th>Score</th><th>Notes</th></tr>
+        <tr><td>Margin</td><td>5/5</td><td>~70% gross margin, zero API costs</td></tr>
+        <tr><td>Market Size</td><td>5/5</td><td>119M+ with hypertension, 40M+ seniors</td></tr>
+        <tr><td>Competition</td><td>2/5</td><td>Systolio is FREE with same positioning ⚠️</td></tr>
+        <tr><td>Complexity</td><td>5/5</td><td>No AI, no backend — pure mobile app</td></tr>
+        <tr><td>Differentiation</td><td>3/5</td><td>Must out-execute on UX to justify price</td></tr>
+      </table>
+      <p style="margin-top: 16px; font-size: 13px; color: var(--muted);">
+        <strong>Overall: 3.85/5 (CAUTION)</strong> — Strong market, zero operational costs, but faces a free competitor with identical positioning. Success depends on superior execution and finding users who value ad-free experience.
+      </p>
+    </div>
+    
+    <!-- Tech Stack -->
+    <div class="section">
+      <h2>⚙️ Technical Approach</h2>
+      <table>
+        <tr><th>Layer</th><th>Choice</th><th>Why</th></tr>
+        <tr><td>Frontend</td><td>React Native + Expo</td><td>Cross-platform, fast dev</td></tr>
+        <tr><td>Storage</td><td>AsyncStorage + SQLite</td><td>Local-only, no server</td></tr>
+        <tr><td>Charts</td><td>Victory Native</td><td>Accessible, customizable</td></tr>
+        <tr><td>PDF Export</td><td>react-native-html-to-pdf</td><td>Offline PDF creation</td></tr>
+        <tr><td>Notifications</td><td>expo-notifications</td><td>Local only</td></tr>
+        <tr><td>Security</td><td>expo-local-authentication</td><td>Biometric lock</td></tr>
+      </table>
+      <p style="margin-top: 16px; font-size: 13px; color: var(--muted);">
+        <strong>No backend required.</strong> Everything runs locally on device. This means zero operational costs, zero privacy concerns, and zero server maintenance.
+      </p>
+    </div>
+    
+    <!-- Pricing Strategy -->
+    <div class="section">
+      <h2>💰 Pricing Strategy</h2>
+      <table>
+        <tr><th>Option</th><th>Price</th><th>Pros</th><th>Cons</th></tr>
+        <tr><td>Premium</td><td>$4.99</td><td>Higher revenue per user</td><td>Lower conversion vs free Systolio</td></tr>
+        <tr><td><strong>Competitive</strong></td><td><strong>$2.99</strong></td><td>Impulse buy, "coffee money"</td><td>Lower margin per sale</td></tr>
+        <tr><td>Freemium</td><td>Free + $4.99</td><td>Try before buy</td><td>Added complexity, free users don't convert</td></tr>
+      </table>
+      <p style="margin-top: 16px; font-size: 13px; color: var(--muted);">
+        <strong>Recommendation:</strong> Start at $2.99 to maximize downloads and reviews. Raise to $4.99 after building social proof. At $2.99, need ~10 sales/month to cover Apple Developer fees.
+      </p>
+    </div>
+    
+    <footer style="text-align: center; padding: 40px 20px; color: var(--muted); font-size: 13px;">
+      Last updated: February 2, 2026 | Built with ❤️ by Geri
+    </footer>
+  </div>
+</body>
+</html>

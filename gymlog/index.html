@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GymLog — App Hub</title>
+  <style>
+    :root {
+      --primary: #f59e0b;
+      --primary-light: #fef3c7;
+      --primary-dark: #d97706;
+      --bg: #fffbf5;
+      --card: #ffffff;
+      --text: #292524;
+      --muted: #78716c;
+      --border: #e7e5e4;
+      --shadow: 0 4px 12px rgba(0,0,0,0.08);
+      --caution: #dc2626;
+      --caution-light: #fef2f2;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { 
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      background: var(--bg); color: var(--text); line-height: 1.6;
+      padding: 24px 16px 60px;
+    }
+    .container { max-width: 900px; margin: 0 auto; }
+    
+    header { text-align: center; padding: 40px 20px; margin-bottom: 32px; }
+    .logo { font-size: 48px; margin-bottom: 12px; }
+    h1 { font-size: 32px; color: var(--primary-dark); margin-bottom: 8px; }
+    .tagline { color: var(--muted); font-size: 18px; }
+    
+    .badges { display: flex; gap: 12px; justify-content: center; margin-top: 20px; flex-wrap: wrap; }
+    .badge { background: var(--primary-light); color: var(--primary-dark); padding: 6px 14px; 
+             border-radius: 20px; font-size: 13px; font-weight: 500; }
+    .badge.score { background: var(--primary); color: white; }
+    .badge.caution { background: var(--caution); color: white; }
+    
+    .section { background: var(--card); border-radius: 16px; padding: 24px; 
+               margin-bottom: 20px; box-shadow: var(--shadow); }
+    .section h2 { font-size: 18px; color: var(--primary-dark); margin-bottom: 16px; 
+                  padding-bottom: 12px; border-bottom: 2px solid var(--primary-light); }
+    
+    .caution-box { background: var(--caution-light); border: 2px solid var(--caution); 
+                   border-radius: 12px; padding: 16px 20px; margin-bottom: 20px; }
+    .caution-box h3 { color: var(--caution); font-size: 16px; margin-bottom: 8px; display: flex; align-items: center; gap: 8px; }
+    .caution-box p { font-size: 14px; color: #991b1b; }
+    
+    .repo-link { display: inline-flex; align-items: center; gap: 8px; background: #24292e; 
+                 color: white; padding: 12px 20px; border-radius: 8px; text-decoration: none;
+                 font-weight: 500; margin-bottom: 16px; }
+    .repo-link:hover { background: #3a3f44; }
+    .repo-pending { display: inline-flex; align-items: center; gap: 8px; background: #e5e5e5; 
+                    color: #737373; padding: 12px 20px; border-radius: 8px; font-weight: 500; }
+    
+    .keywords { display: flex; flex-wrap: wrap; gap: 8px; }
+    .keyword { background: #f0f0f0; padding: 4px 10px; border-radius: 12px; font-size: 12px; color: #666; }
+    
+    .quote { background: var(--primary-light); border-left: 4px solid var(--primary); 
+             padding: 16px; margin-bottom: 12px; border-radius: 0 8px 8px 0; font-style: italic; }
+    .quote-source { font-size: 12px; color: var(--muted); margin-top: 8px; font-style: normal; }
+    
+    .feature { display: flex; gap: 12px; margin-bottom: 16px; align-items: flex-start; }
+    .feature-icon { font-size: 24px; }
+    .feature h3 { font-size: 15px; margin-bottom: 4px; }
+    .feature p { font-size: 13px; color: var(--muted); }
+    
+    .stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 16px; }
+    .stat { text-align: center; padding: 16px; background: var(--primary-light); border-radius: 12px; }
+    .stat-value { font-size: 28px; font-weight: 700; color: var(--primary-dark); }
+    .stat-label { font-size: 12px; color: var(--muted); }
+    
+    .description { white-space: pre-line; font-size: 14px; }
+    
+    table { width: 100%; border-collapse: collapse; font-size: 14px; }
+    th, td { padding: 10px 12px; text-align: left; border-bottom: 1px solid var(--border); }
+    th { background: var(--primary-light); font-weight: 600; }
+    
+    .back-link { display: inline-block; margin-bottom: 20px; color: var(--primary); text-decoration: none; }
+    .back-link:hover { text-decoration: underline; }
+    
+    .competitor-table { overflow-x: auto; }
+    .competitor-table table { min-width: 600px; }
+    
+    @media (max-width: 600px) {
+      .stats-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <a href="../" class="back-link">← Back to All Apps</a>
+    
+    <header>
+      <div class="logo">🏋️</div>
+      <h1>GymLog</h1>
+      <p class="tagline">Offline Workout Tracker</p>
+      <div class="badges">
+        <span class="badge score">Score: 3.70</span>
+        <span class="badge caution">⚠️ CAUTION</span>
+        <span class="badge">70% Margin</span>
+        <span class="badge">$4.99 One-Time</span>
+        <span class="badge">$12B Market</span>
+      </div>
+    </header>
+    
+    <!-- Caution Warning -->
+    <div class="caution-box">
+      <h3>⚠️ Market Warning: Extremely Crowded</h3>
+      <p>The workout tracker market is one of the most competitive app categories. Success requires <strong>excellent polish</strong>, 
+         strong "no subscription" positioning, and patient organic growth. Don't build this expecting quick wins — 
+         differentiation depends on execution quality, not unique features.</p>
+    </div>
+    
+    <!-- GitHub Repo -->
+    <div class="section">
+      <h2>📦 Repository</h2>
+      <div class="repo-pending">
+        <svg height="20" width="20" viewBox="0 0 16 16" fill="currentColor">
+          <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/>
+        </svg>
+        Repo not yet created
+      </div>
+      <p style="color: var(--muted); font-size: 14px; margin-top: 12px;">Status: Deep dive complete, awaiting MVP decision</p>
+    </div>
+    
+    <!-- App Store Info -->
+    <div class="section">
+      <h2>📱 App Store Listing</h2>
+      <table>
+        <tr><th>Field</th><th>Value</th></tr>
+        <tr><td>App Name</td><td><strong>GymLog</strong></td></tr>
+        <tr><td>Subtitle</td><td>Offline Workout Tracker</td></tr>
+        <tr><td>Category</td><td>Health & Fitness (primary)</td></tr>
+        <tr><td>Age Rating</td><td>4+</td></tr>
+        <tr><td>Price</td><td>$4.99 one-time purchase</td></tr>
+      </table>
+      
+      <h3 style="margin: 20px 0 12px; font-size: 15px;">Keywords (100 chars)</h3>
+      <div class="keywords">
+        <span class="keyword">workout tracker</span>
+        <span class="keyword">gym log</span>
+        <span class="keyword">offline</span>
+        <span class="keyword">no subscription</span>
+        <span class="keyword">weightlifting</span>
+        <span class="keyword">strength training</span>
+        <span class="keyword">exercise log</span>
+        <span class="keyword">fitness journal</span>
+        <span class="keyword">workout planner</span>
+      </div>
+      
+      <h3 style="margin: 20px 0 12px; font-size: 15px;">Description</h3>
+      <p class="description">Your gym notebook, upgraded. Log workouts offline, track progress, own your data.
+
+No subscriptions. No accounts. No cloud required.
+
+GymLog is a simple workout tracker that respects your gym time and your wallet. Pay once, use forever.
+
+✓ Log sets, reps, and weights instantly
+✓ Works 100% offline — even in basement gyms
+✓ Create unlimited workout templates
+✓ Track PRs and see progress charts
+✓ Rest timer with lock screen display
+✓ Export your data anytime (CSV)
+
+Finally, an app that costs less than one protein bar.</p>
+    </div>
+    
+    <!-- Market Stats -->
+    <div class="section">
+      <h2>📊 Market Opportunity</h2>
+      <div class="stats-grid">
+        <div class="stat">
+          <div class="stat-value">$12B</div>
+          <div class="stat-label">Fitness App Market (2025)</div>
+        </div>
+        <div class="stat">
+          <div class="stat-value">50M+</div>
+          <div class="stat-label">US Gym-Goers</div>
+        </div>
+        <div class="stat">
+          <div class="stat-value">70%</div>
+          <div class="stat-label">Gross Margin</div>
+        </div>
+        <div class="stat">
+          <div class="stat-value">13.4%</div>
+          <div class="stat-label">Market CAGR</div>
+        </div>
+      </div>
+      <p style="margin-top: 16px; font-size: 13px; color: var(--muted);">
+        <strong>Market Reality:</strong> 858M fitness app downloads in 2023. iOS holds 52% market share. 
+        Exercise & Weight Loss is the largest segment (54%). The opportunity is in the <em>underserved niche</em> 
+        of subscription-free, offline-first trackers — not the general market.
+      </p>
+    </div>
+    
+    <!-- Features -->
+    <div class="section">
+      <h2>✨ Core Features</h2>
+      <div class="feature">
+        <span class="feature-icon">📝</span>
+        <div>
+          <h3>Quick Set Logging</h3>
+          <p>Log sets, reps, weight in seconds. Swipe between exercises. Auto-save everything.</p>
+        </div>
+      </div>
+      <div class="feature">
+        <span class="feature-icon">📂</span>
+        <div>
+          <h3>Workout Templates</h3>
+          <p>Create unlimited routines. Duplicate, edit, quick-start from templates.</p>
+        </div>
+      </div>
+      <div class="feature">
+        <span class="feature-icon">⏱️</span>
+        <div>
+          <h3>Rest Timer</h3>
+          <p>Configurable rest periods (30s to 5min). Auto-start after sets. Lock screen display.</p>
+        </div>
+      </div>
+      <div class="feature">
+        <span class="feature-icon">📈</span>
+        <div>
+          <h3>Progress Charts</h3>
+          <p>Weight progression per exercise. PR tracking with highlights. Calendar view of workouts.</p>
+        </div>
+      </div>
+      <div class="feature">
+        <span class="feature-icon">📴</span>
+        <div>
+          <h3>100% Offline</h3>
+          <p>No account, no cloud, no internet required. Works in basement gyms.</p>
+        </div>
+      </div>
+      <div class="feature">
+        <span class="feature-icon">💾</span>
+        <div>
+          <h3>Data Export</h3>
+          <p>CSV export anytime. Your data, your control. No lock-in.</p>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Competitors -->
+    <div class="section">
+      <h2>🥊 Competitor Landscape</h2>
+      <div class="competitor-table">
+        <table>
+          <tr>
+            <th>App</th>
+            <th>Pricing</th>
+            <th>Weakness (Our Angle)</th>
+          </tr>
+          <tr>
+            <td><strong>Strong</strong></td>
+            <td>$4.99-29.99/yr or $99.99 lifetime</td>
+            <td>Subscription push, limited free tier</td>
+          </tr>
+          <tr>
+            <td><strong>Hevy</strong></td>
+            <td>$9.99/mo or $119.99 lifetime</td>
+            <td>Requires account, feature bloat, social features</td>
+          </tr>
+          <tr>
+            <td><strong>JEFIT</strong></td>
+            <td>$69.99/yr</td>
+            <td>Complex UI, subscription-only premium</td>
+          </tr>
+          <tr>
+            <td><strong>FitNotes</strong></td>
+            <td>Free (Android only)</td>
+            <td>No iOS version — this is our target!</td>
+          </tr>
+          <tr>
+            <td><strong>GymLog</strong></td>
+            <td>$4.99 once</td>
+            <td>✅ Simple, offline, no subscription, iOS</td>
+          </tr>
+        </table>
+      </div>
+      <p style="margin-top: 16px; font-size: 13px; color: var(--muted);">
+        <strong>Key Gap:</strong> FitNotes is the gold standard for simple offline tracking — but it's Android only. 
+        iOS lacks a true equivalent. Most "simple" iOS options still push subscriptions.
+      </p>
+    </div>
+    
+    <!-- Reddit Quotes -->
+    <div class="section">
+      <h2>💬 Real User Pain Points (Reddit Research)</h2>
+      
+      <div class="quote">
+        "I downloaded a bunch of workout planner apps and couldn't find a single one that's not charging some insane monthly fee like $30. How tf does a basic app cost more than my actual gym membership?"
+        <div class="quote-source">— r/apple</div>
+      </div>
+      
+      <div class="quote">
+        "When it comes to workout apps my biggest annoyance in general is that a lot of apps are way too bulky and it takes too much time to be able to create or edit a workout plan."
+        <div class="quote-source">— r/naturalbodybuilding</div>
+      </div>
+      
+      <div class="quote">
+        "No posting to walls, status updates, no account even."
+        <div class="quote-source">— r/Fitness (praising simple apps)</div>
+      </div>
+      
+      <div class="quote">
+        "It's wild how 'free' now means 'free for 3 days and then $80/year'"
+        <div class="quote-source">— r/beginnerfitness</div>
+      </div>
+      
+      <div class="quote">
+        "My issues were mostly about syncing between devices. From not displaying rest times properly. To switching to incorrect weights, or just flat out refusing to connect to the watch."
+        <div class="quote-source">— r/Hevy</div>
+      </div>
+      
+      <div class="quote">
+        "All my data has been wiped... I left because I was so frustrated with the experience."
+        <div class="quote-source">— r/fitness30plus (about cloud-dependent app update)</div>
+      </div>
+      
+      <h3 style="margin: 20px 0 12px; font-size: 15px;">Target Subreddits</h3>
+      <div class="keywords">
+        <span class="keyword">r/Fitness (12M+)</span>
+        <span class="keyword">r/GYM (2.2M+)</span>
+        <span class="keyword">r/bodybuilding (2.1M+)</span>
+        <span class="keyword">r/weightroom (650K)</span>
+        <span class="keyword">r/xxfitness (600K)</span>
+        <span class="keyword">r/naturalbodybuilding (250K)</span>
+        <span class="keyword">r/fitness30plus (200K)</span>
+        <span class="keyword">r/powerbuilding (90K)</span>
+      </div>
+    </div>
+    
+    <!-- Marketing Headlines -->
+    <div class="section">
+      <h2>📣 Marketing Headlines</h2>
+      <ul style="padding-left: 20px; font-size: 14px;">
+        <li><strong>"Pay Once. Log Forever."</strong> — One-time purchase, no subscriptions</li>
+        <li><strong>"Your Gym Notebook, Upgraded"</strong> — Simple as paper, powerful tracking</li>
+        <li><strong>"No Account. No Cloud. No Bull."</strong> — Just you and your gains</li>
+        <li><strong>"Works Offline, Like Your Muscles"</strong> — Basement gym approved</li>
+        <li><strong>"Finally, an App That Costs Less Than One Protein Bar"</strong></li>
+      </ul>
+    </div>
+    
+    <!-- Unit Economics -->
+    <div class="section">
+      <h2>💰 Unit Economics</h2>
+      <table>
+        <tr><th>Metric</th><th>Value</th></tr>
+        <tr><td>Price</td><td>$4.99 one-time</td></tr>
+        <tr><td>Apple/Google cut (30%)</td><td>-$1.50</td></tr>
+        <tr><td>Per-user variable cost</td><td>$0 (no backend)</td></tr>
+        <tr><td><strong>Net per sale</strong></td><td><strong>$3.49 (70% margin)</strong></td></tr>
+      </table>
+      
+      <h3 style="margin: 20px 0 12px; font-size: 15px;">Revenue Projections</h3>
+      <table>
+        <tr><th>Monthly Sales</th><th>Gross Revenue</th><th>Net Profit</th></tr>
+        <tr><td>100</td><td>$499</td><td>$349</td></tr>
+        <tr><td>500</td><td>$2,495</td><td>$1,745</td></tr>
+        <tr><td>1,000</td><td>$4,990</td><td>$3,490</td></tr>
+        <tr><td>5,000</td><td>$24,950</td><td>$17,465</td></tr>
+      </table>
+      <p style="margin-top: 12px; font-size: 13px; color: var(--muted);">
+        <strong>Expected ceiling:</strong> $8K-15K/month after 12-18 months with excellent execution.
+        <strong>Break-even:</strong> ~4 sales/month to cover $12/month fixed costs.
+      </p>
+    </div>
+    
+    <!-- Why It Wins -->
+    <div class="section">
+      <h2>🏆 Why This App Wins</h2>
+      <table>
+        <tr><th>Factor</th><th>Score</th><th>Notes</th></tr>
+        <tr><td>Margin</td><td>5/5</td><td>70% margin, zero variable costs (no backend)</td></tr>
+        <tr><td>Market Size</td><td>3/5</td><td>Huge TAM but targeting niche segment</td></tr>
+        <tr><td>Competition</td><td>2/5</td><td>Very crowded — but underserved angle exists</td></tr>
+        <tr><td>Build Complexity</td><td>5/5</td><td>Simple app, known patterns, React Native</td></tr>
+        <tr><td>Differentiation</td><td>3/5</td><td>Clear offline/no-sub angle, but hard to defend</td></tr>
+      </table>
+      <p style="margin-top: 16px; font-size: 14px; text-align: center; color: var(--primary-dark);">
+        <strong>Weighted Score: 3.70/5 — BUILD WITH CAUTION</strong>
+      </p>
+    </div>
+    
+    <!-- Build Criteria -->
+    <div class="section">
+      <h2>✅ Build This If / ❌ Don't Build If</h2>
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+        <div>
+          <h3 style="color: #16a34a; font-size: 15px; margin-bottom: 12px;">✅ Build This If:</h3>
+          <ul style="padding-left: 18px; font-size: 13px; color: var(--muted);">
+            <li>You can nail "simple but polished" execution</li>
+            <li>You're patient for organic growth</li>
+            <li>You're okay with $5K-15K/month ceiling</li>
+            <li>You can resist feature creep pressure</li>
+          </ul>
+        </div>
+        <div>
+          <h3 style="color: var(--caution); font-size: 15px; margin-bottom: 12px;">❌ Don't Build If:</h3>
+          <ul style="padding-left: 18px; font-size: 13px; color: var(--muted);">
+            <li>You need venture-scale returns</li>
+            <li>You'll be tempted to add subscriptions</li>
+            <li>You can't invest in ASO + Reddit marketing</li>
+            <li>You expect quick wins</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    
+    <!-- MVP Scope -->
+    <div class="section">
+      <h2>🎯 MVP Scope</h2>
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+        <div>
+          <h3 style="font-size: 15px; margin-bottom: 12px; color: var(--primary-dark);">Include in v1.0:</h3>
+          <ul style="padding-left: 18px; font-size: 13px; color: var(--muted);">
+            <li>Exercise database (200+ exercises)</li>
+            <li>Custom exercise creation</li>
+            <li>Workout logging (sets/reps/weight)</li>
+            <li>Unlimited templates/routines</li>
+            <li>Configurable rest timer</li>
+            <li>Basic progress charts</li>
+            <li>PR tracking</li>
+            <li>CSV export</li>
+            <li>Calendar view</li>
+          </ul>
+        </div>
+        <div>
+          <h3 style="font-size: 15px; margin-bottom: 12px; color: var(--muted);">Skip for MVP:</h3>
+          <ul style="padding-left: 18px; font-size: 13px; color: var(--muted);">
+            <li>Apple Watch (v2)</li>
+            <li>Social features (never)</li>
+            <li>AI coaching (never)</li>
+            <li>Cloud sync (never — this IS the differentiation)</li>
+            <li>Body measurements (v2)</li>
+            <li>Plate calculator (v2)</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    
+    <footer style="text-align: center; padding: 40px 20px; color: var(--muted); font-size: 13px;">
+      Last updated: February 2, 2026 | Built with 🏋️ by Geri
+    </footer>
+  </div>
+</body>
+</html>

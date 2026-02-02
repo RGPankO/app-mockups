@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BudgetVault — App Hub</title>
+  <style>
+    :root {
+      --primary: #8b5cf6;
+      --primary-light: #ede9fe;
+      --primary-dark: #6d28d9;
+      --bg: #faf8ff;
+      --card: #ffffff;
+      --text: #1e1b4b;
+      --muted: #6b7280;
+      --border: #e5e7eb;
+      --shadow: 0 4px 12px rgba(139, 92, 246, 0.12);
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { 
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      background: var(--bg); color: var(--text); line-height: 1.6;
+      padding: 24px 16px 60px;
+    }
+    .container { max-width: 900px; margin: 0 auto; }
+    
+    header { text-align: center; padding: 40px 20px; margin-bottom: 32px; }
+    .logo { font-size: 48px; margin-bottom: 12px; }
+    h1 { font-size: 32px; color: var(--primary-dark); margin-bottom: 8px; }
+    .tagline { color: var(--muted); font-size: 18px; }
+    
+    .badges { display: flex; gap: 12px; justify-content: center; margin-top: 20px; flex-wrap: wrap; }
+    .badge { background: var(--primary-light); color: var(--primary-dark); padding: 6px 14px; 
+             border-radius: 20px; font-size: 13px; font-weight: 500; }
+    .badge.score { background: var(--primary); color: white; }
+    
+    .section { background: var(--card); border-radius: 16px; padding: 24px; 
+               margin-bottom: 20px; box-shadow: var(--shadow); }
+    .section h2 { font-size: 18px; color: var(--primary-dark); margin-bottom: 16px; 
+                  padding-bottom: 12px; border-bottom: 2px solid var(--primary-light); }
+    
+    .repo-link { display: inline-flex; align-items: center; gap: 8px; background: #24292e; 
+                 color: white; padding: 12px 20px; border-radius: 8px; text-decoration: none;
+                 font-weight: 500; margin-bottom: 16px; }
+    .repo-link:hover { background: #3a3f44; }
+    
+    .keywords { display: flex; flex-wrap: wrap; gap: 8px; }
+    .keyword { background: #f0f0f0; padding: 4px 10px; border-radius: 12px; font-size: 12px; color: #666; }
+    
+    .quote { background: var(--primary-light); border-left: 4px solid var(--primary); 
+             padding: 16px; margin-bottom: 12px; border-radius: 0 8px 8px 0; font-style: italic; }
+    .quote-source { font-size: 12px; color: var(--muted); margin-top: 8px; font-style: normal; }
+    
+    .feature { display: flex; gap: 12px; margin-bottom: 16px; align-items: flex-start; }
+    .feature-icon { font-size: 24px; }
+    .feature h3 { font-size: 15px; margin-bottom: 4px; }
+    .feature p { font-size: 13px; color: var(--muted); }
+    
+    .stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 16px; }
+    .stat { text-align: center; padding: 16px; background: var(--primary-light); border-radius: 12px; }
+    .stat-value { font-size: 28px; font-weight: 700; color: var(--primary-dark); }
+    .stat-label { font-size: 12px; color: var(--muted); }
+    
+    .description { white-space: pre-line; font-size: 14px; }
+    
+    table { width: 100%; border-collapse: collapse; font-size: 14px; }
+    th, td { padding: 10px 12px; text-align: left; border-bottom: 1px solid var(--border); }
+    th { background: var(--primary-light); font-weight: 600; }
+    
+    .back-link { display: inline-block; margin-bottom: 20px; color: var(--primary); text-decoration: none; }
+    .back-link:hover { text-decoration: underline; }
+    
+    .competitor-gap { background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%); 
+                      border-radius: 12px; padding: 20px; margin-top: 16px; }
+    .competitor-gap h3 { color: #92400e; margin-bottom: 12px; }
+    .competitor-gap ul { padding-left: 20px; color: #78350f; font-size: 14px; }
+    
+    .ivy-alert { background: linear-gradient(135deg, #fee2e2 0%, #fecaca 100%);
+                 border-radius: 12px; padding: 16px; margin-bottom: 16px;
+                 border-left: 4px solid #ef4444; }
+    .ivy-alert strong { color: #b91c1c; }
+    
+    @media (max-width: 600px) {
+      .stats-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <a href="../" class="back-link">← Back to All Apps</a>
+    
+    <header>
+      <div class="logo">💰</div>
+      <h1>BudgetVault</h1>
+      <p class="tagline">Privacy-First Expense Tracker</p>
+      <div class="badges">
+        <span class="badge score">Score: 4.45</span>
+        <span class="badge">70% Margin</span>
+        <span class="badge">$4.99 One-Time</span>
+        <span class="badge">$0 Per-User Cost</span>
+      </div>
+    </header>
+    
+    <!-- GitHub Repo -->
+    <div class="section">
+      <h2>📦 Repository</h2>
+      <a href="#" class="repo-link" style="opacity: 0.5; pointer-events: none;">
+        <svg height="20" width="20" viewBox="0 0 16 16" fill="currentColor">
+          <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/>
+        </svg>
+        Not Yet Created
+      </a>
+      <p style="color: var(--muted); font-size: 14px;">Status: Research Complete — Ready for Development</p>
+    </div>
+    
+    <!-- App Store Info -->
+    <div class="section">
+      <h2>📱 App Store Listing</h2>
+      <table>
+        <tr><th>Field</th><th>Value</th></tr>
+        <tr><td>App Name</td><td><strong>BudgetVault - Offline Expense Tracker</strong></td></tr>
+        <tr><td>Subtitle</td><td>Track Spending. 100% Private.</td></tr>
+        <tr><td>Category</td><td>Finance</td></tr>
+        <tr><td>Age Rating</td><td>4+</td></tr>
+        <tr><td>Price</td><td><strong>$4.99 one-time</strong></td></tr>
+      </table>
+      
+      <h3 style="margin: 20px 0 12px; font-size: 15px;">Keywords (100 chars)</h3>
+      <div class="keywords">
+        <span class="keyword">expense tracker</span>
+        <span class="keyword">budget app</span>
+        <span class="keyword">offline</span>
+        <span class="keyword">no bank link</span>
+        <span class="keyword">privacy</span>
+        <span class="keyword">money manager</span>
+        <span class="keyword">spending tracker</span>
+        <span class="keyword">personal finance</span>
+        <span class="keyword">manual budget</span>
+        <span class="keyword">secure</span>
+      </div>
+      
+      <h3 style="margin: 20px 0 12px; font-size: 15px;">App Description</h3>
+      <p class="description">Your financial data belongs on your device — not on someone else's server.
+
+BudgetVault is the expense tracker that respects your privacy. No bank linking. No cloud sync. No subscriptions. Just simple, beautiful expense tracking that works offline.
+
+<strong>🔒 100% OFFLINE</strong>
+Your data never leaves your device. No internet required. No servers to breach. No data to sell.
+
+<strong>🚫 NO BANK LINKING</strong>
+We never ask for your bank password. Period. Manual entry means you stay in control.
+
+<strong>💰 ONE-TIME PURCHASE</strong>
+$4.99 once. Not $100/year like YNAB, Monarch, or Copilot. You own it forever.
+
+<strong>✨ FEATURES</strong>
+• Quick expense entry with categories
+• Monthly budget tracking per category
+• Beautiful charts and insights
+• Recurring expense reminders
+• CSV export for any date range
+• Face ID / Touch ID protection
+• Home screen widget for fast logging
+
+Perfect for:
+✓ Privacy-conscious individuals
+✓ Those who avoid bank linking
+✓ Former Ivy Wallet users
+✓ Anyone tired of subscription fatigue
+
+Your budget. Your device. Your data. Period.</p>
+    </div>
+    
+    <!-- Market Stats -->
+    <div class="section">
+      <h2>📊 Market Opportunity</h2>
+      <div class="stats-grid">
+        <div class="stat">
+          <div class="stat-value">$1.3B+</div>
+          <div class="stat-label">Global Personal Finance App Market</div>
+        </div>
+        <div class="stat">
+          <div class="stat-value">15-20%</div>
+          <div class="stat-label">Privacy-Conscious Segment</div>
+        </div>
+        <div class="stat">
+          <div class="stat-value">70%</div>
+          <div class="stat-label">Gross Margin</div>
+        </div>
+        <div class="stat">
+          <div class="stat-value">$0</div>
+          <div class="stat-label">Per-User Operating Cost</div>
+        </div>
+      </div>
+      
+      <div style="margin-top: 20px;">
+        <h3 style="font-size: 15px; margin-bottom: 12px;">Unit Economics</h3>
+        <table>
+          <tr><th>Metric</th><th>Value</th></tr>
+          <tr><td>Price</td><td>$4.99</td></tr>
+          <tr><td>App Store Fee (30%)</td><td>-$1.50</td></tr>
+          <tr><td>Per-User Cost</td><td>$0</td></tr>
+          <tr><td><strong>Net per Sale</strong></td><td><strong>$3.49</strong></td></tr>
+          <tr><td>Break-even</td><td>~35 sales/year</td></tr>
+        </table>
+      </div>
+    </div>
+    
+    <!-- Features -->
+    <div class="section">
+      <h2>✨ Core Features (MVP)</h2>
+      <div class="feature">
+        <span class="feature-icon">📝</span>
+        <div>
+          <h3>Manual Expense Entry</h3>
+          <p>Quick-add from home screen widget. Amount, category, date, optional notes, receipt photo.</p>
+        </div>
+      </div>
+      <div class="feature">
+        <span class="feature-icon">🏷️</span>
+        <div>
+          <h3>Categories & Tags</h3>
+          <p>Smart default categories + custom categories with icons and colors.</p>
+        </div>
+      </div>
+      <div class="feature">
+        <span class="feature-icon">📊</span>
+        <div>
+          <h3>Dashboard Overview</h3>
+          <p>Monthly summary, pie/bar charts, daily/weekly/monthly views, "budget remaining" display.</p>
+        </div>
+      </div>
+      <div class="feature">
+        <span class="feature-icon">🎯</span>
+        <div>
+          <h3>Budget Setting</h3>
+          <p>Set monthly budget per category. Visual progress bars. Alerts when approaching limits.</p>
+        </div>
+      </div>
+      <div class="feature">
+        <span class="feature-icon">🔄</span>
+        <div>
+          <h3>Recurring Expenses</h3>
+          <p>Auto-remind for rent, subscriptions, bills. One-tap logging of recurring items.</p>
+        </div>
+      </div>
+      <div class="feature">
+        <span class="feature-icon">📤</span>
+        <div>
+          <h3>CSV Export</h3>
+          <p>Export any date range. Compatible with Excel/Google Sheets. Your data, your control.</p>
+        </div>
+      </div>
+      <div class="feature">
+        <span class="feature-icon">🔒</span>
+        <div>
+          <h3>Face ID / Touch ID Lock</h3>
+          <p>Optional biometric protection. Your financial data stays private.</p>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Reddit Quotes -->
+    <div class="section">
+      <h2>💬 Real User Pain Points (Reddit Research)</h2>
+      
+      <div class="ivy-alert">
+        <strong>🚨 Ivy Wallet Discontinued (Nov 2024)</strong><br>
+        Popular offline expense tracker shut down. Users actively seeking alternatives. This is our acquisition opportunity!
+      </div>
+      
+      <div class="quote">
+        "RIP Ivy Wallet. It was the perfect expense tracker. Anyone know a good replacement that's also offline-first?"
+        <div class="quote-source">— r/androidapps (Nov 2024)</div>
+      </div>
+      
+      <div class="quote">
+        "Ivy Wallet discontinued. Looking for: beautiful UI, offline, manual entry, no subscriptions. Does this exist?"
+        <div class="quote-source">— Multiple Reddit threads</div>
+      </div>
+      
+      <div class="quote">
+        "I refuse to use any budget app that requires linking my bank account. After the Mint breach and all the data selling, I just do everything in a spreadsheet."
+        <div class="quote-source">— r/privacy, r/personalfinance</div>
+      </div>
+      
+      <div class="quote">
+        "YNAB wants my bank login? No thanks. I'll enter transactions manually."
+        <div class="quote-source">— r/ynab</div>
+      </div>
+      
+      <div class="quote">
+        "YNAB raised prices AGAIN to $109/year. For an expense tracker! I'm looking for alternatives."
+        <div class="quote-source">— r/ynab (multiple threads)</div>
+      </div>
+      
+      <div class="quote">
+        "Why does every app need a subscription now? I'd happily pay $10-20 once for a good budget app."
+        <div class="quote-source">— r/Frugal</div>
+      </div>
+      
+      <div class="quote">
+        "I actually PREFER manual entry. Makes me think about each purchase. The 'automatic tracking' in Mint made me lazy and I stopped paying attention."
+        <div class="quote-source">— r/ynab</div>
+      </div>
+      
+      <h3 style="margin: 20px 0 12px; font-size: 15px;">Target Subreddits</h3>
+      <div class="keywords">
+        <span class="keyword">r/personalfinance (18M+)</span>
+        <span class="keyword">r/privacy (1.5M+)</span>
+        <span class="keyword">r/Frugal (2M+)</span>
+        <span class="keyword">r/beermoney (1M+)</span>
+        <span class="keyword">r/povertyfinance (900K+)</span>
+        <span class="keyword">r/budget (500K+)</span>
+        <span class="keyword">r/degoogle (300K+)</span>
+        <span class="keyword">r/ynab (150K+)</span>
+      </div>
+    </div>
+    
+    <!-- Marketing Headlines -->
+    <div class="section">
+      <h2>📣 Marketing Headlines</h2>
+      <ul style="padding-left: 20px; font-size: 14px;">
+        <li>🔒 "Your budget. Your device. Your data. Period."</li>
+        <li>💰 "Track expenses without trusting your bank password to strangers"</li>
+        <li>🚫 "No subscriptions. No bank linking. No cloud. Just budgeting."</li>
+        <li>📱 "Ivy Wallet is gone. BudgetVault is here."</li>
+        <li>✨ "$4.99 once. Not $100/year like YNAB."</li>
+        <li>🛡️ "The expense tracker that respects your privacy"</li>
+      </ul>
+    </div>
+    
+    <!-- Competitor Gap -->
+    <div class="section">
+      <h2>⚔️ Competitor Gap Analysis</h2>
+      <table>
+        <tr><th>App</th><th>Price</th><th>Bank Linking</th><th>Offline</th><th>Our Advantage</th></tr>
+        <tr>
+          <td><strong>YNAB</strong></td>
+          <td>$109/yr</td>
+          <td>Required</td>
+          <td>❌</td>
+          <td>22x cheaper, no bank needed</td>
+        </tr>
+        <tr>
+          <td><strong>Monarch Money</strong></td>
+          <td>$100/yr</td>
+          <td>Required</td>
+          <td>❌</td>
+          <td>20x cheaper, privacy-first</td>
+        </tr>
+        <tr>
+          <td><strong>Copilot</strong></td>
+          <td>$95/yr</td>
+          <td>Required</td>
+          <td>❌</td>
+          <td>19x cheaper, Android support</td>
+        </tr>
+        <tr>
+          <td><strong>Goodbudget</strong></td>
+          <td>Free/$80/yr</td>
+          <td>Optional</td>
+          <td>Partial</td>
+          <td>Modern UI, unlimited free</td>
+        </tr>
+        <tr>
+          <td><strong>Money Manager</strong></td>
+          <td>Free + ads</td>
+          <td>No</td>
+          <td>✅</td>
+          <td>No ads, cleaner design</td>
+        </tr>
+        <tr>
+          <td><strong>Ivy Wallet</strong></td>
+          <td>Free</td>
+          <td>No</td>
+          <td>✅</td>
+          <td>⚠️ DISCONTINUED — we're the replacement</td>
+        </tr>
+      </table>
+      
+      <div class="competitor-gap">
+        <h3>🎯 The Gap We Fill</h3>
+        <ul>
+          <li><strong>Modern UI + Offline + One-Time Purchase + Privacy</strong> — nobody does all four</li>
+          <li>Beautiful apps (Copilot, Monarch) require subscriptions + bank linking</li>
+          <li>Offline apps (Money Manager, Bluecoins) have dated, cluttered UIs</li>
+          <li>No "Calm/Headspace quality" offline expense tracker exists</li>
+          <li><strong>Timing:</strong> Ivy Wallet's discontinuation leaves users actively searching</li>
+        </ul>
+      </div>
+    </div>
+    
+    <!-- Why It Wins -->
+    <div class="section">
+      <h2>🏆 Why This App Wins</h2>
+      <table>
+        <tr><th>Factor</th><th>Score</th><th>Notes</th></tr>
+        <tr><td>Margin</td><td>5/5</td><td>70% gross margin, $0 per-user operating cost</td></tr>
+        <tr><td>Market Size</td><td>4/5</td><td>$1.3B+ market, 15-20% privacy segment (~$200M+)</td></tr>
+        <tr><td>Competition</td><td>4/5</td><td>Clear gap: modern + offline + one-time + private</td></tr>
+        <tr><td>Build Complexity</td><td>5/5</td><td>No backend, no AI, no integrations — pure local app</td></tr>
+        <tr><td>Differentiation</td><td>4/5</td><td>Anti-subscription + privacy angle is strong</td></tr>
+      </table>
+      <p style="margin-top: 16px; text-align: center; font-weight: 600; color: var(--primary);">
+        Total Weighted Score: 4.45/5 — 🟢 BUILD
+      </p>
+    </div>
+    
+    <!-- Tech Stack -->
+    <div class="section">
+      <h2>🛠️ Technical Architecture</h2>
+      <table>
+        <tr><th>Layer</th><th>Choice</th><th>Why</th></tr>
+        <tr><td>Frontend</td><td>React Native + Expo</td><td>Cross-platform iOS/Android</td></tr>
+        <tr><td>Database</td><td>SQLite (local)</td><td>No server needed</td></tr>
+        <tr><td>State</td><td>Zustand + MMKV</td><td>Lightweight, persisted</td></tr>
+        <tr><td>Charts</td><td>Victory Native</td><td>Beautiful, performant</td></tr>
+        <tr><td>Auth</td><td>Local biometrics only</td><td>Face ID/Touch ID, no accounts</td></tr>
+        <tr><td>Export</td><td>Papaparse</td><td>CSV generation</td></tr>
+      </table>
+      <p style="margin-top: 16px; color: var(--muted); font-size: 14px;">
+        <strong>Key advantage:</strong> No AI, no backend, no integrations = zero API costs, maximum privacy.
+      </p>
+    </div>
+    
+    <footer style="text-align: center; padding: 40px 20px; color: var(--muted); font-size: 13px;">
+      Last updated: February 2, 2026 | Research by Geri 💰
+    </footer>
+  </div>
+</body>
+</html>
