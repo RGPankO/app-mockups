@@ -1,0 +1,973 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Offline-First Apps — Research & Mockups</title>
+  <style>
+    :root {
+      --bg: #fefefe;
+      --text: #2d2d2d;
+      --muted: #6b7280;
+      --accent: #3b82f6;
+      --accent-light: #eff6ff;
+      --success: #10b981;
+      --warning: #f59e0b;
+      --danger: #ef4444;
+      --card-bg: #ffffff;
+      --border: #e5e7eb;
+      --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+      --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: linear-gradient(180deg, #eff6ff 0%, #fefefe 100%);
+      color: var(--text);
+      min-height: 100vh;
+      padding: 24px 16px 60px;
+      line-height: 1.6;
+    }
+
+    .container { max-width: 1200px; margin: 0 auto; }
+
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      color: var(--accent);
+      text-decoration: none;
+      font-weight: 500;
+      margin-bottom: 24px;
+    }
+
+    header {
+      text-align: center;
+      margin-bottom: 48px;
+      padding: 40px 20px;
+      background: var(--card-bg);
+      border-radius: 24px;
+      box-shadow: var(--shadow);
+    }
+
+    h1 {
+      font-size: 2.5rem;
+      margin-bottom: 12px;
+      background: linear-gradient(135deg, #3b82f6, #1d4ed8);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .subtitle {
+      color: var(--muted);
+      font-size: 1.1rem;
+      max-width: 700px;
+      margin: 0 auto 24px;
+    }
+
+    .key-insight {
+      background: linear-gradient(135deg, #dbeafe, #eff6ff);
+      padding: 16px 24px;
+      border-radius: 12px;
+      border-left: 4px solid var(--accent);
+      font-style: italic;
+      color: var(--text);
+      max-width: 600px;
+      margin: 0 auto 24px;
+    }
+
+    .stats-row {
+      display: flex;
+      gap: 24px;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-top: 24px;
+    }
+
+    .stat {
+      background: var(--accent-light);
+      padding: 12px 20px;
+      border-radius: 12px;
+      text-align: center;
+    }
+
+    .stat-value {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--accent);
+    }
+
+    .stat-label { font-size: 0.85rem; color: var(--muted); }
+
+    .section-title {
+      font-size: 1.5rem;
+      margin: 48px 0 24px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      padding: 4px 12px;
+      border-radius: 20px;
+      font-size: 0.8rem;
+      font-weight: 600;
+    }
+
+    .badge-build { background: #d1fae5; color: #065f46; }
+    .badge-caution { background: #fef3c7; color: #92400e; }
+    .badge-skip { background: #fee2e2; color: #991b1b; }
+
+    .apps-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+      gap: 24px;
+    }
+
+    .app-card {
+      background: var(--card-bg);
+      border-radius: 16px;
+      box-shadow: var(--shadow);
+      overflow: hidden;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    .app-card:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-lg);
+    }
+
+    .app-header {
+      padding: 20px;
+      color: white;
+      position: relative;
+    }
+
+    .app-emoji {
+      font-size: 2.5rem;
+      margin-bottom: 8px;
+    }
+
+    .app-name {
+      font-size: 1.4rem;
+      font-weight: 700;
+      margin-bottom: 4px;
+    }
+
+    .app-tagline {
+      font-size: 0.9rem;
+      opacity: 0.9;
+    }
+
+    .app-body { padding: 20px; }
+
+    .app-description {
+      color: var(--muted);
+      font-size: 0.95rem;
+      margin-bottom: 16px;
+      line-height: 1.5;
+    }
+
+    .app-meta {
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+      margin-bottom: 16px;
+    }
+
+    .meta-item {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.85rem;
+      color: var(--text);
+    }
+
+    .meta-icon { font-size: 1rem; }
+
+    .score-bar {
+      height: 8px;
+      background: #e5e7eb;
+      border-radius: 4px;
+      overflow: hidden;
+      margin: 12px 0;
+    }
+
+    .score-fill {
+      height: 100%;
+      border-radius: 4px;
+      transition: width 0.3s;
+    }
+
+    .score-label {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.8rem;
+      color: var(--muted);
+    }
+
+    .reddit-quote {
+      background: #f8fafc;
+      padding: 12px 16px;
+      border-radius: 8px;
+      font-size: 0.85rem;
+      color: var(--text);
+      border-left: 3px solid var(--accent);
+      margin: 16px 0;
+      font-style: italic;
+    }
+
+    .reddit-quote cite {
+      display: block;
+      margin-top: 8px;
+      font-style: normal;
+      color: var(--muted);
+      font-size: 0.8rem;
+    }
+
+    .key-finding {
+      background: linear-gradient(135deg, #fef3c7, #fffbeb);
+      padding: 12px 16px;
+      border-radius: 8px;
+      font-size: 0.9rem;
+      margin: 12px 0;
+    }
+
+    .key-finding strong {
+      color: #92400e;
+    }
+
+    .competitor-gap {
+      background: #f0fdf4;
+      padding: 12px 16px;
+      border-radius: 8px;
+      font-size: 0.85rem;
+      margin: 12px 0;
+    }
+
+    .competitor-gap strong { color: #166534; }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.85rem;
+      margin: 24px 0;
+    }
+
+    th, td {
+      padding: 12px 16px;
+      text-align: left;
+      border-bottom: 1px solid var(--border);
+    }
+
+    th {
+      background: var(--accent-light);
+      font-weight: 600;
+      color: var(--text);
+    }
+
+    tr:hover { background: #f9fafb; }
+
+    .priority-high { color: #059669; font-weight: 600; }
+    .priority-medium { color: #d97706; font-weight: 600; }
+    .priority-low { color: #dc2626; font-weight: 600; }
+
+    .summary-card {
+      background: var(--card-bg);
+      border-radius: 16px;
+      box-shadow: var(--shadow);
+      padding: 24px;
+      margin-bottom: 32px;
+    }
+
+    .summary-title {
+      font-size: 1.2rem;
+      margin-bottom: 16px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    @media (max-width: 768px) {
+      h1 { font-size: 1.8rem; }
+      .apps-grid { grid-template-columns: 1fr; }
+      .stats-row { gap: 12px; }
+      .stat { padding: 10px 16px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <a href="index.html" class="back-link">← Back to All Categories</a>
+
+    <header>
+      <h1>📴 Offline-First Apps</h1>
+      <p class="subtitle">One-time purchase apps that work without internet, accounts, or subscriptions. Privacy-first, own-your-data tools for the subscription-fatigued market.</p>
+      
+      <div class="key-insight">
+        "No accounts, no tracking, no internet required" is now a selling point. One-time purchase beats subscription fatigue.
+      </div>
+
+      <div class="stats-row">
+        <div class="stat">
+          <div class="stat-value">15</div>
+          <div class="stat-label">Apps Researched</div>
+        </div>
+        <div class="stat">
+          <div class="stat-value">11</div>
+          <div class="stat-label">BUILD ✅</div>
+        </div>
+        <div class="stat">
+          <div class="stat-value">3</div>
+          <div class="stat-label">CAUTION ⚠️</div>
+        </div>
+        <div class="stat">
+          <div class="stat-value">~100%</div>
+          <div class="stat-label">Margin (no backend)</div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Priority Rankings -->
+    <div class="summary-card">
+      <h2 class="summary-title">🏆 Priority Rankings</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>Rank</th>
+            <th>App</th>
+            <th>Score</th>
+            <th>Price</th>
+            <th>Key Insight</th>
+            <th>Verdict</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="priority-high">1</td>
+            <td>🥗 QuickNutrition</td>
+            <td>4.60</td>
+            <td>$6.99</td>
+            <td>Competitors charge $40-100/yr AND need internet</td>
+            <td><span class="badge badge-build">BUILD</span></td>
+          </tr>
+          <tr>
+            <td class="priority-high">2</td>
+            <td>💰 BudgetVault</td>
+            <td>4.45</td>
+            <td>$4.99</td>
+            <td>Ivy Wallet discontinued Nov 2024</td>
+            <td><span class="badge badge-build">BUILD</span></td>
+          </tr>
+          <tr>
+            <td class="priority-high">3</td>
+            <td>🔧 OfflineCalc Pro</td>
+            <td>4.40</td>
+            <td>$9.99</td>
+            <td>Construction Master → $50/yr subscription</td>
+            <td><span class="badge badge-build">BUILD</span></td>
+          </tr>
+          <tr>
+            <td class="priority-high">4</td>
+            <td>🧶 CraftCount</td>
+            <td>4.40</td>
+            <td>$4.99</td>
+            <td>Voice control + one-time = unique combo</td>
+            <td><span class="badge badge-build">BUILD</span></td>
+          </tr>
+          <tr>
+            <td class="priority-high">5</td>
+            <td>🎙️ WhisperMemo</td>
+            <td>4.25</td>
+            <td>$4.99</td>
+            <td>Undercuts Aiko ($22) by 4x</td>
+            <td><span class="badge badge-build">BUILD</span></td>
+          </tr>
+          <tr>
+            <td class="priority-high">6</td>
+            <td>😴 SleepDiary</td>
+            <td>4.25</td>
+            <td>$3.99</td>
+            <td>"Manual sleep app doesn't exist"</td>
+            <td><span class="badge badge-build">BUILD</span></td>
+          </tr>
+          <tr>
+            <td class="priority-high">7</td>
+            <td>🏥 WildernessRx</td>
+            <td>4.20</td>
+            <td>$9.99</td>
+            <td>GOES charges $72/yr</td>
+            <td><span class="badge badge-build">BUILD</span></td>
+          </tr>
+          <tr>
+            <td class="priority-high">8</td>
+            <td>🧠 FlashForge</td>
+            <td>4.15</td>
+            <td>$6.99</td>
+            <td>"Anki for people who hate Anki"</td>
+            <td><span class="badge badge-build">BUILD</span></td>
+          </tr>
+          <tr>
+            <td class="priority-high">9</td>
+            <td>💊 PillMinder</td>
+            <td>4.15</td>
+            <td>$4.99</td>
+            <td>Seniors underserved by complex apps</td>
+            <td><span class="badge badge-build">BUILD</span></td>
+          </tr>
+          <tr>
+            <td class="priority-high">10</td>
+            <td>🚗 AutoLog</td>
+            <td>4.10</td>
+            <td>$4.99</td>
+            <td>"I just use a spreadsheet"</td>
+            <td><span class="badge badge-build">BUILD</span></td>
+          </tr>
+          <tr>
+            <td class="priority-high">11</td>
+            <td>💧 HydroTrack</td>
+            <td>4.00</td>
+            <td>$2.99</td>
+            <td>"$60/yr to tell me when to drink water?"</td>
+            <td><span class="badge badge-build">BUILD</span></td>
+          </tr>
+          <tr>
+            <td class="priority-medium">12</td>
+            <td>🌱 PlantPal</td>
+            <td>3.90</td>
+            <td>$4.99</td>
+            <td>Planta dominates with 10M users</td>
+            <td><span class="badge badge-caution">CAUTION</span></td>
+          </tr>
+          <tr>
+            <td class="priority-medium">13</td>
+            <td>❤️ VitalLog</td>
+            <td>3.85</td>
+            <td>$2.99</td>
+            <td>Free competitor Systolio exists</td>
+            <td><span class="badge badge-caution">CAUTION</span></td>
+          </tr>
+          <tr>
+            <td class="priority-medium">14</td>
+            <td>🏋️ GymLog</td>
+            <td>3.70</td>
+            <td>$4.99</td>
+            <td>Market extremely crowded</td>
+            <td><span class="badge badge-caution">CAUTION</span></td>
+          </tr>
+          <tr>
+            <td class="priority-low">15</td>
+            <td>📖 WordVault</td>
+            <td>2.60</td>
+            <td>$2.99</td>
+            <td>WordWeb is free with 285K words</td>
+            <td><span class="badge badge-skip">SKIP</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Top Picks -->
+    <h2 class="section-title">🌟 Top 5 Picks</h2>
+    <div class="apps-grid">
+
+      <!-- QuickNutrition -->
+      <div class="app-card">
+        <div class="app-header" style="background: linear-gradient(135deg, #22c55e, #16a34a);">
+          <div class="app-emoji">🥗</div>
+          <div class="app-name">QuickNutrition</div>
+          <div class="app-tagline">Offline calorie/nutrition lookup</div>
+        </div>
+        <div class="app-body">
+          <span class="badge badge-build">BUILD ✅</span>
+          <p class="app-description">Check nutrition info while shopping, traveling, or camping — no internet required. One-time $6.99 vs competitors' $40-100/year subscriptions.</p>
+          
+          <div class="app-meta">
+            <div class="meta-item"><span class="meta-icon">💰</span> $6.99 one-time</div>
+            <div class="meta-item"><span class="meta-icon">📈</span> 98% margin</div>
+            <div class="meta-item"><span class="meta-icon">⭐</span> 4.60/5</div>
+          </div>
+
+          <div class="reddit-quote">
+            "Carb Manager and Cronometer... utterly unusable without strong internet"
+            <cite>— r/loseit</cite>
+          </div>
+
+          <div class="competitor-gap">
+            <strong>Gap:</strong> MyFitnessPal $79.99/yr, Cronometer $59.99/yr — all require internet. USDA database is free/public domain.
+          </div>
+
+          <div class="score-bar">
+            <div class="score-fill" style="width: 92%; background: linear-gradient(90deg, #22c55e, #16a34a);"></div>
+          </div>
+          <div class="score-label">
+            <span>Score: 4.60/5</span>
+            <span>Highest rated</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- BudgetVault -->
+      <div class="app-card">
+        <div class="app-header" style="background: linear-gradient(135deg, #8b5cf6, #7c3aed);">
+          <div class="app-emoji">💰</div>
+          <div class="app-name">BudgetVault</div>
+          <div class="app-tagline">Privacy-first expense tracker</div>
+        </div>
+        <div class="app-body">
+          <span class="badge badge-build">BUILD ✅</span>
+          <p class="app-description">Track spending without linking bank accounts or cloud sync. Your financial data stays on your device.</p>
+          
+          <div class="app-meta">
+            <div class="meta-item"><span class="meta-icon">💰</span> $4.99 one-time</div>
+            <div class="meta-item"><span class="meta-icon">📈</span> 70% margin</div>
+            <div class="meta-item"><span class="meta-icon">⭐</span> 4.45/5</div>
+          </div>
+
+          <div class="reddit-quote">
+            "YNAB raised prices AGAIN" — common thread on r/ynab
+            <cite>+ Ivy Wallet discontinued Nov 2024</cite>
+          </div>
+
+          <div class="key-finding">
+            <strong>Timing:</strong> Ivy Wallet (popular offline tracker) discontinued Nov 2024 — users actively seeking replacement.
+          </div>
+
+          <div class="competitor-gap">
+            <strong>Gap:</strong> YNAB $109/yr, Monarch $100/yr, Copilot $95/yr — all require bank linking. Privacy-conscious users have no alternative.
+          </div>
+
+          <div class="score-bar">
+            <div class="score-fill" style="width: 89%; background: linear-gradient(90deg, #8b5cf6, #7c3aed);"></div>
+          </div>
+          <div class="score-label">
+            <span>Score: 4.45/5</span>
+            <span>Replacement opportunity</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- OfflineCalc Pro -->
+      <div class="app-card">
+        <div class="app-header" style="background: linear-gradient(135deg, #f97316, #ea580c);">
+          <div class="app-emoji">🔧</div>
+          <div class="app-name">OfflineCalc Pro</div>
+          <div class="app-tagline">Construction & trade calculator</div>
+        </div>
+        <div class="app-body">
+          <span class="badge badge-build">BUILD ✅</span>
+          <p class="app-description">Wire gauge, pipe sizing, load calculations, material estimators — works in basements and dead zones where tradespeople actually need it.</p>
+          
+          <div class="app-meta">
+            <div class="meta-item"><span class="meta-icon">💰</span> $9.99 one-time</div>
+            <div class="meta-item"><span class="meta-icon">📈</span> ~100% margin</div>
+            <div class="meta-item"><span class="meta-icon">⭐</span> 4.40/5</div>
+          </div>
+
+          <div class="reddit-quote">
+            "I ain't paying 50 bucks a year because I'm bad at math"
+            <cite>— r/Construction</cite>
+          </div>
+
+          <div class="key-finding">
+            <strong>Angry users:</strong> Construction Master Pro moved to $50/year subscription — users are FURIOUS in reviews.
+          </div>
+
+          <div class="score-bar">
+            <div class="score-fill" style="width: 88%; background: linear-gradient(90deg, #f97316, #ea580c);"></div>
+          </div>
+          <div class="score-label">
+            <span>Score: 4.40/5</span>
+            <span>Highest price point</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- CraftCount -->
+      <div class="app-card">
+        <div class="app-header" style="background: linear-gradient(135deg, #ec4899, #db2777);">
+          <div class="app-emoji">🧶</div>
+          <div class="app-name">CraftCount</div>
+          <div class="app-tagline">Voice-controlled row counter</div>
+        </div>
+        <div class="app-body">
+          <span class="badge badge-build">BUILD ✅</span>
+          <p class="app-description">Hands-free row counting for knitters and crocheters. Say "next" without putting down your needles. No subscription, voice included.</p>
+          
+          <div class="app-meta">
+            <div class="meta-item"><span class="meta-icon">💰</span> $4.99 one-time</div>
+            <div class="meta-item"><span class="meta-icon">📈</span> 70-85% margin</div>
+            <div class="meta-item"><span class="meta-icon">⭐</span> 4.40/5</div>
+          </div>
+
+          <div class="reddit-quote">
+            "It would be amazing if they could make it voice activated so you didn't have to stop crocheting!"
+            <cite>— r/crochet</cite>
+          </div>
+
+          <div class="competitor-gap">
+            <strong>Gap:</strong> My Row Counter has voice but subscription. KnitCompanion has voice but $30/year. No one does voice + one-time purchase.
+          </div>
+
+          <div class="score-bar">
+            <div class="score-fill" style="width: 88%; background: linear-gradient(90deg, #ec4899, #db2777);"></div>
+          </div>
+          <div class="score-label">
+            <span>Score: 4.40/5</span>
+            <span>1.4M+ r/knitting members</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- WhisperMemo -->
+      <div class="app-card">
+        <div class="app-header" style="background: linear-gradient(135deg, #6366f1, #4f46e5);">
+          <div class="app-emoji">🎙️</div>
+          <div class="app-name">WhisperMemo</div>
+          <div class="app-tagline">Offline voice transcription</div>
+        </div>
+        <div class="app-body">
+          <span class="badge badge-build">BUILD ✅</span>
+          <p class="app-description">Record and transcribe voice memos using on-device AI. No internet, no subscriptions, your audio never leaves your phone.</p>
+          
+          <div class="app-meta">
+            <div class="meta-item"><span class="meta-icon">💰</span> $4.99-$6.99</div>
+            <div class="meta-item"><span class="meta-icon">📈</span> 100% margin</div>
+            <div class="meta-item"><span class="meta-icon">⭐</span> 4.25/5</div>
+          </div>
+
+          <div class="competitor-gap">
+            <strong>Gap:</strong> Aiko costs $22. Otter.ai is $99/year subscription and requires internet. We're 4x cheaper than Aiko, fully offline.
+          </div>
+
+          <div class="key-finding">
+            <strong>Technical:</strong> whisper.cpp runs on iOS via Metal/Core ML. Base model: 142MB, ~5 sec/minute processing.
+          </div>
+
+          <div class="score-bar">
+            <div class="score-fill" style="width: 85%; background: linear-gradient(90deg, #6366f1, #4f46e5);"></div>
+          </div>
+          <div class="score-label">
+            <span>Score: 4.25/5</span>
+            <span>AI-powered, zero API cost</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- More Apps Section -->
+    <h2 class="section-title">📱 All Researched Apps</h2>
+    <div class="apps-grid">
+
+      <!-- SleepDiary -->
+      <div class="app-card">
+        <div class="app-header" style="background: linear-gradient(135deg, #1e3a8a, #1e40af);">
+          <div class="app-emoji">😴</div>
+          <div class="app-name">SleepDiary</div>
+          <div class="app-tagline">Manual sleep journal</div>
+        </div>
+        <div class="app-body">
+          <span class="badge badge-build">BUILD ✅</span>
+          <p class="app-description">Simple sleep logging without wearables. Track bedtime, wake time, and quality manually.</p>
+          
+          <div class="app-meta">
+            <div class="meta-item"><span class="meta-icon">💰</span> $3.99</div>
+            <div class="meta-item"><span class="meta-icon">⭐</span> 4.25/5</div>
+          </div>
+
+          <div class="reddit-quote">
+            "Manual sleep tracking app.. does not exist."
+            <cite>— r/sleep</cite>
+          </div>
+
+          <div class="competitor-gap">
+            <strong>Gap:</strong> Sleep Cycle has 2.1/5 Trustpilot from subscription anger. AutoSleep requires Apple Watch.
+          </div>
+        </div>
+      </div>
+
+      <!-- WildernessRx -->
+      <div class="app-card">
+        <div class="app-header" style="background: linear-gradient(135deg, #166534, #15803d);">
+          <div class="app-emoji">🏥</div>
+          <div class="app-name">WildernessRx</div>
+          <div class="app-tagline">Offline first aid reference</div>
+        </div>
+        <div class="app-body">
+          <span class="badge badge-build">BUILD ✅</span>
+          <p class="app-description">Step-by-step medical guidance for backcountry emergencies. Decision trees, not just reference articles.</p>
+          
+          <div class="app-meta">
+            <div class="meta-item"><span class="meta-icon">💰</span> $9.99</div>
+            <div class="meta-item"><span class="meta-icon">⭐</span> 4.20/5</div>
+          </div>
+
+          <div class="competitor-gap">
+            <strong>Gap:</strong> GOES Health charges $72/year. Red Cross app is dated. 175M+ outdoor enthusiasts, 20M preppers.
+          </div>
+
+          <div class="key-finding">
+            <strong>⚠️ Note:</strong> Needs strong medical disclaimers. 17+ age rating. Professional content review recommended.
+          </div>
+        </div>
+      </div>
+
+      <!-- FlashForge -->
+      <div class="app-card">
+        <div class="app-header" style="background: linear-gradient(135deg, #7c3aed, #6d28d9);">
+          <div class="app-emoji">🧠</div>
+          <div class="app-name">FlashForge</div>
+          <div class="app-tagline">Beautiful spaced repetition</div>
+        </div>
+        <div class="app-body">
+          <span class="badge badge-build">BUILD ✅</span>
+          <p class="app-description">"Anki for people who hate Anki's interface." Proper FSRS algorithm with modern, simple UX.</p>
+          
+          <div class="app-meta">
+            <div class="meta-item"><span class="meta-icon">💰</span> $6.99-$9.99</div>
+            <div class="meta-item"><span class="meta-icon">⭐</span> 4.15/5</div>
+          </div>
+
+          <div class="reddit-quote">
+            "It's super incredibly hard to use. It's ugly."
+            <cite>— r/Anki (about Anki)</cite>
+          </div>
+
+          <div class="competitor-gap">
+            <strong>Gap:</strong> AnkiMobile is $25, ugly, 2-3hr learning curve. Quizlet $36/year. We target Anki dropouts.
+          </div>
+        </div>
+      </div>
+
+      <!-- PillMinder -->
+      <div class="app-card">
+        <div class="app-header" style="background: linear-gradient(135deg, #dc2626, #b91c1c);">
+          <div class="app-emoji">💊</div>
+          <div class="app-name">PillMinder</div>
+          <div class="app-tagline">Simple medication reminders</div>
+        </div>
+        <div class="app-body">
+          <span class="badge badge-build">BUILD ✅</span>
+          <p class="app-description">Dead-simple reminders for seniors. Large buttons, persistent alarms that won't quit until you tap "Taken."</p>
+          
+          <div class="app-meta">
+            <div class="meta-item"><span class="meta-icon">💰</span> $4.99</div>
+            <div class="meta-item"><span class="meta-icon">⭐</span> 4.15/5</div>
+          </div>
+
+          <div class="key-finding">
+            <strong>Accessibility:</strong> 56dp touch targets, 18pt+ fonts, 7:1 contrast. Must test with actual 65+ users.
+          </div>
+
+          <div class="competitor-gap">
+            <strong>Gap:</strong> Medisafe/MyTherapy are bloated and subscription-heavy. 56M US adults 65+.
+          </div>
+        </div>
+      </div>
+
+      <!-- AutoLog -->
+      <div class="app-card">
+        <div class="app-header" style="background: linear-gradient(135deg, #374151, #1f2937);">
+          <div class="app-emoji">🚗</div>
+          <div class="app-name">AutoLog</div>
+          <div class="app-tagline">Vehicle maintenance tracker</div>
+        </div>
+        <div class="app-body">
+          <span class="badge badge-build">BUILD ✅</span>
+          <p class="app-description">Track oil changes, tire rotations, repairs. No subscription, no cloud, no account required.</p>
+          
+          <div class="app-meta">
+            <div class="meta-item"><span class="meta-icon">💰</span> $4.99</div>
+            <div class="meta-item"><span class="meta-icon">⭐</span> 4.10/5</div>
+          </div>
+
+          <div class="reddit-quote">
+            "I just track it in a spreadsheet"
+            <cite>— r/cars (our target user)</cite>
+          </div>
+
+          <div class="competitor-gap">
+            <strong>Gap:</strong> Simply Auto $4.99/mo, Drivvo $11.99/yr, FIXD needs $60 hardware. $2.5B market.
+          </div>
+        </div>
+      </div>
+
+      <!-- HydroTrack -->
+      <div class="app-card">
+        <div class="app-header" style="background: linear-gradient(135deg, #0ea5e9, #0284c7);">
+          <div class="app-emoji">💧</div>
+          <div class="app-name">HydroTrack</div>
+          <div class="app-tagline">Water intake tracker</div>
+        </div>
+        <div class="app-body">
+          <span class="badge badge-build">BUILD ✅</span>
+          <p class="app-description">Dead simple hydration tracking. Widget, reminders, history. That's it.</p>
+          
+          <div class="app-meta">
+            <div class="meta-item"><span class="meta-icon">💰</span> $2.99</div>
+            <div class="meta-item"><span class="meta-icon">⭐</span> 4.00/5</div>
+          </div>
+
+          <div class="reddit-quote">
+            "I looked at a hydration tracking app that wanted $60 per year to tell me when to drink water?"
+            <cite>— Reddit</cite>
+          </div>
+
+          <div class="competitor-gap">
+            <strong>Gap:</strong> My Water $59.99/yr, Plant Nanny $69.99/yr. Simplicity IS the differentiator.
+          </div>
+        </div>
+      </div>
+
+      <!-- PlantPal -->
+      <div class="app-card">
+        <div class="app-header" style="background: linear-gradient(135deg, #84cc16, #65a30d);">
+          <div class="app-emoji">🌱</div>
+          <div class="app-name">PlantPal</div>
+          <div class="app-tagline">Plant care reminders</div>
+        </div>
+        <div class="app-body">
+          <span class="badge badge-caution">CAUTION ⚠️</span>
+          <p class="app-description">Remember to water your plants. Track care schedules offline. Simple alternative to subscription apps.</p>
+          
+          <div class="app-meta">
+            <div class="meta-item"><span class="meta-icon">💰</span> $4.99</div>
+            <div class="meta-item"><span class="meta-icon">⭐</span> 3.90/5</div>
+          </div>
+
+          <div class="reddit-quote">
+            "Is there a plant app that does NOT have a subscription?"
+            <cite>— r/succulents</cite>
+          </div>
+
+          <div class="key-finding">
+            <strong>⚠️ Risk:</strong> Planta dominates with 10M+ users. $50-150k/year ceiling, not a unicorn play.
+          </div>
+        </div>
+      </div>
+
+      <!-- VitalLog -->
+      <div class="app-card">
+        <div class="app-header" style="background: linear-gradient(135deg, #f43f5e, #e11d48);">
+          <div class="app-emoji">❤️</div>
+          <div class="app-name">VitalLog</div>
+          <div class="app-tagline">Blood pressure tracker</div>
+        </div>
+        <div class="app-body">
+          <span class="badge badge-caution">CAUTION ⚠️</span>
+          <p class="app-description">Simple BP logging for seniors. Large text, no accounts, all data local.</p>
+          
+          <div class="app-meta">
+            <div class="meta-item"><span class="meta-icon">💰</span> $2.99</div>
+            <div class="meta-item"><span class="meta-icon">⭐</span> 3.85/5</div>
+          </div>
+
+          <div class="key-finding">
+            <strong>⚠️ Risk:</strong> Systolio is FREE with same "no cloud" positioning. Must differentiate on UX + ad-free.
+          </div>
+        </div>
+      </div>
+
+      <!-- GymLog -->
+      <div class="app-card">
+        <div class="app-header" style="background: linear-gradient(135deg, #f59e0b, #d97706);">
+          <div class="app-emoji">🏋️</div>
+          <div class="app-name">GymLog</div>
+          <div class="app-tagline">Offline workout tracker</div>
+        </div>
+        <div class="app-body">
+          <span class="badge badge-caution">CAUTION ⚠️</span>
+          <p class="app-description">Log sets, reps, weights. No account, no sync, no subscription.</p>
+          
+          <div class="app-meta">
+            <div class="meta-item"><span class="meta-icon">💰</span> $4.99</div>
+            <div class="meta-item"><span class="meta-icon">⭐</span> 3.70/5</div>
+          </div>
+
+          <div class="reddit-quote">
+            "How tf does a basic app cost more than my actual gym membership."
+            <cite>— r/apple</cite>
+          </div>
+
+          <div class="key-finding">
+            <strong>⚠️ Risk:</strong> Market extremely crowded. iOS lacks FitNotes equivalent, but needs excellent polish to stand out.
+          </div>
+        </div>
+      </div>
+
+      <!-- WordVault -->
+      <div class="app-card">
+        <div class="app-header" style="background: linear-gradient(135deg, #9ca3af, #6b7280);">
+          <div class="app-emoji">📖</div>
+          <div class="app-name">WordVault</div>
+          <div class="app-tagline">Offline dictionary</div>
+        </div>
+        <div class="app-body">
+          <span class="badge badge-skip">SKIP ❌</span>
+          <p class="app-description">Dictionary and thesaurus that works offline.</p>
+          
+          <div class="app-meta">
+            <div class="meta-item"><span class="meta-icon">💰</span> $2.99</div>
+            <div class="meta-item"><span class="meta-icon">⭐</span> 2.60/5</div>
+          </div>
+
+          <div class="key-finding">
+            <strong>❌ Why skip:</strong> WordWeb offers 285,000 words, full thesaurus, offline, no ads — completely FREE. Can't compete.
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Business Model Summary -->
+    <div class="summary-card" style="margin-top: 48px;">
+      <h2 class="summary-title">💼 Business Model</h2>
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 24px;">
+        <div>
+          <h4 style="margin-bottom: 8px;">Revenue Model</h4>
+          <ul style="color: var(--muted); font-size: 0.9rem; padding-left: 20px;">
+            <li>One-time purchase ($2.99-$9.99)</li>
+            <li>No subscriptions</li>
+            <li>No ads</li>
+            <li>No in-app purchases</li>
+          </ul>
+        </div>
+        <div>
+          <h4 style="margin-bottom: 8px;">Cost Structure</h4>
+          <ul style="color: var(--muted); font-size: 0.9rem; padding-left: 20px;">
+            <li>No backend servers</li>
+            <li>No API costs</li>
+            <li>No per-user costs</li>
+            <li>Only Apple/Google 30% fee</li>
+          </ul>
+        </div>
+        <div>
+          <h4 style="margin-bottom: 8px;">Target Market</h4>
+          <ul style="color: var(--muted); font-size: 0.9rem; padding-left: 20px;">
+            <li>Subscription-fatigued users</li>
+            <li>Privacy-conscious users</li>
+            <li>Offline-need users (trades, outdoors)</li>
+            <li>Seniors (simple UX)</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <footer style="text-align: center; margin-top: 48px; padding: 24px; color: var(--muted); font-size: 0.85rem;">
+      <p>Research completed February 2, 2026</p>
+      <p style="margin-top: 8px;">
+        <a href="index.html" style="color: var(--accent); text-decoration: none;">← Back to All Categories</a>
+      </p>
+    </footer>
+
+  </div>
+</body>
+</html>
