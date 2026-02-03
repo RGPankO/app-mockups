@@ -1,0 +1,670 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>App Portfolio Status — Full Overview</title>
+  <style>
+    :root {
+      --green: #22c55e;
+      --green-light: #dcfce7;
+      --yellow: #eab308;
+      --yellow-light: #fef9c3;
+      --red: #ef4444;
+      --red-light: #fee2e2;
+      --blue: #3b82f6;
+      --blue-light: #dbeafe;
+      --gray: #6b7280;
+      --gray-light: #f3f4f6;
+      --bg: #f8fafc;
+      --card: #ffffff;
+      --text: #1e293b;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { 
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      background: var(--bg); 
+      color: var(--text); 
+      line-height: 1.5;
+      padding: 24px;
+    }
+    .container { max-width: 1400px; margin: 0 auto; }
+    
+    header { 
+      text-align: center; 
+      padding: 40px 20px; 
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      border-radius: 16px;
+      color: white;
+      margin-bottom: 32px;
+    }
+    h1 { font-size: 2.5rem; margin-bottom: 8px; }
+    .subtitle { opacity: 0.9; font-size: 1.1rem; }
+    .last-updated { margin-top: 12px; font-size: 0.85rem; opacity: 0.8; }
+    
+    .stats-bar {
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+      margin-bottom: 32px;
+      justify-content: center;
+    }
+    .stat-card {
+      background: var(--card);
+      padding: 20px 32px;
+      border-radius: 12px;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+      text-align: center;
+      min-width: 140px;
+    }
+    .stat-value { font-size: 2.5rem; font-weight: 700; }
+    .stat-label { font-size: 0.85rem; color: var(--gray); text-transform: uppercase; }
+    .stat-card.total .stat-value { color: var(--blue); }
+    .stat-card.mvp .stat-value { color: var(--green); }
+    .stat-card.payments .stat-value { color: var(--yellow); }
+    .stat-card.tested .stat-value { color: #8b5cf6; }
+    
+    .filters {
+      display: flex;
+      gap: 12px;
+      margin-bottom: 24px;
+      flex-wrap: wrap;
+    }
+    .filter-btn {
+      padding: 8px 16px;
+      border: 2px solid var(--gray-light);
+      border-radius: 20px;
+      background: white;
+      cursor: pointer;
+      font-size: 0.9rem;
+      transition: all 0.2s;
+    }
+    .filter-btn:hover { border-color: var(--blue); }
+    .filter-btn.active { background: var(--blue); color: white; border-color: var(--blue); }
+    
+    .category-section {
+      margin-bottom: 40px;
+    }
+    .category-header {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 16px;
+      padding-bottom: 12px;
+      border-bottom: 2px solid var(--gray-light);
+    }
+    .category-icon { font-size: 1.5rem; }
+    .category-title { font-size: 1.3rem; font-weight: 600; }
+    .category-count { 
+      background: var(--gray-light); 
+      padding: 2px 10px; 
+      border-radius: 12px; 
+      font-size: 0.85rem; 
+      color: var(--gray);
+    }
+    
+    .app-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+      gap: 16px;
+    }
+    
+    .app-card {
+      background: var(--card);
+      border-radius: 12px;
+      padding: 20px;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .app-card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    }
+    
+    .app-header {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 12px;
+    }
+    .app-icon { font-size: 2rem; }
+    .app-name { font-size: 1.1rem; font-weight: 600; }
+    .app-tagline { font-size: 0.85rem; color: var(--gray); }
+    
+    .status-badges {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin-bottom: 16px;
+    }
+    .badge {
+      padding: 4px 10px;
+      border-radius: 12px;
+      font-size: 0.75rem;
+      font-weight: 600;
+    }
+    .badge-mvp { background: var(--green-light); color: #166534; }
+    .badge-payments { background: var(--yellow-light); color: #854d0e; }
+    .badge-tested { background: #f3e8ff; color: #7c3aed; }
+    .badge-pending { background: var(--gray-light); color: var(--gray); }
+    
+    .app-links {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+    .link-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 8px 14px;
+      border-radius: 8px;
+      font-size: 0.85rem;
+      text-decoration: none;
+      font-weight: 500;
+      transition: all 0.2s;
+    }
+    .link-btn.github {
+      background: #24292e;
+      color: white;
+    }
+    .link-btn.github:hover { background: #3a3f44; }
+    .link-btn.details {
+      background: var(--blue-light);
+      color: var(--blue);
+    }
+    .link-btn.details:hover { background: #bfdbfe; }
+    .link-btn.clone {
+      background: var(--green-light);
+      color: #166534;
+    }
+    .link-btn.clone:hover { background: #bbf7d0; }
+    
+    .price-tag {
+      font-size: 0.85rem;
+      color: var(--gray);
+      margin-top: 12px;
+      padding-top: 12px;
+      border-top: 1px solid var(--gray-light);
+    }
+    .price-tag strong { color: var(--text); }
+    
+    footer {
+      text-align: center;
+      margin-top: 48px;
+      padding: 24px;
+      color: var(--gray);
+      font-size: 0.9rem;
+    }
+    footer a { color: var(--blue); }
+    
+    .copy-btn {
+      background: none;
+      border: 1px solid var(--gray-light);
+      padding: 4px 8px;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 0.75rem;
+      margin-left: 8px;
+    }
+    .copy-btn:hover { background: var(--gray-light); }
+    
+    @media (max-width: 768px) {
+      .stats-bar { flex-direction: column; align-items: center; }
+      .app-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>📱 App Portfolio Status</h1>
+      <p class="subtitle">19 MVPs Built • Full visibility at a glance</p>
+      <p class="last-updated">Last updated: February 3, 2026</p>
+    </header>
+    
+    <div class="stats-bar">
+      <div class="stat-card total">
+        <div class="stat-value">19</div>
+        <div class="stat-label">Total Apps</div>
+      </div>
+      <div class="stat-card mvp">
+        <div class="stat-value">19</div>
+        <div class="stat-label">MVPs Done</div>
+      </div>
+      <div class="stat-card payments">
+        <div class="stat-value">3</div>
+        <div class="stat-label">With Payments</div>
+      </div>
+      <div class="stat-card tested">
+        <div class="stat-value">19</div>
+        <div class="stat-label">Tested ✓</div>
+      </div>
+    </div>
+    
+    <!-- Offline Apps -->
+    <div class="category-section">
+      <div class="category-header">
+        <span class="category-icon">📴</span>
+        <span class="category-title">Offline-First Apps</span>
+        <span class="category-count">11 apps</span>
+        <span style="margin-left: auto; font-size: 0.85rem; color: var(--gray);">One-time purchase, 100% offline, ~85% margin</span>
+      </div>
+      <div class="app-grid">
+        
+        <div class="app-card">
+          <div class="app-header">
+            <span class="app-icon">🥗</span>
+            <div>
+              <div class="app-name">QuickNutrition</div>
+              <div class="app-tagline">Offline Calorie & Nutrition Lookup</div>
+            </div>
+          </div>
+          <div class="status-badges">
+            <span class="badge badge-mvp">✓ MVP</span>
+            <span class="badge badge-payments">💳 Payments</span>
+            <span class="badge badge-tested">✓ Tested</span>
+          </div>
+          <div class="app-links">
+            <a href="https://github.com/RGPankO/quicknutrition-app" class="link-btn github" target="_blank">
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
+              GitHub
+            </a>
+            <a href="quicknutrition/" class="link-btn details">📄 Details</a>
+          </div>
+          <div class="price-tag"><strong>$6.99</strong> one-time • Product ID: <code>com.rgpanko.quicknutrition.premium</code></div>
+        </div>
+        
+        <div class="app-card">
+          <div class="app-header">
+            <span class="app-icon">💰</span>
+            <div>
+              <div class="app-name">BudgetVault</div>
+              <div class="app-tagline">Offline Expense Tracker</div>
+            </div>
+          </div>
+          <div class="status-badges">
+            <span class="badge badge-mvp">✓ MVP</span>
+            <span class="badge badge-payments">💳 Payments</span>
+            <span class="badge badge-tested">✓ Tested</span>
+          </div>
+          <div class="app-links">
+            <a href="https://github.com/RGPankO/budgetvault-app" class="link-btn github" target="_blank">GitHub</a>
+            <a href="budgetvault/" class="link-btn details">📄 Details</a>
+          </div>
+          <div class="price-tag"><strong>$4.99</strong> one-time</div>
+        </div>
+        
+        <div class="app-card">
+          <div class="app-header">
+            <span class="app-icon">🧮</span>
+            <div>
+              <div class="app-name">OfflineCalc Pro</div>
+              <div class="app-tagline">Scientific Calculator</div>
+            </div>
+          </div>
+          <div class="status-badges">
+            <span class="badge badge-mvp">✓ MVP</span>
+            <span class="badge badge-payments">💳 Payments</span>
+            <span class="badge badge-tested">✓ Tested</span>
+          </div>
+          <div class="app-links">
+            <a href="https://github.com/RGPankO/offlinecalc-app" class="link-btn github" target="_blank">GitHub</a>
+            <a href="offlinecalc/" class="link-btn details">📄 Details</a>
+          </div>
+          <div class="price-tag"><strong>$9.99</strong> one-time</div>
+        </div>
+        
+        <div class="app-card">
+          <div class="app-header">
+            <span class="app-icon">🧶</span>
+            <div>
+              <div class="app-name">CraftCount</div>
+              <div class="app-tagline">Knitting & Crochet Row Counter</div>
+            </div>
+          </div>
+          <div class="status-badges">
+            <span class="badge badge-mvp">✓ MVP</span>
+            <span class="badge badge-tested">✓ Tested</span>
+          </div>
+          <div class="app-links">
+            <a href="https://github.com/RGPankO/craftcount-app" class="link-btn github" target="_blank">GitHub</a>
+            <a href="craftcount/" class="link-btn details">📄 Details</a>
+          </div>
+          <div class="price-tag"><strong>$2.99</strong> one-time</div>
+        </div>
+        
+        <div class="app-card">
+          <div class="app-header">
+            <span class="app-icon">🎤</span>
+            <div>
+              <div class="app-name">WhisperMemo</div>
+              <div class="app-tagline">Voice Notes to Text</div>
+            </div>
+          </div>
+          <div class="status-badges">
+            <span class="badge badge-mvp">✓ MVP</span>
+            <span class="badge badge-tested">✓ Tested</span>
+          </div>
+          <div class="app-links">
+            <a href="https://github.com/RGPankO/whispermemo-app" class="link-btn github" target="_blank">GitHub</a>
+            <a href="whispermemo/" class="link-btn details">📄 Details</a>
+          </div>
+          <div class="price-tag"><strong>$3.99</strong> one-time</div>
+        </div>
+        
+        <div class="app-card">
+          <div class="app-header">
+            <span class="app-icon">😴</span>
+            <div>
+              <div class="app-name">SleepDiary</div>
+              <div class="app-tagline">Sleep Logging & Patterns</div>
+            </div>
+          </div>
+          <div class="status-badges">
+            <span class="badge badge-mvp">✓ MVP</span>
+            <span class="badge badge-tested">✓ Tested</span>
+          </div>
+          <div class="app-links">
+            <a href="https://github.com/RGPankO/sleepdiary-app" class="link-btn github" target="_blank">GitHub</a>
+            <a href="sleepdiary/" class="link-btn details">📄 Details</a>
+          </div>
+          <div class="price-tag"><strong>$2.99</strong> one-time</div>
+        </div>
+        
+        <div class="app-card">
+          <div class="app-header">
+            <span class="app-icon">🏕️</span>
+            <div>
+              <div class="app-name">WildernessRx</div>
+              <div class="app-tagline">Offline First Aid Guide</div>
+            </div>
+          </div>
+          <div class="status-badges">
+            <span class="badge badge-mvp">✓ MVP</span>
+            <span class="badge badge-tested">✓ Tested</span>
+          </div>
+          <div class="app-links">
+            <a href="https://github.com/RGPankO/wildernessrx-app" class="link-btn github" target="_blank">GitHub</a>
+            <a href="wildernessrx/" class="link-btn details">📄 Details</a>
+          </div>
+          <div class="price-tag"><strong>$4.99</strong> one-time</div>
+        </div>
+        
+        <div class="app-card">
+          <div class="app-header">
+            <span class="app-icon">📚</span>
+            <div>
+              <div class="app-name">FlashForge</div>
+              <div class="app-tagline">Offline Flashcards</div>
+            </div>
+          </div>
+          <div class="status-badges">
+            <span class="badge badge-mvp">✓ MVP</span>
+            <span class="badge badge-tested">✓ Tested</span>
+          </div>
+          <div class="app-links">
+            <a href="https://github.com/RGPankO/flashforge-app" class="link-btn github" target="_blank">GitHub</a>
+            <a href="flashforge/" class="link-btn details">📄 Details</a>
+          </div>
+          <div class="price-tag"><strong>$3.99</strong> one-time</div>
+        </div>
+        
+        <div class="app-card">
+          <div class="app-header">
+            <span class="app-icon">💊</span>
+            <div>
+              <div class="app-name">PillMinder</div>
+              <div class="app-tagline">Medication Reminder</div>
+            </div>
+          </div>
+          <div class="status-badges">
+            <span class="badge badge-mvp">✓ MVP</span>
+            <span class="badge badge-tested">✓ Tested</span>
+          </div>
+          <div class="app-links">
+            <a href="https://github.com/RGPankO/pillminder-app" class="link-btn github" target="_blank">GitHub</a>
+            <a href="pillminder/" class="link-btn details">📄 Details</a>
+          </div>
+          <div class="price-tag"><strong>$2.99</strong> one-time</div>
+        </div>
+        
+        <div class="app-card">
+          <div class="app-header">
+            <span class="app-icon">🚗</span>
+            <div>
+              <div class="app-name">AutoLog</div>
+              <div class="app-tagline">Vehicle Maintenance Tracker</div>
+            </div>
+          </div>
+          <div class="status-badges">
+            <span class="badge badge-mvp">✓ MVP</span>
+            <span class="badge badge-tested">✓ Tested</span>
+          </div>
+          <div class="app-links">
+            <a href="https://github.com/RGPankO/autolog-app" class="link-btn github" target="_blank">GitHub</a>
+            <a href="autolog/" class="link-btn details">📄 Details</a>
+          </div>
+          <div class="price-tag"><strong>$4.99</strong> one-time</div>
+        </div>
+        
+        <div class="app-card">
+          <div class="app-header">
+            <span class="app-icon">💧</span>
+            <div>
+              <div class="app-name">HydroTrack</div>
+              <div class="app-tagline">Water Intake Tracker</div>
+            </div>
+          </div>
+          <div class="status-badges">
+            <span class="badge badge-mvp">✓ MVP</span>
+            <span class="badge badge-tested">✓ Tested</span>
+          </div>
+          <div class="app-links">
+            <a href="https://github.com/RGPankO/hydrotrack-app" class="link-btn github" target="_blank">GitHub</a>
+            <a href="hydrotrack/" class="link-btn details">📄 Details</a>
+          </div>
+          <div class="price-tag"><strong>$2.99</strong> one-time</div>
+        </div>
+        
+      </div>
+    </div>
+    
+    <!-- Women's Health -->
+    <div class="category-section">
+      <div class="category-header">
+        <span class="category-icon">💜</span>
+        <span class="category-title">Women's Health</span>
+        <span class="category-count">4 apps</span>
+        <span style="margin-left: auto; font-size: 0.85rem; color: var(--gray);">Subscription model, AI-powered features</span>
+      </div>
+      <div class="app-grid">
+        
+        <div class="app-card">
+          <div class="app-header">
+            <span class="app-icon">🥪</span>
+            <div>
+              <div class="app-name">SandwichSupport</div>
+              <div class="app-tagline">Caregiver Wellness & Boundaries</div>
+            </div>
+          </div>
+          <div class="status-badges">
+            <span class="badge badge-mvp">✓ MVP</span>
+            <span class="badge badge-tested">✓ Tested</span>
+          </div>
+          <div class="app-links">
+            <a href="https://github.com/RGPankO/sandwichsupport-app" class="link-btn github" target="_blank">GitHub</a>
+            <a href="sandwichsupport/" class="link-btn details">📄 Details</a>
+          </div>
+          <div class="price-tag"><strong>$9.99/mo</strong> subscription</div>
+        </div>
+        
+        <div class="app-card">
+          <div class="app-header">
+            <span class="app-icon">💜</span>
+            <div>
+              <div class="app-name">IntimateHeal</div>
+              <div class="app-tagline">Intimacy Recovery Programs</div>
+            </div>
+          </div>
+          <div class="status-badges">
+            <span class="badge badge-mvp">✓ MVP</span>
+            <span class="badge badge-tested">✓ Tested</span>
+          </div>
+          <div class="app-links">
+            <a href="https://github.com/RGPankO/intimateheal-app" class="link-btn github" target="_blank">GitHub</a>
+            <a href="intimateheal/" class="link-btn details">📄 Details</a>
+          </div>
+          <div class="price-tag"><strong>$9.99/mo</strong> subscription</div>
+        </div>
+        
+        <div class="app-card">
+          <div class="app-header">
+            <span class="app-icon">💪</span>
+            <div>
+              <div class="app-name">FloorStrong</div>
+              <div class="app-tagline">Pelvic Floor Exercises</div>
+            </div>
+          </div>
+          <div class="status-badges">
+            <span class="badge badge-mvp">✓ MVP</span>
+            <span class="badge badge-tested">✓ Tested</span>
+          </div>
+          <div class="app-links">
+            <a href="https://github.com/RGPankO/floorstrong-app" class="link-btn github" target="_blank">GitHub</a>
+            <a href="floorstrong/" class="link-btn details">📄 Details</a>
+          </div>
+          <div class="price-tag"><strong>$7.99/mo</strong> subscription</div>
+        </div>
+        
+        <div class="app-card">
+          <div class="app-header">
+            <span class="app-icon">🧠</span>
+            <div>
+              <div class="app-name">FocusHer</div>
+              <div class="app-tagline">ADHD + Cycle Tracking</div>
+            </div>
+          </div>
+          <div class="status-badges">
+            <span class="badge badge-mvp">✓ MVP</span>
+            <span class="badge badge-tested">✓ Tested</span>
+          </div>
+          <div class="app-links">
+            <a href="https://github.com/RGPankO/focusher-app" class="link-btn github" target="_blank">GitHub</a>
+            <a href="focusher/" class="link-btn details">📄 Details</a>
+          </div>
+          <div class="price-tag"><strong>$9.99/mo</strong> subscription</div>
+        </div>
+        
+      </div>
+    </div>
+    
+    <!-- Pregnancy -->
+    <div class="category-section">
+      <div class="category-header">
+        <span class="category-icon">🤰</span>
+        <span class="category-title">Pregnancy & Fertility</span>
+        <span class="category-count">2 apps</span>
+        <span style="margin-left: auto; font-size: 0.85rem; color: var(--gray);">Privacy-first, offline options</span>
+      </div>
+      <div class="app-grid">
+        
+        <div class="app-card">
+          <div class="app-header">
+            <span class="app-icon">🔒</span>
+            <div>
+              <div class="app-name">VaultBump</div>
+              <div class="app-tagline">Privacy-First Pregnancy Tracker</div>
+            </div>
+          </div>
+          <div class="status-badges">
+            <span class="badge badge-mvp">✓ MVP</span>
+            <span class="badge badge-tested">✓ Tested</span>
+          </div>
+          <div class="app-links">
+            <a href="https://github.com/RGPankO/vaultbump-app" class="link-btn github" target="_blank">GitHub</a>
+            <a href="vaultbump/" class="link-btn details">📄 Details</a>
+          </div>
+          <div class="price-tag"><strong>$4.99</strong> one-time • 100% offline</div>
+        </div>
+        
+        <div class="app-card">
+          <div class="app-header">
+            <span class="app-icon">🥗</span>
+            <div>
+              <div class="app-name">BumpBites</div>
+              <div class="app-tagline">Pregnancy Food Safety</div>
+            </div>
+          </div>
+          <div class="status-badges">
+            <span class="badge badge-mvp">✓ MVP</span>
+            <span class="badge badge-tested">✓ Tested</span>
+          </div>
+          <div class="app-links">
+            <a href="https://github.com/RGPankO/bumpbites-app" class="link-btn github" target="_blank">GitHub</a>
+            <a href="bumpbites/" class="link-btn details">📄 Details</a>
+          </div>
+          <div class="price-tag"><strong>$2.99</strong> one-time</div>
+        </div>
+        
+      </div>
+    </div>
+    
+    <!-- Image Gen -->
+    <div class="category-section">
+      <div class="category-header">
+        <span class="category-icon">🎨</span>
+        <span class="category-title">AI Image Generation</span>
+        <span class="category-count">2 apps</span>
+        <span style="margin-left: auto; font-size: 0.85rem; color: var(--gray);">Paid packs, Replicate API</span>
+      </div>
+      <div class="app-grid">
+        
+        <div class="app-card">
+          <div class="app-header">
+            <span class="app-icon">👶</span>
+            <div>
+              <div class="app-name">BabyGlow</div>
+              <div class="app-tagline">AI Baby Portrait Generator</div>
+            </div>
+          </div>
+          <div class="status-badges">
+            <span class="badge badge-mvp">✓ MVP</span>
+            <span class="badge badge-tested">✓ Tested</span>
+          </div>
+          <div class="app-links">
+            <a href="https://github.com/RGPankO/babyglow-app" class="link-btn github" target="_blank">GitHub</a>
+            <a href="babyglow/" class="link-btn details">📄 Details</a>
+          </div>
+          <div class="price-tag"><strong>$14.99</strong> per pack</div>
+        </div>
+        
+        <div class="app-card">
+          <div class="app-header">
+            <span class="app-icon">🐕</span>
+            <div>
+              <div class="app-name">PetRoyalty</div>
+              <div class="app-tagline">Pet Portrait Art Generator</div>
+            </div>
+          </div>
+          <div class="status-badges">
+            <span class="badge badge-mvp">✓ MVP</span>
+            <span class="badge badge-tested">✓ Tested</span>
+          </div>
+          <div class="app-links">
+            <a href="https://github.com/RGPankO/petroyalty-app" class="link-btn github" target="_blank">GitHub</a>
+            <a href="petroyalty/" class="link-btn details">📄 Details</a>
+          </div>
+          <div class="price-tag"><strong>$9.99</strong> per pack</div>
+        </div>
+        
+      </div>
+    </div>
+    
+    <footer>
+      <p>Built with 🌸 by Plamen & Geri</p>
+      <p style="margin-top: 8px;"><a href="index.html">← Back to Research Hub</a></p>
+    </footer>
+  </div>
+</body>
+</html>
