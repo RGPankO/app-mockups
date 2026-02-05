@@ -8,18 +8,14 @@
     :root {
       --primary: #8b5cf6;
       --primary-light: #ede9fe;
-      --primary-dark: #6d28d9;
-      --bg: #f8f7fc;
+      --primary-dark: #7c3aed;
+      --bg: #faf8ff;
       --card: #ffffff;
-      --text: #1e1b3a;
-      --muted: #5a5878;
+      --text: #2e1e4a;
+      --muted: #6b5a8a;
     }
     * { box-sizing: border-box; margin: 0; padding: 0; }
-    body { 
-      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-      background: var(--bg); color: var(--text); line-height: 1.7;
-      padding: 24px 16px 60px;
-    }
+    body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: var(--bg); color: var(--text); line-height: 1.7; padding: 24px 16px 60px; }
     .container { max-width: 700px; margin: 0 auto; }
     header { text-align: center; padding: 40px 20px; margin-bottom: 24px; }
     .logo { font-size: 48px; margin-bottom: 12px; }
@@ -32,64 +28,48 @@
     .faq { margin-bottom: 24px; }
     .faq h3 { font-size: 16px; margin-bottom: 8px; }
     .faq p { color: var(--muted); }
-    .contact-btn { display: inline-block; background: var(--primary); color: white; padding: 14px 28px; 
-                   border-radius: 8px; text-decoration: none; font-weight: 600; margin-top: 8px; }
+    .contact-btn { display: inline-block; background: var(--primary); color: white; padding: 14px 28px; border-radius: 8px; text-decoration: none; font-weight: 600; margin-top: 8px; }
     .contact-btn:hover { background: var(--primary-dark); }
     .back-link { display: inline-block; margin-bottom: 20px; color: var(--primary); text-decoration: none; }
-    .back-link:hover { text-decoration: underline; }
     footer { text-align: center; margin-top: 40px; color: var(--muted); font-size: 13px; }
   </style>
 </head>
 <body>
   <div class="container">
     <a href="./" class="back-link">← Back to VaultBump</a>
-    
     <header>
-      <div class="logo">🔒🤰</div>
+      <div class="logo">🔐</div>
       <h1>Support</h1>
-      <p class="tagline">We're here to help</p>
+      <p class="tagline">Your privacy is our priority</p>
     </header>
-    
     <div class="content">
       <h2>Frequently Asked Questions</h2>
-      
       <div class="faq">
-        <h3>Why doesn't VaultBump have cloud sync?</h3>
-        <p>By design. Cloud sync requires servers, and servers can be hacked, subpoenaed, or compromised. VaultBump keeps your pregnancy data 100% on your device for maximum privacy.</p>
+        <h3>Why is my data 100% local?</h3>
+        <p>VaultBump was designed for maximum privacy. In a world where pregnancy data can be subpoenaed or leaked, we chose to never store your data on any server. Your pregnancy journey stays on your phone only.</p>
       </div>
-      
       <div class="faq">
         <h3>What does the Panic Button do?</h3>
-        <p>The panic button immediately and permanently deletes ALL data from the app. This cannot be undone. Use it if you need to quickly remove all pregnancy tracking data.</p>
+        <p>The Panic Button instantly and permanently deletes ALL data from the app. This cannot be undone. Use it if you need to quickly erase your pregnancy tracking data.</p>
       </div>
-      
+      <div class="faq">
+        <h3>What if I get a new phone?</h3>
+        <p>Since we don't store data in the cloud, your data cannot be transferred between devices. This is by design — maximum privacy means no sync capability.</p>
+      </div>
       <div class="faq">
         <h3>Does the app work offline?</h3>
-        <p>Yes! VaultBump works 100% offline because it has no servers. Your data never requires an internet connection.</p>
+        <p>Yes! VaultBump works 100% offline. It never needs an internet connection because your data never leaves your device.</p>
       </div>
-      
       <div class="faq">
-        <h3>Is my data encrypted?</h3>
-        <p>Yes. Data is stored using iOS/Android secure storage mechanisms. Additionally, you can set an app-specific passcode for extra protection.</p>
-      </div>
-      
-      <div class="faq">
-        <h3>How do I restore my purchase?</h3>
-        <p>Go to Settings → Restore Purchase. This will restore your premium access if you reinstall the app or get a new device (using the same Apple ID).</p>
-      </div>
-      
-      <div class="faq">
-        <h3>Can I export my data?</h3>
-        <p>No — this is intentional. Data export could be used to compromise your privacy. VaultBump is designed so your data never leaves your device.</p>
+        <h3>Is this medical advice?</h3>
+        <p>No. VaultBump is for personal tracking only. Always consult your healthcare provider for medical decisions during pregnancy.</p>
       </div>
     </div>
-    
     <div class="content">
       <h2>Contact Us</h2>
-      <p>Still need help? We typically respond within 24 hours.</p>
+      <p>Have a question? We typically respond within 24 hours.</p>
       <a href="mailto:support@rgpanko.com?subject=VaultBump Support" class="contact-btn">Email Support</a>
     </div>
-    
     <footer>
       <p>RGPankO Apps · <a href="privacy.html" style="color: var(--muted);">Privacy Policy</a></p>
     </footer>

@@ -7,19 +7,15 @@
   <style>
     :root {
       --primary: #3d9a8b;
-      --primary-light: #d1fae5;
-      --primary-dark: #0d9488;
-      --bg: #f0fdf4;
+      --primary-light: #e0f5f1;
+      --primary-dark: #2d7a6b;
+      --bg: #f5faf9;
       --card: #ffffff;
-      --text: #1e3a32;
-      --muted: #5a7a6a;
+      --text: #1e3a35;
+      --muted: #5a7a75;
     }
     * { box-sizing: border-box; margin: 0; padding: 0; }
-    body { 
-      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-      background: var(--bg); color: var(--text); line-height: 1.7;
-      padding: 24px 16px 60px;
-    }
+    body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: var(--bg); color: var(--text); line-height: 1.7; padding: 24px 16px 60px; }
     .container { max-width: 700px; margin: 0 auto; }
     header { text-align: center; padding: 40px 20px; margin-bottom: 24px; }
     .logo { font-size: 48px; margin-bottom: 12px; }
@@ -32,74 +28,51 @@
     .faq { margin-bottom: 24px; }
     .faq h3 { font-size: 16px; margin-bottom: 8px; }
     .faq p { color: var(--muted); }
-    .contact-btn { display: inline-block; background: var(--primary); color: white; padding: 14px 28px; 
-                   border-radius: 8px; text-decoration: none; font-weight: 600; margin-top: 8px; }
-    .contact-btn:hover { background: var(--primary-dark); }
-    .back-link { display: inline-block; margin-bottom: 20px; color: var(--primary); text-decoration: none; }
-    .back-link:hover { text-decoration: underline; }
+    .contact-btn { display: inline-block; background: var(--primary); color: white; padding: 14px 28px; border-radius: 8px; text-decoration: none; font-weight: 600; margin-top: 8px; }
     footer { text-align: center; margin-top: 40px; color: var(--muted); font-size: 13px; }
+    .back-link { display: inline-block; margin-bottom: 20px; color: var(--primary); text-decoration: none; }
   </style>
 </head>
 <body>
   <div class="container">
     <a href="./" class="back-link">← Back to SandwichSupport</a>
-    
     <header>
       <div class="logo">🥪💚</div>
       <h1>Support</h1>
-      <p class="tagline">We're here to help</p>
+      <p class="tagline">Support for sandwich generation caregivers</p>
     </header>
-    
     <div class="content">
       <h2>Frequently Asked Questions</h2>
-      
       <div class="faq">
-        <h3>What is a "sandwich generation" caregiver?</h3>
-        <p>The sandwich generation refers to adults (typically 40s-60s) who are "sandwiched" between caring for aging parents AND raising their own children. It's an incredibly demanding role, and SandwichSupport is built specifically for you.</p>
+        <h3>What is the "sandwich generation"?</h3>
+        <p>People caring for both aging parents AND children at the same time. It's exhausting, often invisible, and SandwichSupport is built specifically for you.</p>
       </div>
-      
       <div class="faq">
-        <h3>What does the daily check-in do?</h3>
-        <p>The daily wellness check-in helps you track how you're really doing. It monitors stress levels, sleep, and self-care over time so you can spot patterns and prevent burnout before it happens.</p>
+        <h3>What's the Wellness Check-in?</h3>
+        <p>A quick daily prompt to assess your energy, stress, and emotional state. Over time, patterns emerge that help you recognize when you need to prioritize self-care.</p>
       </div>
-      
       <div class="faq">
-        <h3>What is the AI Coach?</h3>
-        <p>The AI Coach is like having a supportive friend who understands caregiving. It offers practical advice, validation, and coping strategies based on caregiver wellbeing research. It's not therapy, but it helps in the daily moments.</p>
+        <h3>How do Boundaries work?</h3>
+        <p>Set healthy limits with pre-written scripts and reminders. The app helps you establish and maintain boundaries with family members — a critical skill for preventing burnout.</p>
       </div>
-      
       <div class="faq">
-        <h3>What are Boundaries?</h3>
-        <p>The Boundaries feature helps you set and maintain healthy limits. Caregivers often overcommit. This feature gives you scripts and strategies for saying no, delegating, and protecting your time.</p>
+        <h3>What's the AI Coach for?</h3>
+        <p>A judgment-free space to vent, process emotions, or get advice. The coach understands caregiver challenges and offers evidence-based strategies for managing stress.</p>
       </div>
-      
+      <div class="faq">
+        <h3>Does the app work offline?</h3>
+        <p>Most features work offline! All check-ins, boundaries, and care notes are stored locally. The AI Coach needs internet for some responses.</p>
+      </div>
       <div class="faq">
         <h3>Is my data private?</h3>
-        <p>Absolutely. Your wellbeing data and care notes never leave your device. We have no servers, no accounts, and no way to access your information. See our <a href="privacy.html">Privacy Policy</a> for details.</p>
-      </div>
-      
-      <div class="faq">
-        <h3>How do I restore my purchase?</h3>
-        <p>Go to Settings → Restore Purchase. This will restore your premium access if you reinstall the app or get a new device.</p>
+        <p>Completely. All your data stays on your device. We have no servers and no way to see your caregiving journey. See our Privacy Policy for details.</p>
       </div>
     </div>
-    
-    <div class="content">
-      <h2>Crisis Resources</h2>
-      <p>If you're experiencing severe caregiver burnout or mental health crisis:</p>
-      <ul>
-        <li><strong>988 Suicide & Crisis Lifeline:</strong> Call or text 988</li>
-        <li><strong>Caregiver Action Network:</strong> 1-855-227-3640</li>
-      </ul>
-      <p>You deserve support too. 💚</p>
-    </div>
-    
     <div class="content">
       <h2>Contact Us</h2>
-      <p>Still need help? We typically respond within 24 hours.</p>
-      <a href="mailto:support@rgpanko.com?subject=SandwichSupport Support" class="contact-btn">Email Support</a>
+      <p>Questions? We understand caregiving is hard. We respond within 24 hours.</p>
+      <a href="mailto:support@rgpanko.com?subject=SandwichSupport" class="contact-btn">Email Support</a>
     </div>
-    
     <footer>
       <p>RGPankO Apps · <a href="privacy.html" style="color: var(--muted);">Privacy Policy</a></p>
     </footer>

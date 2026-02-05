@@ -8,18 +8,14 @@
     :root {
       --primary: #f472b6;
       --primary-light: #fce7f3;
-      --primary-dark: #db2777;
+      --primary-dark: #ec4899;
       --bg: #fdf2f8;
       --card: #ffffff;
-      --text: #3a1e2e;
-      --muted: #7a5a6a;
+      --text: #4a1e3a;
+      --muted: #8a5a7a;
     }
     * { box-sizing: border-box; margin: 0; padding: 0; }
-    body { 
-      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-      background: var(--bg); color: var(--text); line-height: 1.7;
-      padding: 24px 16px 60px;
-    }
+    body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: var(--bg); color: var(--text); line-height: 1.7; padding: 24px 16px 60px; }
     .container { max-width: 700px; margin: 0 auto; }
     header { text-align: center; padding: 40px 20px; margin-bottom: 24px; }
     .logo { font-size: 48px; margin-bottom: 12px; }
@@ -32,64 +28,47 @@
     .faq { margin-bottom: 24px; }
     .faq h3 { font-size: 16px; margin-bottom: 8px; }
     .faq p { color: var(--muted); }
-    .contact-btn { display: inline-block; background: var(--primary); color: white; padding: 14px 28px; 
-                   border-radius: 8px; text-decoration: none; font-weight: 600; margin-top: 8px; }
-    .contact-btn:hover { background: var(--primary-dark); }
-    .back-link { display: inline-block; margin-bottom: 20px; color: var(--primary); text-decoration: none; }
-    .back-link:hover { text-decoration: underline; }
+    .contact-btn { display: inline-block; background: var(--primary); color: white; padding: 14px 28px; border-radius: 8px; text-decoration: none; font-weight: 600; margin-top: 8px; }
     footer { text-align: center; margin-top: 40px; color: var(--muted); font-size: 13px; }
+    .back-link { display: inline-block; margin-bottom: 20px; color: var(--primary); text-decoration: none; }
   </style>
 </head>
 <body>
   <div class="container">
     <a href="./" class="back-link">← Back to BabyGlow</a>
-    
     <header>
       <div class="logo">👶✨</div>
       <h1>Support</h1>
-      <p class="tagline">We're here to help</p>
+      <p class="tagline">See what your future baby might look like</p>
     </header>
-    
     <div class="content">
       <h2>Frequently Asked Questions</h2>
-      
       <div class="faq">
         <h3>How many photos should I upload?</h3>
-        <p>For best results, upload 5-10 clear photos. Include different angles and good lighting. Better input photos = better generated images!</p>
+        <p>5-10 clear photos of each parent work best. Include different angles and good lighting. Avoid sunglasses, hats, or heavily filtered images.</p>
       </div>
-      
       <div class="faq">
         <h3>How long does generation take?</h3>
-        <p>Each image typically takes 30-60 seconds to generate. You'll see a progress indicator while it's processing.</p>
+        <p>Usually 2-5 minutes depending on server load. You'll get a notification when your images are ready!</p>
       </div>
-      
       <div class="faq">
-        <h3>Where are my generated images saved?</h3>
-        <p>Images are saved directly to your device's photo gallery. You can also access them in the app's Gallery tab.</p>
+        <h3>Are the images accurate predictions?</h3>
+        <p>BabyGlow uses AI to create artistic interpretations based on parent features. They're fun keepsakes, not scientific predictions. Actual genetics is far more complex!</p>
       </div>
-      
       <div class="faq">
         <h3>What happens to my photos?</h3>
-        <p>Your photos are temporarily processed for generation, then deleted from our servers. We don't keep copies or use them for AI training. See our <a href="privacy.html">Privacy Policy</a> for details.</p>
+        <p>Your photos are used only to generate images, then deleted within 24 hours. We never use them for AI training or share them with anyone. See our Privacy Policy for details.</p>
       </div>
-      
       <div class="faq">
-        <h3>Can I get a refund if I don't like the results?</h3>
-        <p>Refunds are handled through the App Store. If you're unsatisfied, contact Apple Support through your purchase history.</p>
-      </div>
-      
-      <div class="faq">
-        <h3>How do I restore my purchase?</h3>
-        <p>Go to Settings → Restore Purchase. This will restore your credits if you reinstall the app or get a new device.</p>
+        <h3>Can I get a refund?</h3>
+        <p>If you're unhappy with your images, contact us within 7 days. We'll either regenerate your pack or process a refund through Apple/Google.</p>
       </div>
     </div>
-    
     <div class="content">
       <h2>Contact Us</h2>
-      <p>Still need help? We typically respond within 24 hours.</p>
+      <p>Questions? We typically respond within 24 hours.</p>
       <a href="mailto:support@rgpanko.com?subject=BabyGlow Support" class="contact-btn">Email Support</a>
     </div>
-    
     <footer>
       <p>RGPankO Apps · <a href="privacy.html" style="color: var(--muted);">Privacy Policy</a></p>
     </footer>
